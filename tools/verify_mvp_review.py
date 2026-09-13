@@ -4,11 +4,11 @@ from __future__ import annotations
 
 import argparse
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
-from urllib.request import Request, build_opener, ProxyHandler
+from urllib.request import ProxyHandler, Request, build_opener
 
 
 def validate_target(url: str, confirmed: bool) -> str:
@@ -49,7 +49,8 @@ def run(base: str) -> dict:
             body = response.read().decode("utf-8")
             if response.status != expected:
                 raise RuntimeError(
-                    f"{req.get_method()} {path}: expected {expected}, got {response.status}: {body[:800]}"
+                    f"{req.get_method()} {path}: expected {expected}, "
+                    f"got {response.status}: {body[:800]}"
                 )
             checks.append(
                 {"method": req.get_method(), "path": path, "status": response.status}
@@ -137,7 +138,10 @@ def run(base: str) -> dict:
             "gate_evaluation_id": gate["id"],
             "decision": "REQUEST_CHANGES",
             "decided_by": "Automated MVP QA (synthetic)",
-            "decision_reason": "Automated smoke test only. Synthetic evidence cannot authorize production release.",
+            "decision_reason": (
+                "Automated smoke test only. "
+                "Synthetic evidence cannot authorize production release."
+            ),
             "signature_statement": "Synthetic QA record, not human review or approval.",
             "ticket_reference": "MVP-AUTOMATED-QA",
         },
@@ -168,7 +172,7 @@ def run(base: str) -> dict:
     check("REQUEST_CHANGES" in report, "release report preserves change request")
     return {
         "schema_version": "mvp-review-smoke-v1",
-        "verified_at_utc": datetime.now(timezone.utc).isoformat(),
+        "verified_at_utc": datetime.now(UTC).isoformat(),
         "api_url": base,
         "status": "passed",
         "checks": checks,

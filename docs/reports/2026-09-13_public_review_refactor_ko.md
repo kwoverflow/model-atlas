@@ -83,6 +83,9 @@ Node 테스트에는 experimental type stripping/module-type 경고도 있었다
 정식 보안·개인정보 감사의 대체물이 아니다. 공개 저장소의 라이선스는 아직 선택하지 않았다.
 
 GitHub Actions는 backend·frontend·도구 테스트와 공개 payload 검사를 반복한다.
+첫 원격 CI에서 실행 폴더별 Ruff 설정 차이가 발견되어 `tools/ruff.toml`로 설정과
+로컬 모듈 분류를 명시했다. 도구의 import 정렬·줄 길이·UTC 표현과 길이가 이미 같은
+목록 비교의 `zip(strict=True)`를 정리했다. 예제 환경파일 두 개도 Git과 ZIP에서 동일하게 포함한다.
 원격 CI 결과는 Actions 실행 기록에서, 최종 ZIP 추출·해시는 ZIP 옆 sidecar에서 확인한다.
 검토 제출은 완료할 수 있지만 **외부 평가 통과는 평가자의 결과를 받은 뒤에만** 표기해야 한다.
 

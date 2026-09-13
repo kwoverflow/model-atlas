@@ -23,11 +23,11 @@ jobs:
       - name: Test backend
         run: pytest
       - name: Lint workflow evidence tools
-        run: ruff check ../tools/verify_request_workflow_export.py ../tools/test_verify_request_workflow_export.py ../tools/smoke_request_workflows.py
+        run: ruff check --config ../tools/ruff.toml ../tools/verify_request_workflow_export.py ../tools/test_verify_request_workflow_export.py ../tools/smoke_request_workflows.py
       - name: Test workflow evidence exports
         run: python -m pytest ../tools/test_verify_request_workflow_export.py -q
       - name: Lint review and publication tools
-        run: ruff check ../tools/verify_mvp_review.py ../tools/verify_mvp_package.py ../tools/audit_publication.py ../tools/tests
+        run: ruff check --config ../tools/ruff.toml ../tools/verify_mvp_review.py ../tools/verify_mvp_package.py ../tools/audit_publication.py ../tools/tests
       - name: Test review and publication tools
         run: python -m unittest discover -s ../tools/tests -v
       - name: Audit public repository payloads

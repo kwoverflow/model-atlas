@@ -19,7 +19,7 @@ def same_json(left, right):
         )
     if isinstance(left, list):
         return len(left) == len(right) and all(
-            same_json(a, b) for a, b in zip(left, right)
+            same_json(a, b) for a, b in zip(left, right, strict=True)
         )
     return left == right
 

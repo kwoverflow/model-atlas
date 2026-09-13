@@ -1,0 +1,9 @@
+extend = "../backend/pyproject.toml"
+
+[lint.isort]
+known-first-party = [
+    "audit_publication",
+    "verify_mvp_package",
+    "verify_mvp_review",
+    "verify_request_workflow_export",
+]

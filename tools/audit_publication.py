@@ -136,7 +136,9 @@ def audit(payloads, scope: str) -> dict:
         "payload_count": count,
         "payload_bytes": total_bytes,
         "findings": findings,
-        "limitation": "High-confidence patterns and payload rules only; not a complete security audit.",
+        "limitation": (
+            "High-confidence patterns and payload rules only; not a complete security audit."
+        ),
     }
 
 
