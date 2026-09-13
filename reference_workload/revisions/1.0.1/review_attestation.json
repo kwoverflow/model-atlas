@@ -1,0 +1,34 @@
+{
+  "schema_version": "model-atlas-reference-case-pack-revision-attestation-v1",
+  "revision_id": "1.0.1",
+  "revision_report_sha256": "0832df67b0aa15010bde4176423bb694ef3d2e1a5b375207fabc4c0cf18c3474",
+  "statement": "I personally reviewed every changed case, its source evidence, and its retrieval contract.",
+  "reviewer": "김대건",
+  "reviewed_at": "2026-09-02T15:05:54.767Z",
+  "decisions": [
+    {
+      "external_case_id": "KO-RAG-TOOL-001",
+      "revised_case_sha256": "60152d64a0f041ee054d71b7fe966e7b686438e677d86016fb9021b6acc7bd54",
+      "decision": "approved",
+      "notes": "yes"
+    },
+    {
+      "external_case_id": "KO-RAG-TOOL-002",
+      "revised_case_sha256": "1aaad1f6f16ece385a76149d1f246edda3138db0677ae9dda8439258d132b4d8",
+      "decision": "approved",
+      "notes": "yes"
+    },
+    {
+      "external_case_id": "KO-RAG-TOOL-003",
+      "revised_case_sha256": "745cde1819a020735cfcd4be83422ff814bde2fe7abc188a09fd07f375fd3bda",
+      "decision": "approved",
+      "notes": "yes"
+    },
+    {
+      "external_case_id": "KO-AGENT-001",
+      "revised_case_sha256": "bf6cc9cb37c5ee4decb38e4b3a186a4f74df57cb5bf4eab679b8c2c68f7e476d",
+      "decision": "approved",
+      "notes": "yes"
+    }
+  ]
+}

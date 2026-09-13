@@ -1,0 +1,63 @@
+{
+  "schema_version": "rag-extraction-verification-v1",
+  "status": "all_definition_asts_unchanged",
+  "definition_count": 41,
+  "modules": {
+    "contracts": [
+      "RAG_CORPUS_REGISTRY_VERSION",
+      "RAG_RETRIEVAL_TRACE_VERSION",
+      "RAG_EVALUATION_TRACE_VERSION",
+      "RAG_EVALUATION_SUMMARY_VERSION",
+      "LEXICAL_RETRIEVER_VERSION",
+      "MAX_RETRIEVAL_TOP_K",
+      "SEMANTIC_FACT_MATCH_THRESHOLD",
+      "FORBIDDEN_CLAIM_MATCH_THRESHOLD",
+      "SELECTED_EVIDENCE_CATEGORIES",
+      "RagChunk",
+      "RagCorpus",
+      "RagCorpusRegistry",
+      "RetrieverDescriptor",
+      "RetrievedChunk",
+      "RagRetrievalTrace",
+      "RagPreparation",
+      "RagEvaluationTrace"
+    ],
+    "corpus": [
+      "_stable_hash",
+      "_build_default_corpus",
+      "DEFAULT_RAG_CORPUS",
+      "DEFAULT_RAG_CORPUS_REGISTRY",
+      "DEFAULT_RETRIEVER_DESCRIPTOR"
+    ],
+    "text": [
+      "_tokens",
+      "_semantic_tokens",
+      "_contains_negation",
+      "_detect_refusal"
+    ],
+    "retrieval": [
+      "retrieve"
+    ],
+    "scoring": [
+      "evaluate_rag_output",
+      "_citations",
+      "_claims",
+      "_evaluate_semantic_contract",
+      "_semantic_match_result",
+      "_semantic_match_score",
+      "_claim_support_score"
+    ],
+    "execution": [
+      "is_rag_case",
+      "prepare_rag_execution",
+      "attach_rag_evaluation"
+    ],
+    "summaries": [
+      "summarize_rag_traces",
+      "_number",
+      "_nested_number",
+      "_mean"
+    ]
+  },
+  "original_normalized_source_sha256": "0a42efcc6480900ca299f95e9e476fe76c8b4de100b25b9f93c34993e29f5de2"
+}

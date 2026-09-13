@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install backend
+        run: pip install -e .
+      - name: Lint backend
+        run: ruff check .
+      - name: Test backend
+        run: pytest
+      - name: Lint workflow evidence tools
+        run: ruff check ../tools/verify_request_workflow_export.py ../tools/test_verify_request_workflow_export.py ../tools/smoke_request_workflows.py
+      - name: Test workflow evidence exports
+        run: python -m pytest ../tools/test_verify_request_workflow_export.py -q
+      - name: Lint review and publication tools
+        run: ruff check ../tools/verify_mvp_review.py ../tools/verify_mvp_package.py ../tools/audit_publication.py ../tools/tests
+      - name: Test review and publication tools
+        run: python -m unittest discover -s ../tools/tests -v
+      - name: Audit public repository payloads
+        run: python ../tools/audit_publication.py --git-index ..
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install frontend
+        run: npm ci
+      - name: Audit frontend dependencies
+        run: npm audit --audit-level=high
+      - name: Test frontend
+        run: npm test
+      - name: Typecheck frontend
+        run: npm run typecheck
+      - name: Lint frontend
+        run: npm run lint
+      - name: Build frontend
+        run: npm run build

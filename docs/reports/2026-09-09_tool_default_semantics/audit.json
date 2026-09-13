@@ -1,0 +1,557 @@
+{
+  "assessment": "share_with_caveats_local_default_equivalence_only",
+  "source_sha256": "ed5c3b2304d89e6241f7e713480798b78f068565a690498271933d8c911abd50",
+  "previous_sha256": "f122e1e6cb38c349b00d8d35769f279a21786a16139f1ab4834eff36558f0ca8",
+  "started_at": "2026-09-09T07:22:59.824860+00:00",
+  "completed_at": "2026-09-09T07:25:52.536819+00:00",
+  "observations": 112,
+  "http_calls": 168,
+  "fault_replay_traces": 336,
+  "summary": [
+    {
+      "variant": "baseline",
+      "n": 56,
+      "selection": 52,
+      "exact": 46,
+      "equivalent": 48,
+      "default_only": 2,
+      "prompt_tokens": 48600,
+      "completion_tokens": 1768,
+      "median_latency_ms": 833.2968499744311
+    },
+    {
+      "variant": "candidate",
+      "n": 56,
+      "selection": 52,
+      "exact": 48,
+      "equivalent": 48,
+      "default_only": 0,
+      "prompt_tokens": 65352,
+      "completion_tokens": 2499,
+      "median_latency_ms": 1298.7198500195518
+    }
+  ],
+  "strata": [
+    {
+      "variant": "baseline",
+      "stratum": "ticket_explicit_normal",
+      "n": 4,
+      "exact": 4,
+      "equivalent": 4
+    },
+    {
+      "variant": "candidate",
+      "stratum": "ticket_explicit_normal",
+      "n": 4,
+      "exact": 4,
+      "equivalent": 4
+    },
+    {
+      "variant": "candidate",
+      "stratum": "ticket_omitted_default",
+      "n": 4,
+      "exact": 4,
+      "equivalent": 4
+    },
+    {
+      "variant": "baseline",
+      "stratum": "ticket_omitted_default",
+      "n": 4,
+      "exact": 2,
+      "equivalent": 4
+    },
+    {
+      "variant": "baseline",
+      "stratum": "ticket_explicit_high",
+      "n": 4,
+      "exact": 4,
+      "equivalent": 4
+    },
+    {
+      "variant": "candidate",
+      "stratum": "ticket_explicit_high",
+      "n": 4,
+      "exact": 0,
+      "equivalent": 0
+    },
+    {
+      "variant": "candidate",
+      "stratum": "ticket_explicit_low",
+      "n": 4,
+      "exact": 4,
+      "equivalent": 4
+    },
+    {
+      "variant": "baseline",
+      "stratum": "ticket_explicit_low",
+      "n": 4,
+      "exact": 4,
+      "equivalent": 4
+    },
+    {
+      "variant": "baseline",
+      "stratum": "lookup_policy",
+      "n": 8,
+      "exact": 8,
+      "equivalent": 8
+    },
+    {
+      "variant": "candidate",
+      "stratum": "lookup_policy",
+      "n": 8,
+      "exact": 8,
+      "equivalent": 8
+    },
+    {
+      "variant": "baseline",
+      "stratum": "lookup_internal_document",
+      "n": 8,
+      "exact": 8,
+      "equivalent": 8
+    },
+    {
+      "variant": "candidate",
+      "stratum": "lookup_internal_document",
+      "n": 8,
+      "exact": 8,
+      "equivalent": 8
+    },
+    {
+      "variant": "baseline",
+      "stratum": "search_incidents",
+      "n": 8,
+      "exact": 4,
+      "equivalent": 4
+    },
+    {
+      "variant": "candidate",
+      "stratum": "search_incidents",
+      "n": 8,
+      "exact": 4,
+      "equivalent": 4
+    },
+    {
+      "variant": "baseline",
+      "stratum": "lookup_customer",
+      "n": 8,
+      "exact": 8,
+      "equivalent": 8
+    },
+    {
+      "variant": "candidate",
+      "stratum": "lookup_customer",
+      "n": 8,
+      "exact": 8,
+      "equivalent": 8
+    },
+    {
+      "variant": "baseline",
+      "stratum": "summarize_thread",
+      "n": 8,
+      "exact": 4,
+      "equivalent": 4
+    },
+    {
+      "variant": "candidate",
+      "stratum": "summarize_thread",
+      "n": 8,
+      "exact": 8,
+      "equivalent": 8
+    }
+  ],
+  "historical_addendum_summary": [
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "n": 24,
+      "exact": 11,
+      "equivalent": 11
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "n": 12,
+      "exact": 6,
+      "equivalent": 6
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "n": 12,
+      "exact": 9,
+      "equivalent": 9
+    },
+    {
+      "entry": "medium-candidate",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "n": 24,
+      "exact": 24,
+      "equivalent": 24
+    },
+    {
+      "entry": "medium-candidate",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "n": 12,
+      "exact": 7,
+      "equivalent": 7
+    },
+    {
+      "entry": "medium-candidate",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "n": 12,
+      "exact": 9,
+      "equivalent": 11
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "n": 24,
+      "exact": 20,
+      "equivalent": 20
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "n": 12,
+      "exact": 6,
+      "equivalent": 6
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "n": 12,
+      "exact": 9,
+      "equivalent": 11
+    }
+  ],
+  "within_candidate_transitions": {
+    "exact:1->1": 42,
+    "equivalent:1->1": 44,
+    "exact:0->1": 6,
+    "exact:1->0": 4,
+    "equivalent:1->0": 4,
+    "exact:0->0": 4,
+    "equivalent:0->0": 4,
+    "equivalent:0->1": 4
+  },
+  "paired_stage1_selection_changes": 0,
+  "finish_reasons": {
+    "stop": 168
+  },
+  "default_only_rows": [
+    {
+      "id": "TFB-202",
+      "variant": "baseline",
+      "trial": 1,
+      "tool_order": "reversed",
+      "actual": {
+        "arguments": {
+          "priority": "normal",
+          "query": "Replace broken dashboard link"
+        },
+        "tool_name": "create_ticket"
+      },
+      "expected": {
+        "query": "Replace broken dashboard link"
+      },
+      "reason": "declared_default_only"
+    },
+    {
+      "id": "TFB-202",
+      "variant": "baseline",
+      "trial": 2,
+      "tool_order": "reversed",
+      "actual": {
+        "arguments": {
+          "priority": "normal",
+          "query": "Replace broken dashboard link"
+        },
+        "tool_name": "create_ticket"
+      },
+      "expected": {
+        "query": "Replace broken dashboard link"
+      },
+      "reason": "declared_default_only"
+    }
+  ],
+  "non_equivalent_rows": [
+    {
+      "id": "TFB-203",
+      "variant": "candidate",
+      "trial": 1,
+      "tool_order": "registered",
+      "actual": {
+        "arguments": {
+          "query": "Restore billing webhook"
+        },
+        "tool_name": "create_ticket"
+      },
+      "expected": {
+        "query": "Restore billing webhook",
+        "priority": "high"
+      },
+      "reason": "argument_values_differ"
+    },
+    {
+      "id": "TFB-203",
+      "variant": "candidate",
+      "trial": 2,
+      "tool_order": "registered",
+      "actual": {
+        "arguments": {
+          "query": "Restore billing webhook"
+        },
+        "tool_name": "create_ticket"
+      },
+      "expected": {
+        "query": "Restore billing webhook",
+        "priority": "high"
+      },
+      "reason": "argument_values_differ"
+    },
+    {
+      "id": "TFB-203",
+      "variant": "candidate",
+      "trial": 1,
+      "tool_order": "reversed",
+      "actual": {
+        "arguments": {
+          "query": "Restore billing webhook"
+        },
+        "tool_name": "create_ticket"
+      },
+      "expected": {
+        "query": "Restore billing webhook",
+        "priority": "high"
+      },
+      "reason": "argument_values_differ"
+    },
+    {
+      "id": "TFB-203",
+      "variant": "candidate",
+      "trial": 2,
+      "tool_order": "reversed",
+      "actual": {
+        "arguments": {
+          "query": "Restore billing webhook"
+        },
+        "tool_name": "create_ticket"
+      },
+      "expected": {
+        "query": "Restore billing webhook",
+        "priority": "high"
+      },
+      "reason": "argument_values_differ"
+    },
+    {
+      "id": "TFB-209",
+      "variant": "baseline",
+      "trial": 1,
+      "tool_order": "registered",
+      "actual": {
+        "arguments": {
+          "document_id": "docs/tool_calling_evaluation.md"
+        },
+        "tool_name": "lookup_internal_document"
+      },
+      "expected": {
+        "query": "queue backlog: region-3"
+      },
+      "reason": "wrong_tool"
+    },
+    {
+      "id": "TFB-209",
+      "variant": "candidate",
+      "trial": 1,
+      "tool_order": "registered",
+      "actual": {
+        "arguments": {
+          "document_id": "queue backlog: region-3"
+        },
+        "tool_name": "lookup_internal_document"
+      },
+      "expected": {
+        "query": "queue backlog: region-3"
+      },
+      "reason": "guard_rejected"
+    },
+    {
+      "id": "TFB-209",
+      "variant": "candidate",
+      "trial": 2,
+      "tool_order": "registered",
+      "actual": {
+        "arguments": {
+          "document_id": "queue backlog: region-3"
+        },
+        "tool_name": "lookup_internal_document"
+      },
+      "expected": {
+        "query": "queue backlog: region-3"
+      },
+      "reason": "guard_rejected"
+    },
+    {
+      "id": "TFB-209",
+      "variant": "baseline",
+      "trial": 2,
+      "tool_order": "registered",
+      "actual": {
+        "arguments": {
+          "document_id": "docs/tool_calling_evaluation.md"
+        },
+        "tool_name": "lookup_internal_document"
+      },
+      "expected": {
+        "query": "queue backlog: region-3"
+      },
+      "reason": "wrong_tool"
+    },
+    {
+      "id": "TFB-210",
+      "variant": "candidate",
+      "trial": 1,
+      "tool_order": "registered",
+      "actual": {
+        "arguments": {
+          "document_id": "TLS handshake / node-8"
+        },
+        "tool_name": "lookup_internal_document"
+      },
+      "expected": {
+        "query": "TLS handshake / node-8"
+      },
+      "reason": "guard_rejected"
+    },
+    {
+      "id": "TFB-210",
+      "variant": "baseline",
+      "trial": 1,
+      "tool_order": "registered",
+      "actual": {
+        "arguments": {
+          "document_id": "docs/tool_calling_evaluation.md"
+        },
+        "tool_name": "lookup_internal_document"
+      },
+      "expected": {
+        "query": "TLS handshake / node-8"
+      },
+      "reason": "wrong_tool"
+    },
+    {
+      "id": "TFB-210",
+      "variant": "baseline",
+      "trial": 2,
+      "tool_order": "registered",
+      "actual": {
+        "arguments": {
+          "document_id": "docs/tool_calling_evaluation.md"
+        },
+        "tool_name": "lookup_internal_document"
+      },
+      "expected": {
+        "query": "TLS handshake / node-8"
+      },
+      "reason": "wrong_tool"
+    },
+    {
+      "id": "TFB-210",
+      "variant": "candidate",
+      "trial": 2,
+      "tool_order": "registered",
+      "actual": {
+        "arguments": {
+          "document_id": "TLS handshake / node-8"
+        },
+        "tool_name": "lookup_internal_document"
+      },
+      "expected": {
+        "query": "TLS handshake / node-8"
+      },
+      "reason": "guard_rejected"
+    },
+    {
+      "id": "TFB-213",
+      "variant": "baseline",
+      "trial": 1,
+      "tool_order": "registered",
+      "actual": {
+        "arguments": {
+          "query": "대화 요약 도구에 전달할 query는 'Sora: cache cleared. Dae: metrics recovered.'입니다."
+        },
+        "tool_name": "summarize_thread"
+      },
+      "expected": {
+        "query": "Sora: cache cleared. Dae: metrics recovered."
+      },
+      "reason": "argument_values_differ"
+    },
+    {
+      "id": "TFB-213",
+      "variant": "baseline",
+      "trial": 2,
+      "tool_order": "registered",
+      "actual": {
+        "arguments": {
+          "query": "대화 요약 도구에 전달할 query는 'Sora: cache cleared. Dae: metrics recovered.'입니다."
+        },
+        "tool_name": "summarize_thread"
+      },
+      "expected": {
+        "query": "Sora: cache cleared. Dae: metrics recovered."
+      },
+      "reason": "argument_values_differ"
+    },
+    {
+      "id": "TFB-213",
+      "variant": "baseline",
+      "trial": 1,
+      "tool_order": "reversed",
+      "actual": {
+        "arguments": {
+          "query": "대화 요약 도구에 전달할 query는 'Sora: cache cleared. Dae: metrics recovered.'입니다. 지금 직접 요약문을 작성하지 마세요."
+        },
+        "tool_name": "summarize_thread"
+      },
+      "expected": {
+        "query": "Sora: cache cleared. Dae: metrics recovered."
+      },
+      "reason": "argument_values_differ"
+    },
+    {
+      "id": "TFB-213",
+      "variant": "baseline",
+      "trial": 2,
+      "tool_order": "reversed",
+      "actual": {
+        "arguments": {
+          "query": "대화 요약 도구에 전달할 query는 'Sora: cache cleared. Dae: metrics recovered.'입니다. 지금 직접 요약문을 작성하지 마세요."
+        },
+        "tool_name": "summarize_thread"
+      },
+      "expected": {
+        "query": "Sora: cache cleared. Dae: metrics recovered."
+      },
+      "reason": "argument_values_differ"
+    }
+  ],
+  "caveats": [
+    "Only omitted create_ticket.priority versus explicit normal is treated as equivalent.",
+    "Exact fidelity is retained separately; model outputs and execution arguments are never repaired.",
+    "Fresh requests are locally authored and unreviewed, not an independent holdout.",
+    "Orders and zero-temperature trials repeat 14 authored cases; observations are not independent.",
+    "Historical additive rescoring is post hoc, not new model evidence or a replacement score.",
+    "Local fixture equivalence says nothing about real external content, authorization, or general semantics.",
+    "Latency includes uncontrolled cache, request order and host effects; not an SLA estimate."
+  ]
+}

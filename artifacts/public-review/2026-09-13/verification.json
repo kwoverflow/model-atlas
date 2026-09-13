@@ -1,0 +1,115 @@
+{
+  "schema_version": "mvp-closeout-verification-v1",
+  "date": "2026-09-13",
+  "scope": "public portfolio review, behavior-preserving RAG refactor",
+  "external_review": "pending",
+  "human_review_performed": false,
+  "checks": {
+    "backend_windows": {
+      "status": "passed",
+      "passed": 915,
+      "skipped": 1,
+      "seconds": 58.234,
+      "receipt": "artifacts/public-review/2026-09-13/backend-tests.xml",
+      "warnings": 1
+    },
+    "backend_linux_docker": {
+      "status": "passed",
+      "passed": 916,
+      "skipped": 0,
+      "seconds": 42.129,
+      "receipt": "artifacts/public-review/2026-09-13/backend-docker-tests.xml",
+      "warnings": 2
+    },
+    "backend_ruff": {
+      "status": "passed"
+    },
+    "rag_extraction": {
+      "status": "passed",
+      "unchanged_definition_asts": 41,
+      "behavior_fingerprints": 5,
+      "compatibility_alias_tests": 9,
+      "acyclic_dependency_test": true,
+      "receipt": "artifacts/public-review/2026-09-13/rag-extraction.json"
+    },
+    "frontend_tests": {
+      "status": "passed",
+      "passed": 29
+    },
+    "frontend_typecheck": {
+      "status": "passed"
+    },
+    "frontend_lint": {
+      "status": "passed_with_warnings",
+      "errors": 0,
+      "warnings": 4
+    },
+    "frontend_build": {
+      "status": "passed",
+      "command": "npm run build"
+    },
+    "frontend_dependency_audit": {
+      "status": "passed",
+      "vulnerabilities": 0
+    },
+    "review_and_publication_helpers": {
+      "status": "passed",
+      "passed": 15
+    },
+    "workflow_evidence_tests": {
+      "status": "passed",
+      "passed": 9
+    },
+    "tools_ruff": {
+      "status": "passed"
+    },
+    "core_api": {
+      "status": "passed",
+      "check_count": 33,
+      "receipt": "artifacts/public-review/2026-09-13/api-smoke.json"
+    },
+    "protected_runtime_state": {
+      "status": "unchanged",
+      "official_unchanged": true,
+      "before_content_sha256": "94b3f17fe01539e02f29ddf90c66dff7fe82367914b752d87bb320a9fccfbaef",
+      "after_content_sha256": "4f0d03679d9bdc7581a943f7dcfa7be77def3624d4786ebb28f5b12c89e2ca19",
+      "changed_source_paths": [],
+      "added_source_paths": [],
+      "removed_source_paths": []
+    },
+    "workspace_source": {
+      "status": "expected_refactor_only",
+      "changed_existing_backend_paths": [
+        "app/services/rag_evaluation.py"
+      ],
+      "added_modules": [
+        "contracts",
+        "corpus",
+        "text",
+        "retrieval",
+        "scoring",
+        "execution",
+        "summaries"
+      ]
+    },
+    "approved_corpus": {
+      "status": "unchanged",
+      "corpus_hash": "76a1d631bd4b4e9fdb6edd5ca1abd3ad76878a9bc2305009e10662cb67070ade",
+      "documents": 14,
+      "chunks": 200,
+      "revision_file_sha256": {
+        "cases.jsonl": "a48e25cbd07f6ee712e6f0188e2e9ed463224d706e77d237e8fb853b4b96b1fd",
+        "manifest.json": "b133e38eeb5dd21030d9dc0949847df0fa0193a22b756c38cbde3bf7d786c809",
+        "review_manifest.jsonl": "662ddcced71aac5647dab9f1e42c86ef5559e287f5d4daf4c686b3511fb0737d"
+      }
+    }
+  },
+  "archive_verification": "Separate final ZIP sidecar; no self-referential hashes.",
+  "limits": [
+    "No fresh real-model inference, model-performance improvement, or human review is claimed.",
+    "Official runtime remains the original image; only the isolated review backend was rebuilt.",
+    "Browser evidence is from the preceding MVP closeout; no UI source changed in this refactor.",
+    "GitHub Actions and final ZIP checks are recorded separately after publication.",
+    "Publication pattern scanning is not a full security or privacy audit."
+  ]
+}

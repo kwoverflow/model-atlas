@@ -1,0 +1,47 @@
+services:
+  tool-evaluator:
+    build:
+      context: ../../backend
+    read_only: true
+    network_mode: none
+    cap_drop: ["ALL"]
+    security_opt: ["no-new-privileges:true"]
+    tmpfs:
+      - /tmp/model-atlas:rw,noexec,nosuid,size=64m
+    command:
+      - pytest
+      - -q
+      - -p
+      - no:cacheprovider
+      - tests/test_tool_execution.py
+
+  rag-evaluator:
+    build:
+      context: ../../backend
+    read_only: true
+    cap_drop: ["ALL"]
+    security_opt: ["no-new-privileges:true"]
+    networks: ["model-runtime"]
+    volumes:
+      - ../../data:/data/rag:ro
+    tmpfs:
+      - /tmp/model-atlas:rw,noexec,nosuid,size=128m
+    command:
+      - pytest
+      - -q
+      - -p
+      - no:cacheprovider
+      - tests/test_rag_evaluation.py
+
+  ollama:
+    image: ollama/ollama:latest
+    networks: ["model-runtime"]
+    volumes:
+      - ollama-isolation-data:/root/.ollama
+
+networks:
+  model-runtime:
+    internal: true
+
+volumes:
+  ollama-isolation-data:

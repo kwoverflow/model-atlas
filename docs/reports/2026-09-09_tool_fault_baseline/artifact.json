@@ -1,0 +1,343 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Model Atlas Tool Fault Baseline",
+    "generatedAt": "2026-09-09T01:11:00.011210+00:00",
+    "sources": [
+      {
+        "id": "baseline",
+        "label": "Actual local model baseline",
+        "path": "artifacts/reference-workload/tool-fault-model-baseline-v1.json",
+        "query": {
+          "description": "Fresh model calls; paired environment replays. Source SHA-256: 27975681d2f2b53bad53c44d19346e5d9d7a47fa28f32a7d226faeecd388497f",
+          "tables_used": [
+            "observations"
+          ],
+          "engine": "SQLite (in-memory)",
+          "language": "sql",
+          "sql": "SELECT entry, COUNT(*) AS total, SUM(selected) AS selected,\nSUM(schema_valid) AS schema_valid, SUM(eligible) AS eligible,\nSUM(exact_call) AS exact_call, SUM(tool_success) AS tool_success,\nSUM(tool_success = 1 AND exact_call = 0) AS success_with_wrong_values\nFROM observations GROUP BY entry ORDER BY entry",
+          "metric_definitions": {
+            "exact_call": "Selected Tool and all explicit argument values equal the private expected contract; all generation trials remain in the denominator."
+          }
+        }
+      },
+      {
+        "id": "audit",
+        "label": "Executed independent reconciliation",
+        "path": "docs/reports/2026-09-09_tool_fault_baseline/audit.json",
+        "query": {
+          "engine": "SQLite (in-memory)",
+          "language": "sql",
+          "tables_used": ["faults"],
+          "description": "Mode totals from independently checked paired traces.",
+          "sql": "SELECT mode, COUNT(*) AS total, SUM(success) AS successes, SUM(passed) AS fixture_passed, SUM(not_exercised) AS not_exercised, SUM(handlers) AS handlers, SUM(injected) AS injected FROM faults GROUP BY mode ORDER BY mode"
+        }
+      },
+      {
+        "id": "cases",
+        "label": "Local diagnostic case pack",
+        "path": "reference_workload/diagnostics/tool-fault-baseline-v1.json"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# Model Atlas Tool Fault Baseline\n\n"
+      },
+      {
+        "id": "summary",
+        "type": "markdown",
+        "body": "## 실행 성공과 요청값 정확도는 다릅니다\n\n실제 모델 추론 72건에서 Tool과 요청 인자가 모두 정확한 응답은 **43/72건**입니다. 정상 모의 Tool 실행 성공은 59/72건이며, 그중 16건은 요청값 정확도 조건을 만족하지 않았습니다. 이번 결과는 새 진단 기준선이며 기존 실험 대비 향상률이 아닙니다.",
+        "sourceId": "baseline"
+      },
+      {
+        "id": "scope",
+        "type": "markdown",
+        "body": "## 명시한 값을 보존하는 좁은 과제를 측정했습니다\n\n한국어 업무 요청 12개에 대해 Tool 6종을 각각 2개 사례로 다뤘습니다. 기존 3개 구성에서 2회씩 실행해 구성별 분모는 24건입니다. 선택 정확도는 기대 Tool 일치, 스키마 유효는 공개 인자 형식 충족, 실행 허용은 검증기 통과, 값 정확도는 요청에 명시된 인자 사전의 완전 일치입니다. 값의 의미적 동등성을 채점한 것이 아닙니다.",
+        "sourceId": "baseline"
+      },
+      {
+        "id": "findings",
+        "type": "markdown",
+        "body": "## 모델·프롬프트별 기준선을 고정했습니다\n\n아래 막대는 Tool과 요청값이 모두 맞은 비율입니다. 0.5B/v1은 13/24, 1.5B/v1은 16/24, 1.5B/v2는 14/24건입니다. 1.5B/v1은 Tool 선택은 모두 맞았지만 실행 성공 중 8건에서 요청값을 잘못 전달했습니다. 0.5B/v1과 1.5B/v2에는 각각 9건과 4건의 선택 오류도 있습니다. 표의 단계별 지표를 함께 봐야 합니다. 표본이 작고 케이스가 독립 검토되지 않았으므로 모델의 일반적 우열로 해석하지 않습니다.",
+        "sourceId": "baseline"
+      },
+      {
+        "id": "exact_chart_block",
+        "type": "chart",
+        "chartId": "exact_chart"
+      },
+      {
+        "id": "entry_table_block",
+        "type": "table",
+        "tableId": "entry_table"
+      },
+      {
+        "id": "faults",
+        "type": "markdown",
+        "body": "## 장애 환경은 동일한 응답을 재사용했습니다\n\n모델을 환경별로 다시 호출하지 않고 한 응답을 세 환경에서 재생했습니다. 따라서 실행 추적 216건은 독립 모델 응답 216건이 아닙니다. 영구 실패에서 검사를 통과했다는 것은 재시도 없이 중단했다는 뜻이며, Tool 실행 성공이 아닙니다. 재시도는 모델이 아니라 실행기가 결정합니다.",
+        "sourceId": "baseline"
+      },
+      {
+        "id": "mode_table_block",
+        "type": "table",
+        "tableId": "mode_table"
+      },
+      {
+        "id": "method",
+        "type": "markdown",
+        "body": "## 정답과 장애 설정은 모델 입력에서 분리했습니다\n\n기존 v21 어댑터, 기본 Tool 프롬프트, temperature 0, max_tokens 256을 사용했습니다. 시행 seed는 42와 43입니다. 공개 요청·Tool 스키마·고정 문서 목록만 모델에 전달하고 실제 HTTP 요청 본문을 저장했습니다. 정답은 생성 후 평가에만 사용했습니다. 모드별로 동일한 인자를 유지했으며, 잘못된 호출은 장애 주입 전 차단했습니다. 문서 ID 목록은 승인된 1.0.4 corpus에서 구성했습니다.",
+        "sourceId": "baseline"
+      },
+      {
+        "id": "validation",
+        "type": "markdown",
+        "body": "## 저장 원본에서 독립적으로 재집계했습니다\n\n실행 노트북에서 관측 중복·누락, 요청 및 구현 해시, 기록 파일 일치, 인자 동일성, handler 호출 수를 확인했습니다. SQLite로 원본 응답의 선택·값 정확도를 다시 계산해 실행기 요약과 대조했습니다. 결과 파일은 진단용이며 데이터베이스와 공식 Gate를 변경하지 않았습니다.",
+        "sourceId": "audit"
+      },
+      {
+        "id": "limits",
+        "type": "markdown",
+        "body": "## 실제 업무 성공과 일반화는 아직 검증하지 않았습니다\n\n직접 작성한 명시적 값 전달 요청이므로 자연스러운 자유 질의보다 좁은 과제입니다. Tool은 로컬 모의 구현이며 실제 문서 내용·접근 권한·외부 서비스의 부분 성공을 검증하지 않습니다. 두 번의 temperature 0 시행은 통계적으로 독립적인 충분한 표본이 아닙니다. 문서·스키마·케이스가 다른 과거 성공률과 비교할 수 없습니다. matrix의 context_length는 선언값으로, 실제 요청에서 강제한 설정이 아닙니다. 사람의 소스 검토나 실제 출력 검토를 대체하지 않습니다."
+      },
+      {
+        "id": "next",
+        "type": "markdown",
+        "body": "## 다음 후보는 명시한 인자값 보존에 집중해야 합니다\n\n1. 이 기준선과 실패 원문을 보존합니다.\n2. Tool 선택 이후 선택된 스키마만으로 인자를 생성하는 별도 후보를 시험합니다. 값을 자동 채우거나 정답으로 보정하지 않습니다.\n3. 같은 케이스의 전후 결과뿐 아니라 새로운 요청과 목록 순서 변화에서도 회귀를 검사합니다.\n4. 독립 검토와 실제 서비스 검증 전에는 공식 Gate로 승격하지 않습니다."
+      },
+      {
+        "id": "questions",
+        "type": "markdown",
+        "body": "## 더 확인할 질문\n\n- 자유로운 한국어 요청에서도 정확한 Tool과 인자를 생성하는가?\n- 인자 생성 단계를 분리할 때 추가 지연과 토큰 비용은 어느 정도인가?\n- 실제 문서 내용과 접근 권한을 연결해도 같은 결과가 유지되는가?"
+      }
+    ],
+    "charts": [
+      {
+        "id": "exact_chart",
+        "title": "Tool 및 명시적 인자 정확도",
+        "type": "bar",
+        "dataset": "summary",
+        "sourceId": "baseline",
+        "valueFormat": "percent",
+        "encodings": {
+          "x": {
+            "field": "configuration",
+            "type": "nominal",
+            "label": "구성"
+          },
+          "y": {
+            "field": "exact_rate",
+            "type": "quantitative",
+            "label": "정확도"
+          }
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "entry_table",
+        "title": "구성별 검증 단계",
+        "dataset": "summary",
+        "sourceId": "baseline",
+        "density": "spacious",
+        "defaultSort": {
+          "field": "configuration",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "configuration",
+            "label": "구성",
+            "type": "text"
+          },
+          {
+            "field": "total",
+            "label": "전체",
+            "format": "number"
+          },
+          {
+            "field": "selected",
+            "label": "선택",
+            "format": "number"
+          },
+          {
+            "field": "schema_valid",
+            "label": "스키마",
+            "format": "number"
+          },
+          {
+            "field": "eligible",
+            "label": "허용",
+            "format": "number"
+          },
+          {
+            "field": "tool_success",
+            "label": "실행",
+            "format": "number"
+          },
+          {
+            "field": "exact_call",
+            "label": "선택+값",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "mode_table",
+        "title": "환경별 동일 응답 재생",
+        "dataset": "modes",
+        "sourceId": "audit",
+        "density": "spacious",
+        "defaultSort": {
+          "field": "mode",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "mode",
+            "label": "환경",
+            "type": "text"
+          },
+          {
+            "field": "total",
+            "label": "전체",
+            "format": "number"
+          },
+          {
+            "field": "successes",
+            "label": "Tool 성공",
+            "format": "number"
+          },
+          {
+            "field": "fixture_passed",
+            "label": "환경 검사 통과",
+            "format": "number"
+          },
+          {
+            "field": "not_exercised",
+            "label": "미실행",
+            "format": "number"
+          },
+          {
+            "field": "handlers",
+            "label": "Handler 호출",
+            "format": "number"
+          }
+        ]
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "status": "ready",
+    "generatedAt": "2026-09-09T01:11:00.011210+00:00",
+    "datasets": {
+      "summary": [
+        {
+          "entry": "medium-candidate",
+          "total": 24,
+          "selected": 24,
+          "schema_valid": 24,
+          "eligible": 24,
+          "exact_call": 16,
+          "tool_success": 24,
+          "success_with_wrong_values": 8,
+          "configuration": "1.5B / v1",
+          "exact_rate": 0.6666666666666666
+        },
+        {
+          "entry": "prompt-variant",
+          "total": 24,
+          "selected": 20,
+          "schema_valid": 24,
+          "eligible": 24,
+          "exact_call": 14,
+          "tool_success": 20,
+          "success_with_wrong_values": 6,
+          "configuration": "1.5B / v2",
+          "exact_rate": 0.5833333333333334
+        },
+        {
+          "entry": "small-baseline",
+          "total": 24,
+          "selected": 15,
+          "schema_valid": 24,
+          "eligible": 24,
+          "exact_call": 13,
+          "tool_success": 15,
+          "success_with_wrong_values": 2,
+          "configuration": "0.5B / v1",
+          "exact_rate": 0.5416666666666666
+        }
+      ],
+      "modes": [
+        {
+          "mode": "normal",
+          "total": 72,
+          "successes": 59,
+          "fixture_passed": 59,
+          "not_exercised": 13,
+          "handlers": 59,
+          "injected": 0
+        },
+        {
+          "mode": "permanent",
+          "total": 72,
+          "successes": 0,
+          "fixture_passed": 59,
+          "not_exercised": 13,
+          "handlers": 0,
+          "injected": 59
+        },
+        {
+          "mode": "transient_once",
+          "total": 72,
+          "successes": 59,
+          "fixture_passed": 59,
+          "not_exercised": 13,
+          "handlers": 59,
+          "injected": 59
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "baseline",
+      "label": "Actual local model baseline",
+      "path": "artifacts/reference-workload/tool-fault-model-baseline-v1.json",
+      "query": {
+        "description": "Fresh model calls; paired environment replays. Source SHA-256: 27975681d2f2b53bad53c44d19346e5d9d7a47fa28f32a7d226faeecd388497f",
+        "tables_used": [
+          "observations"
+        ],
+        "engine": "SQLite (in-memory)",
+        "language": "sql",
+        "sql": "SELECT entry, COUNT(*) AS total, SUM(selected) AS selected,\nSUM(schema_valid) AS schema_valid, SUM(eligible) AS eligible,\nSUM(exact_call) AS exact_call, SUM(tool_success) AS tool_success,\nSUM(tool_success = 1 AND exact_call = 0) AS success_with_wrong_values\nFROM observations GROUP BY entry ORDER BY entry",
+        "metric_definitions": {
+          "exact_call": "Selected Tool and all explicit argument values equal the private expected contract; all generation trials remain in the denominator."
+        }
+      }
+    },
+    {
+      "id": "audit",
+      "label": "Executed independent reconciliation",
+      "path": "docs/reports/2026-09-09_tool_fault_baseline/audit.json",
+      "query": {
+        "engine": "SQLite (in-memory)",
+        "language": "sql",
+        "tables_used": ["faults"],
+        "description": "Mode totals from independently checked paired traces.",
+        "sql": "SELECT mode, COUNT(*) AS total, SUM(success) AS successes, SUM(passed) AS fixture_passed, SUM(not_exercised) AS not_exercised, SUM(handlers) AS handlers, SUM(injected) AS injected FROM faults GROUP BY mode ORDER BY mode"
+      }
+    },
+    {
+      "id": "cases",
+      "label": "Local diagnostic case pack",
+      "path": "reference_workload/diagnostics/tool-fault-baseline-v1.json"
+    }
+  ]
+}

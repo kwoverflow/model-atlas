@@ -1,0 +1,400 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-model_atlas}
+      POSTGRES_USER: ${POSTGRES_USER:-model_atlas}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-model_atlas}
+    ports:
+      - "${POSTGRES_HOST_PORT:-55432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-model_atlas}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql+psycopg://model_atlas:model_atlas@db:5432/model_atlas}
+      BACKEND_CORS_ORIGINS: ${BACKEND_CORS_ORIGINS:-http://localhost:3000}
+      MIN_APPLIED_JUDGE_LABEL_RATE_FOR_LOCAL_DEMO: ${MIN_APPLIED_JUDGE_LABEL_RATE_FOR_LOCAL_DEMO:-0.20}
+      MIN_CRITICAL_REVIEWED_COUNT_FOR_LOCAL_DEMO: ${MIN_CRITICAL_REVIEWED_COUNT_FOR_LOCAL_DEMO:-1}
+      MIN_PRODUCTION_CAPTURED_RESULT_COUNT: ${MIN_PRODUCTION_CAPTURED_RESULT_COUNT:-20}
+      MIN_APPLIED_JUDGE_LABEL_RATE_FOR_PRODUCTION: ${MIN_APPLIED_JUDGE_LABEL_RATE_FOR_PRODUCTION:-0.30}
+      MIN_CRITICAL_REVIEW_COVERAGE_RATE_FOR_PRODUCTION: ${MIN_CRITICAL_REVIEW_COVERAGE_RATE_FOR_PRODUCTION:-0.80}
+      TRUSTED_OPERATOR_HEADERS_ENABLED: ${TRUSTED_OPERATOR_HEADERS_ENABLED:-true}
+      TRUSTED_PROXY_NETWORKS: ${TRUSTED_PROXY_NETWORKS:-127.0.0.1/32,::1/128,172.16.0.0/12}
+      REJECT_UNTRUSTED_FORWARDED_HEADERS: ${REJECT_UNTRUSTED_FORWARDED_HEADERS:-true}
+      OIDC_JWT_ENABLED: ${OIDC_JWT_ENABLED:-false}
+      OIDC_JWT_ISSUER: ${OIDC_JWT_ISSUER:-}
+      OIDC_JWT_AUDIENCE: ${OIDC_JWT_AUDIENCE:-}
+      OIDC_JWT_ALGORITHMS: ${OIDC_JWT_ALGORITHMS:-}
+      OIDC_JWT_HS256_KEYS_JSON: ${OIDC_JWT_HS256_KEYS_JSON:-}
+      OIDC_JWT_ROLE_CLAIM: ${OIDC_JWT_ROLE_CLAIM:-role}
+      OIDC_JWT_NAME_CLAIM: ${OIDC_JWT_NAME_CLAIM:-name}
+      OIDC_JWT_LEEWAY_SECONDS: ${OIDC_JWT_LEEWAY_SECONDS:-30}
+      OIDC_DISCOVERY_URL: ${OIDC_DISCOVERY_URL:-}
+      OIDC_JWKS_URI: ${OIDC_JWKS_URI:-}
+      OIDC_DISCOVERY_CACHE_TTL_SECONDS: ${OIDC_DISCOVERY_CACHE_TTL_SECONDS:-3600}
+      OIDC_JWKS_CACHE_TTL_SECONDS: ${OIDC_JWKS_CACHE_TTL_SECONDS:-300}
+      OIDC_HTTP_TIMEOUT_SECONDS: ${OIDC_HTTP_TIMEOUT_SECONDS:-5}
+      OIDC_ALLOW_INSECURE_HTTP: ${OIDC_ALLOW_INSECURE_HTTP:-false}
+      OIDC_BROWSER_LOGIN_ENABLED: ${OIDC_BROWSER_LOGIN_ENABLED:-false}
+      OIDC_CLIENT_ID: ${OIDC_CLIENT_ID:-}
+      OIDC_CLIENT_SECRET: ${OIDC_CLIENT_SECRET:-}
+      OIDC_REDIRECT_URI: ${OIDC_REDIRECT_URI:-http://localhost:18000/api/v1/operator-identity/callback}
+      OIDC_FRONTEND_URL: ${OIDC_FRONTEND_URL:-http://localhost:3000}
+      OIDC_AUTHORIZATION_ENDPOINT: ${OIDC_AUTHORIZATION_ENDPOINT:-}
+      OIDC_TOKEN_ENDPOINT: ${OIDC_TOKEN_ENDPOINT:-}
+      OIDC_END_SESSION_ENDPOINT: ${OIDC_END_SESSION_ENDPOINT:-}
+      OIDC_SCOPES: ${OIDC_SCOPES:-openid,profile,email}
+      OIDC_SESSION_SECRET: ${OIDC_SESSION_SECRET:-}
+      OIDC_SESSION_COOKIE_NAME: ${OIDC_SESSION_COOKIE_NAME:-model_atlas_session}
+      OIDC_SESSION_SECURE: ${OIDC_SESSION_SECURE:-true}
+      OIDC_SESSION_TTL_SECONDS: ${OIDC_SESSION_TTL_SECONDS:-3600}
+      OIDC_CSRF_COOKIE_NAME: ${OIDC_CSRF_COOKIE_NAME:-model_atlas_csrf}
+      OIDC_CSRF_HEADER_NAME: ${OIDC_CSRF_HEADER_NAME:-x-model-atlas-csrf}
+      OIDC_SHARED_CACHE_ENABLED: ${OIDC_SHARED_CACHE_ENABLED:-true}
+      OIDC_SESSION_RETENTION_DAYS: ${OIDC_SESSION_RETENTION_DAYS:-30}
+      OIDC_SESSION_CLEANUP_ENABLED: ${OIDC_SESSION_CLEANUP_ENABLED:-true}
+      OIDC_SESSION_CLEANUP_INTERVAL_SECONDS: ${OIDC_SESSION_CLEANUP_INTERVAL_SECONDS:-3600}
+      OIDC_SESSION_CLEANUP_BATCH_SIZE: ${OIDC_SESSION_CLEANUP_BATCH_SIZE:-200}
+      OPERATIONAL_SNAPSHOT_ENABLED: ${OPERATIONAL_SNAPSHOT_ENABLED:-true}
+      OPERATIONAL_SNAPSHOT_INTERVAL_SECONDS: ${OPERATIONAL_SNAPSHOT_INTERVAL_SECONDS:-60}
+      OPERATIONAL_SNAPSHOT_RETENTION_DAYS: ${OPERATIONAL_SNAPSHOT_RETENTION_DAYS:-30}
+      OPERATIONAL_SLO_WINDOW_SECONDS: ${OPERATIONAL_SLO_WINDOW_SECONDS:-3600}
+      OPERATIONAL_SLO_SHORT_WINDOW_SECONDS: ${OPERATIONAL_SLO_SHORT_WINDOW_SECONDS:-300}
+      OPERATIONAL_SLO_MIN_SAMPLES: ${OPERATIONAL_SLO_MIN_SAMPLES:-3}
+      OPERATIONAL_IDENTITY_SLO_TARGET: ${OPERATIONAL_IDENTITY_SLO_TARGET:-0.99}
+      OPERATIONAL_WORKER_SLO_TARGET: ${OPERATIONAL_WORKER_SLO_TARGET:-0.99}
+      OPERATIONAL_SLO_WARNING_BURN_RATE: ${OPERATIONAL_SLO_WARNING_BURN_RATE:-6}
+      OPERATIONAL_SLO_CRITICAL_BURN_RATE: ${OPERATIONAL_SLO_CRITICAL_BURN_RATE:-14.4}
+      OPERATIONAL_INCIDENT_ESCALATION_SECONDS: ${OPERATIONAL_INCIDENT_ESCALATION_SECONDS:-900}
+      OPERATIONAL_PAGING_ENABLED: ${OPERATIONAL_PAGING_ENABLED:-false}
+      OPERATIONAL_PAGING_WEBHOOK_URL: ${OPERATIONAL_PAGING_WEBHOOK_URL:-https://paging-sink:9100/page}
+      OPERATIONAL_PAGING_ALLOWED_HOSTS: ${OPERATIONAL_PAGING_ALLOWED_HOSTS:-paging-sink,localhost,127.0.0.1}
+      OPERATIONAL_PAGING_ALLOW_INSECURE_HTTP: ${OPERATIONAL_PAGING_ALLOW_INSECURE_HTTP:-false}
+      OPERATIONAL_PAGING_HMAC_SECRET: ${OPERATIONAL_PAGING_HMAC_SECRET-model-atlas-development-paging-secret-change-me}
+      OPERATIONAL_PAGING_HMAC_KEYS_JSON: ${OPERATIONAL_PAGING_HMAC_KEYS_JSON-}
+      OPERATIONAL_PAGING_HMAC_KEYS_FILE: ${OPERATIONAL_PAGING_HMAC_KEYS_FILE:-}
+      OPERATIONAL_PAGING_ACTIVE_KEY_ID: ${OPERATIONAL_PAGING_ACTIVE_KEY_ID:-}
+      OPERATIONAL_PAGING_ACTIVE_KEY_ID_FILE: ${OPERATIONAL_PAGING_ACTIVE_KEY_ID_FILE:-}
+      OPERATIONAL_PAGING_CA_BUNDLE_PATH: ${OPERATIONAL_PAGING_CA_BUNDLE_PATH:-/etc/model-atlas/paging-tls/ca.crt}
+      OPERATIONAL_PAGING_PROVIDER: ${OPERATIONAL_PAGING_PROVIDER:-generic-webhook}
+      OPERATIONAL_PAGING_REQUIRE_RECEIPT: ${OPERATIONAL_PAGING_REQUIRE_RECEIPT:-false}
+      OPERATIONAL_PAGING_RECEIPT_MAX_AGE_SECONDS: ${OPERATIONAL_PAGING_RECEIPT_MAX_AGE_SECONDS:-86400}
+      OPERATIONAL_PAGING_TIMEOUT_SECONDS: ${OPERATIONAL_PAGING_TIMEOUT_SECONDS:-5}
+      OPERATIONAL_PAGING_MAX_RESPONSE_BYTES: ${OPERATIONAL_PAGING_MAX_RESPONSE_BYTES:-4096}
+      MODEL_ATLAS_INSTANCE_NAME: ${MODEL_ATLAS_INSTANCE_NAME:-backend-1}
+      MODEL_ATTESTATION_ALLOWED_HOSTS: ${MODEL_ATTESTATION_ALLOWED_HOSTS:-ollama,localhost,127.0.0.1,host.docker.internal}
+      MODEL_ATTESTATION_HTTP_TIMEOUT_SECONDS: ${MODEL_ATTESTATION_HTTP_TIMEOUT_SECONDS:-5}
+      MODEL_PUBLISHER_JWKS_PATH: ${MODEL_PUBLISHER_JWKS_PATH:-/artifacts/supply-chain/publisher-jwks.json}
+      MODEL_PUBLISHER_ALLOWED_ISSUERS: ${MODEL_PUBLISHER_ALLOWED_ISSUERS:-model-atlas-demo-publisher}
+      MODEL_PUBLISHER_ALLOWED_ALGORITHMS: ${MODEL_PUBLISHER_ALLOWED_ALGORITHMS:-RS256}
+      PRODUCTION_EVIDENCE_JWKS_PATH: ${PRODUCTION_EVIDENCE_JWKS_PATH:-/artifacts/supply-chain/publisher-jwks.json}
+      PRODUCTION_EVIDENCE_ALLOWED_ISSUERS: ${PRODUCTION_EVIDENCE_ALLOWED_ISSUERS:-model-atlas-demo-collector}
+      PRODUCTION_EVIDENCE_ALLOWED_ALGORITHMS: ${PRODUCTION_EVIDENCE_ALLOWED_ALGORITHMS:-RS256}
+      SIGNED_EVIDENCE_MAX_AGE_SECONDS: ${SIGNED_EVIDENCE_MAX_AGE_SECONDS:-2592000}
+      TRUST_SOURCE_ALLOWED_HOSTS: ${TRUST_SOURCE_ALLOWED_HOSTS:-trust-source-fixture,localhost,127.0.0.1}
+      TRUST_SOURCE_ALLOW_INSECURE_HTTP: ${TRUST_SOURCE_ALLOW_INSECURE_HTTP:-true}
+      TRUST_SOURCE_HTTP_TIMEOUT_SECONDS: ${TRUST_SOURCE_HTTP_TIMEOUT_SECONDS:-5}
+      TRUST_SOURCE_MAX_JWKS_BYTES: ${TRUST_SOURCE_MAX_JWKS_BYTES:-1048576}
+      TRUST_SOURCE_SCHEDULER_ENABLED: ${TRUST_SOURCE_SCHEDULER_ENABLED:-true}
+      TRUST_SOURCE_SCHEDULER_BATCH_SIZE: ${TRUST_SOURCE_SCHEDULER_BATCH_SIZE:-20}
+      TRUST_SOURCE_SCHEDULE_LEASE_SECONDS: ${TRUST_SOURCE_SCHEDULE_LEASE_SECONDS:-900}
+      AGENT_TRAFFIC_HMAC_KEYS_JSON: ${AGENT_TRAFFIC_HMAC_KEYS_JSON:-}
+      AGENT_TRAFFIC_ALLOW_LEGACY_SIGNATURES: ${AGENT_TRAFFIC_ALLOW_LEGACY_SIGNATURES:-true}
+      AGENT_TRAFFIC_MAX_CLOCK_SKEW_SECONDS: ${AGENT_TRAFFIC_MAX_CLOCK_SKEW_SECONDS:-300}
+      AGENT_TRAFFIC_SOURCE_STALE_SECONDS: ${AGENT_TRAFFIC_SOURCE_STALE_SECONDS:-300}
+      AGENT_TRAFFIC_MAX_COMPRESSED_BYTES: ${AGENT_TRAFFIC_MAX_COMPRESSED_BYTES:-1048576}
+      AGENT_TRAFFIC_MAX_DECOMPRESSED_BYTES: ${AGENT_TRAFFIC_MAX_DECOMPRESSED_BYTES:-10485760}
+      AGENT_REPLAN_BASE_URL: ${AGENT_REPLAN_BASE_URL:-}
+      AGENT_REPLAN_API_KEY: ${AGENT_REPLAN_API_KEY:-}
+      OPENAI_COMPATIBLE_BASE_URL: ${OPENAI_COMPATIBLE_BASE_URL:-}
+      OPENAI_COMPATIBLE_API_KEY: ${OPENAI_COMPATIBLE_API_KEY:-}
+      AGENT_WORKER_OFFLINE_SECONDS: ${AGENT_WORKER_OFFLINE_SECONDS:-90}
+      MODEL_ATLAS_REPOSITORY_ROOT: /workspace
+    volumes:
+      - ./data:/data:ro
+      - ./artifacts:/artifacts
+      - ./reference_workload:/workspace/reference_workload
+      - ./docs:/workspace/docs:ro
+      - ./EVALUATOR_GUIDE_KO.md:/workspace/EVALUATOR_GUIDE_KO.md:ro
+      - paging-tls:/etc/model-atlas/paging-tls:ro
+      - paging-secrets:/etc/model-atlas/paging-secrets:ro
+    command: sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "${BACKEND_PORT:-18000}:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/health', timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  agent-worker:
+    build:
+      context: ./backend
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql+psycopg://model_atlas:model_atlas@db:5432/model_atlas}
+      AGENT_WORKER_POLL_SECONDS: ${AGENT_WORKER_POLL_SECONDS:-1}
+      AGENT_JOB_LEASE_SECONDS: ${AGENT_JOB_LEASE_SECONDS:-300}
+      AGENT_JOB_HEARTBEAT_SECONDS: ${AGENT_JOB_HEARTBEAT_SECONDS:-30}
+      AGENT_WORKER_OFFLINE_SECONDS: ${AGENT_WORKER_OFFLINE_SECONDS:-90}
+      AGENT_RECONCILIATION_INTERVAL_SECONDS: ${AGENT_RECONCILIATION_INTERVAL_SECONDS:-60}
+      TRUST_SOURCE_ALLOWED_HOSTS: ${TRUST_SOURCE_ALLOWED_HOSTS:-trust-source-fixture,localhost,127.0.0.1}
+      TRUST_SOURCE_ALLOW_INSECURE_HTTP: ${TRUST_SOURCE_ALLOW_INSECURE_HTTP:-true}
+      TRUST_SOURCE_HTTP_TIMEOUT_SECONDS: ${TRUST_SOURCE_HTTP_TIMEOUT_SECONDS:-5}
+      TRUST_SOURCE_MAX_JWKS_BYTES: ${TRUST_SOURCE_MAX_JWKS_BYTES:-1048576}
+      TRUST_SOURCE_SCHEDULER_ENABLED: ${TRUST_SOURCE_SCHEDULER_ENABLED:-true}
+      TRUST_SOURCE_SCHEDULER_BATCH_SIZE: ${TRUST_SOURCE_SCHEDULER_BATCH_SIZE:-20}
+      TRUST_SOURCE_SCHEDULE_LEASE_SECONDS: ${TRUST_SOURCE_SCHEDULE_LEASE_SECONDS:-900}
+      OIDC_SESSION_RETENTION_DAYS: ${OIDC_SESSION_RETENTION_DAYS:-30}
+      OIDC_SESSION_CLEANUP_ENABLED: ${OIDC_SESSION_CLEANUP_ENABLED:-true}
+      OIDC_SESSION_CLEANUP_INTERVAL_SECONDS: ${OIDC_SESSION_CLEANUP_INTERVAL_SECONDS:-3600}
+      OIDC_SESSION_CLEANUP_BATCH_SIZE: ${OIDC_SESSION_CLEANUP_BATCH_SIZE:-200}
+      OPERATIONAL_SNAPSHOT_ENABLED: ${OPERATIONAL_SNAPSHOT_ENABLED:-true}
+      OPERATIONAL_SNAPSHOT_INTERVAL_SECONDS: ${OPERATIONAL_SNAPSHOT_INTERVAL_SECONDS:-60}
+      OPERATIONAL_SNAPSHOT_RETENTION_DAYS: ${OPERATIONAL_SNAPSHOT_RETENTION_DAYS:-30}
+      OPERATIONAL_SLO_WINDOW_SECONDS: ${OPERATIONAL_SLO_WINDOW_SECONDS:-3600}
+      OPERATIONAL_SLO_SHORT_WINDOW_SECONDS: ${OPERATIONAL_SLO_SHORT_WINDOW_SECONDS:-300}
+      OPERATIONAL_SLO_MIN_SAMPLES: ${OPERATIONAL_SLO_MIN_SAMPLES:-3}
+      OPERATIONAL_IDENTITY_SLO_TARGET: ${OPERATIONAL_IDENTITY_SLO_TARGET:-0.99}
+      OPERATIONAL_WORKER_SLO_TARGET: ${OPERATIONAL_WORKER_SLO_TARGET:-0.99}
+      OPERATIONAL_SLO_WARNING_BURN_RATE: ${OPERATIONAL_SLO_WARNING_BURN_RATE:-6}
+      OPERATIONAL_SLO_CRITICAL_BURN_RATE: ${OPERATIONAL_SLO_CRITICAL_BURN_RATE:-14.4}
+      OPERATIONAL_INCIDENT_ESCALATION_SECONDS: ${OPERATIONAL_INCIDENT_ESCALATION_SECONDS:-900}
+      OPERATIONAL_PAGING_ENABLED: ${OPERATIONAL_PAGING_ENABLED:-false}
+      OPERATIONAL_PAGING_WEBHOOK_URL: ${OPERATIONAL_PAGING_WEBHOOK_URL:-https://paging-sink:9100/page}
+      OPERATIONAL_PAGING_ALLOWED_HOSTS: ${OPERATIONAL_PAGING_ALLOWED_HOSTS:-paging-sink,localhost,127.0.0.1}
+      OPERATIONAL_PAGING_ALLOW_INSECURE_HTTP: ${OPERATIONAL_PAGING_ALLOW_INSECURE_HTTP:-false}
+      OPERATIONAL_PAGING_HMAC_SECRET: ${OPERATIONAL_PAGING_HMAC_SECRET-model-atlas-development-paging-secret-change-me}
+      OPERATIONAL_PAGING_HMAC_KEYS_JSON: ${OPERATIONAL_PAGING_HMAC_KEYS_JSON-}
+      OPERATIONAL_PAGING_HMAC_KEYS_FILE: ${OPERATIONAL_PAGING_HMAC_KEYS_FILE:-}
+      OPERATIONAL_PAGING_ACTIVE_KEY_ID: ${OPERATIONAL_PAGING_ACTIVE_KEY_ID:-}
+      OPERATIONAL_PAGING_ACTIVE_KEY_ID_FILE: ${OPERATIONAL_PAGING_ACTIVE_KEY_ID_FILE:-}
+      OPERATIONAL_PAGING_CA_BUNDLE_PATH: ${OPERATIONAL_PAGING_CA_BUNDLE_PATH:-/etc/model-atlas/paging-tls/ca.crt}
+      OPERATIONAL_PAGING_PROVIDER: ${OPERATIONAL_PAGING_PROVIDER:-generic-webhook}
+      OPERATIONAL_PAGING_REQUIRE_RECEIPT: ${OPERATIONAL_PAGING_REQUIRE_RECEIPT:-false}
+      OPERATIONAL_PAGING_RECEIPT_MAX_AGE_SECONDS: ${OPERATIONAL_PAGING_RECEIPT_MAX_AGE_SECONDS:-86400}
+      OPERATIONAL_PAGING_TIMEOUT_SECONDS: ${OPERATIONAL_PAGING_TIMEOUT_SECONDS:-5}
+      OPERATIONAL_PAGING_MAX_RESPONSE_BYTES: ${OPERATIONAL_PAGING_MAX_RESPONSE_BYTES:-4096}
+      AGENT_TRAFFIC_HMAC_KEYS_JSON: ${AGENT_TRAFFIC_HMAC_KEYS_JSON:-}
+      AGENT_REPLAN_BASE_URL: ${AGENT_REPLAN_BASE_URL:-}
+      AGENT_REPLAN_API_KEY: ${AGENT_REPLAN_API_KEY:-}
+      OPENAI_COMPATIBLE_BASE_URL: ${OPENAI_COMPATIBLE_BASE_URL:-}
+      OPENAI_COMPATIBLE_API_KEY: ${OPENAI_COMPATIBLE_API_KEY:-}
+      MODEL_ATLAS_REPOSITORY_ROOT: /workspace
+    volumes:
+      - ./artifacts:/artifacts
+      - ./reference_workload:/workspace/reference_workload:ro
+      - ./docs:/workspace/docs:ro
+      - ./EVALUATOR_GUIDE_KO.md:/workspace/EVALUATOR_GUIDE_KO.md:ro
+      - paging-tls:/etc/model-atlas/paging-tls:ro
+      - paging-secrets:/etc/model-atlas/paging-secrets:ro
+    command: python -m app.workers.agent_control_worker
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  agent-traffic-collector:
+    build:
+      context: ./backend
+    profiles:
+      - collector
+    environment:
+      AGENT_TRAFFIC_COLLECTOR_SECRET: ${AGENT_TRAFFIC_COLLECTOR_SECRET:-}
+    volumes:
+      - ./data/traffic-outbox:/outbox
+    command:
+      - python
+      - -m
+      - app.collectors.agent_traffic_collector
+      - --endpoint
+      - http://backend:8000/api/v1/agents/evidence/traffic-batches
+      - --key-id
+      - ${AGENT_TRAFFIC_COLLECTOR_KEY_ID:-2026-07}
+      - --outbox
+      - /outbox
+      - --state-file
+      - /outbox/collector-state.json
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:18000/api/v1}
+        NEXT_PUBLIC_CSRF_COOKIE_NAME: ${OIDC_CSRF_COOKIE_NAME:-model_atlas_csrf}
+        NEXT_PUBLIC_CSRF_HEADER_NAME: ${OIDC_CSRF_HEADER_NAME:-x-model-atlas-csrf}
+    environment:
+      SERVER_API_URL: ${SERVER_API_URL:-http://backend:8000/api/v1}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:18000/api/v1}
+      NEXT_PUBLIC_CSRF_COOKIE_NAME: ${OIDC_CSRF_COOKIE_NAME:-model_atlas_csrf}
+      NEXT_PUBLIC_CSRF_HEADER_NAME: ${OIDC_CSRF_HEADER_NAME:-x-model-atlas-csrf}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  trust-source-fixture:
+    image: python:3.12-slim
+    profiles:
+      - trust-source
+    command: python -m http.server 8081 --directory /jwks
+    ports:
+      - "18081:8081"
+    volumes:
+      - ./artifacts/supply-chain:/jwks:ro
+
+  ollama:
+    image: ollama/ollama:latest
+    profiles:
+      - runtime
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.8
+    profiles:
+      - idp
+    command: start-dev --import-realm
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:-model-atlas-dev-admin}
+      KC_HOSTNAME: http://localhost:18080
+      KC_HTTP_ENABLED: "true"
+      KC_HEALTH_ENABLED: "true"
+    ports:
+      - "18080:8080"
+    volumes:
+      - ./deploy/idp/keycloak/realm-model-atlas.json:/opt/keycloak/data/import/realm-model-atlas.json:ro
+      - keycloak-data:/opt/keycloak/data
+
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    profiles:
+      - observability
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=${PROMETHEUS_RETENTION_TIME:-30d}
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./deploy/observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./deploy/observability/model-atlas-rules.yml:/etc/prometheus/model-atlas-rules.yml:ro
+      - prometheus-data:/prometheus
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  alertmanager:
+    image: prom/alertmanager:v0.28.1
+    profiles:
+      - observability
+    command:
+      - --config.file=/etc/alertmanager/alertmanager.yml
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./deploy/observability/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - alertmanager-data:/alertmanager
+    depends_on:
+      - alert-sink
+
+  alert-sink:
+    build:
+      context: ./backend
+    profiles:
+      - observability
+    command: python -m app.operations.alert_sink
+    environment:
+      MODEL_ATLAS_ALERT_SINK_PORT: 9099
+    ports:
+      - "9099:9099"
+
+  paging-tls-init:
+    build:
+      context: ./backend
+    profiles:
+      - observability
+    command: python -m app.operations.paging_tls
+    environment:
+      MODEL_ATLAS_PAGING_TLS_OUTPUT_DIR: /paging-tls
+    volumes:
+      - paging-tls:/paging-tls
+
+  paging-secrets-init:
+    build:
+      context: ./backend
+    profiles:
+      - observability
+    command:
+      - python
+      - -m
+      - app.operations.paging_secrets
+      - initialize
+      - --directory
+      - /paging-secrets
+      - --active-key-id
+      - ${OPERATIONAL_PAGING_INITIAL_KEY_ID:-development-primary}
+      - --retiring-key-id
+      - ${OPERATIONAL_PAGING_RETIRING_KEY_ID:-development-retiring}
+    volumes:
+      - paging-secrets:/paging-secrets
+
+  paging-sink:
+    build:
+      context: ./backend
+    profiles:
+      - observability
+    command: python -m app.operations.paging_sink
+    environment:
+      MODEL_ATLAS_PAGING_SINK_PORT: 9100
+      MODEL_ATLAS_PAGING_HMAC_SECRET: ${OPERATIONAL_PAGING_HMAC_SECRET-model-atlas-development-paging-secret-change-me}
+      MODEL_ATLAS_PAGING_HMAC_KEYS_JSON: ${OPERATIONAL_PAGING_HMAC_KEYS_JSON-}
+      MODEL_ATLAS_PAGING_HMAC_KEYS_FILE: ${OPERATIONAL_PAGING_HMAC_KEYS_FILE:-}
+      MODEL_ATLAS_PAGING_PROVIDER: ${OPERATIONAL_PAGING_PROVIDER:-model-atlas-development-sink}
+      MODEL_ATLAS_PAGING_MAX_CLOCK_SKEW_SECONDS: ${OPERATIONAL_PAGING_MAX_CLOCK_SKEW_SECONDS:-300}
+      MODEL_ATLAS_PAGING_TLS_CERT_PATH: /paging-tls/server.crt
+      MODEL_ATLAS_PAGING_TLS_KEY_PATH: /paging-tls/server.key
+    volumes:
+      - paging-tls:/paging-tls:ro
+      - paging-secrets:/etc/model-atlas/paging-secrets:ro
+    ports:
+      - "9100:9100"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import ssl,urllib.request; context=ssl.create_default_context(cafile='/paging-tls/ca.crt'); urllib.request.urlopen('https://localhost:9100/health', context=context, timeout=2)"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    depends_on:
+      paging-tls-init:
+        condition: service_completed_successfully
+      paging-secrets-init:
+        condition: service_completed_successfully
+
+volumes:
+  postgres-data:
+  ollama-data:
+  keycloak-data:
+  prometheus-data:
+  alertmanager-data:
+  paging-tls:
+  paging-secrets:

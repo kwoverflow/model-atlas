@@ -1,0 +1,68 @@
+{
+  "schema_version": "model-atlas-reference-case-pack-revision-spec-v3",
+  "revision_id": "1.0.4",
+  "source_workload_version": "1.0.3",
+  "query_strategy": "reviewed-semantic-alternatives-v1",
+  "changes": [
+    {
+      "external_case_id": "KO-RAG-SCOPE-002",
+      "retrieval_query": "Candidate Discovery 1위 모델을 평가 없이 릴리스해도 되나요?",
+      "relevant_chunk_ids": [
+        "ko-247daa1b46cc86363d892938"
+      ],
+      "acceptable_evidence_groups": [
+        [
+          "ko-247daa1b46cc86363d892938"
+        ],
+        [
+          "ko-b70165b4b3f47cf87a34ff25"
+        ]
+      ],
+      "required_facts": [
+        "추천은 비구속적 후보 탐색"
+      ],
+      "acceptable_required_fact_groups": [
+        [
+          "추천은 비구속적 후보 탐색"
+        ],
+        [
+          "추천 순위가 곧 배포 승인이 아니라는 경계"
+        ]
+      ],
+      "top_k": 5,
+      "expected_source_path": "EVALUATOR_GUIDE_KO.md",
+      "expected_heading": "5. 의사결정 흐름",
+      "rationale": "기존 비구속적 후보 탐색 계약을 primary로 보존하면서, 승인된 대체 근거가 직접 표현하는 추천 순위와 배포 승인의 분리를 동등한 required-fact 그룹으로 검토합니다."
+    },
+    {
+      "external_case_id": "KO-RAG-SCOPE-003",
+      "retrieval_query": "development trust root가 있으면 외부 publisher 신원이 증명되나요?",
+      "relevant_chunk_ids": [
+        "ko-5177b421f19ca0909ee719f2"
+      ],
+      "acceptable_evidence_groups": [
+        [
+          "ko-5177b421f19ca0909ee719f2"
+        ],
+        [
+          "ko-9c59bd29a1b754b80c476d62"
+        ]
+      ],
+      "required_facts": [
+        "development와 external trust 분리"
+      ],
+      "acceptable_required_fact_groups": [
+        [
+          "development와 external trust 분리"
+        ],
+        [
+          "managed publisher root는 development tier"
+        ]
+      ],
+      "top_k": 5,
+      "expected_source_path": "docs/supply_chain_evidence.md",
+      "expected_heading": "Configuration",
+      "rationale": "기존 development와 external trust 분리 계약을 primary로 보존하면서, 승인된 대체 근거가 직접 명시하는 managed publisher root의 development tier를 동등한 required-fact 그룹으로 검토합니다."
+    }
+  ]
+}

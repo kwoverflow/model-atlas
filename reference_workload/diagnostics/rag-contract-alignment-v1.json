@@ -1,0 +1,119 @@
+{
+  "schema_version": "rag-contract-alignment-plan-v1",
+  "source_workload_version": "1.0.4",
+  "revision_id": "1.0.5",
+  "source_cases_sha256": "a8b367fca7a21c6fda20f5086a1bb4180cbbd30f82f7f04937057cad1a4aa4c7",
+  "corpus_sha256": "2772ab9a898529c052337ad6d06e4f0950333a316d72d79778dbc6cfe8cf0642",
+  "cases": [
+    {
+      "external_case_id": "KO-RAG-001",
+      "assessment": "indirect",
+      "reason": "기존 평가 가이드 14절은 감사 가능성과 평가 관점을 설명하지만, Gate 승인과 production readiness의 분리를 직접 설명하지 않는다. 정책 통과가 운영 배포 허가가 아님을 명시한 상태 분리 문단으로 교체한다.",
+      "proposed_chunk_ids": ["ko-2bbdb970a082e17107cea0e9"],
+      "facets": [
+        {
+          "id": "gate_not_deployment_authorization",
+          "description": "Gate의 정책 통과 여부와 운영 배포 허가는 별개다.",
+          "support": [{"chunk_id": "ko-2bbdb970a082e17107cea0e9", "quote": "A Gate Verdict answers whether policy rules passed. It does not describe the strength of the evidence or authorize production deployment by itself."}]
+        },
+        {
+          "id": "separate_production_readiness",
+          "description": "Gate가 APPROVED여도 production readiness는 NOT_PRODUCTION_READY일 수 있다.",
+          "support": [{"chunk_id": "ko-2bbdb970a082e17107cea0e9", "quote": "Gate Verdict: APPROVED\nEvidence Trust: LOCAL_DEMO_READY\nRelease Readiness: READY_TO_PROMOTE\nProduction Readiness: NOT_PRODUCTION_READY"}]
+        }
+      ]
+    },
+    {
+      "external_case_id": "KO-RAG-002",
+      "assessment": "adequate",
+      "reason": "기존 Preflight Semantics 문단이 구성·suite·정책, 실행 증거, 신뢰도·검토 범위, baseline, 차단 전제조건과 can_evaluate를 직접 명시한다. 근거를 변경하지 않는다. 모델 답변의 누락과 기존 의미 평가기의 표현 민감도는 별도 문제다.",
+      "proposed_chunk_ids": ["ko-d85232c48712c746fb492802"],
+      "facets": [
+        {
+          "id": "configuration_policy_and_evidence",
+          "description": "구성·평가 suite·정책과 실행 결과·metric의 존재를 확인한다.",
+          "support": [{"chunk_id": "ko-d85232c48712c746fb492802", "quote": "- configuration, suite, and policy summaries;\n- active and critical case counts;\n- matching completed runs, results, and metrics;"}]
+        },
+        {
+          "id": "trust_review_baseline_and_blockers",
+          "description": "신뢰도, 검토 범위, baseline, 차단 전제조건과 실행 가능 여부를 확인한다.",
+          "support": [{"chunk_id": "ko-d85232c48712c746fb492802", "quote": "- source and score trust distributions;\n- judge and critical-case review coverage;\n- explicit or active baseline summary;\n- blocking preconditions, warnings, and expected limitations;\n- `can_evaluate`."}]
+        },
+        {
+          "id": "preflight_not_gate_verdict",
+          "description": "Preflight는 Gate 평가를 저장하거나 결과를 예측하는 단계가 아니다.",
+          "support": [{"chunk_id": "ko-d85232c48712c746fb492802", "quote": "Preflight does not persist a Gate Evaluation and does not predict a verdict."}]
+        }
+      ]
+    },
+    {
+      "external_case_id": "KO-RAG-MULTI-001",
+      "assessment": "partial",
+      "reason": "기존 가이드 14절과 Decision Record는 개요 및 Gate 기록 필드에 치우쳐 있다. 추천·불변 구성·실행 증거·Gate·readiness·서명이라는 순서를 설명하는 가이드 5절과 별도 서명 결정 계약을 함께 요구한다. 복수 문서 AND 조건을 유지한다.",
+      "proposed_chunk_ids": ["ko-247daa1b46cc86363d892938", "ko-f27a81b75d77a23dfb83a3f7"],
+      "facets": [
+        {
+          "id": "discovery_configuration_and_evaluation",
+          "description": "후보를 좁히고 불변 배포 구성을 만든 뒤 고정된 사례·metric·정책으로 실행 증거를 수집한다.",
+          "support": [{"chunk_id": "ko-247daa1b46cc86363d892938", "quote": "1. 모델 아티팩트와 하드웨어 조건으로 평가할 후보를 좁힌다.\n2. 실제 런타임과 프롬프트까지 포함한 불변 배포 구성을 만든다.\n3. 버전이 고정된 평가 case와 metric, acceptance policy로 실행 증거를 수집한다."}]
+        },
+        {
+          "id": "preflight_gate_readiness_and_signature",
+          "description": "Preflight와 Gate 뒤 readiness snapshot을 만들고 권한자가 동결된 snapshot에 서명한다.",
+          "support": [{"chunk_id": "ko-247daa1b46cc86363d892938", "quote": "4. Preflight에서 증거 누락, 신뢰도, baseline, 제한 사항을 먼저 확인한다.\n5. Gate가 정책 결과와 scorecard를 저장한다.\n6. Release Readiness가 Gate, regression, label coverage, lineage를 한 snapshot으로 묶는다.\n7. 권한이 있는 사용자가 snapshot을 동결해 승인 또는 변경 요청을 서명한다."}]
+        },
+        {
+          "id": "signed_decision_is_separate_record",
+          "description": "서명 결정은 기존 Gate 판정이나 benchmark 증거를 변경하지 않는 별도 기록이다.",
+          "support": [{"chunk_id": "ko-f27a81b75d77a23dfb83a3f7", "quote": "Signing a release decision does not mutate the gate verdict,\nbenchmark evidence, prompt regression report, or active baseline."}]
+        }
+      ]
+    },
+      {
+      "external_case_id": "KO-RAG-MULTI-002",
+      "assessment": "partial",
+      "reason": "기존 Report Contract와 Verified Local Evidence는 출력 필드와 데모 식별자 위주다. digest가 실제 실행 아티팩트의 일치를 검증하고 publisher 증거가 서명된 provenance를 별도로 검증한다는 이유를 설명하는 문단으로 교체한다. 두 주장을 하나로 합치거나 production 보증으로 확대하지 않는다.",
+      "proposed_chunk_ids": ["ko-06e4a6e6909c8044b8468163", "ko-b12074ae5090252a84ce8dc0"],
+      "facets": [
+        {
+          "id": "runtime_artifact_identity",
+          "description": "설정한 아티팩트, 실제 runtime 모델, 관측한 digest가 일치하는지 확인한다.",
+          "support": [{"chunk_id": "ko-06e4a6e6909c8044b8468163", "quote": "A report compares the configured artifact, runtime model, and\nobserved digest."}]
+        },
+        {
+          "id": "publisher_signature_is_distinct_provenance",
+          "description": "runtime digest 관측과 publisher key의 digest·SBOM 서명은 서로 다른 주장이다.",
+          "support": [{"chunk_id": "ko-b12074ae5090252a84ce8dc0", "quote": "- runtime attestation: the Model Atlas server observed a model digest;\n- supply-chain attestation: a configured publisher key signed that digest and SBOM;"}]
+        },
+        {
+          "id": "no_automatic_release_authority",
+          "description": "이 증거만으로 릴리스가 자동 승인되지는 않는다.",
+          "support": [{"chunk_id": "ko-b12074ae5090252a84ce8dc0", "quote": "None of these records automatically authorizes a release."}]
+        }
+      ]
+    },
+    {
+      "external_case_id": "KO-RAG-MULTI-003",
+      "assessment": "partial",
+      "reason": "기존 SLO 개요와 burn-rate 계산 문단만으로는 incident 대응과 paging 복구 이력을 충분히 설명하지 못한다. burn-rate 문단은 유지하고 대응 action/hash 기록 및 paging 복구 runbook을 함께 요구한다. 세 근거는 기본 응답의 최대 인용 수 3 안에 들어가며, 복수 문서 AND 조건을 유지한다.",
+      "proposed_chunk_ids": ["ko-f99e9b194c8cf87ccec1ab4d", "ko-4848dc08141e5e2040ad4d7a", "ko-35619e8ce7b2063bb0597a07"],
+      "facets": [
+        {
+          "id": "burn_rate_to_incident",
+          "description": "critical 다중 구간 burn-rate 경보는 critical incident를 생성하거나 갱신한다.",
+          "support": [{"chunk_id": "ko-f99e9b194c8cf87ccec1ab4d", "quote": "A critical\nmulti-window burn creates or updates a critical incident."}]
+        },
+        {
+          "id": "incident_response_history",
+          "description": "확인·담당자 지정·노트 등 대응은 actor·시간·이전 action hash와 연결해 기록한다.",
+          "support": [{"chunk_id": "ko-4848dc08141e5e2040ad4d7a", "quote": "Every action hashes a canonical payload containing the incident, action, actor, timestamp,\nassignee, and previous action hash. The newest action points to its predecessor."}]
+        },
+        {
+          "id": "paging_recovery_and_receipt",
+          "description": "수신 측 복구 후 검증된 유지보수 신원과 사유로 재큐잉하고 delivery receipt와 응답 hash를 확인한다.",
+          "support": [{"chunk_id": "ko-35619e8ce7b2063bb0597a07", "quote": "3. Restore the receiver.\n4. Requeue the failed durable Agent job with a verified maintenance identity and reason.\n5. Confirm a delivered receipt, response hash, provider event ID, and provider receipt ID."}]
+        }
+      ]
+    }
+  ]
+}

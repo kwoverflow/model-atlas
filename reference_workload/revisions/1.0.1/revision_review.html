@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Model Atlas 1.0.1 계약 검토</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, "Segoe UI", sans-serif; color: #172126; background: #f4f6f5; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header, main, footer { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 32px 0 22px; border-bottom: 1px solid #aeb9b5; }
+    h1 { margin: 0 0 8px; font-size: 30px; letter-spacing: 0; }
+    h2, h3 { letter-spacing: 0; }
+    .summary { color: #42534f; margin: 0; }
+    .hash { margin-top: 14px; font: 12px ui-monospace, monospace; overflow-wrap: anywhere; color: #53635f; }
+    .case { padding: 28px 0; border-bottom: 1px solid #aeb9b5; }
+    .case-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; }
+    .case-head h2 { display: inline; margin: 0 0 0 10px; font-size: 20px; }
+    .case-head p { margin: 0; font-weight: 600; }
+    .critical { color: #9b2c2c; font-size: 12px; font-weight: 800; }
+    dl { display: grid; grid-template-columns: 130px 1fr; gap: 12px; margin: 18px 0; }
+    dt { font-weight: 700; color: #344440; }
+    dd { margin: 0; line-height: 1.55; }
+    code { overflow-wrap: anywhere; }
+    .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #aeb9b5; border: 1px solid #aeb9b5; }
+    article { background: #fff; padding: 18px; min-width: 0; }
+    article.revised { background: #f0f8f4; }
+    article h3 { margin: 0 0 10px; font-size: 16px; }
+    article p { line-height: 1.5; }
+    .source { font-weight: 700; color: #273834; }
+    .rank { color: #8d3232; }
+    .rank.pass { color: #17633f; }
+    fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; border: 1px solid #879691; padding: 16px; }
+    legend { font-weight: 700; }
+    label { font-weight: 600; }
+    .notes { flex: 1 1 420px; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px; }
+    input[type="text"], #reviewer { width: 100%; min-height: 38px; border: 1px solid #73827d; background: #fff; padding: 8px 10px; font: inherit; }
+    footer { padding: 28px 0 48px; }
+    .attest { display: grid; gap: 14px; max-width: 780px; }
+    button { width: fit-content; border: 0; background: #155f46; color: white; padding: 11px 16px; font: inherit; font-weight: 700; cursor: pointer; }
+    button:hover { background: #0f4936; }
+    #status { min-height: 24px; color: #9b2c2c; font-weight: 700; }
+    @media (max-width: 720px) {
+      .comparison { grid-template-columns: 1fr; }
+      .case-head { align-items: start; flex-direction: column; }
+      dl { grid-template-columns: 1fr; gap: 4px; }
+      .notes { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Model Atlas case-pack 1.0.1 검토</h1>
+    <p class="summary">변경된 critical case 4건만 검토합니다. 기존 승인 60건과 canonical 1.0.0은 변경되지 않습니다.</p>
+    <p class="hash">revision report SHA-256: 0832df67b0aa15010bde4176423bb694ef3d2e1a5b375207fabc4c0cf18c3474</p>
+  </header>
+  <main>
+    <section class="case" data-case-id="KO-RAG-TOOL-001"
+      data-case-sha="60152d64a0f041ee054d71b7fe966e7b686438e677d86016fb9021b6acc7bd54">
+      <div class="case-head">
+        <div><span class="critical">CRITICAL</span><h2>KO-RAG-TOOL-001</h2></div>
+        <p>근거 검색 후 정책 Tool</p>
+      </div>
+      <dl class="request"><dt>사용자 요청</dt><dd>Gate와 production readiness 차이를 문서에서 확인한 뒤 정책을 조회해 주세요.</dd></dl>
+      <div class="comparison">
+        <article>
+          <h3>기존 계약</h3>
+          <p class="source">EVALUATOR_GUIDE_KO.md · 2. 해결하려는 문제</p>
+          <p class="rank">기대 순위 8</p>
+          <p>Model Atlas 평가·사용·기술 가이드 &gt; 2. 해결하려는 문제 로컬 LLM 도입에서는 후보 선정과 배포 승인 사이에 큰 공백이 생긴다. 모델 크기, VRAM, 토큰 처리량과 공개 벤치마크만으로는 특정 조직의 실제 워크로드 품질, 런타임 안정성, 증거 신뢰도, 운영 복구 가능성을 함께 판단하기 어렵다. 결과가 문서와 수작업 승인에 흩어지면 재현성, 책임성, 변경 추적도 약해진다. Model Atlas는 이 공백을 다음 구조로 줄인다. | 관점 | 일반 토큰·하드웨어 추천 | Model Atlas | | --- | --- | --- | | 질문 | 무엇이 실행 가능한가 | 무엇을 어떤 근거로 배포 승인할 수 있는가 | | 평가 단위 | 모델 또는 파일 | 모델 + 아티팩트 + 런타임 + 하드웨어 + 프롬프트 + 워크로드 구성 | | 근거 | 사양, 공개 점수, 추정 처리량 | 버전이 고정된 실제 실행 결과, 정책, baseline, provenance | | 기능 평가 | 일반 </p>
+        </article>
+        <article class="revised">
+          <h3>1.0.1 후보</h3>
+          <p class="source">docs/deployment_gate.md · Sprint 4A Status Separation</p>
+          <p class="rank pass">기대 순위 3 · recall 1.0</p>
+          <p>Deployment Gate &gt; Sprint 4A Status Separation A Gate Verdict answers whether policy rules passed. It does not describe the strength of the evidence or authorize production deployment by itself. | Status | Question | | --- | --- | | Gate Verdict | Did this configuration pass the acceptance policy? | | Evidence Trust | How trustworthy are source and score provenance? | | Release Readiness | Are baseline, review, regression, and lineage controls ready? | | Production Readiness | Can the current evi</p>
+        </article>
+      </div>
+      <dl><dt>검색 query</dt><dd><code>Gate와 production readiness 차이를 문서에서 확인한 뒤 정책을 조회해 주세요.</code></dd></dl>
+      <dl><dt>변경 이유</dt><dd>Gate verdict와 production readiness의 분리를 직접 설명하는 섹션으로 정답 근거를 교정합니다.</dd></dl>
+      <fieldset>
+        <legend>검토 결정</legend>
+        <label><input type="radio" name="decision-KO-RAG-TOOL-001" value="approved"> 승인</label>
+        <label><input type="radio" name="decision-KO-RAG-TOOL-001" value="rejected"> 거절</label>
+        <label class="notes">검토 메모<input type="text" data-notes placeholder="근거와 query가 요청에 부합하는지 기록" maxlength="2000"></label>
+      </fieldset>
+    </section>
+    
+    <section class="case" data-case-id="KO-RAG-TOOL-002"
+      data-case-sha="1aaad1f6f16ece385a76149d1f246edda3138db0677ae9dda8439258d132b4d8">
+      <div class="case-head">
+        <div><span class="critical">CRITICAL</span><h2>KO-RAG-TOOL-002</h2></div>
+        <p>runbook 검색 후 문서 Tool</p>
+      </div>
+      <dl class="request"><dt>사용자 요청</dt><dd>incident 복구 절차를 검색한 뒤 관련 내부 문서를 조회해 주세요.</dd></dl>
+      <div class="comparison">
+        <article>
+          <h3>기존 계약</h3>
+          <p class="source">docs/incident_response_and_burn_rate.md · Local Verification</p>
+          <p class="rank">기대 순위 40</p>
+          <p>Multi-Window SLO, Incident Response, and Rotating Paging Keys &gt; Local Verification ```bash make observability-up ``` The profile starts PostgreSQL, backend, two Agent workers, frontend, Prometheus, Alertmanager, alert sink, TLS initializer, and HTTPS paging sink. Sprint 5H-H verification completed with: - 186 backend tests passed; - Ruff, TypeScript, ESLint, and Next.js production build passed; - PostgreSQL migration `202608040001` at head; - two Agent workers, HTTPS paging receiver, and trust-s</p>
+        </article>
+        <article class="revised">
+          <h3>1.0.1 후보</h3>
+          <p class="source">docs/operational_slo_and_paging.md · SLO breached</p>
+          <p class="rank pass">기대 순위 1 · recall 1.0</p>
+          <p>Operational SLO, Incident, And Paging Contract &gt; Failure Runbook &gt; SLO breached 1. Inspect expected, actual, missing, and good sample counts. 2. Check the latest normalized metric points. 3. Correct the identity cleanup or worker lease issue. 4. Wait for a later capture to resolve the incident; do not delete historical evidence.</p>
+        </article>
+      </div>
+      <dl><dt>검색 query</dt><dd><code>incident 복구 절차 incident recovery runbook SLO breached sample count identity cleanup worker lease</code></dd></dl>
+      <dl><dt>변경 이유</dt><dd>로컬 검증 결과가 아니라 SLO breach 복구 절차와 이력 보존을 설명하는 runbook 섹션을 사용합니다.</dd></dl>
+      <fieldset>
+        <legend>검토 결정</legend>
+        <label><input type="radio" name="decision-KO-RAG-TOOL-002" value="approved"> 승인</label>
+        <label><input type="radio" name="decision-KO-RAG-TOOL-002" value="rejected"> 거절</label>
+        <label class="notes">검토 메모<input type="text" data-notes placeholder="근거와 query가 요청에 부합하는지 기록" maxlength="2000"></label>
+      </fieldset>
+    </section>
+    
+    <section class="case" data-case-id="KO-RAG-TOOL-003"
+      data-case-sha="745cde1819a020735cfcd4be83422ff814bde2fe7abc188a09fd07f375fd3bda">
+      <div class="case-head">
+        <div><span class="critical">CRITICAL</span><h2>KO-RAG-TOOL-003</h2></div>
+        <p>SLO 근거 후 incident Tool</p>
+      </div>
+      <dl class="request"><dt>사용자 요청</dt><dd>SLO 경보 기준을 확인한 뒤 관련 사고를 검색해 주세요.</dd></dl>
+      <div class="comparison">
+        <article>
+          <h3>기존 계약</h3>
+          <p class="source">docs/operational_slo_and_paging.md · Missing Interval Semantics</p>
+          <p class="rank">기대 순위 14</p>
+          <p>Operational SLO, Incident, And Paging Contract &gt; Missing Interval Semantics Expected samples begin at the first retained snapshot in the active SLO window. There is no synthetic penalty before Model Atlas has established a baseline. ```text expected samples = max( snapshots carrying the required points, floor((window end - first retained sample) / interval) + 1 ) observed ratio = good samples / expected samples ``` A missing expected interval therefore counts as not-good. This prevents a stopped</p>
+        </article>
+        <article class="revised">
+          <h3>1.0.1 후보</h3>
+          <p class="source">docs/incident_response_and_burn_rate.md · Multi-Window SLO Contract</p>
+          <p class="rank pass">기대 순위 1 · recall 1.0</p>
+          <p>Multi-Window SLO, Incident Response, and Rotating Paging Keys &gt; Multi-Window SLO Contract The default long window is one hour and the default short window is five minutes. Both windows use the same normalized snapshots and evaluate independently. For each window: ```text expected = max( snapshots observed in the window, scheduled intervals since the first retained snapshot in the window ) observed = good samples / expected samples burn rate = (1 - observed) / (1 - target) ``` Missing intervals a</p>
+        </article>
+      </div>
+      <dl><dt>검색 query</dt><dd><code>SLO 경보 기준 multi-window burn rate warning critical threshold incident</code></dd></dl>
+      <dl><dt>변경 이유</dt><dd>warning/critical burn threshold와 incident 생성 조건을 직접 정의하는 섹션으로 교정합니다.</dd></dl>
+      <fieldset>
+        <legend>검토 결정</legend>
+        <label><input type="radio" name="decision-KO-RAG-TOOL-003" value="approved"> 승인</label>
+        <label><input type="radio" name="decision-KO-RAG-TOOL-003" value="rejected"> 거절</label>
+        <label class="notes">검토 메모<input type="text" data-notes placeholder="근거와 query가 요청에 부합하는지 기록" maxlength="2000"></label>
+      </fieldset>
+    </section>
+    
+    <section class="case" data-case-id="KO-AGENT-001"
+      data-case-sha="bf6cc9cb37c5ee4decb38e4b3a186a4f74df57cb5bf4eab679b8c2c68f7e476d">
+      <div class="case-head">
+        <div><span class="critical">CRITICAL</span><h2>KO-AGENT-001</h2></div>
+        <p>Gate 상태 조사 계획</p>
+      </div>
+      <dl class="request"><dt>사용자 요청</dt><dd>Gate가 차단된 이유를 문서와 정책 Tool로 확인하고 답변해 주세요.</dd></dl>
+      <div class="comparison">
+        <article>
+          <h3>기존 계약</h3>
+          <p class="source">docs/deployment_gate.md · Sprint 4B Tool Calling Rules</p>
+          <p class="rank">기대 순위 15</p>
+          <p>Deployment Gate &gt; Sprint 4B Tool Calling Rules Executable tool traces contribute five versioned metrics: - `tool_selection_accuracy`; - `tool_argument_validity_rate`; - `tool_execution_success_rate`; - `tool_sequence_success_rate`; - `tool_retry_recovery_rate`. The `Executable Tool Calling Policy` applies these metrics through the existing threshold-rule engine. It does not create a separate verdict type. Invalid selection, invalid arguments, execution failure, and sequence mismatch can therefor</p>
+        </article>
+        <article class="revised">
+          <h3>1.0.1 후보</h3>
+          <p class="source">docs/deployment_gate.md · Verdicts</p>
+          <p class="rank pass">기대 순위 1 · recall 1.0</p>
+          <p>Deployment Gate &gt; Verdicts Only four verdicts are valid: - `APPROVED`: all blocker rules pass, warning rules pass, required real evidence exists, no critical case fails, no OOM occurs, and baseline regression is within policy. - `CONDITIONAL`: blocker rules pass, but warning rules or known non-blocking risks require review. - `BLOCKED`: a blocker rule fails, a critical case fails, OOM occurs, or a zero-tolerance policy is violated. - `INSUFFICIENT_EVIDENCE`: mandatory evidence is missing, requir</p>
+        </article>
+      </div>
+      <dl><dt>검색 query</dt><dd><code>Gate 차단 이유 Deployment Gate BLOCKED blocker critical case OOM policy violation</code></dd></dl>
+      <dl><dt>변경 이유</dt><dd>BLOCKED verdict의 직접적인 차단 조건을 설명하는 섹션으로 Agent 검색 계약을 교정합니다.</dd></dl>
+      <fieldset>
+        <legend>검토 결정</legend>
+        <label><input type="radio" name="decision-KO-AGENT-001" value="approved"> 승인</label>
+        <label><input type="radio" name="decision-KO-AGENT-001" value="rejected"> 거절</label>
+        <label class="notes">검토 메모<input type="text" data-notes placeholder="근거와 query가 요청에 부합하는지 기록" maxlength="2000"></label>
+      </fieldset>
+    </section>
+    </main>
+  <footer>
+    <div class="attest">
+      <label>검토자 이름<input id="reviewer" type="text" maxlength="160" autocomplete="name"></label>
+      <label><input id="statement" type="checkbox"> 네 변경 case의 원문 근거, query, 기대 청크를 직접 검토했습니다.</label>
+      <button id="download" type="button">검토 증명 다운로드</button>
+      <p id="status" role="status"></p>
+    </div>
+  </footer>
+  <script>
+    const schemaVersion = "model-atlas-reference-case-pack-revision-attestation-v1";
+    const statementText = "I personally reviewed every changed case, its source evidence, and its retrieval contract.";
+    const revisionId = "1.0.1";
+    const reportHash = "0832df67b0aa15010bde4176423bb694ef3d2e1a5b375207fabc4c0cf18c3474";
+    document.getElementById("download").addEventListener("click", () => {
+      const reviewer = document.getElementById("reviewer").value.trim();
+      const accepted = document.getElementById("statement").checked;
+      const status = document.getElementById("status");
+      const decisions = [];
+      for (const section of document.querySelectorAll(".case")) {
+        const caseId = section.dataset.caseId;
+        const selected = section.querySelector(`input[name="decision-${caseId}"]:checked`);
+        const notes = section.querySelector("[data-notes]").value.trim();
+        if (!selected || !notes) {
+          status.textContent = `${caseId}의 결정과 검토 메모를 입력해 주세요.`;
+          return;
+        }
+        decisions.push({
+          external_case_id: caseId,
+          revised_case_sha256: section.dataset.caseSha,
+          decision: selected.value,
+          notes,
+        });
+      }
+      if (!reviewer || !accepted) {
+        status.textContent = "검토자 이름과 직접 검토 확인이 필요합니다.";
+        return;
+      }
+      const payload = {
+        schema_version: schemaVersion,
+        revision_id: revisionId,
+        revision_report_sha256: reportHash,
+        statement: statementText,
+        reviewer,
+        reviewed_at: new Date().toISOString(),
+        decisions,
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], {type: "application/json"});
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `model-atlas-case-revision-${revisionId}-attestation.json`;
+      link.click();
+      URL.revokeObjectURL(link.href);
+      status.textContent = "검토 증명을 생성했습니다.";
+      status.style.color = "#17633f";
+    });
+  </script>
+</body>
+</html>

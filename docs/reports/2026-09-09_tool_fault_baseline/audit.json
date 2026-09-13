@@ -1,0 +1,67 @@
+{
+  "source_sha256": "27975681d2f2b53bad53c44d19346e5d9d7a47fa28f32a7d226faeecd388497f",
+  "summary": [
+    {
+      "entry": "medium-candidate",
+      "total": 24,
+      "selected": 24,
+      "schema_valid": 24,
+      "eligible": 24,
+      "exact_call": 16,
+      "tool_success": 24,
+      "success_with_wrong_values": 8
+    },
+    {
+      "entry": "prompt-variant",
+      "total": 24,
+      "selected": 20,
+      "schema_valid": 24,
+      "eligible": 24,
+      "exact_call": 14,
+      "tool_success": 20,
+      "success_with_wrong_values": 6
+    },
+    {
+      "entry": "small-baseline",
+      "total": 24,
+      "selected": 15,
+      "schema_valid": 24,
+      "eligible": 24,
+      "exact_call": 13,
+      "tool_success": 15,
+      "success_with_wrong_values": 2
+    }
+  ],
+  "mode_summary": [
+    {
+      "mode": "normal",
+      "total": 72,
+      "successes": 59,
+      "fixture_passed": 59,
+      "not_exercised": 13,
+      "handlers": 59,
+      "injected": 0
+    },
+    {
+      "mode": "permanent",
+      "total": 72,
+      "successes": 0,
+      "fixture_passed": 59,
+      "not_exercised": 13,
+      "handlers": 0,
+      "injected": 59
+    },
+    {
+      "mode": "transient_once",
+      "total": 72,
+      "successes": 59,
+      "fixture_passed": 59,
+      "not_exercised": 13,
+      "handlers": 59,
+      "injected": 59
+    }
+  ],
+  "checks": "passed",
+  "observation_count": 72,
+  "paired_trace_count": 216
+}

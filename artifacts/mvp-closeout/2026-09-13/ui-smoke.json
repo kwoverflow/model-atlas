@@ -1,0 +1,125 @@
+{
+  "schema_version": "mvp-review-ui-v1",
+  "verified_at_utc": "2026-09-13T01:40:18.078Z",
+  "status": "passed_core_and_release_responsive_checks",
+  "base_url": "http://localhost:13000",
+  "checks": [
+    "overview synthetic provenance and not-production-ready labels",
+    "runtime health button reports healthy",
+    "browser mock execution: 3 results, 3 metrics, 5 logs",
+    "Gate preflight exposes synthetic and review constraints",
+    "browser Gate creation -> INSUFFICIENT_EVIDENCE",
+    "Release Readiness navigation",
+    "Release Decisions list and detail",
+    "frozen snapshot and later evidence drift visible",
+    "unverified browser operations disabled"
+  ],
+  "console_errors": [],
+  "console_warnings": [],
+  "layout": {
+    "height": 720,
+    "scrollWidth": 1265,
+    "width": 1265
+  },
+  "screenshots": [
+    "gate-desktop.jpg",
+    "release-desktop.jpg",
+    "release-mobile.jpg"
+  ],
+  "human_review_performed": false,
+  "mobile_tested": true,
+  "mobile_scope": "Release Decision detail only",
+  "layout_checks": {
+    "desktop_cards": [
+      {
+        "childrenOverflow": false,
+        "label": "READINESS",
+        "scrollWidth": 302,
+        "width": 302
+      },
+      {
+        "childrenOverflow": false,
+        "label": "BASELINE",
+        "scrollWidth": 302,
+        "width": 302
+      },
+      {
+        "childrenOverflow": false,
+        "label": "JUDGE REVIEW",
+        "scrollWidth": 302,
+        "width": 302
+      },
+      {
+        "childrenOverflow": false,
+        "label": "PROMPT RISKS",
+        "scrollWidth": 302,
+        "width": 302
+      },
+      {
+        "childrenOverflow": false,
+        "label": "EVIDENCE TRUST",
+        "scrollWidth": 302,
+        "width": 302
+      },
+      {
+        "childrenOverflow": false,
+        "label": "PRODUCTION",
+        "scrollWidth": 302,
+        "width": 302
+      },
+      {
+        "childrenOverflow": false,
+        "label": "POLICY",
+        "scrollWidth": 302,
+        "width": 302
+      }
+    ],
+    "mobile": {
+      "height": 844,
+      "scrollWidth": 375,
+      "width": 375
+    },
+    "mobile_cards": [
+      {
+        "childrenOverflow": false,
+        "scrollWidth": 341,
+        "width": 341
+      },
+      {
+        "childrenOverflow": false,
+        "scrollWidth": 341,
+        "width": 341
+      },
+      {
+        "childrenOverflow": false,
+        "scrollWidth": 341,
+        "width": 341
+      },
+      {
+        "childrenOverflow": false,
+        "scrollWidth": 341,
+        "width": 341
+      },
+      {
+        "childrenOverflow": false,
+        "scrollWidth": 341,
+        "width": 341
+      },
+      {
+        "childrenOverflow": false,
+        "scrollWidth": 341,
+        "width": 341
+      },
+      {
+        "childrenOverflow": false,
+        "scrollWidth": 341,
+        "width": 341
+      }
+    ]
+  },
+  "repairs": [
+    "Docker SERVER_API_URL",
+    "release status formatting and summary grid",
+    "summary card detail wrapping"
+  ]
+}

@@ -1,0 +1,2 @@
+{"sample_id":"prod-json-001","quality_score":0.96,"groundedness_score":0.95,"faithfulness_score":0.95,"human_label":"reviewed-pass","judge_source":"human_review"}
+{"sample_id":"prod-tool-001","quality_score":0.91,"groundedness_score":0.9,"faithfulness_score":0.9,"human_label":"reviewed-pass","judge_source":"llm_judge","judge_model":"local-judge-v1"}

@@ -1,0 +1,6 @@
+# Optional local experiment only. Not production backend dependencies.
+onnxruntime==1.23.2
+tokenizers==0.22.1
+numpy==2.2.6
+scikit-learn==1.7.2
+huggingface-hub==0.36.0

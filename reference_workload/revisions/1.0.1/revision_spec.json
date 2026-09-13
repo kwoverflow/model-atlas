@@ -1,0 +1,44 @@
+{
+  "schema_version": "model-atlas-reference-case-pack-revision-spec-v1",
+  "revision_id": "1.0.1",
+  "source_workload_version": "1.0.0",
+  "query_strategy": "reviewed-bilingual-retrieval-query-v1",
+  "changes": [
+    {
+      "external_case_id": "KO-RAG-TOOL-001",
+      "retrieval_query": "Gate와 production readiness 차이를 문서에서 확인한 뒤 정책을 조회해 주세요.",
+      "relevant_chunk_ids": ["ko-2bbdb970a082e17107cea0e9"],
+      "top_k": 5,
+      "expected_source_path": "docs/deployment_gate.md",
+      "expected_heading": "Sprint 4A Status Separation",
+      "rationale": "Gate verdict와 production readiness의 분리를 직접 설명하는 섹션으로 정답 근거를 교정합니다."
+    },
+    {
+      "external_case_id": "KO-RAG-TOOL-002",
+      "retrieval_query": "incident 복구 절차 incident recovery runbook SLO breached sample count identity cleanup worker lease",
+      "relevant_chunk_ids": ["ko-c4115aee835c86ee7db7bfe0"],
+      "top_k": 5,
+      "expected_source_path": "docs/operational_slo_and_paging.md",
+      "expected_heading": "SLO breached",
+      "rationale": "로컬 검증 결과가 아니라 SLO breach 복구 절차와 이력 보존을 설명하는 runbook 섹션을 사용합니다."
+    },
+    {
+      "external_case_id": "KO-RAG-TOOL-003",
+      "retrieval_query": "SLO 경보 기준 multi-window burn rate warning critical threshold incident",
+      "relevant_chunk_ids": ["ko-f99e9b194c8cf87ccec1ab4d"],
+      "top_k": 5,
+      "expected_source_path": "docs/incident_response_and_burn_rate.md",
+      "expected_heading": "Multi-Window SLO Contract",
+      "rationale": "warning/critical burn threshold와 incident 생성 조건을 직접 정의하는 섹션으로 교정합니다."
+    },
+    {
+      "external_case_id": "KO-AGENT-001",
+      "retrieval_query": "Gate 차단 이유 Deployment Gate BLOCKED blocker critical case OOM policy violation",
+      "relevant_chunk_ids": ["ko-d37fad8d58da0abeff778abc"],
+      "top_k": 5,
+      "expected_source_path": "docs/deployment_gate.md",
+      "expected_heading": "Verdicts",
+      "rationale": "BLOCKED verdict의 직접적인 차단 조건을 설명하는 섹션으로 Agent 검색 계약을 교정합니다."
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "realm": "model-atlas",
+  "enabled": true,
+  "displayName": "Model Atlas Local Identity",
+  "registrationAllowed": false,
+  "resetPasswordAllowed": false,
+  "roles": {
+    "realm": [
+      { "name": "Admin" },
+      { "name": "ML Ops Lead" },
+      { "name": "Model Governance" },
+      { "name": "QA Lead" },
+      { "name": "Release Manager" },
+      { "name": "SRE Lead" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "model-atlas-browser",
+      "name": "Model Atlas Browser",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": [
+        "http://localhost:18000/api/v1/operator-identity/callback"
+      ],
+      "webOrigins": ["http://localhost:3000"],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:3000/*"
+      },
+      "protocolMappers": [
+        {
+          "name": "model-atlas-role",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-realm-role-mapper",
+          "consentRequired": false,
+          "config": {
+            "multivalued": "true",
+            "userinfo.token.claim": "true",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "claim.name": "model_atlas_role",
+            "jsonType.label": "String"
+          }
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "evaluator",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Model Atlas",
+      "lastName": "Evaluator",
+      "email": "evaluator@example.local",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "model-atlas-dev",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["ML Ops Lead"]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": "tool-fault-baseline-cases-v1",
+  "authority": "local_authored_diagnostic",
+  "human_reviewed": false,
+  "gate_evidence": false,
+  "corpus_hash": "2772ab9a898529c052337ad6d06e4f0950333a316d72d79778dbc6cfe8cf0642",
+  "cases": [
+    {
+      "id": "TFB-101",
+      "request": "정책 조회 도구에 전달할 query 값은 'Access Review: Q3'입니다. 대소문자와 문장 부호를 그대로 유지해 주세요.",
+      "expected_tool": "lookup_policy",
+      "expected_arguments": {"query": "Access Review: Q3"}
+    },
+    {
+      "id": "TFB-102",
+      "request": "내부 문서 원문을 ID로 가져오려고 합니다. document_id를 'docs/tool_calling_evaluation.md'로 지정해 주세요. 정책 검색이나 요약은 하지 마세요.",
+      "expected_tool": "lookup_internal_document",
+      "expected_arguments": {"document_id": "docs/tool_calling_evaluation.md"}
+    },
+    {
+      "id": "TFB-103",
+      "request": "새 티켓을 만들지 말고 기존 장애 이력을 검색해 주세요. query는 'HTTP 502 / east-2'로 지정합니다.",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {"query": "HTTP 502 / east-2"}
+    },
+    {
+      "id": "TFB-104",
+      "request": "새 로컬 모의 티켓을 등록해 주세요. priority는 'normal', query는 'Rotate API key #27'입니다.",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {"query": "Rotate API key #27", "priority": "normal"}
+    },
+    {
+      "id": "TFB-105",
+      "request": "고객 계정의 지원 등급을 조회해 주세요. 고객 검색 query 값은 'Nuri & Co.'입니다. 회사 이름을 바꾸지 마세요.",
+      "expected_tool": "lookup_customer",
+      "expected_arguments": {"query": "Nuri & Co."}
+    },
+    {
+      "id": "TFB-106",
+      "request": "대화 요약 도구를 호출해 주세요. query에는 'Mina: deploy at 09:30. Jun: wait for QA.'를 전달해 주세요. 지금 직접 요약문을 작성하지 마세요.",
+      "expected_tool": "summarize_thread",
+      "expected_arguments": {"query": "Mina: deploy at 09:30. Jun: wait for QA."}
+    }
+  ]
+}

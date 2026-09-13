@@ -1,0 +1,407 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Model Atlas Tool 인자 검증 리뷰",
+    "description": "Evidence Remediation 11 | 2026년 9월 9일 | 출시 승인을 위한 보고서가 아닌 검증 경계 감사",
+    "generatedAt": "2026-09-08T23:23:18Z",
+    "sources": [
+      {
+        "id": "audit",
+        "label": "동일 원본 출력 72건의 오프라인 감사",
+        "path": "artifacts/reference-workload/tool-argument-contract-audit-v21.json",
+        "query": {
+          "description": "v20 저장 원본을 인자 보정 없이 v2로 재검증. 추론 및 도구 재실행 없음. 입력 SHA-256: cb3a7e6a6ee873d969ce096a25072461f87cd102667305d1b4369ffecc5b4d24",
+          "engine": "SQLite JSON1",
+          "language": "sql",
+          "tables_used": [
+            "json_each(:audit_json, '$.entries')"
+          ],
+          "metric_definitions": {
+            "previous_success_now_blocked": "저장된 v1 실행 성공이 true이고 v2 실행 허용이 false인 관측 수. 분모는 이전 성공 56건.",
+            "v2_execution_allowed": "공개 스키마, 문서 목록 포함 여부, 기본 장애 주입 금지 정책을 모두 만족한 수. 실행 성공률이 아님."
+          },
+          "sql": "SELECT CASE json_extract(value, '$.name')\n    WHEN 'small-baseline' THEN '0.5B 기본'\n    WHEN 'medium-candidate' THEN '1.5B 후보'\n    ELSE '1.5B 프롬프트 변형' END AS configuration,\n  json_extract(value, '$.observation_count') AS total,\n  json_extract(value, '$.v1_normalized_execution_success') AS old_success,\n  json_extract(value, '$.v2_schema_valid') AS schema_valid,\n  json_extract(value, '$.v2_execution_allowed') AS allowed,\n  json_extract(value, '$.v2_selected_and_allowed') AS selected_allowed\nFROM json_each(:audit_json, '$.entries')\nORDER BY configuration"
+        }
+      },
+      {
+        "id": "runtime",
+        "label": "Docker/Ollama 실제 실행 48건",
+        "path": "artifacts/reference-workload/runtime-matrix-diagnostic-tool-argument-v21.json",
+        "query": {
+          "description": "finalized 1.0.4 Tool 10개 및 복구 6개, 3개 구성, 각 1회. legacy 선택 프롬프트, seed 42, temperature 0, max_tokens 384, 장애 주입 비활성. 새 문서 목록을 입력에 포함.",
+          "tables_used": [
+            "json_each(:runtime_json, '$.entries')"
+          ],
+          "metric_definitions": {
+            "selection": "tool_execution_summary.selection_accuracy * 16",
+            "success": "tool_execution_summary.successful_call_count",
+            "validity": "tool_execution_summary.argument_validity_rate * 16"
+          },
+          "sql": "SELECT CASE json_extract(value, '$.name')\n    WHEN 'small-baseline' THEN '0.5B 기본'\n    WHEN 'medium-candidate' THEN '1.5B 후보'\n    ELSE '1.5B 프롬프트 변형' END AS configuration,\n  json_extract(value, '$.tool_execution_summary.call_count') AS total,\n  ROUND(json_extract(value, '$.tool_execution_summary.selection_accuracy') * 16) AS selected,\n  ROUND(json_extract(value, '$.tool_execution_summary.argument_validity_rate') * 16) AS valid,\n  json_extract(value, '$.tool_execution_summary.successful_call_count') AS success\nFROM json_each(:runtime_json, '$.entries')\nORDER BY configuration",
+          "engine": "SQLite JSON1",
+          "language": "sql"
+        }
+      },
+      {
+        "id": "guard",
+        "label": "실행 차단 및 공식 상태의 읽기 전용 스냅샷",
+        "path": "artifacts/reference-workload/tool-argument-runtime-audit-v21.json",
+        "query": {
+          "description": "3개 진단 실행의 benchmark_results 48행을 읽기 전용 조회. guard 메타데이터와 실행 단계 대조. 공식 overview는 별도 canonical 증거이므로 진단 결과와 합산하지 않음.",
+          "tables_used": [
+            "benchmark_results.metadata_json.tool_call_contract",
+            "benchmark_results.metadata_json.tool_execution",
+            "reference-workload/overview"
+          ]
+        }
+      },
+      {
+        "id": "code",
+        "label": "구현 구조 및 재현 절차",
+        "path": "docs/tool_argument_validation.md"
+      },
+      {
+        "id": "verification",
+        "label": "자동 검증 실행 기록",
+        "path": "docs/reports/2026-09-09_model_atlas_evidence_remediation_11_tool_arguments.md"
+      },
+      {
+        "id": "chart_query",
+        "label": "이전 성공 기록의 SQLite 재집계",
+        "path": "docs/reports/2026-09-09_tool_argument_review/reproduce.ipynb",
+        "query": {
+          "engine": "SQLite (in-memory)",
+          "language": "sql",
+          "sql": "WITH cohort AS (\n  SELECT CASE entry\n    WHEN 'small-baseline' THEN '0.5B 기본'\n    WHEN 'medium-candidate' THEN '1.5B 후보'\n    ELSE '1.5B 프롬프트 변형' END AS configuration,\n    CASE WHEN v2_execution_allowed = 1 THEN 'v2 허용' ELSE 'v2 차단' END AS decision\n  FROM audit_rows\n  WHERE v1_normalized_execution_success = 1\n)\nSELECT configuration, decision, COUNT(*) AS observations,\n       SUM(COUNT(*)) OVER (PARTITION BY configuration) AS denominator,\n       24 AS all_trials\nFROM cohort\nGROUP BY configuration, decision\nORDER BY configuration, decision",
+          "description": "audit_rows is loaded from the 72 rows in tool-argument-contract-audit-v21.json. Restricts the chart to 56 stored v1 successes. This is a count reconciliation, not new model inference.",
+          "tables_used": [
+            "audit_rows"
+          ],
+          "filters": [
+            "v1_normalized_execution_success = 1"
+          ],
+          "metric_definitions": {
+            "observations": "COUNT(*) per configuration and v2 execution permission among stored v1 successes",
+            "denominator": "SUM(COUNT(*)) over each configuration, restricted to stored v1 successes"
+          }
+        }
+      }
+    ],
+    "charts": [
+      {
+        "id": "prior_success_chart",
+        "title": "이전 성공 기록의 구성별 재검증",
+        "subtitle": "이전 성공 56건만 포함. 실행 허용은 새 실행 성공을 뜻하지 않습니다.",
+        "showDescription": true,
+        "type": "bar",
+        "dataset": "prior_success",
+        "sourceId": "chart_query",
+        "valueFormat": "number",
+        "encodings": {
+          "x": {
+            "field": "configuration",
+            "type": "nominal",
+            "label": "모델 및 프롬프트 구성"
+          },
+          "y": {
+            "field": "observations",
+            "type": "quantitative",
+            "label": "관측 수"
+          },
+          "color": {
+            "field": "decision",
+            "type": "nominal",
+            "label": "v2 실행 기준"
+          },
+          "tooltip": [
+            {
+              "field": "denominator",
+              "type": "quantitative",
+              "label": "구성별 이전 성공 수"
+            }
+          ]
+        },
+        "options": {
+          "grouping": "grouped"
+        }
+      }
+    ],
+    "tables": [
+      {
+        "id": "offline_table",
+        "title": "동일 원본 출력의 검증 지표",
+        "dataset": "offline",
+        "sourceId": "audit",
+        "defaultSort": {
+          "field": "configuration",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "configuration",
+            "label": "구성",
+            "type": "text"
+          },
+          {
+            "field": "total",
+            "label": "전체",
+            "format": "number"
+          },
+          {
+            "field": "allowed",
+            "label": "v2 실행 허용",
+            "format": "number"
+          },
+          {
+            "field": "selected_allowed",
+            "label": "선택 정답 + 허용",
+            "format": "number"
+          }
+        ],
+        "density": "spacious"
+      },
+      {
+        "id": "runtime_table",
+        "title": "실제 실행 결과",
+        "dataset": "runtime",
+        "sourceId": "runtime",
+        "defaultSort": {
+          "field": "configuration",
+          "direction": "asc"
+        },
+        "columns": [
+          {
+            "field": "configuration",
+            "label": "구성",
+            "type": "text"
+          },
+          {
+            "field": "total",
+            "label": "전체",
+            "format": "number"
+          },
+          {
+            "field": "selected",
+            "label": "선택 정답",
+            "format": "number"
+          },
+          {
+            "field": "valid",
+            "label": "실행 인자 유효",
+            "format": "number"
+          },
+          {
+            "field": "success",
+            "label": "실행 성공",
+            "format": "number"
+          }
+        ],
+        "density": "spacious"
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# Model Atlas Tool 인자 검증 리뷰"
+      },
+      {
+        "id": "summary",
+        "type": "markdown",
+        "body": "## 결론: 보정된 성공과 모델 능력을 분리해야 합니다\n\n이전 진단의 원본 응답 72건을 다시 검사했습니다. 과거 실행 성공 56건 중 46건이 새 실행 기준에서는 차단됩니다. v1은 53건의 인자를 변경했고, 원본의 인자 유효 50/72건을 보정 후 72/72건으로 만들었습니다. **새 코드는 인자를 임의로 고치지 않고 잘못된 호출을 실행 전에 막습니다.**\n\n46건 모두를 과거 채점 오류로 단정할 수는 없습니다. 장애 주입 허용 정책과 문서 ID 확인 기준도 강화됐기 때문입니다. 이번 성과는 모델 성능 향상이 아니라, 무엇을 검증했고 무엇을 검증하지 못했는지를 더 정직하게 구분한 것입니다.",
+        "sourceId": "audit"
+      },
+      {
+        "id": "definitions",
+        "type": "markdown",
+        "body": "## 같은 원본 감사와 새 실행은 다른 실험입니다\n\n**오프라인 감사:** locally authored 추가 요청 24개를 3개 구성으로 실행한 과거 응답 72건입니다. 관측 단위는 구성 × 사례 × 시행이며, 같은 요청의 반복 구성을 독립 표본으로 해석하지 않습니다. 추론·도구 실행 없이 같은 원본에 새 기준을 적용했습니다. 과거 입력에는 이번 문서 목록이 없었습니다.\n\n**실제 실행:** 승인된 finalized 1.0.4의 일반 Tool 10개와 복구 6개를 3개 구성에서 새로 실행한 48건입니다. 프롬프트 경로와 표본이 오프라인 감사와 달라 두 숫자를 하나의 전후 성능 비교로 합치지 않습니다.\n\n**선택 정답**은 요청에 맞는 도구를 골랐다는 뜻입니다. **스키마 유효**는 인자 형식 조건 만족, **실행 허용**은 문서 목록과 장애 주입 정책까지 만족, **실행 성공**은 평가 스키마와 로컬 모의 도구 실행까지 통과했다는 뜻입니다. 어느 것도 질의의 의미적 정확성이나 실제 외부 업무 성공을 보장하지 않습니다."
+      },
+      {
+        "id": "key_findings",
+        "type": "markdown",
+        "body": "## 1.5B 구성의 기존 성공은 새 기준에서 대부분 차단됐습니다\n\n0.5B 기본 구성에서는 이전 성공 12건 중 6건, 두 1.5B 구성에서는 각각 22건 중 20건이 차단됐습니다. 아래 막대는 **이전 성공 건만** 허용·차단으로 나눕니다. 모델 우열 순위가 아니라 기존 성공 기록이 새 정책을 얼마나 만족하는지 보여줍니다. 구성별 전체 분모는 각각 24건입니다.",
+        "sourceId": "audit"
+      },
+      {
+        "id": "prior_success_block",
+        "type": "chart",
+        "chartId": "prior_success_chart"
+      },
+      {
+        "id": "offline_detail",
+        "type": "markdown",
+        "body": "## 스키마 유효와 실행 허용 사이에도 차이가 있습니다\n\n새 검증의 스키마 유효는 50/72건이지만 실행 허용은 15/72건, 선택 정답까지 만족하는 경우는 10/72건입니다. 기본 정책에서 허가되지 않은 장애 주입 49건, 목록에 없는 문서 ID 9건, 누락된 query 2건을 확인했습니다. 사유는 중복될 수 있으므로 합산하면 안 됩니다.\n\nv1의 문서 ID 자동 채움 경로는 코드와 회귀 테스트에서 확인했으나, 이 72건에서는 해당 자동 채움이 관측되지 않았습니다. 관측된 문제와 코드상 가능한 위험을 구분합니다.",
+        "sourceId": "audit"
+      },
+      {
+        "id": "offline_table_block",
+        "type": "table",
+        "tableId": "offline_table"
+      },
+      {
+        "id": "runtime_findings",
+        "type": "markdown",
+        "body": "## 새 실제 실행은 48건 중 5건만 성공했습니다\n\n선택은 44/48건에서 맞았지만 실행은 5/48건만 성공했습니다. 인자 보정을 없앤 상태에서는 도구 선택만 좋아져도 과제가 끝나지 않습니다. 타임아웃과 OOM은 모두 0건입니다. 다음 표의 인자 유효는 공개 스키마뿐 아니라 평가 스키마와 실행 차단 조건도 반영하므로 오프라인 표의 스키마 유효와 정의가 다릅니다.\n\n일반 Tool 실행은 5/30건 성공했습니다. 복구 사례 18건은 모두 실패했고, 기존 평가가 요구하는 장애 인자를 모델이 생성하지 않았거나 새 기본 정책이 주입을 허용하지 않은 영향이 포함됩니다. 따라서 이 실행은 복구 능력의 공정한 전후 비교가 아닙니다. 모델 재학습이나 가중치 변경은 하지 않았습니다.",
+        "sourceId": "runtime"
+      },
+      {
+        "id": "runtime_table_block",
+        "type": "table",
+        "tableId": "runtime_table"
+      },
+      {
+        "id": "enforcement",
+        "type": "markdown",
+        "body": "## 차단된 36건은 실제 도구 실행을 시도하지 않았습니다\n\n48개 실행의 저장 메타데이터와 실행 단계를 대조했습니다. 새 guard가 거절한 36건 모두 handler 시도 0회였고, 원본과 정규화된 인자 해시의 불일치는 0건이었습니다. 기존 평가 조건이나 선택 실패로 막힌 경우까지 포함하면 총 43건이 실행을 건너뛰었습니다.\n\n문서 ID 4건은 선택된 corpus에 실제로 존재했고, 5건은 목록에 없었습니다. **ID가 존재한다는 확인은 요청에 맞는 문서라는 판정이 아닙니다.** 질의 적합성은 아직 검증하지 않습니다.",
+        "sourceId": "guard"
+      },
+      {
+        "id": "method",
+        "type": "markdown",
+        "body": "## 검증 책임을 네 단계로 나눴습니다\n\n1. Benchmark 준비 단계가 등록된 Tool 스키마와 설정된 corpus의 실제 문서 ID 목록을 만듭니다. corpus 버전·해시 불일치는 거절하고 다른 corpus를 합치지 않습니다.\n2. Adapter v21이 응답 원문을 보존한 채 단일 호출을 해석합니다. 중복 키, 비표준 숫자, 모호한 호출, 미등록 도구를 거절합니다.\n3. 인자 검증기는 필수 값 채움·삭제·타입 변환·문자열 자르기를 하지 않습니다. document_id의 목록 포함 여부와 운영자가 명시한 장애 주입 허용값을 확인합니다.\n4. Executor가 거절 사유를 받아 실행을 건너뛰고 trace에 남깁니다. 도구 선택 점수는 별도로 유지합니다.\n\n장애 주입 설정은 이미 모델이 낸 일치하는 인자만 허용합니다. 자연어의 ‘재시도’ 표현이나 부정문에서 값을 추론해 넣지 않습니다. 지원하지 않는 JSON Schema 제약은 무시하지 않고 거절합니다.",
+        "sourceId": "code"
+      },
+      {
+        "id": "verification",
+        "type": "markdown",
+        "body": "## 회귀 테스트와 고정 소스 검증을 통과했습니다\n\n호스트 전체 테스트 306개 통과·1개 건너뜀, Docker 전체 307개 통과, 별도 감사 도구 4개 통과, Ruff 통과를 확인했습니다. Windows에서 만들 수 없는 심볼릭 링크 테스트 1개는 Docker에서 통과했습니다. 기존 테스트 도구의 deprecation 경고는 남아 있습니다.\n\n승인된 소스 사례 64/64개, critical 소스 20/20개와 corpus/suite 해시는 그대로입니다. backend와 agent-worker를 재빌드했고 backend/Ollama 상태는 정상입니다. DB 스키마 변경은 없으며 Alembic head를 유지합니다.",
+        "sourceId": "verification"
+      },
+      {
+        "id": "limitations",
+        "type": "markdown",
+        "body": "## 이 결과로 출시하거나 일반 정확도를 주장할 수는 없습니다\n\n독립적인 외부 시험셋이나 생산 트래픽이 아닙니다. 각 구성은 한 번 실행했고, prompt와 도구 목록 순서에 민감할 수 있습니다. 새 실행에는 문서 목록이 추가됐으므로 출력 변화 전체를 검증기 하나의 효과로 볼 수 없습니다.\n\n이번 guard는 standalone Tool 경로에만 적용했습니다. Agent·RAG·다단계 실행, 실제 문서 내용 조회, 사용자별 문서 접근 권한, 자유 질의의 의미 적합성은 별도 검증이 필요합니다. 로컬 fixture 성공을 실제 서비스 성공으로 해석하면 안 됩니다."
+      },
+      {
+        "id": "gate",
+        "type": "markdown",
+        "body": "## 공식 Gate는 여전히 BLOCKED입니다\n\n공식 증거 384건, critical 실패 110건, 모델 출력 사람 검토 0/30건, production 준비 상태 not_production_ready를 그대로 유지했습니다. 소스 사례의 승인과 실제 모델 출력 승인은 별개입니다. 이번 48건은 진단 전용이며 공식 Portfolio 결과에 승격하지 않았습니다.",
+        "sourceId": "guard"
+      },
+      {
+        "id": "next",
+        "type": "markdown",
+        "body": "## 다음은 장애 복구 시험과 인자 생성의 분리입니다\n\n1. 장애 주입을 모델이 고르는 인자에서 분리해 시험 환경이 명시적으로 통제하도록 설계합니다. 정상 실행과 복구 실행은 별도 구성과 결과로 비교해야 합니다.\n2. 도구 선택 후 선택된 도구의 스키마와 실제 문서 목록만으로 인자를 생성하는 후보 경로를 시험합니다. 잘못된 값을 자동 보정하지 않는 원칙은 유지합니다.\n3. 실제 문서 내용 조회와 사용자 접근 권한을 연결하고, 질의와 문서의 적합성을 검증할 독립 사례를 추가합니다.\n4. 확장된 사례와 반복 시행으로 회귀를 확인한 뒤 실제 출력 검토와 전체 workload 평가를 진행합니다. 그 전에는 Gate를 올리지 않습니다."
+      },
+      {
+        "id": "questions",
+        "type": "markdown",
+        "body": "## 남은 검토 질문\n\n- 올바른 문서 ID를 골랐을 때 실제 문서 내용도 요청을 충족하는가?\n- 장애 주입을 시험 환경으로 옮기면 기존 복구 평가의 어떤 계약과 버전을 갱신해야 하는가?\n- 선택과 인자 생성을 분리했을 때 정확도 이득이 추가 지연과 토큰 비용을 정당화하는가?\n- 같은 비보정 검증 원칙을 Agent·RAG·다단계 경로에 적용할 때 어떤 호환성이 필요한가?"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "status": "ready",
+    "generatedAt": "2026-09-08T23:23:18Z",
+    "datasets": {
+      "prior_success": [
+        {
+          "configuration": "0.5B 기본",
+          "decision": "v2 허용",
+          "observations": 6,
+          "denominator": 12,
+          "all_trials": 24,
+          "order": 0
+        },
+        {
+          "configuration": "0.5B 기본",
+          "decision": "v2 차단",
+          "observations": 6,
+          "denominator": 12,
+          "all_trials": 24,
+          "order": 0
+        },
+        {
+          "configuration": "1.5B 후보",
+          "decision": "v2 허용",
+          "observations": 2,
+          "denominator": 22,
+          "all_trials": 24,
+          "order": 1
+        },
+        {
+          "configuration": "1.5B 후보",
+          "decision": "v2 차단",
+          "observations": 20,
+          "denominator": 22,
+          "all_trials": 24,
+          "order": 1
+        },
+        {
+          "configuration": "1.5B 프롬프트 변형",
+          "decision": "v2 허용",
+          "observations": 2,
+          "denominator": 22,
+          "all_trials": 24,
+          "order": 2
+        },
+        {
+          "configuration": "1.5B 프롬프트 변형",
+          "decision": "v2 차단",
+          "observations": 20,
+          "denominator": 22,
+          "all_trials": 24,
+          "order": 2
+        }
+      ],
+      "offline": [
+        {
+          "order": 0,
+          "configuration": "0.5B 기본",
+          "total": 24,
+          "old_success": 12,
+          "schema_valid": 17,
+          "allowed": 11,
+          "selected_allowed": 6
+        },
+        {
+          "order": 1,
+          "configuration": "1.5B 후보",
+          "total": 24,
+          "old_success": 22,
+          "schema_valid": 15,
+          "allowed": 2,
+          "selected_allowed": 2
+        },
+        {
+          "order": 2,
+          "configuration": "1.5B 프롬프트 변형",
+          "total": 24,
+          "old_success": 22,
+          "schema_valid": 18,
+          "allowed": 2,
+          "selected_allowed": 2
+        }
+      ],
+      "runtime": [
+        {
+          "order": 0,
+          "configuration": "0.5B 기본",
+          "total": 16,
+          "selected": 12,
+          "valid": 5,
+          "success": 4
+        },
+        {
+          "order": 1,
+          "configuration": "1.5B 후보",
+          "total": 16,
+          "selected": 16,
+          "valid": 1,
+          "success": 1
+        },
+        {
+          "order": 2,
+          "configuration": "1.5B 프롬프트 변형",
+          "total": 16,
+          "selected": 16,
+          "valid": 0,
+          "success": 0
+        }
+      ]
+    }
+  }
+}

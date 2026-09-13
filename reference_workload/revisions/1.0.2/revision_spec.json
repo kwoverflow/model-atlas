@@ -1,0 +1,17 @@
+{
+  "schema_version": "model-atlas-reference-case-pack-revision-spec-v1",
+  "revision_id": "1.0.2",
+  "source_workload_version": "1.0.1",
+  "query_strategy": "reviewed-bilingual-retrieval-query-v1",
+  "changes": [
+    {
+      "external_case_id": "KO-RAG-SCOPE-001",
+      "retrieval_query": "로컬 Gate APPROVED를 production-ready라고 표시해도 되나요?",
+      "relevant_chunk_ids": ["ko-2bbdb970a082e17107cea0e9"],
+      "top_k": 5,
+      "expected_source_path": "docs/deployment_gate.md",
+      "expected_heading": "Sprint 4A Status Separation",
+      "rationale": "Evidence Trust 일반 설명 대신 Gate verdict가 production 배포 승인을 의미하지 않으며 production readiness와 분리된다는 직접 근거를 사용합니다."
+    }
+  ]
+}

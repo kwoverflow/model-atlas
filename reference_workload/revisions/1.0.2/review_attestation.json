@@ -1,0 +1,16 @@
+{
+  "schema_version": "model-atlas-reference-case-pack-revision-attestation-v1",
+  "revision_id": "1.0.2",
+  "revision_report_sha256": "7f337920ab26ec388c5c8f2692f43883024cc7513ef1268dddf33320cac739d1",
+  "statement": "I personally reviewed every changed case, its source evidence, and its retrieval contract.",
+  "reviewer": "김대건",
+  "reviewed_at": "2026-09-04T02:18:19.179Z",
+  "decisions": [
+    {
+      "external_case_id": "KO-RAG-SCOPE-001",
+      "revised_case_sha256": "a96949a1211448ad27e0385c6683f1ea442167ef45bb9da8c037f089deef26c4",
+      "decision": "approved",
+      "notes": "yes"
+    }
+  ]
+}

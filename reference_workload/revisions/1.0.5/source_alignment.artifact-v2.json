@@ -1,0 +1,131 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Source Alignment Audit",
+    "generatedAt": "2026-09-10T03:41:20.022507+00:00",
+    "blocks": [
+      {
+        "id": "summary",
+        "type": "markdown",
+        "body": "## 기술 요약\n\n**핵심 사례 5건 중 4건의 지정 근거를 바꾸는 검토안이며, 1건은 유지합니다.** 기존 승인본 1.0.4는 수정하지 않았습니다. 1.0.5는 미승인 초안입니다.\n\n기존 검색기로 필요한 근거를 찾는 사례는 3/5에서 1/5가 됩니다. 이는 성능 개선이 아니라 더 직접적인 정답 근거를 지정했을 때 드러나는 검색 누락입니다. **Gate 통과나 운영 준비 완료를 의미하지 않습니다.**",
+        "sourceId": "audit"
+      },
+      {
+        "id": "findings",
+        "type": "markdown",
+        "body": "## 네 건의 근거 연결을 재검토해야 합니다\n\n| 사례 | 검토안 | 기존 근거 순위 | 제안 근거 순위 |\n| --- | --- | --- | --- |\n| KO-RAG-001 | 변경 제안 | 1 | 46 |\n| KO-RAG-002 | 기존 유지 | 5 | 5 |\n| KO-RAG-MULTI-001 | 변경 제안 | 1, 19 | 36, 186 |\n| KO-RAG-MULTI-002 | 변경 제안 | 9, 7 | 33, 6 |\n| KO-RAG-MULTI-003 | 변경 제안 | 5, 2 | 2, 35, 16 |\n\n검색 범위는 top-5이며, 제안 그룹 안의 문단은 모두 필요합니다. 점수가 0인 문단의 순위는 동률 정렬 결과일 뿐 관련성의 증명이 아닙니다.",
+        "sourceId": "audit"
+      },
+      {
+        "id": "reachability-chart",
+        "type": "chart",
+        "chartId": "reachability"
+      },
+      {
+        "id": "scope",
+        "type": "markdown",
+        "body": "## 범위와 측정 기준\n\n분석 단위는 반복 실행 결과가 아니라 고유한 critical 일반 RAG 사례 5개입니다. 승인된 1.0.4 사례 64개와 고정된 문서 14개·chunk 200개에서 선정했습니다. 모델 추론이나 DB 기록 변경은 수행하지 않았습니다.\n\n근거 적합성 평가는 AI가 작성한 검토 의견입니다. 자동화한 것은 ID 존재 여부, 인용문 정확 일치, 복수 문서 조건, 인용 개수 제한, 기존 계약 보존 및 검색 순위입니다. 독립적인 사람 검토는 아직 없습니다.",
+        "sourceId": "audit"
+      },
+      {
+        "id": "ko-rag-001",
+        "type": "markdown",
+        "body": "## KO-RAG-001: 직접 근거로 변경 제안\n\n**질문:** Gate가 승인되면 바로 운영 배포해도 되나요?\n\n기존 평가 가이드 14절은 감사 가능성과 평가 관점을 설명하지만, Gate 승인과 production readiness의 분리를 직접 설명하지 않는다. 정책 통과가 운영 배포 허가가 아님을 명시한 상태 분리 문단으로 교체한다.\n\n**변경하지 않은 필수 사실:** Gate와 production readiness는 별도 상태\n\n**기존 지정 근거:**\n- EVALUATOR_GUIDE_KO.md / 14. 평가 결론을 내릴 때의 권장 관점 / 순위 1\n\n### 질문의 세부 항목과 원문 연결\n\n**Gate의 정책 통과 여부와 운영 배포 허가는 별개다.**\n\n출처: docs/deployment_gate.md / Sprint 4A Status Separation\n\n```text\nA Gate Verdict answers whether policy rules passed. It does not describe the strength of the evidence or authorize production deployment by itself.\n```\n\n**Gate가 APPROVED여도 production readiness는 NOT_PRODUCTION_READY일 수 있다.**\n\n출처: docs/deployment_gate.md / Sprint 4A Status Separation\n\n```text\nGate Verdict: APPROVED\nEvidence Trust: LOCAL_DEMO_READY\nRelease Readiness: READY_TO_PROMOTE\nProduction Readiness: NOT_PRODUCTION_READY\n```\n",
+        "sourceId": "audit"
+      },
+      {
+        "id": "ko-rag-002",
+        "type": "markdown",
+        "body": "## KO-RAG-002: 기존 근거 유지\n\n**질문:** Deployment Gate 실행 전에 Preflight에서 무엇을 확인하나요?\n\n기존 Preflight Semantics 문단이 구성·suite·정책, 실행 증거, 신뢰도·검토 범위, baseline, 차단 전제조건과 can_evaluate를 직접 명시한다. 근거를 변경하지 않는다. 모델 답변의 누락과 기존 의미 평가기의 표현 민감도는 별도 문제다.\n\n**변경하지 않은 필수 사실:** 증거와 정책을 저장 전 검토\n\n**기존 지정 근거:**\n- docs/deployment_gate.md / Preflight Semantics / 순위 5\n\n### 질문의 세부 항목과 원문 연결\n\n**구성·평가 suite·정책과 실행 결과·metric의 존재를 확인한다.**\n\n출처: docs/deployment_gate.md / Preflight Semantics\n\n```text\n- configuration, suite, and policy summaries;\n- active and critical case counts;\n- matching completed runs, results, and metrics;\n```\n\n**신뢰도, 검토 범위, baseline, 차단 전제조건과 실행 가능 여부를 확인한다.**\n\n출처: docs/deployment_gate.md / Preflight Semantics\n\n```text\n- source and score trust distributions;\n- judge and critical-case review coverage;\n- explicit or active baseline summary;\n- blocking preconditions, warnings, and expected limitations;\n- `can_evaluate`.\n```\n\n**Preflight는 Gate 평가를 저장하거나 결과를 예측하는 단계가 아니다.**\n\n출처: docs/deployment_gate.md / Preflight Semantics\n\n```text\nPreflight does not persist a Gate Evaluation and does not predict a verdict.\n```\n",
+        "sourceId": "audit"
+      },
+      {
+        "id": "ko-rag-multi-001",
+        "type": "markdown",
+        "body": "## KO-RAG-MULTI-001: 직접 근거로 변경 제안\n\n**질문:** 후보 추천부터 서명된 릴리스 결정까지의 핵심 단계를 설명해 주세요.\n\n기존 가이드 14절과 Decision Record는 개요 및 Gate 기록 필드에 치우쳐 있다. 추천·불변 구성·실행 증거·Gate·readiness·서명이라는 순서를 설명하는 가이드 5절과 별도 서명 결정 계약을 함께 요구한다. 복수 문서 AND 조건을 유지한다.\n\n**변경하지 않은 필수 사실:** 후보 추천과 Gate와 Release Decision 분리\n\n**기존 지정 근거:**\n- EVALUATOR_GUIDE_KO.md / 14. 평가 결론을 내릴 때의 권장 관점 / 순위 1\n- docs/deployment_gate.md / Decision Record / 순위 19\n\n### 질문의 세부 항목과 원문 연결\n\n**후보를 좁히고 불변 배포 구성을 만든 뒤 고정된 사례·metric·정책으로 실행 증거를 수집한다.**\n\n출처: EVALUATOR_GUIDE_KO.md / 5. 의사결정 흐름\n\n```text\n1. 모델 아티팩트와 하드웨어 조건으로 평가할 후보를 좁힌다.\n2. 실제 런타임과 프롬프트까지 포함한 불변 배포 구성을 만든다.\n3. 버전이 고정된 평가 case와 metric, acceptance policy로 실행 증거를 수집한다.\n```\n\n**Preflight와 Gate 뒤 readiness snapshot을 만들고 권한자가 동결된 snapshot에 서명한다.**\n\n출처: EVALUATOR_GUIDE_KO.md / 5. 의사결정 흐름\n\n```text\n4. Preflight에서 증거 누락, 신뢰도, baseline, 제한 사항을 먼저 확인한다.\n5. Gate가 정책 결과와 scorecard를 저장한다.\n6. Release Readiness가 Gate, regression, label coverage, lineage를 한 snapshot으로 묶는다.\n7. 권한이 있는 사용자가 snapshot을 동결해 승인 또는 변경 요청을 서명한다.\n```\n\n**서명 결정은 기존 Gate 판정이나 benchmark 증거를 변경하지 않는 별도 기록이다.**\n\n출처: docs/deployment_gate.md / Signed Release Decisions\n\n```text\nSigning a release decision does not mutate the gate verdict,\nbenchmark evidence, prompt regression report, or active baseline.\n```\n",
+        "sourceId": "audit"
+      },
+      {
+        "id": "ko-rag-multi-002",
+        "type": "markdown",
+        "body": "## KO-RAG-MULTI-002: 직접 근거로 변경 제안\n\n**질문:** 실행 모델 digest와 publisher 증거를 함께 확인해야 하는 이유는 무엇인가요?\n\n기존 Report Contract와 Verified Local Evidence는 출력 필드와 데모 식별자 위주다. digest가 실제 실행 아티팩트의 일치를 검증하고 publisher 증거가 서명된 provenance를 별도로 검증한다는 이유를 설명하는 문단으로 교체한다. 두 주장을 하나로 합치거나 production 보증으로 확대하지 않는다.\n\n**변경하지 않은 필수 사실:** 실행 신원과 공급망 provenance 결합\n\n**기존 지정 근거:**\n- docs/model_validation.md / Report Contract / 순위 9\n- docs/supply_chain_evidence.md / Verified Local Evidence / 순위 7\n\n### 질문의 세부 항목과 원문 연결\n\n**설정한 아티팩트, 실제 runtime 모델, 관측한 digest가 일치하는지 확인한다.**\n\n출처: docs/model_validation.md / Model Identity And Attestation\n\n```text\nA report compares the configured artifact, runtime model, and\nobserved digest.\n```\n\n**runtime digest 관측과 publisher key의 digest·SBOM 서명은 서로 다른 주장이다.**\n\n출처: docs/supply_chain_evidence.md / Purpose\n\n```text\n- runtime attestation: the Model Atlas server observed a model digest;\n- supply-chain attestation: a configured publisher key signed that digest and SBOM;\n```\n\n**이 증거만으로 릴리스가 자동 승인되지는 않는다.**\n\n출처: docs/supply_chain_evidence.md / Purpose\n\n```text\nNone of these records automatically authorizes a release.\n```\n",
+        "sourceId": "audit"
+      },
+      {
+        "id": "ko-rag-multi-003",
+        "type": "markdown",
+        "body": "## KO-RAG-MULTI-003: 직접 근거로 변경 제안\n\n**질문:** burn-rate 경보가 발생한 뒤 incident 대응과 paging 복구 흐름을 요약해 주세요.\n\n기존 SLO 개요와 burn-rate 계산 문단만으로는 incident 대응과 paging 복구 이력을 충분히 설명하지 못한다. burn-rate 문단은 유지하고 대응 action/hash 기록 및 paging 복구 runbook을 함께 요구한다. 세 근거는 기본 응답의 최대 인용 수 3 안에 들어가며, 복수 문서 AND 조건을 유지한다.\n\n**변경하지 않은 필수 사실:** 경보, incident, delivery, 복구 이력\n\n**기존 지정 근거:**\n- docs/operational_slo_and_paging.md / Operational SLO, Incident, And Paging Contract / 순위 5\n- docs/incident_response_and_burn_rate.md / Multi-Window SLO Contract / 순위 2\n\n### 질문의 세부 항목과 원문 연결\n\n**critical 다중 구간 burn-rate 경보는 critical incident를 생성하거나 갱신한다.**\n\n출처: docs/incident_response_and_burn_rate.md / Multi-Window SLO Contract\n\n```text\nA critical\nmulti-window burn creates or updates a critical incident.\n```\n\n**확인·담당자 지정·노트 등 대응은 actor·시간·이전 action hash와 연결해 기록한다.**\n\n출처: docs/incident_response_and_burn_rate.md / Incident Response Contract\n\n```text\nEvery action hashes a canonical payload containing the incident, action, actor, timestamp,\nassignee, and previous action hash. The newest action points to its predecessor.\n```\n\n**수신 측 복구 후 검증된 유지보수 신원과 사유로 재큐잉하고 delivery receipt와 응답 hash를 확인한다.**\n\n출처: docs/operational_slo_and_paging.md / Paging failed\n\n```text\n3. Restore the receiver.\n4. Requeue the failed durable Agent job with a verified maintenance identity and reason.\n5. Confirm a delivered receipt, response hash, provider event ID, and provider receipt ID.\n```\n",
+        "sourceId": "audit"
+      },
+      {
+        "id": "method",
+        "type": "markdown",
+        "body": "## 검증 방법과 재현\n\n질문의 세부 항목에 연결한 원문 14개가 해당 문단에 정확히 존재하는지 검사했습니다. 문서의 의미가 옳다는 자동 판정은 아닙니다. 복수 문서 사례는 최소 두 문서를 유지하며, 모든 필수 근거가 기본 최대 인용 수 3 안에 들어가는지 확인했습니다.\n\n질문, 검색 질문, top_k, 필수 사실, 금지 주장, 거절 요구, criticality, weight는 변경하지 않았습니다. 별도 검토 항목은 평가 모델의 입력이나 정답에 추가하지 않았습니다.\n\n재현 코드: backend/app/reference_workload/rag_contract_alignment.py\n\n계획 파일: reference_workload/diagnostics/rag-contract-alignment-v1.json\n\n고정 corpus SHA-256: `2772ab9a898529c052337ad6d06e4f0950333a316d72d79778dbc6cfe8cf0642`",
+        "sourceId": "audit"
+      },
+      {
+        "id": "limits",
+        "type": "markdown",
+        "body": "## 한계와 아직 답하지 못한 질문\n\n- 근거를 바꿔도 답변 모델과 검색기의 성능이 자동으로 좋아지지는 않습니다.\n- 기존 필수 사실은 짧고 의미 점수는 표현에 민감합니다. 이번에는 두 요소를 수정하지 않았으므로, 필수 사실 점수의 타당성은 별도로 검토해야 합니다.\n- 제안한 문단 조합이 질문에 충분한지, 다른 동등한 근거 조합도 필요한지는 사람이 확인해야 합니다. 현재 안은 완화된 OR 그룹이 아닌 AND 그룹입니다.\n- 고정된 한 버전의 검토이며 시간 추세나 독립 표본의 일반화 결과는 아닙니다.",
+        "sourceId": "audit"
+      },
+      {
+        "id": "next",
+        "type": "markdown",
+        "body": "## 다음 단계\n\n1. revision_review.html에서 변경 제안 4건의 질문·원문·계약을 확인합니다. 검토에 동의하지 않으면 거절로 남길 수 있습니다.\n2. 승인 기록이 있더라도 곧바로 배포하지 않습니다. 한국어 질문으로 영어 기술 문서를 찾는 검색 문제를 별도 후보에서 검증합니다.\n3. 근거에 도달한 뒤 답변의 사실 충족과 출처 관계를 새 관측으로 평가합니다. 공식 Gate는 별도 재평가 전까지 유지합니다.",
+        "sourceId": "audit"
+      }
+    ],
+    "charts": [
+      {
+        "id": "reachability",
+        "title": "계약별 top-5 근거 도달 사례 수 (전체 5개)",
+        "type": "bar",
+        "dataset": "reachability",
+        "sourceId": "audit",
+        "encodings": {
+          "x": {
+            "field": "contract",
+            "type": "nominal",
+            "label": "계약"
+          },
+          "y": {
+            "field": "count",
+            "type": "quantitative",
+            "label": "사례 수",
+            "format": "number"
+          }
+        },
+        "valueFormat": "number",
+        "yAxisTitle": "사례 수",
+        "layout": "full"
+      }
+    ],
+    "sources": [
+      {
+        "id": "audit",
+        "label": "1.0.5 source alignment audit (unreviewed)",
+        "path": "source_alignment_audit.json"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-09-10T03:41:20.022507+00:00",
+    "status": "ready",
+    "datasets": {
+      "reachability": [
+        {
+          "contract": "기존 1.0.4",
+          "count": 3
+        },
+        {
+          "contract": "제안 1.0.5",
+          "count": 1
+        }
+      ]
+    }
+  }
+}

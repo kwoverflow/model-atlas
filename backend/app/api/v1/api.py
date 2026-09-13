@@ -1,0 +1,134 @@
+from fastapi import APIRouter
+
+from app.api.v1.routes import (
+    agent_execution,
+    analytics,
+    benchmark_executions,
+    deployment_gate_resources,
+    deployment_gates,
+    experiment_lineage,
+    health,
+    isolation,
+    judge_labels,
+    model_validation,
+    operations,
+    operator_identity,
+    prompt_regressions,
+    rag_evaluation,
+    recommendations,
+    reference_workload,
+    release_decisions,
+    release_readiness,
+    request_scenarios,
+    request_workflows,
+    resources,
+    runtime_reliability,
+    structured_requests,
+    supply_chain,
+    trust_registry,
+)
+
+api_router = APIRouter()
+api_router.include_router(
+    request_workflows.router, prefix="/request-workflows", tags=["request-workflows"]
+)
+api_router.include_router(
+    request_scenarios.router, prefix="/request-scenarios", tags=["request-scenarios"]
+)
+api_router.include_router(
+    structured_requests.router, prefix="/structured-requests", tags=["structured-request-lab"]
+)
+api_router.include_router(health.router, tags=["health"])
+api_router.include_router(
+    isolation.router,
+    prefix="/isolation",
+    tags=["workload-isolation"],
+)
+api_router.include_router(
+    operations.router,
+    prefix="/operations",
+    tags=["operations"],
+)
+api_router.include_router(
+    agent_execution.router,
+    prefix="/agents",
+    tags=["agent-execution"],
+)
+api_router.include_router(resources.router, tags=["resources"])
+api_router.include_router(
+    benchmark_executions.router,
+    prefix="/benchmark-executions",
+    tags=["benchmark-executions"],
+)
+api_router.include_router(deployment_gate_resources.router, tags=["deployment-gate-resources"])
+api_router.include_router(analytics.router, prefix="/analytics", tags=["analytics"])
+api_router.include_router(
+    recommendations.router,
+    prefix="/recommendations",
+    tags=["recommendations"],
+)
+api_router.include_router(
+    reference_workload.router,
+    prefix="/reference-workload",
+    tags=["reference-workload"],
+)
+api_router.include_router(
+    deployment_gates.router,
+    prefix="/deployment-gates",
+    tags=["deployment-gates"],
+)
+api_router.include_router(
+    judge_labels.router,
+    prefix="/judge-labels",
+    tags=["judge-labels"],
+)
+api_router.include_router(
+    prompt_regressions.router,
+    prefix="/prompt-regressions",
+    tags=["prompt-regressions"],
+)
+api_router.include_router(
+    rag_evaluation.router,
+    prefix="/rag",
+    tags=["rag-evaluation"],
+)
+api_router.include_router(
+    runtime_reliability.router,
+    prefix="/runtime-reliability",
+    tags=["runtime-reliability"],
+)
+api_router.include_router(
+    model_validation.router,
+    prefix="/model-validation",
+    tags=["model-validation"],
+)
+api_router.include_router(
+    experiment_lineage.router,
+    prefix="/experiment-lineage",
+    tags=["experiment-lineage"],
+)
+api_router.include_router(
+    release_readiness.router,
+    prefix="/release-readiness",
+    tags=["release-readiness"],
+)
+api_router.include_router(
+    release_decisions.router,
+    prefix="/release-decisions",
+    tags=["release-decisions"],
+)
+api_router.include_router(
+    supply_chain.router,
+    prefix="/supply-chain",
+    tags=["supply-chain"],
+)
+api_router.include_router(
+    trust_registry.router,
+    prefix="/trust-registry",
+    tags=["trust-registry"],
+)
+api_router.include_router(
+    operator_identity.router,
+    prefix="/operator-identity",
+    tags=["operator-identity"],
+)

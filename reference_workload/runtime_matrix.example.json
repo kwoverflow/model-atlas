@@ -1,0 +1,42 @@
+{
+  "schema_version": "model-atlas-reference-runtime-matrix-v1",
+  "workload_slug": "model-atlas-operator-assistant-ko",
+  "entries": [
+    {
+      "name": "small-baseline",
+      "enabled": true,
+      "base_url_env": "REFERENCE_RUNTIME_BASE_URL",
+      "api_key_env": "REFERENCE_RUNTIME_API_KEY",
+      "model_env": "REFERENCE_MODEL_SMALL",
+      "context_length": 4096,
+      "prompt_bundle": "operator-assistant-ko-v1",
+      "generation": { "temperature": 0, "max_tokens": 512 },
+      "trials": 2,
+      "concurrency": 1
+    },
+    {
+      "name": "medium-candidate",
+      "enabled": true,
+      "base_url_env": "REFERENCE_RUNTIME_BASE_URL",
+      "api_key_env": "REFERENCE_RUNTIME_API_KEY",
+      "model_env": "REFERENCE_MODEL_MEDIUM",
+      "context_length": 8192,
+      "prompt_bundle": "operator-assistant-ko-v1",
+      "generation": { "temperature": 0, "max_tokens": 512 },
+      "trials": 2,
+      "concurrency": 1
+    },
+    {
+      "name": "prompt-variant",
+      "enabled": true,
+      "base_url_env": "REFERENCE_RUNTIME_BASE_URL",
+      "api_key_env": "REFERENCE_RUNTIME_API_KEY",
+      "model_env": "REFERENCE_MODEL_MEDIUM",
+      "context_length": 8192,
+      "prompt_bundle": "operator-assistant-ko-v2",
+      "generation": { "temperature": 0, "max_tokens": 512 },
+      "trials": 2,
+      "concurrency": 1
+    }
+  ]
+}

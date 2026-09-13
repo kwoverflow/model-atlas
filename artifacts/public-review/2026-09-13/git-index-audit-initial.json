@@ -1,0 +1,9 @@
+{
+  "schema_version": "publication-audit-v1",
+  "status": "passed",
+  "scope": "exact_git_index_blobs",
+  "payload_count": 780,
+  "payload_bytes": 10671399,
+  "findings": [],
+  "limitation": "High-confidence patterns and payload rules only; not a complete security audit."
+}

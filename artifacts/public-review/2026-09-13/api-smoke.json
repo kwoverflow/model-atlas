@@ -1,0 +1,169 @@
+{
+  "schema_version": "mvp-review-smoke-v1",
+  "verified_at_utc": "2026-09-13T02:39:19.632095+00:00",
+  "api_url": "http://localhost:18010/api/v1",
+  "status": "passed",
+  "checks": [
+    {
+      "method": "GET",
+      "path": "/health",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/deployment-configurations",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/evaluation-suites",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/benchmark-tasks",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/prompt-versions",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/acceptance-policies",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/benchmark-executions",
+      "status": 422
+    },
+    {
+      "method": "POST",
+      "path": "/benchmark-executions",
+      "status": 201
+    },
+    {
+      "invariant": "mock run completed",
+      "passed": true
+    },
+    {
+      "invariant": "mock provenance is explicit",
+      "passed": true
+    },
+    {
+      "invariant": "three results and metrics",
+      "passed": true
+    },
+    {
+      "method": "GET",
+      "path": "/benchmark-results?limit=200",
+      "status": 200
+    },
+    {
+      "invariant": "raw outputs persisted",
+      "passed": true
+    },
+    {
+      "method": "GET",
+      "path": "/inference-metrics?benchmark_run_id=75603c91-7b63-4eff-9984-6b156e42c6c4",
+      "status": 200
+    },
+    {
+      "invariant": "metrics readable",
+      "passed": true
+    },
+    {
+      "method": "GET",
+      "path": "/benchmark-executions/75603c91-7b63-4eff-9984-6b156e42c6c4/logs",
+      "status": 200
+    },
+    {
+      "invariant": "run log lifecycle",
+      "passed": true
+    },
+    {
+      "method": "POST",
+      "path": "/deployment-gates/preflight",
+      "status": 200
+    },
+    {
+      "invariant": "synthetic evidence is not production ready",
+      "passed": true
+    },
+    {
+      "method": "POST",
+      "path": "/deployment-gates/evaluations",
+      "status": 201
+    },
+    {
+      "invariant": "gate decision is hash bound",
+      "passed": true
+    },
+    {
+      "method": "GET",
+      "path": "/deployment-gates/evaluations/afe8a36a-bde0-4b6a-a4c4-4318c4d18045",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/deployment-gates/evaluations/afe8a36a-bde0-4b6a-a4c4-4318c4d18045/report.md",
+      "status": 200
+    },
+    {
+      "invariant": "gate report exported",
+      "passed": true
+    },
+    {
+      "method": "POST",
+      "path": "/release-decisions",
+      "status": 201
+    },
+    {
+      "invariant": "no release approval created",
+      "passed": true
+    },
+    {
+      "invariant": "release hashes persisted",
+      "passed": true
+    },
+    {
+      "method": "GET",
+      "path": "/release-decisions/682b5245-6513-4f1b-b384-2cfe462a11b8",
+      "status": 200
+    },
+    {
+      "invariant": "release snapshot stable on read",
+      "passed": true
+    },
+    {
+      "method": "GET",
+      "path": "/release-decisions/682b5245-6513-4f1b-b384-2cfe462a11b8/snapshot.json",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/release-decisions/682b5245-6513-4f1b-b384-2cfe462a11b8/snapshot-diff",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/release-decisions/682b5245-6513-4f1b-b384-2cfe462a11b8/report.md",
+      "status": 200
+    },
+    {
+      "invariant": "release report preserves change request",
+      "passed": true
+    }
+  ],
+  "benchmark_run_id": "75603c91-7b63-4eff-9984-6b156e42c6c4",
+  "gate_evaluation_id": "afe8a36a-bde0-4b6a-a4c4-4318c4d18045",
+  "release_decision_id": "682b5245-6513-4f1b-b384-2cfe462a11b8",
+  "gate_verdict": "INSUFFICIENT_EVIDENCE",
+  "production_readiness": "not_production_ready",
+  "data_source": "synthetic_demo",
+  "human_review_performed": false,
+  "release_decision": "REQUEST_CHANGES",
+  "external_review": "pending"
+}

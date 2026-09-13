@@ -1,0 +1,970 @@
+{
+  "assessment": "share_with_caveats_local_diagnostic_only",
+  "report_sha256": "f122e1e6cb38c349b00d8d35769f279a21786a16139f1ab4834eff36558f0ca8",
+  "baseline_sha256": "27975681d2f2b53bad53c44d19346e5d9d7a47fa28f32a7d226faeecd388497f",
+  "observations": 144,
+  "http_calls": 252,
+  "trace_count": 432,
+  "finish_reasons": {
+    "stop": 252
+  },
+  "summary": [
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "n": 24,
+      "selected": 15,
+      "exact": 11,
+      "stage1_exact": 13,
+      "errors": 0,
+      "http_calls": 48,
+      "measured_usage_n": 24,
+      "prompt_tokens": 26979,
+      "completion_tokens": 1023,
+      "median_latency_ms": 1476.172549999319,
+      "historical_exact": 13
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "n": 12,
+      "selected": 9,
+      "exact": 6,
+      "stage1_exact": 6,
+      "errors": 0,
+      "http_calls": 12,
+      "measured_usage_n": 12,
+      "prompt_tokens": 10424,
+      "completion_tokens": 347,
+      "median_latency_ms": 1111.3994999905117
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "n": 12,
+      "selected": 9,
+      "exact": 9,
+      "stage1_exact": 6,
+      "errors": 0,
+      "http_calls": 24,
+      "measured_usage_n": 12,
+      "prompt_tokens": 13686,
+      "completion_tokens": 578,
+      "median_latency_ms": 1537.85554994829
+    },
+    {
+      "entry": "medium-candidate",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "n": 24,
+      "selected": 24,
+      "exact": 24,
+      "stage1_exact": 16,
+      "errors": 0,
+      "http_calls": 48,
+      "measured_usage_n": 24,
+      "prompt_tokens": 27460,
+      "completion_tokens": 1127,
+      "median_latency_ms": 2489.514699962456,
+      "historical_exact": 16
+    },
+    {
+      "entry": "medium-candidate",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "n": 12,
+      "selected": 11,
+      "exact": 7,
+      "stage1_exact": 7,
+      "errors": 0,
+      "http_calls": 12,
+      "measured_usage_n": 12,
+      "prompt_tokens": 10424,
+      "completion_tokens": 475,
+      "median_latency_ms": 2022.2473500180058
+    },
+    {
+      "entry": "medium-candidate",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "n": 12,
+      "selected": 11,
+      "exact": 9,
+      "stage1_exact": 6,
+      "errors": 0,
+      "http_calls": 24,
+      "measured_usage_n": 12,
+      "prompt_tokens": 14086,
+      "completion_tokens": 664,
+      "median_latency_ms": 2724.7509000007994
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "n": 24,
+      "selected": 20,
+      "exact": 20,
+      "stage1_exact": 15,
+      "errors": 0,
+      "http_calls": 48,
+      "measured_usage_n": 24,
+      "prompt_tokens": 29020,
+      "completion_tokens": 1033,
+      "median_latency_ms": 2445.5796000547707,
+      "historical_exact": 14
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "n": 12,
+      "selected": 11,
+      "exact": 6,
+      "stage1_exact": 6,
+      "errors": 0,
+      "http_calls": 12,
+      "measured_usage_n": 12,
+      "prompt_tokens": 10760,
+      "completion_tokens": 468,
+      "median_latency_ms": 1946.7339999973774
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "n": 12,
+      "selected": 11,
+      "exact": 9,
+      "stage1_exact": 7,
+      "errors": 0,
+      "http_calls": 24,
+      "measured_usage_n": 12,
+      "prompt_tokens": 14422,
+      "completion_tokens": 625,
+      "median_latency_ms": 2530.516999948304
+    }
+  ],
+  "within_candidate_exact_transitions": {
+    "frozen/0->1": 15,
+    "frozen/0->0": 13,
+    "frozen/1->1": 40,
+    "frozen/1->0": 4,
+    "challenge/1->1": 16,
+    "challenge/0->1": 11,
+    "challenge/0->0": 6,
+    "challenge/1->0": 3
+  },
+  "frozen_stage1_selection_changed_vs_historical": 0,
+  "challenge_pair_stage1_selection_changes": 0,
+  "challenge_order_exact_changes": {
+    "baseline": 7,
+    "candidate": 3
+  },
+  "failures": [
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-002",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "lookup_policy",
+      "expected_arguments": {
+        "query": "data retention"
+      },
+      "actual": {
+        "arguments": {
+          "query": "data retention"
+        },
+        "tool_name": "lookup_customer"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-002",
+      "trial": 2,
+      "order": "registered",
+      "expected_tool": "lookup_policy",
+      "expected_arguments": {
+        "query": "data retention"
+      },
+      "actual": {
+        "arguments": {
+          "query": "data retention"
+        },
+        "tool_name": "lookup_customer"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-003",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "lookup_internal_document",
+      "expected_arguments": {
+        "document_id": "docs/deployment_gate.md"
+      },
+      "actual": {
+        "arguments": {
+          "query": "docs/deployment_gate.md 문서 ID 조회"
+        },
+        "tool_name": "lookup_customer"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-003",
+      "trial": 2,
+      "order": "registered",
+      "expected_tool": "lookup_internal_document",
+      "expected_arguments": {
+        "document_id": "docs/deployment_gate.md"
+      },
+      "actual": {
+        "arguments": {
+          "query": "docs/deployment_gate.md 문서 ID 조회"
+        },
+        "tool_name": "lookup_customer"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-005",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "gateway timeout"
+      },
+      "actual": {
+        "arguments": {
+          "query": "gateway timeout"
+        },
+        "tool_name": "lookup_customer"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-005",
+      "trial": 2,
+      "order": "registered",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "gateway timeout"
+      },
+      "actual": {
+        "arguments": {
+          "query": "gateway timeout"
+        },
+        "tool_name": "lookup_customer"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-006",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "worker offline"
+      },
+      "actual": {
+        "arguments": {
+          "query": "worker offline"
+        },
+        "tool_name": "lookup_customer"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-006",
+      "trial": 2,
+      "order": "registered",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "worker offline"
+      },
+      "actual": {
+        "arguments": {
+          "query": "worker offline"
+        },
+        "tool_name": "lookup_customer"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-007",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {
+        "query": "payment retry investigation",
+        "priority": "high"
+      },
+      "actual": {
+        "arguments": {
+          "priority": "high",
+          "query": "로컬 모의 지원 티켓을 새로 만들어 주세요."
+        },
+        "tool_name": "create_ticket"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-007",
+      "trial": 2,
+      "order": "registered",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {
+        "query": "payment retry investigation",
+        "priority": "high"
+      },
+      "actual": {
+        "arguments": {
+          "priority": "high",
+          "query": "로컬 모의 지원 티켓을 새로 만들어 주세요."
+        },
+        "tool_name": "create_ticket"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-008",
+      "trial": 2,
+      "order": "registered",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {
+        "query": "update handbook link",
+        "priority": "low"
+      },
+      "actual": {
+        "arguments": {
+          "query": "update handbook link"
+        },
+        "tool_name": "lookup_customer"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-009",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "lookup_customer",
+      "expected_arguments": {
+        "query": "CUST-1042"
+      },
+      "actual": {
+        "arguments": {
+          "query": "고객 CUST-1042의 계약 및 지원 등급 기록을 조회해 주세요."
+        },
+        "tool_name": "lookup_customer"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-009",
+      "trial": 2,
+      "order": "registered",
+      "expected_tool": "lookup_customer",
+      "expected_arguments": {
+        "query": "CUST-1042"
+      },
+      "actual": {
+        "arguments": {
+          "query": "고객 CUST-1042의 계약 및 지원 등급 기록을 조회해 주세요."
+        },
+        "tool_name": "lookup_customer"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-102",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "lookup_internal_document",
+      "expected_arguments": {
+        "document_id": "docs/tool_calling_evaluation.md"
+      },
+      "actual": {
+        "arguments": {
+          "document_id": "docs/model_validation.md"
+        },
+        "tool_name": "lookup_internal_document"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-102",
+      "trial": 1,
+      "order": "reversed",
+      "expected_tool": "lookup_internal_document",
+      "expected_arguments": {
+        "document_id": "docs/tool_calling_evaluation.md"
+      },
+      "actual": {
+        "arguments": {
+          "query": "docs/tool_calling_evaluation.md"
+        },
+        "tool_name": "lookup_customer"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "id": "TFB-102",
+      "trial": 1,
+      "order": "reversed",
+      "expected_tool": "lookup_internal_document",
+      "expected_arguments": {
+        "document_id": "docs/tool_calling_evaluation.md"
+      },
+      "actual": {
+        "arguments": {
+          "query": "docs/tool_calling_evaluation.md"
+        },
+        "tool_name": "lookup_customer"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-103",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "HTTP 502 / east-2"
+      },
+      "actual": {
+        "arguments": {
+          "priority": "high",
+          "query": "HTTP 502 / east-2"
+        },
+        "tool_name": "create_ticket"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "id": "TFB-103",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "HTTP 502 / east-2"
+      },
+      "actual": {
+        "arguments": {
+          "priority": "high",
+          "query": "HTTP 502 / east-2"
+        },
+        "tool_name": "create_ticket"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "id": "TFB-103",
+      "trial": 1,
+      "order": "reversed",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "HTTP 502 / east-2"
+      },
+      "actual": {
+        "arguments": {
+          "priority": "high",
+          "query": "HTTP 502 / east-2"
+        },
+        "tool_name": "create_ticket"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-103",
+      "trial": 1,
+      "order": "reversed",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "HTTP 502 / east-2"
+      },
+      "actual": {
+        "arguments": {
+          "query": "HTTP 502 / east-2"
+        },
+        "tool_name": "create_ticket"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-104",
+      "trial": 1,
+      "order": "reversed",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {
+        "query": "Rotate API key #27",
+        "priority": "normal"
+      },
+      "actual": {
+        "arguments": {
+          "priority": "high",
+          "query": "Rotate API key #27"
+        },
+        "tool_name": "create_ticket"
+      }
+    },
+    {
+      "entry": "small-baseline",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-106",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "summarize_thread",
+      "expected_arguments": {
+        "query": "Mina: deploy at 09:30. Jun: wait for QA."
+      },
+      "actual": {
+        "arguments": {
+          "query": "대화 요약 도구를 호출해 주세요. query에는 'Mina: deploy at 09:30. Jun: wait for QA.'를 전달해 주세요."
+        },
+        "tool_name": "summarize_thread"
+      }
+    },
+    {
+      "entry": "medium-candidate",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-101",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "lookup_policy",
+      "expected_arguments": {
+        "query": "Access Review: Q3"
+      },
+      "actual": {
+        "arguments": {
+          "query": "정책 조회 도구에 전달할 query 값은 'Access Review: Q3'입니다. 대소문자와 문장 부호를 그대로 유지해 주세요."
+        },
+        "tool_name": "lookup_policy"
+      }
+    },
+    {
+      "entry": "medium-candidate",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-103",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "HTTP 502 / east-2"
+      },
+      "actual": {
+        "arguments": {
+          "document_id": "docs/tool_calling_evaluation.md"
+        },
+        "tool_name": "lookup_internal_document"
+      }
+    },
+    {
+      "entry": "medium-candidate",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "id": "TFB-103",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "HTTP 502 / east-2"
+      },
+      "actual": {
+        "arguments": {
+          "document_id": "HTTP 502 / east-2"
+        },
+        "tool_name": "lookup_internal_document"
+      }
+    },
+    {
+      "entry": "medium-candidate",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "id": "TFB-104",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {
+        "query": "Rotate API key #27",
+        "priority": "normal"
+      },
+      "actual": {
+        "arguments": {
+          "query": "Rotate API key #27"
+        },
+        "tool_name": "create_ticket"
+      }
+    },
+    {
+      "entry": "medium-candidate",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-104",
+      "trial": 1,
+      "order": "reversed",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {
+        "query": "Rotate API key #27",
+        "priority": "normal"
+      },
+      "actual": {
+        "arguments": {
+          "priority": "normal",
+          "query": "새 로컬 모의 티켓을 등록해 주세요."
+        },
+        "tool_name": "create_ticket"
+      }
+    },
+    {
+      "entry": "medium-candidate",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "id": "TFB-104",
+      "trial": 1,
+      "order": "reversed",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {
+        "query": "Rotate API key #27",
+        "priority": "normal"
+      },
+      "actual": {
+        "arguments": {
+          "query": "Rotate API key #27"
+        },
+        "tool_name": "create_ticket"
+      }
+    },
+    {
+      "entry": "medium-candidate",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-106",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "summarize_thread",
+      "expected_arguments": {
+        "query": "Mina: deploy at 09:30. Jun: wait for QA."
+      },
+      "actual": {
+        "arguments": {
+          "query": "대화 요약 도구를 호출해 주세요. query에는 'Mina: deploy at 09:30. Jun: wait for QA.'를 전달해 주세요. 지금 직접 요약문을 작성하지 마세요."
+        },
+        "tool_name": "summarize_thread"
+      }
+    },
+    {
+      "entry": "medium-candidate",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-106",
+      "trial": 1,
+      "order": "reversed",
+      "expected_tool": "summarize_thread",
+      "expected_arguments": {
+        "query": "Mina: deploy at 09:30. Jun: wait for QA."
+      },
+      "actual": {
+        "arguments": {
+          "query": "대화 요약 도구를 호출해 주세요. query에는 'Mina: deploy at 09:30. Jun: wait for QA.'를 전달해 주세요. 지금 직접 요약문을 작성하지 마세요."
+        },
+        "tool_name": "summarize_thread"
+      }
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-005",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "gateway timeout"
+      },
+      "actual": {
+        "arguments": {
+          "document_id": "lookup_internal_document"
+        },
+        "tool_name": "lookup_internal_document"
+      }
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-005",
+      "trial": 2,
+      "order": "registered",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "gateway timeout"
+      },
+      "actual": {
+        "arguments": {
+          "document_id": "lookup_internal_document"
+        },
+        "tool_name": "lookup_internal_document"
+      }
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-006",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "worker offline"
+      },
+      "actual": {
+        "arguments": {
+          "document_id": "EVALUATOR_GUIDE_KO.md"
+        },
+        "tool_name": "lookup_internal_document"
+      }
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "frozen",
+      "variant": "candidate",
+      "id": "TFB-006",
+      "trial": 2,
+      "order": "registered",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "worker offline"
+      },
+      "actual": {
+        "arguments": {
+          "document_id": "EVALUATOR_GUIDE_KO.md"
+        },
+        "tool_name": "lookup_internal_document"
+      }
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-101",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "lookup_policy",
+      "expected_arguments": {
+        "query": "Access Review: Q3"
+      },
+      "actual": {
+        "arguments": {
+          "query": "정책 조회 도구에 전달할 query 값은 'Access Review: Q3'입니다. 대소문자와 문장 부호를 그대로 유지해 주세요."
+        },
+        "tool_name": "lookup_policy"
+      }
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-101",
+      "trial": 1,
+      "order": "reversed",
+      "expected_tool": "lookup_policy",
+      "expected_arguments": {
+        "query": "Access Review: Q3"
+      },
+      "actual": {
+        "arguments": {
+          "query": "정책 조회 도구에 전달할 query 값은 'Access Review: Q3'입니다. 대소문자와 문장 부호를 그대로 유지해 주세요."
+        },
+        "tool_name": "lookup_policy"
+      }
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-103",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "HTTP 502 / east-2"
+      },
+      "actual": {
+        "arguments": {
+          "document_id": "docs/tool_calling_evaluation.md"
+        },
+        "tool_name": "lookup_internal_document"
+      }
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "id": "TFB-103",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {
+        "query": "HTTP 502 / east-2"
+      },
+      "actual": {
+        "arguments": {
+          "document_id": "HTTP 502 / east-2"
+        },
+        "tool_name": "lookup_internal_document"
+      }
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "id": "TFB-104",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {
+        "query": "Rotate API key #27",
+        "priority": "normal"
+      },
+      "actual": {
+        "arguments": {
+          "query": "Rotate API key #27"
+        },
+        "tool_name": "create_ticket"
+      }
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-104",
+      "trial": 1,
+      "order": "reversed",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {
+        "query": "Rotate API key #27",
+        "priority": "normal"
+      },
+      "actual": {
+        "arguments": {
+          "priority": "normal",
+          "query": "새 로컬 모의 티켓을 등록해 주세요."
+        },
+        "tool_name": "create_ticket"
+      }
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "challenge",
+      "variant": "candidate",
+      "id": "TFB-104",
+      "trial": 1,
+      "order": "reversed",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {
+        "query": "Rotate API key #27",
+        "priority": "normal"
+      },
+      "actual": {
+        "arguments": {
+          "query": "Rotate API key #27"
+        },
+        "tool_name": "create_ticket"
+      }
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-106",
+      "trial": 1,
+      "order": "registered",
+      "expected_tool": "summarize_thread",
+      "expected_arguments": {
+        "query": "Mina: deploy at 09:30. Jun: wait for QA."
+      },
+      "actual": {
+        "arguments": {
+          "query": "대화 요약 도구를 호출해 주세요. query에는 'Mina: deploy at 09:30. Jun: wait for QA.'를 전달해 주세요. 지금 직접 요약문을 작성하지 마세요."
+        },
+        "tool_name": "summarize_thread"
+      }
+    },
+    {
+      "entry": "prompt-variant",
+      "cohort": "challenge",
+      "variant": "baseline",
+      "id": "TFB-106",
+      "trial": 1,
+      "order": "reversed",
+      "expected_tool": "summarize_thread",
+      "expected_arguments": {
+        "query": "Mina: deploy at 09:30. Jun: wait for QA."
+      },
+      "actual": {
+        "arguments": {
+          "query": "대화 요약 도구를 호출해 주세요. query에는 'Mina: deploy at 09:30. Jun: wait for QA.'를 전달해 주세요. 지금 직접 요약문을 작성하지 마세요."
+        },
+        "tool_name": "summarize_thread"
+      }
+    }
+  ],
+  "caveats": [
+    "Locally authored explicit-value cases, not independent or human-reviewed evaluation.",
+    "Historical timing is not a controlled latency comparison; live pairs also have cache effects.",
+    "Stage1 is a full legacy tool-call response; only its selected tool is retained in stage2.",
+    "Candidate raw schema metrics concern an assembled envelope, not a native model tool call.",
+    "Replayed fault traces are not independent generations; handlers are local fixtures.",
+    "Omitting explicitly requested priority=normal fails exact matching but the local ticket handler defaults to normal; this is not necessarily a semantic execution error.",
+    "No Gate promotion, source approval, training, API integration or production readiness."
+  ]
+}

@@ -1,0 +1,23 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: model-atlas-warning
+  group_by: ["alertname", "service"]
+  group_wait: 15s
+  group_interval: 1m
+  repeat_interval: 4h
+  routes:
+    - receiver: model-atlas-critical
+      matchers:
+        - severity="critical"
+
+receivers:
+  - name: model-atlas-warning
+    webhook_configs:
+      - url: http://alert-sink:9099/alerts
+        send_resolved: true
+  - name: model-atlas-critical
+    webhook_configs:
+      - url: http://alert-sink:9099/alerts
+        send_resolved: true

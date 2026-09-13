@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Model Atlas 1.0.5 계약 검토</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, "Segoe UI", sans-serif; color: #172126; background: #f4f6f5; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header, main, footer { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 32px 0 22px; border-bottom: 1px solid #aeb9b5; }
+    h1 { margin: 0 0 8px; font-size: 30px; letter-spacing: 0; }
+    h2, h3 { letter-spacing: 0; }
+    .summary { color: #42534f; margin: 0; }
+    .hash { margin-top: 14px; font: 12px ui-monospace, monospace; overflow-wrap: anywhere; color: #53635f; }
+    .case { padding: 28px 0; border-bottom: 1px solid #aeb9b5; }
+    .case-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; }
+    .case-head h2 { display: inline; margin: 0 0 0 10px; font-size: 20px; }
+    .case-head p { margin: 0; font-weight: 600; }
+    .critical { color: #9b2c2c; font-size: 12px; font-weight: 800; }
+    dl { display: grid; grid-template-columns: 130px 1fr; gap: 12px; margin: 18px 0; }
+    dt { font-weight: 700; color: #344440; }
+    dd { margin: 0; line-height: 1.55; }
+    code { overflow-wrap: anywhere; }
+    .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #aeb9b5; border: 1px solid #aeb9b5; }
+    article { background: #fff; padding: 18px; min-width: 0; }
+    article.revised { background: #f0f8f4; }
+    article h3 { margin: 0 0 10px; font-size: 16px; }
+    article h4 { margin: 0 0 8px; font-size: 14px; }
+    article h4 span { color: #53635f; font-size: 12px; font-weight: 500; }
+    article p { line-height: 1.5; }
+    .contract { font: 12px ui-monospace, monospace; color: #53635f; }
+    .evidence-group + .evidence-group { margin-top: 18px; padding-top: 16px; border-top: 1px solid #c8d1ce; }
+    .semantic-comparison { margin-top: 18px; }
+    .fact-group + .fact-group { margin-top: 14px; padding-top: 12px; border-top: 1px solid #c8d1ce; }
+    .fact-group ul { margin: 8px 0 0; padding-left: 20px; }
+    .evidence-item + .evidence-item { margin-top: 12px; }
+    .source { font-weight: 700; color: #273834; }
+    .rank { color: #8d3232; }
+    .rank.pass { color: #17633f; }
+    fieldset { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; border: 1px solid #879691; padding: 16px; }
+    legend { font-weight: 700; }
+    label { font-weight: 600; }
+    .notes { flex: 1 1 420px; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px; }
+    input[type="text"], #reviewer { width: 100%; min-height: 38px; border: 1px solid #73827d; background: #fff; padding: 8px 10px; font: inherit; }
+    footer { padding: 28px 0 48px; }
+    .attest { display: grid; gap: 14px; max-width: 780px; }
+    button { width: fit-content; border: 0; background: #155f46; color: white; padding: 11px 16px; font: inherit; font-weight: 700; cursor: pointer; }
+    button:hover { background: #0f4936; }
+    #status { min-height: 24px; color: #9b2c2c; font-weight: 700; }
+    @media (max-width: 720px) {
+      .comparison { grid-template-columns: 1fr; }
+      .case-head { align-items: start; flex-direction: column; }
+      dl { grid-template-columns: 1fr; gap: 4px; }
+      .notes { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Model Atlas case-pack 1.0.5 검토</h1>
+    <p class="summary">변경된 critical case 4건만 검토합니다. 1.0.4의 기존 승인 60건과 canonical case-pack은 변경되지 않습니다.</p>
+    <p class="hash">revision report SHA-256: d16e4b55f9650cac961ac50ed694985bf0fa14dbb13e336b1022560aa4300473</p>
+  </header>
+  <main>
+    <section class="case" data-case-id="KO-RAG-001"
+      data-case-sha="7756c062dc151a3dd2515b6c606fb8f0f2436e78e724aec9544c9d16142ce1d9">
+      <div class="case-head">
+        <div><span class="critical">CRITICAL</span><h2>KO-RAG-001</h2></div>
+        <p>Gate와 운영 배포 구분</p>
+      </div>
+      <dl class="request"><dt>사용자 요청</dt><dd>Gate가 승인되면 바로 운영 배포해도 되나요?</dd></dl>
+      <div class="comparison">
+        <article>
+          <h3>기존 계약</h3>
+          <p class="contract">rag-evidence-contract-v1</p>
+          
+            <div class="evidence-group">
+              <h4>허용 그룹 1 <span>그룹 내부 근거는 모두 필요</span></h4>
+              
+                <div class="evidence-item">
+                  <p class="source">EVALUATOR_GUIDE_KO.md · 14. 평가 결론을 내릴 때의 권장 관점</p>
+                  <p class="rank">ko-30c75fa94c286d8736e331b0 · 기대 순위 1</p>
+                  <p>Model Atlas 평가·사용·기술 가이드 &gt; 14. 평가 결론을 내릴 때의 권장 관점 이 프로젝트의 핵심 성과는 &quot;가장 좋은 모델을 추천하는 알고리즘&quot; 하나가 아니다. 후보 탐색, 실행 증거, 신뢰 provenance, 정책 Gate, 서명된 릴리스 결정, 운영 복구를 하나의 감사 가능한 흐름으로 연결했다는 점이다. 평가는 기능의 수뿐 아니라 다음 세 가지를 중심으로 보는 것이 적절하다. 1. 같은 조건과 정책으로 결과를 재현할 수 있는가. 2. 승인 또는 보류의 근거와 책임 주체를 사후에 설명할 수 있는가. 3. 개발 fixture와 production 보장 사이의 경계를 정직하게 유지하는가.</p>
+                </div>
+                
+            </div>
+            
+        </article>
+        <article class="revised">
+          <h3>1.0.5 후보</h3>
+          <p class="contract pass">rag-evidence-contract-v1 · best-group recall 0.0</p>
+          
+            <div class="evidence-group">
+              <h4>허용 그룹 1 <span>그룹 내부 근거는 모두 필요</span></h4>
+              
+                <div class="evidence-item">
+                  <p class="source">docs/deployment_gate.md · Sprint 4A Status Separation</p>
+                  <p class="rank">ko-2bbdb970a082e17107cea0e9 · 기대 순위 46</p>
+                  <p>Deployment Gate &gt; Sprint 4A Status Separation A Gate Verdict answers whether policy rules passed. It does not describe the strength of the evidence or authorize production deployment by itself. | Status | Question | | --- | --- | | Gate Verdict | Did this configuration pass the acceptance policy? | | Evidence Trust | How trustworthy are source and score provenance? | | Release Readiness | Are baseline, review, regression, and lineage controls ready? | | Production Readiness | Can the current evi</p>
+                </div>
+                
+            </div>
+            
+        </article>
+      </div>
+      <dl><dt>검색 query</dt><dd><code>Gate가 승인되면 바로 운영 배포해도 되나요?</code></dd></dl>
+      <div class="comparison semantic-comparison">
+        <article>
+          <h3>기존 의미 계약</h3>
+          
+      <p class="contract">rag-semantic-contract-v1</p>
+      <p>거부 요구: False</p>
+      
+            <div class="fact-group">
+              <h4>허용 의미 그룹 1 <span>그룹 내부 사실은 모두 필요</span></h4>
+              <ul><li>Gate와 production readiness는 별도 상태</li></ul>
+            </div>
+            
+      <h4>금지 주장</h4>
+      <ul><li>Gate 승인은 운영 배포를 자동 허가한다</li></ul>
+    
+        </article>
+        <article class="revised">
+          <h3>1.0.5 의미 계약</h3>
+          
+      <p class="contract">rag-semantic-contract-v1</p>
+      <p>거부 요구: False</p>
+      
+            <div class="fact-group">
+              <h4>허용 의미 그룹 1 <span>그룹 내부 사실은 모두 필요</span></h4>
+              <ul><li>Gate와 production readiness는 별도 상태</li></ul>
+            </div>
+            
+      <h4>금지 주장</h4>
+      <ul><li>Gate 승인은 운영 배포를 자동 허가한다</li></ul>
+    
+        </article>
+      </div>
+      <dl><dt>변경 이유</dt><dd>기존 평가 가이드 14절은 감사 가능성과 평가 관점을 설명하지만, Gate 승인과 production readiness의 분리를 직접 설명하지 않는다. 정책 통과가 운영 배포 허가가 아님을 명시한 상태 분리 문단으로 교체한다.</dd></dl>
+      <fieldset>
+        <legend>검토 결정</legend>
+        <label><input type="radio" name="decision-KO-RAG-001" value="approved"> 승인</label>
+        <label><input type="radio" name="decision-KO-RAG-001" value="rejected"> 거절</label>
+        <label class="notes">검토 메모<input type="text" data-notes placeholder="근거, query, 의미 계약이 요청에 부합하는지 기록" maxlength="2000"></label>
+      </fieldset>
+    </section>
+    
+    <section class="case" data-case-id="KO-RAG-MULTI-001"
+      data-case-sha="11a3eedbc58e40d419ddda2994b0af6bdb2560595795176616e0d87eed8e4619">
+      <div class="case-head">
+        <div><span class="critical">CRITICAL</span><h2>KO-RAG-MULTI-001</h2></div>
+        <p>승인 경로 종합</p>
+      </div>
+      <dl class="request"><dt>사용자 요청</dt><dd>후보 추천부터 서명된 릴리스 결정까지의 핵심 단계를 설명해 주세요.</dd></dl>
+      <div class="comparison">
+        <article>
+          <h3>기존 계약</h3>
+          <p class="contract">rag-evidence-contract-v1</p>
+          
+            <div class="evidence-group">
+              <h4>허용 그룹 1 <span>그룹 내부 근거는 모두 필요</span></h4>
+              
+                <div class="evidence-item">
+                  <p class="source">EVALUATOR_GUIDE_KO.md · 14. 평가 결론을 내릴 때의 권장 관점</p>
+                  <p class="rank">ko-30c75fa94c286d8736e331b0 · 기대 순위 1</p>
+                  <p>Model Atlas 평가·사용·기술 가이드 &gt; 14. 평가 결론을 내릴 때의 권장 관점 이 프로젝트의 핵심 성과는 &quot;가장 좋은 모델을 추천하는 알고리즘&quot; 하나가 아니다. 후보 탐색, 실행 증거, 신뢰 provenance, 정책 Gate, 서명된 릴리스 결정, 운영 복구를 하나의 감사 가능한 흐름으로 연결했다는 점이다. 평가는 기능의 수뿐 아니라 다음 세 가지를 중심으로 보는 것이 적절하다. 1. 같은 조건과 정책으로 결과를 재현할 수 있는가. 2. 승인 또는 보류의 근거와 책임 주체를 사후에 설명할 수 있는가. 3. 개발 fixture와 production 보장 사이의 경계를 정직하게 유지하는가.</p>
+                </div>
+                
+                <div class="evidence-item">
+                  <p class="source">docs/deployment_gate.md · Decision Record</p>
+                  <p class="rank">ko-0e2134f11ffe057495d13ead · 기대 순위 19</p>
+                  <p>Deployment Gate &gt; Decision Record Each gate evaluation stores: - deployment configuration ID and hash; - evaluation suite ID and hash; - acceptance policy ID and hash; - benchmark run IDs; - source data distribution; - metric scorecard; - rule outcomes; - critical-case outcomes; - optional baseline reference; - final verdict; - decision summary; - decision hash. Markdown and PDF reports are renderings of the stored decision record.</p>
+                </div>
+                
+            </div>
+            
+        </article>
+        <article class="revised">
+          <h3>1.0.5 후보</h3>
+          <p class="contract pass">rag-evidence-contract-v1 · best-group recall 0.0</p>
+          
+            <div class="evidence-group">
+              <h4>허용 그룹 1 <span>그룹 내부 근거는 모두 필요</span></h4>
+              
+                <div class="evidence-item">
+                  <p class="source">EVALUATOR_GUIDE_KO.md · 5. 의사결정 흐름</p>
+                  <p class="rank">ko-247daa1b46cc86363d892938 · 기대 순위 36</p>
+                  <p>Model Atlas 평가·사용·기술 가이드 &gt; 5. 의사결정 흐름 ```mermaid flowchart TD A[&quot;Candidate Discovery&quot;] --&gt; B[&quot;Immutable Deployment Configuration&quot;] B --&gt; C[&quot;Versioned Evaluation Suite&quot;] C --&gt; D1[&quot;Tool Calling&quot;] C --&gt; D2[&quot;RAG&quot;] C --&gt; D3[&quot;Runtime Reliability&quot;] C --&gt; D4[&quot;Agent Operations&quot;] D1 --&gt; E[&quot;Evidence trust and provenance&quot;] D2 --&gt; E D3 --&gt; E D4 --&gt; E E --&gt; F[&quot;Gate Preflight&quot;] F --&gt; G[&quot;Deployment Gate&quot;] G --&gt; H[&quot;Release Readiness&quot;] H --&gt; I[&quot;Signed Release Decision&quot;] I --&gt; J[&quot;Operations, drift, stale and incid</p>
+                </div>
+                
+                <div class="evidence-item">
+                  <p class="source">docs/deployment_gate.md · Signed Release Decisions</p>
+                  <p class="rank">ko-f27a81b75d77a23dfb83a3f7 · 기대 순위 186</p>
+                  <p>Deployment Gate &gt; Signed Release Decisions Release decisions freeze the readiness snapshot reviewed by an operator. A record stores the gate scope, readiness status, decision value, signer identity, identity verification state, approval policy state, signature statement, reason, snapshot JSON, snapshot hash, signature hash, decision hash, and decision timestamp. Valid release decisions are: - `APPROVE_RELEASE` - `REQUEST_CHANGES` - `REJECT_RELEASE` `APPROVE_RELEASE` requires readiness status `RE</p>
+                </div>
+                
+            </div>
+            
+        </article>
+      </div>
+      <dl><dt>검색 query</dt><dd><code>후보 추천부터 서명된 릴리스 결정까지의 핵심 단계를 설명해 주세요.</code></dd></dl>
+      <div class="comparison semantic-comparison">
+        <article>
+          <h3>기존 의미 계약</h3>
+          
+      <p class="contract">rag-semantic-contract-v1</p>
+      <p>거부 요구: False</p>
+      
+            <div class="fact-group">
+              <h4>허용 의미 그룹 1 <span>그룹 내부 사실은 모두 필요</span></h4>
+              <ul><li>후보 추천과 Gate와 Release Decision 분리</li></ul>
+            </div>
+            
+      <h4>금지 주장</h4>
+      <ul><li>없음</li></ul>
+    
+        </article>
+        <article class="revised">
+          <h3>1.0.5 의미 계약</h3>
+          
+      <p class="contract">rag-semantic-contract-v1</p>
+      <p>거부 요구: False</p>
+      
+            <div class="fact-group">
+              <h4>허용 의미 그룹 1 <span>그룹 내부 사실은 모두 필요</span></h4>
+              <ul><li>후보 추천과 Gate와 Release Decision 분리</li></ul>
+            </div>
+            
+      <h4>금지 주장</h4>
+      <ul><li>없음</li></ul>
+    
+        </article>
+      </div>
+      <dl><dt>변경 이유</dt><dd>기존 가이드 14절과 Decision Record는 개요 및 Gate 기록 필드에 치우쳐 있다. 추천·불변 구성·실행 증거·Gate·readiness·서명이라는 순서를 설명하는 가이드 5절과 별도 서명 결정 계약을 함께 요구한다. 복수 문서 AND 조건을 유지한다.</dd></dl>
+      <fieldset>
+        <legend>검토 결정</legend>
+        <label><input type="radio" name="decision-KO-RAG-MULTI-001" value="approved"> 승인</label>
+        <label><input type="radio" name="decision-KO-RAG-MULTI-001" value="rejected"> 거절</label>
+        <label class="notes">검토 메모<input type="text" data-notes placeholder="근거, query, 의미 계약이 요청에 부합하는지 기록" maxlength="2000"></label>
+      </fieldset>
+    </section>
+    
+    <section class="case" data-case-id="KO-RAG-MULTI-002"
+      data-case-sha="75363fe09c954c94bceeaec002c64b979f723405f1677a8e423a2e12ae99d29a">
+      <div class="case-head">
+        <div><span class="critical">CRITICAL</span><h2>KO-RAG-MULTI-002</h2></div>
+        <p>모델 신원과 공급망</p>
+      </div>
+      <dl class="request"><dt>사용자 요청</dt><dd>실행 모델 digest와 publisher 증거를 함께 확인해야 하는 이유는 무엇인가요?</dd></dl>
+      <div class="comparison">
+        <article>
+          <h3>기존 계약</h3>
+          <p class="contract">rag-evidence-contract-v1</p>
+          
+            <div class="evidence-group">
+              <h4>허용 그룹 1 <span>그룹 내부 근거는 모두 필요</span></h4>
+              
+                <div class="evidence-item">
+                  <p class="source">docs/model_validation.md · Report Contract</p>
+                  <p class="rank">ko-5a089f8042a67ed3175e8a6c · 기대 순위 9</p>
+                  <p>Local Model Validation &gt; Report Contract The current report schema is `model-validation-report-v4`. It includes: - deployment configuration and evaluation suite scope; - optional focus benchmark run; - configured model artifact plus observed runtime model names and digests; - verified artifact attestation ID and status; - signed supply-chain attestation ID and effective status; - managed publisher trust tier, transparency status, and production eligibility; - signed production-capture status and</p>
+                </div>
+                
+                <div class="evidence-item">
+                  <p class="source">docs/supply_chain_evidence.md · Verified Local Evidence</p>
+                  <p class="rank">ko-9c59bd29a1b754b80c476d62 · 기대 순위 7</p>
+                  <p>Signed Supply-Chain And Production Evidence &gt; Verified Local Evidence - Runtime attestation: `ffb3c1bb-4ac1-49bc-a50f-940d28ce6c47`. - Supply-chain attestation: `4b8c6826-04e1-4d06-872f-90be73e5dda4`. - Subject: `qwen2.5:0.5b` at digest `sha256:a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67`. - SBOM: CycloneDX 1.6, digest `1b0317ce490d00add3b378827abfd8559b77df305b68b42bf49d2ada6047c20a`. - Signature: RS256 with key ID `model-atlas-demo-2026`. - Managed publisher root: `dfcd3ae</p>
+                </div>
+                
+            </div>
+            
+        </article>
+        <article class="revised">
+          <h3>1.0.5 후보</h3>
+          <p class="contract pass">rag-evidence-contract-v1 · best-group recall 0.0</p>
+          
+            <div class="evidence-group">
+              <h4>허용 그룹 1 <span>그룹 내부 근거는 모두 필요</span></h4>
+              
+                <div class="evidence-item">
+                  <p class="source">docs/model_validation.md · Model Identity And Attestation</p>
+                  <p class="rank">ko-06e4a6e6909c8044b8468163 · 기대 순위 33</p>
+                  <p>Local Model Validation &gt; Model Identity And Attestation The server observes an Ollama registry manifest and SHA-256 digest, then creates a draft deployment configuration pinned to that digest. A report compares the configured artifact, runtime model, and observed digest. For example: ```text configured model: qwen2.5:0.5b configured digest: sha256:a8b0... observed model: qwen2.5:0.5b observed digest: sha256:a8b0... attestation: verified match: true ``` Attestation states are `missing`, `verified</p>
+                </div>
+                
+                <div class="evidence-item">
+                  <p class="source">docs/supply_chain_evidence.md · Purpose</p>
+                  <p class="rank">ko-b12074ae5090252a84ce8dc0 · 기대 순위 6</p>
+                  <p>Signed Supply-Chain And Production Evidence &gt; Purpose Sprint 5F proved which digest a local Ollama server exposed. Sprint 5G adds a separate trust layer for who signed the artifact provenance, which SBOM was signed, whether that statement was revoked, and whether a production-labeled benchmark run came from a trusted capture source. These are separate claims: - runtime attestation: the Model Atlas server observed a model digest; - supply-chain attestation: a configured publisher key signed that </p>
+                </div>
+                
+            </div>
+            
+        </article>
+      </div>
+      <dl><dt>검색 query</dt><dd><code>실행 모델 digest와 publisher 증거를 함께 확인해야 하는 이유는 무엇인가요?</code></dd></dl>
+      <div class="comparison semantic-comparison">
+        <article>
+          <h3>기존 의미 계약</h3>
+          
+      <p class="contract">rag-semantic-contract-v1</p>
+      <p>거부 요구: False</p>
+      
+            <div class="fact-group">
+              <h4>허용 의미 그룹 1 <span>그룹 내부 사실은 모두 필요</span></h4>
+              <ul><li>실행 신원과 공급망 provenance 결합</li></ul>
+            </div>
+            
+      <h4>금지 주장</h4>
+      <ul><li>없음</li></ul>
+    
+        </article>
+        <article class="revised">
+          <h3>1.0.5 의미 계약</h3>
+          
+      <p class="contract">rag-semantic-contract-v1</p>
+      <p>거부 요구: False</p>
+      
+            <div class="fact-group">
+              <h4>허용 의미 그룹 1 <span>그룹 내부 사실은 모두 필요</span></h4>
+              <ul><li>실행 신원과 공급망 provenance 결합</li></ul>
+            </div>
+            
+      <h4>금지 주장</h4>
+      <ul><li>없음</li></ul>
+    
+        </article>
+      </div>
+      <dl><dt>변경 이유</dt><dd>기존 Report Contract와 Verified Local Evidence는 출력 필드와 데모 식별자 위주다. digest가 실제 실행 아티팩트의 일치를 검증하고 publisher 증거가 서명된 provenance를 별도로 검증한다는 이유를 설명하는 문단으로 교체한다. 두 주장을 하나로 합치거나 production 보증으로 확대하지 않는다.</dd></dl>
+      <fieldset>
+        <legend>검토 결정</legend>
+        <label><input type="radio" name="decision-KO-RAG-MULTI-002" value="approved"> 승인</label>
+        <label><input type="radio" name="decision-KO-RAG-MULTI-002" value="rejected"> 거절</label>
+        <label class="notes">검토 메모<input type="text" data-notes placeholder="근거, query, 의미 계약이 요청에 부합하는지 기록" maxlength="2000"></label>
+      </fieldset>
+    </section>
+    
+    <section class="case" data-case-id="KO-RAG-MULTI-003"
+      data-case-sha="990095af18993059f4b6bb952bfad637689f2070393577932d7b7082b5379cb6">
+      <div class="case-head">
+        <div><span class="critical">CRITICAL</span><h2>KO-RAG-MULTI-003</h2></div>
+        <p>경보와 사고 대응</p>
+      </div>
+      <dl class="request"><dt>사용자 요청</dt><dd>burn-rate 경보가 발생한 뒤 incident 대응과 paging 복구 흐름을 요약해 주세요.</dd></dl>
+      <div class="comparison">
+        <article>
+          <h3>기존 계약</h3>
+          <p class="contract">rag-evidence-contract-v1</p>
+          
+            <div class="evidence-group">
+              <h4>허용 그룹 1 <span>그룹 내부 근거는 모두 필요</span></h4>
+              
+                <div class="evidence-item">
+                  <p class="source">docs/operational_slo_and_paging.md · Operational SLO, Incident, And Paging Contract</p>
+                  <p class="rank">ko-5791ec4409e62d9c9a1fa660 · 기대 순위 5</p>
+                  <p>Operational SLO, Incident, And Paging Contract Updated: 2026-08-04, Sprint 5H-H Sprint 5H-G extends this base contract with paired-window burn rates, hash-linked response actions, automatic escalation, rotating HMAC key IDs, and CA-verified HTTPS. See `incident_response_and_burn_rate.md` for the additive v2 contract and runbook. Sprint 5H-H adds runtime-projected secrets, strict correlated provider receipts, and a seven-check staging qualification gate. See `staging_paging_qualification.md` for </p>
+                </div>
+                
+                <div class="evidence-item">
+                  <p class="source">docs/incident_response_and_burn_rate.md · Multi-Window SLO Contract</p>
+                  <p class="rank">ko-f99e9b194c8cf87ccec1ab4d · 기대 순위 2</p>
+                  <p>Multi-Window SLO, Incident Response, and Rotating Paging Keys &gt; Multi-Window SLO Contract The default long window is one hour and the default short window is five minutes. Both windows use the same normalized snapshots and evaluate independently. For each window: ```text expected = max( snapshots observed in the window, scheduled intervals since the first retained snapshot in the window ) observed = good samples / expected samples burn rate = (1 - observed) / (1 - target) ``` Missing intervals a</p>
+                </div>
+                
+            </div>
+            
+        </article>
+        <article class="revised">
+          <h3>1.0.5 후보</h3>
+          <p class="contract pass">rag-evidence-contract-v1 · best-group recall 0.333333</p>
+          
+            <div class="evidence-group">
+              <h4>허용 그룹 1 <span>그룹 내부 근거는 모두 필요</span></h4>
+              
+                <div class="evidence-item">
+                  <p class="source">docs/incident_response_and_burn_rate.md · Multi-Window SLO Contract</p>
+                  <p class="rank">ko-f99e9b194c8cf87ccec1ab4d · 기대 순위 2</p>
+                  <p>Multi-Window SLO, Incident Response, and Rotating Paging Keys &gt; Multi-Window SLO Contract The default long window is one hour and the default short window is five minutes. Both windows use the same normalized snapshots and evaluate independently. For each window: ```text expected = max( snapshots observed in the window, scheduled intervals since the first retained snapshot in the window ) observed = good samples / expected samples burn rate = (1 - observed) / (1 - target) ``` Missing intervals a</p>
+                </div>
+                
+                <div class="evidence-item">
+                  <p class="source">docs/incident_response_and_burn_rate.md · Incident Response Contract</p>
+                  <p class="rank">ko-4848dc08141e5e2040ad4d7a · 기대 순위 35</p>
+                  <p>Multi-Window SLO, Incident Response, and Rotating Paging Keys &gt; Incident Response Contract An incident retains its existing open/resolved lifecycle and adds response state: - `acknowledged_at` and the verified acknowledging identity snapshot; - current `assigned_to` value; - `escalation_level`, from 0 through 3; - append-only response actions. Supported operator actions are: | Action | Open incident required | Effect | | --- | --- | --- | | `acknowledged` | yes | Records verified actor and stops</p>
+                </div>
+                
+                <div class="evidence-item">
+                  <p class="source">docs/operational_slo_and_paging.md · Paging failed</p>
+                  <p class="rank">ko-35619e8ce7b2063bb0597a07 · 기대 순위 16</p>
+                  <p>Operational SLO, Incident, And Paging Contract &gt; Failure Runbook &gt; Paging failed 1. Confirm the destination allowlist, HTTPS policy, secret, and receiver health. 2. Distinguish permanent destination/provider policy failures from retryable transport, 5xx, invalid strict-receipt, and temporary key/CA projection failures. 3. Restore the receiver. 4. Requeue the failed durable Agent job with a verified maintenance identity and reason. 5. Confirm a delivered receipt, response hash, provider event ID,</p>
+                </div>
+                
+            </div>
+            
+        </article>
+      </div>
+      <dl><dt>검색 query</dt><dd><code>burn-rate 경보가 발생한 뒤 incident 대응과 paging 복구 흐름을 요약해 주세요.</code></dd></dl>
+      <div class="comparison semantic-comparison">
+        <article>
+          <h3>기존 의미 계약</h3>
+          
+      <p class="contract">rag-semantic-contract-v1</p>
+      <p>거부 요구: False</p>
+      
+            <div class="fact-group">
+              <h4>허용 의미 그룹 1 <span>그룹 내부 사실은 모두 필요</span></h4>
+              <ul><li>경보, incident, delivery, 복구 이력</li></ul>
+            </div>
+            
+      <h4>금지 주장</h4>
+      <ul><li>없음</li></ul>
+    
+        </article>
+        <article class="revised">
+          <h3>1.0.5 의미 계약</h3>
+          
+      <p class="contract">rag-semantic-contract-v1</p>
+      <p>거부 요구: False</p>
+      
+            <div class="fact-group">
+              <h4>허용 의미 그룹 1 <span>그룹 내부 사실은 모두 필요</span></h4>
+              <ul><li>경보, incident, delivery, 복구 이력</li></ul>
+            </div>
+            
+      <h4>금지 주장</h4>
+      <ul><li>없음</li></ul>
+    
+        </article>
+      </div>
+      <dl><dt>변경 이유</dt><dd>기존 SLO 개요와 burn-rate 계산 문단만으로는 incident 대응과 paging 복구 이력을 충분히 설명하지 못한다. burn-rate 문단은 유지하고 대응 action/hash 기록 및 paging 복구 runbook을 함께 요구한다. 세 근거는 기본 응답의 최대 인용 수 3 안에 들어가며, 복수 문서 AND 조건을 유지한다.</dd></dl>
+      <fieldset>
+        <legend>검토 결정</legend>
+        <label><input type="radio" name="decision-KO-RAG-MULTI-003" value="approved"> 승인</label>
+        <label><input type="radio" name="decision-KO-RAG-MULTI-003" value="rejected"> 거절</label>
+        <label class="notes">검토 메모<input type="text" data-notes placeholder="근거, query, 의미 계약이 요청에 부합하는지 기록" maxlength="2000"></label>
+      </fieldset>
+    </section>
+    </main>
+  <footer>
+    <div class="attest">
+      <label>검토자 이름<input id="reviewer" type="text" maxlength="160" autocomplete="name"></label>
+      <label><input id="statement" type="checkbox"> 모든 변경 case의 원문 근거, query, 허용 근거 그룹과 의미 계약을 직접 검토했습니다.</label>
+      <button id="download" type="button">검토 증명 다운로드</button>
+      <p id="status" role="status"></p>
+    </div>
+  </footer>
+  <script>
+    const schemaVersion = "model-atlas-reference-case-pack-revision-attestation-v2";
+    const statementText = "I personally reviewed every changed case, its source evidence, retrieval contract, and semantic contract.";
+    const revisionId = "1.0.5";
+    const reportHash = "d16e4b55f9650cac961ac50ed694985bf0fa14dbb13e336b1022560aa4300473";
+    document.getElementById("download").addEventListener("click", () => {
+      const reviewer = document.getElementById("reviewer").value.trim();
+      const accepted = document.getElementById("statement").checked;
+      const status = document.getElementById("status");
+      const decisions = [];
+      for (const section of document.querySelectorAll(".case")) {
+        const caseId = section.dataset.caseId;
+        const selected = section.querySelector(`input[name="decision-${caseId}"]:checked`);
+        const notes = section.querySelector("[data-notes]").value.trim();
+        if (!selected || !notes) {
+          status.textContent = `${caseId}의 결정과 검토 메모를 입력해 주세요.`;
+          return;
+        }
+        decisions.push({
+          external_case_id: caseId,
+          revised_case_sha256: section.dataset.caseSha,
+          decision: selected.value,
+          notes,
+        });
+      }
+      if (!reviewer || !accepted) {
+        status.textContent = "검토자 이름과 직접 검토 확인이 필요합니다.";
+        return;
+      }
+      const payload = {
+        schema_version: schemaVersion,
+        revision_id: revisionId,
+        revision_report_sha256: reportHash,
+        statement: statementText,
+        reviewer,
+        reviewed_at: new Date().toISOString(),
+        decisions,
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], {type: "application/json"});
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `model-atlas-case-revision-${revisionId}-attestation.json`;
+      link.click();
+      URL.revokeObjectURL(link.href);
+      status.textContent = "검토 증명을 생성했습니다.";
+      status.style.color = "#17633f";
+    });
+  </script>
+</body>
+</html>

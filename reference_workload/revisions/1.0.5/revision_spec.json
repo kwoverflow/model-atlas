@@ -1,0 +1,56 @@
+{
+  "schema_version": "model-atlas-reference-case-pack-revision-spec-v3",
+  "revision_id": "1.0.5",
+  "source_workload_version": "1.0.4",
+  "query_strategy": "source-alignment-query-unchanged-v1",
+  "changes": [
+    {
+      "external_case_id": "KO-RAG-001",
+      "retrieval_query": "Gate가 승인되면 바로 운영 배포해도 되나요?",
+      "relevant_chunk_ids": [
+        "ko-2bbdb970a082e17107cea0e9"
+      ],
+      "top_k": 5,
+      "expected_source_path": "docs/deployment_gate.md",
+      "expected_heading": "Sprint 4A Status Separation",
+      "rationale": "기존 평가 가이드 14절은 감사 가능성과 평가 관점을 설명하지만, Gate 승인과 production readiness의 분리를 직접 설명하지 않는다. 정책 통과가 운영 배포 허가가 아님을 명시한 상태 분리 문단으로 교체한다."
+    },
+    {
+      "external_case_id": "KO-RAG-MULTI-001",
+      "retrieval_query": "후보 추천부터 서명된 릴리스 결정까지의 핵심 단계를 설명해 주세요.",
+      "relevant_chunk_ids": [
+        "ko-247daa1b46cc86363d892938",
+        "ko-f27a81b75d77a23dfb83a3f7"
+      ],
+      "top_k": 5,
+      "expected_source_path": "EVALUATOR_GUIDE_KO.md",
+      "expected_heading": "5. 의사결정 흐름",
+      "rationale": "기존 가이드 14절과 Decision Record는 개요 및 Gate 기록 필드에 치우쳐 있다. 추천·불변 구성·실행 증거·Gate·readiness·서명이라는 순서를 설명하는 가이드 5절과 별도 서명 결정 계약을 함께 요구한다. 복수 문서 AND 조건을 유지한다."
+    },
+    {
+      "external_case_id": "KO-RAG-MULTI-002",
+      "retrieval_query": "실행 모델 digest와 publisher 증거를 함께 확인해야 하는 이유는 무엇인가요?",
+      "relevant_chunk_ids": [
+        "ko-06e4a6e6909c8044b8468163",
+        "ko-b12074ae5090252a84ce8dc0"
+      ],
+      "top_k": 5,
+      "expected_source_path": "docs/model_validation.md",
+      "expected_heading": "Model Identity And Attestation",
+      "rationale": "기존 Report Contract와 Verified Local Evidence는 출력 필드와 데모 식별자 위주다. digest가 실제 실행 아티팩트의 일치를 검증하고 publisher 증거가 서명된 provenance를 별도로 검증한다는 이유를 설명하는 문단으로 교체한다. 두 주장을 하나로 합치거나 production 보증으로 확대하지 않는다."
+    },
+    {
+      "external_case_id": "KO-RAG-MULTI-003",
+      "retrieval_query": "burn-rate 경보가 발생한 뒤 incident 대응과 paging 복구 흐름을 요약해 주세요.",
+      "relevant_chunk_ids": [
+        "ko-f99e9b194c8cf87ccec1ab4d",
+        "ko-4848dc08141e5e2040ad4d7a",
+        "ko-35619e8ce7b2063bb0597a07"
+      ],
+      "top_k": 5,
+      "expected_source_path": "docs/incident_response_and_burn_rate.md",
+      "expected_heading": "Multi-Window SLO Contract",
+      "rationale": "기존 SLO 개요와 burn-rate 계산 문단만으로는 incident 대응과 paging 복구 이력을 충분히 설명하지 못한다. burn-rate 문단은 유지하고 대응 action/hash 기록 및 paging 복구 runbook을 함께 요구한다. 세 근거는 기본 응답의 최대 인용 수 3 안에 들어가며, 복수 문서 AND 조건을 유지한다."
+    }
+  ]
+}

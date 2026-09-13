@@ -1,0 +1,29 @@
+{
+  "schema_version": "mvp-closeout-verification-v1",
+  "date": "2026-09-13",
+  "scope": "isolated portfolio MVP technical verification",
+  "external_review": "pending",
+  "human_review_performed": false,
+  "checks": {
+    "fresh_review_database": {"status": "passed", "project": "model-atlas-mvp-review", "migration_head": "202609100002", "seed_demo": "passed", "seed_rag": "passed"},
+    "backend_tests": {"status": "passed", "passed": 901, "warnings": 2, "receipt": "artifacts/mvp-closeout/2026-09-13/backend-tests.xml"},
+    "backend_ruff": {"status": "passed", "command": "python -m ruff check app tests"},
+    "frontend_tests": {"status": "passed", "passed": 29, "command": "npm test", "also_run_in_docker_build": true},
+    "frontend_typecheck": {"status": "passed", "command": "npm run typecheck"},
+    "frontend_lint": {"status": "passed_with_warnings", "errors": 0, "warnings": 4, "command": "npm run lint"},
+    "frontend_build": {"status": "passed", "command": "docker compose -f deploy/mvp-review.compose.yml up -d --build frontend", "build_command": "npm run build"},
+    "helper_tests": {"status": "passed", "passed": 9, "command": "python -m unittest discover -s tools/tests -p test_mvp_review.py -v"},
+    "helper_ruff": {"status": "passed"},
+    "core_api": {"status": "passed", "check_count": 33, "receipt": "artifacts/mvp-closeout/2026-09-13/api-smoke.json"},
+    "browser": {"status": "passed_core_and_release_responsive_checks", "receipt": "artifacts/mvp-closeout/2026-09-13/ui-smoke.json", "scope": "core desktop navigation and execution; Release Decision detail desktop/mobile"},
+    "protected_state": {"status": "unchanged", "official_unchanged": true, "changed_source_paths": [], "added_source_paths": [], "removed_source_paths": [], "before": "artifacts/mvp-closeout/2026-09-13/before.json", "after": "artifacts/mvp-closeout/2026-09-13/after.json"}
+  },
+  "archive_verification": "Recorded separately beside the final ZIP to avoid self-referential hashes.",
+  "limits": [
+    "Same Windows/Docker host with a new database, not an independent evaluator machine.",
+    "Synthetic mock evaluation is not real model inference.",
+    "No production approval, human labels, or external user review was created.",
+    "Existing warnings are reported rather than hidden.",
+    "Original protected evaluation remains BLOCKED with 110 critical failure observations, 384 results and 0/30 target output reviews."
+  ]
+}

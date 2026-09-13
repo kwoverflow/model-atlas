@@ -1,0 +1,716 @@
+{
+  "schema_version": "rag-contract-alignment-audit-v1",
+  "generated_at": "2026-09-10T03:41:20.022507+00:00",
+  "status": "draft_human_review_required",
+  "gate_evidence": false,
+  "human_reviewed": false,
+  "model_calls": 0,
+  "application_database_writes": 0,
+  "production_readiness": "not_production_ready",
+  "corpus": {
+    "corpus_id": "model-atlas-operator-handbook-ko",
+    "corpus_version": "1.0.0",
+    "display_name": "Model Atlas Korean Operator Handbook",
+    "description": "Deterministic file-backed corpus built from allowlisted Model Atlas documentation.",
+    "language": "ko",
+    "chunk_count": 200,
+    "document_count": 14,
+    "corpus_hash": "2772ab9a898529c052337ad6d06e4f0950333a316d72d79778dbc6cfe8cf0642"
+  },
+  "source_cases_sha256": "a8b367fca7a21c6fda20f5086a1bb4180cbbd30f82f7f04937057cad1a4aa4c7",
+  "source_workload_version": "1.0.4",
+  "revision_id": "1.0.5",
+  "summary": {
+    "case_count": 5,
+    "proposed_change_count": 4,
+    "retained_source_count": 1,
+    "old_reachable": 3,
+    "proposed_reachable": 1,
+    "exact_quote_checks": 14
+  },
+  "preserved": [
+    "question",
+    "retrieval_query",
+    "top_k",
+    "required_facts",
+    "forbidden_claims",
+    "must_refuse",
+    "criticality",
+    "weight"
+  ],
+  "limitations": [
+    "Exact quote checks verify source integrity, not semantic entailment or approval.",
+    "Facets and alignment assessments are assistant-authored review proposals.",
+    "These five known critical cases are not a random sample or a new model evaluation.",
+    "Reachability is a diagnostic, never a reason to weaken expected evidence.",
+    "Existing keyword semantic scoring and sparse required facts are unchanged."
+  ],
+  "cases": [
+    {
+      "external_case_id": "KO-RAG-001",
+      "assessment": "indirect",
+      "reason": "기존 평가 가이드 14절은 감사 가능성과 평가 관점을 설명하지만, Gate 승인과 production readiness의 분리를 직접 설명하지 않는다. 정책 통과가 운영 배포 허가가 아님을 명시한 상태 분리 문단으로 교체한다.",
+      "proposed_chunk_ids": [
+        "ko-2bbdb970a082e17107cea0e9"
+      ],
+      "facets": [
+        {
+          "id": "gate_not_deployment_authorization",
+          "description": "Gate의 정책 통과 여부와 운영 배포 허가는 별개다.",
+          "support": [
+            {
+              "chunk_id": "ko-2bbdb970a082e17107cea0e9",
+              "quote": "A Gate Verdict answers whether policy rules passed. It does not describe the strength of the evidence or authorize production deployment by itself."
+            }
+          ]
+        },
+        {
+          "id": "separate_production_readiness",
+          "description": "Gate가 APPROVED여도 production readiness는 NOT_PRODUCTION_READY일 수 있다.",
+          "support": [
+            {
+              "chunk_id": "ko-2bbdb970a082e17107cea0e9",
+              "quote": "Gate Verdict: APPROVED\nEvidence Trust: LOCAL_DEMO_READY\nRelease Readiness: READY_TO_PROMOTE\nProduction Readiness: NOT_PRODUCTION_READY"
+            }
+          ]
+        }
+      ],
+      "severity": "high",
+      "assessment_origin": "assistant_authored_not_human_reviewed",
+      "semantic_alignment_automatically_verified": false,
+      "question": "Gate가 승인되면 바로 운영 배포해도 되나요?",
+      "retrieval_query": "Gate가 승인되면 바로 운영 배포해도 되나요?",
+      "source_case_sha256": "71a8d1a900880a2a4bd5e70f446428b47e8f5987cc37db970821babf41af4542",
+      "required_output_unchanged": {
+        "forbidden_claims": [
+          "Gate 승인은 운영 배포를 자동 허가한다"
+        ],
+        "must_refuse": false,
+        "required_facts": [
+          "Gate와 production readiness는 별도 상태"
+        ]
+      },
+      "top_k": 5,
+      "maximum_citations": 3,
+      "proposed_change": true,
+      "old_reachable": true,
+      "proposed_reachable": false,
+      "old_evidence": [
+        {
+          "chunk_id": "ko-30c75fa94c286d8736e331b0",
+          "document_id": "EVALUATOR_GUIDE_KO.md",
+          "title": "14. 평가 결론을 내릴 때의 권장 관점",
+          "text": "Model Atlas 평가·사용·기술 가이드 > 14. 평가 결론을 내릴 때의 권장 관점\n\n이 프로젝트의 핵심 성과는 \"가장 좋은 모델을 추천하는 알고리즘\" 하나가 아니다. 후보 탐색,\n실행 증거, 신뢰 provenance, 정책 Gate, 서명된 릴리스 결정, 운영 복구를 하나의 감사 가능한\n흐름으로 연결했다는 점이다. 평가는 기능의 수뿐 아니라 다음 세 가지를 중심으로 보는 것이\n적절하다.\n\n1. 같은 조건과 정책으로 결과를 재현할 수 있는가.\n2. 승인 또는 보류의 근거와 책임 주체를 사후에 설명할 수 있는가.\n3. 개발 fixture와 production 보장 사이의 경계를 정직하게 유지하는가.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "EVALUATOR_GUIDE_KO.md",
+            "heading_path": [
+              "Model Atlas 평가·사용·기술 가이드",
+              "14. 평가 결론을 내릴 때의 권장 관점"
+            ],
+            "language": "ko",
+            "source_sha256": "f298801dc297080715678a5d513f80ca828ff9ff0d079dd099d653c8a0826a92",
+            "chunk_sha256": "d33fa3d5a52841d23b7a357bc0979247fbfda8c28c69b483344c8c25fedf8191"
+          },
+          "text_sha256": "38b4981bf2c3e0282cd159c0ae06b12602657acd5d8a80628a1e2482518e8b5c",
+          "rank": 1,
+          "score": 0.30274
+        }
+      ],
+      "proposed_evidence": [
+        {
+          "chunk_id": "ko-2bbdb970a082e17107cea0e9",
+          "document_id": "docs/deployment_gate.md",
+          "title": "Sprint 4A Status Separation",
+          "text": "Deployment Gate > Sprint 4A Status Separation\n\nA Gate Verdict answers whether policy rules passed. It does not describe the strength of the evidence or authorize production deployment by itself.\n\n| Status | Question |\n| --- | --- |\n| Gate Verdict | Did this configuration pass the acceptance policy? |\n| Evidence Trust | How trustworthy are source and score provenance? |\n| Release Readiness | Are baseline, review, regression, and lineage controls ready? |\n| Production Readiness | Can the current evidence be interpreted as production-ready? |\n\nAn approved local demonstration can therefore be represented as:\n\n```text\nGate Verdict: APPROVED\nEvidence Trust: LOCAL_DEMO_READY\nRelease Readiness: READY_TO_PROMOTE\nProduction Readiness: NOT_PRODUCTION_READY\n```",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "docs/deployment_gate.md",
+            "heading_path": [
+              "Deployment Gate",
+              "Sprint 4A Status Separation"
+            ],
+            "language": "ko",
+            "source_sha256": "f8d750cca28f98dd621e23d7478dc475ab9a1321adc128393e273b2ad625cf2f",
+            "chunk_sha256": "2117712381770d049c6ad62f14a2bcc2d98b7cb2294c7572d8298f928bcdcfb7"
+          },
+          "text_sha256": "32e2d11e3e581feda9285269d4685d99320fdb3145f0de52c282e165cedb04b3",
+          "rank": 46,
+          "score": 0.151754
+        }
+      ],
+      "exact_quote_checks": 2
+    },
+    {
+      "external_case_id": "KO-RAG-002",
+      "assessment": "adequate",
+      "reason": "기존 Preflight Semantics 문단이 구성·suite·정책, 실행 증거, 신뢰도·검토 범위, baseline, 차단 전제조건과 can_evaluate를 직접 명시한다. 근거를 변경하지 않는다. 모델 답변의 누락과 기존 의미 평가기의 표현 민감도는 별도 문제다.",
+      "proposed_chunk_ids": [
+        "ko-d85232c48712c746fb492802"
+      ],
+      "facets": [
+        {
+          "id": "configuration_policy_and_evidence",
+          "description": "구성·평가 suite·정책과 실행 결과·metric의 존재를 확인한다.",
+          "support": [
+            {
+              "chunk_id": "ko-d85232c48712c746fb492802",
+              "quote": "- configuration, suite, and policy summaries;\n- active and critical case counts;\n- matching completed runs, results, and metrics;"
+            }
+          ]
+        },
+        {
+          "id": "trust_review_baseline_and_blockers",
+          "description": "신뢰도, 검토 범위, baseline, 차단 전제조건과 실행 가능 여부를 확인한다.",
+          "support": [
+            {
+              "chunk_id": "ko-d85232c48712c746fb492802",
+              "quote": "- source and score trust distributions;\n- judge and critical-case review coverage;\n- explicit or active baseline summary;\n- blocking preconditions, warnings, and expected limitations;\n- `can_evaluate`."
+            }
+          ]
+        },
+        {
+          "id": "preflight_not_gate_verdict",
+          "description": "Preflight는 Gate 평가를 저장하거나 결과를 예측하는 단계가 아니다.",
+          "support": [
+            {
+              "chunk_id": "ko-d85232c48712c746fb492802",
+              "quote": "Preflight does not persist a Gate Evaluation and does not predict a verdict."
+            }
+          ]
+        }
+      ],
+      "severity": "informational",
+      "assessment_origin": "assistant_authored_not_human_reviewed",
+      "semantic_alignment_automatically_verified": false,
+      "question": "Deployment Gate 실행 전에 Preflight에서 무엇을 확인하나요?",
+      "retrieval_query": "Deployment Gate 실행 전에 Preflight에서 무엇을 확인하나요?",
+      "source_case_sha256": "5c78b44cdc621c799b7769423e3436d6f38c8f047033b70b0612083e761ef33d",
+      "required_output_unchanged": {
+        "forbidden_claims": [],
+        "must_refuse": false,
+        "required_facts": [
+          "증거와 정책을 저장 전 검토"
+        ]
+      },
+      "top_k": 5,
+      "maximum_citations": 3,
+      "proposed_change": false,
+      "old_reachable": true,
+      "proposed_reachable": true,
+      "old_evidence": [
+        {
+          "chunk_id": "ko-d85232c48712c746fb492802",
+          "document_id": "docs/deployment_gate.md",
+          "title": "Preflight Semantics",
+          "text": "Deployment Gate > Preflight Semantics\n\n`POST /api/v1/deployment-gates/preflight` accepts the same scope IDs as gate creation. It returns:\n\n- configuration, suite, and policy summaries;\n- active and critical case counts;\n- matching completed runs, results, and metrics;\n- source and score trust distributions;\n- judge and critical-case review coverage;\n- explicit or active baseline summary;\n- blocking preconditions, warnings, and expected limitations;\n- `can_evaluate`.\n\nPreflight does not persist a Gate Evaluation and does not predict a verdict. Workload mismatch, no active cases, no completed runs, or no matching results are blocking preconditions. Synthetic-only or locally authored evidence is surfaced as a limitation rather than mislabeled as production evidence.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "docs/deployment_gate.md",
+            "heading_path": [
+              "Deployment Gate",
+              "Preflight Semantics"
+            ],
+            "language": "ko",
+            "source_sha256": "f8d750cca28f98dd621e23d7478dc475ab9a1321adc128393e273b2ad625cf2f",
+            "chunk_sha256": "23f2dc0aa750f5d094fafdd12476a5fc5cb96eeba089dcd082c676979acebd8f"
+          },
+          "text_sha256": "7f3077c411c08e6b15b7e51a3ca23e79b8461fab0f691658703f92cfbf820a0b",
+          "rank": 5,
+          "score": 0.341978
+        }
+      ],
+      "proposed_evidence": [
+        {
+          "chunk_id": "ko-d85232c48712c746fb492802",
+          "document_id": "docs/deployment_gate.md",
+          "title": "Preflight Semantics",
+          "text": "Deployment Gate > Preflight Semantics\n\n`POST /api/v1/deployment-gates/preflight` accepts the same scope IDs as gate creation. It returns:\n\n- configuration, suite, and policy summaries;\n- active and critical case counts;\n- matching completed runs, results, and metrics;\n- source and score trust distributions;\n- judge and critical-case review coverage;\n- explicit or active baseline summary;\n- blocking preconditions, warnings, and expected limitations;\n- `can_evaluate`.\n\nPreflight does not persist a Gate Evaluation and does not predict a verdict. Workload mismatch, no active cases, no completed runs, or no matching results are blocking preconditions. Synthetic-only or locally authored evidence is surfaced as a limitation rather than mislabeled as production evidence.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "docs/deployment_gate.md",
+            "heading_path": [
+              "Deployment Gate",
+              "Preflight Semantics"
+            ],
+            "language": "ko",
+            "source_sha256": "f8d750cca28f98dd621e23d7478dc475ab9a1321adc128393e273b2ad625cf2f",
+            "chunk_sha256": "23f2dc0aa750f5d094fafdd12476a5fc5cb96eeba089dcd082c676979acebd8f"
+          },
+          "text_sha256": "7f3077c411c08e6b15b7e51a3ca23e79b8461fab0f691658703f92cfbf820a0b",
+          "rank": 5,
+          "score": 0.341978
+        }
+      ],
+      "exact_quote_checks": 3
+    },
+    {
+      "external_case_id": "KO-RAG-MULTI-001",
+      "assessment": "partial",
+      "reason": "기존 가이드 14절과 Decision Record는 개요 및 Gate 기록 필드에 치우쳐 있다. 추천·불변 구성·실행 증거·Gate·readiness·서명이라는 순서를 설명하는 가이드 5절과 별도 서명 결정 계약을 함께 요구한다. 복수 문서 AND 조건을 유지한다.",
+      "proposed_chunk_ids": [
+        "ko-247daa1b46cc86363d892938",
+        "ko-f27a81b75d77a23dfb83a3f7"
+      ],
+      "facets": [
+        {
+          "id": "discovery_configuration_and_evaluation",
+          "description": "후보를 좁히고 불변 배포 구성을 만든 뒤 고정된 사례·metric·정책으로 실행 증거를 수집한다.",
+          "support": [
+            {
+              "chunk_id": "ko-247daa1b46cc86363d892938",
+              "quote": "1. 모델 아티팩트와 하드웨어 조건으로 평가할 후보를 좁힌다.\n2. 실제 런타임과 프롬프트까지 포함한 불변 배포 구성을 만든다.\n3. 버전이 고정된 평가 case와 metric, acceptance policy로 실행 증거를 수집한다."
+            }
+          ]
+        },
+        {
+          "id": "preflight_gate_readiness_and_signature",
+          "description": "Preflight와 Gate 뒤 readiness snapshot을 만들고 권한자가 동결된 snapshot에 서명한다.",
+          "support": [
+            {
+              "chunk_id": "ko-247daa1b46cc86363d892938",
+              "quote": "4. Preflight에서 증거 누락, 신뢰도, baseline, 제한 사항을 먼저 확인한다.\n5. Gate가 정책 결과와 scorecard를 저장한다.\n6. Release Readiness가 Gate, regression, label coverage, lineage를 한 snapshot으로 묶는다.\n7. 권한이 있는 사용자가 snapshot을 동결해 승인 또는 변경 요청을 서명한다."
+            }
+          ]
+        },
+        {
+          "id": "signed_decision_is_separate_record",
+          "description": "서명 결정은 기존 Gate 판정이나 benchmark 증거를 변경하지 않는 별도 기록이다.",
+          "support": [
+            {
+              "chunk_id": "ko-f27a81b75d77a23dfb83a3f7",
+              "quote": "Signing a release decision does not mutate the gate verdict,\nbenchmark evidence, prompt regression report, or active baseline."
+            }
+          ]
+        }
+      ],
+      "severity": "high",
+      "assessment_origin": "assistant_authored_not_human_reviewed",
+      "semantic_alignment_automatically_verified": false,
+      "question": "후보 추천부터 서명된 릴리스 결정까지의 핵심 단계를 설명해 주세요.",
+      "retrieval_query": "후보 추천부터 서명된 릴리스 결정까지의 핵심 단계를 설명해 주세요.",
+      "source_case_sha256": "68a8290eac3da7b7b14380d2d5f23803feab2c94e84985e938f9b275be9d74e4",
+      "required_output_unchanged": {
+        "forbidden_claims": [],
+        "must_refuse": false,
+        "required_facts": [
+          "후보 추천과 Gate와 Release Decision 분리"
+        ]
+      },
+      "top_k": 5,
+      "maximum_citations": 3,
+      "proposed_change": true,
+      "old_reachable": false,
+      "proposed_reachable": false,
+      "old_evidence": [
+        {
+          "chunk_id": "ko-30c75fa94c286d8736e331b0",
+          "document_id": "EVALUATOR_GUIDE_KO.md",
+          "title": "14. 평가 결론을 내릴 때의 권장 관점",
+          "text": "Model Atlas 평가·사용·기술 가이드 > 14. 평가 결론을 내릴 때의 권장 관점\n\n이 프로젝트의 핵심 성과는 \"가장 좋은 모델을 추천하는 알고리즘\" 하나가 아니다. 후보 탐색,\n실행 증거, 신뢰 provenance, 정책 Gate, 서명된 릴리스 결정, 운영 복구를 하나의 감사 가능한\n흐름으로 연결했다는 점이다. 평가는 기능의 수뿐 아니라 다음 세 가지를 중심으로 보는 것이\n적절하다.\n\n1. 같은 조건과 정책으로 결과를 재현할 수 있는가.\n2. 승인 또는 보류의 근거와 책임 주체를 사후에 설명할 수 있는가.\n3. 개발 fixture와 production 보장 사이의 경계를 정직하게 유지하는가.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "EVALUATOR_GUIDE_KO.md",
+            "heading_path": [
+              "Model Atlas 평가·사용·기술 가이드",
+              "14. 평가 결론을 내릴 때의 권장 관점"
+            ],
+            "language": "ko",
+            "source_sha256": "f298801dc297080715678a5d513f80ca828ff9ff0d079dd099d653c8a0826a92",
+            "chunk_sha256": "d33fa3d5a52841d23b7a357bc0979247fbfda8c28c69b483344c8c25fedf8191"
+          },
+          "text_sha256": "38b4981bf2c3e0282cd159c0ae06b12602657acd5d8a80628a1e2482518e8b5c",
+          "rank": 1,
+          "score": 0.405479
+        },
+        {
+          "chunk_id": "ko-0e2134f11ffe057495d13ead",
+          "document_id": "docs/deployment_gate.md",
+          "title": "Decision Record",
+          "text": "Deployment Gate > Decision Record\n\nEach gate evaluation stores:\n\n- deployment configuration ID and hash;\n- evaluation suite ID and hash;\n- acceptance policy ID and hash;\n- benchmark run IDs;\n- source data distribution;\n- metric scorecard;\n- rule outcomes;\n- critical-case outcomes;\n- optional baseline reference;\n- final verdict;\n- decision summary;\n- decision hash.\n\nMarkdown and PDF reports are renderings of the stored decision record.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "docs/deployment_gate.md",
+            "heading_path": [
+              "Deployment Gate",
+              "Decision Record"
+            ],
+            "language": "ko",
+            "source_sha256": "f8d750cca28f98dd621e23d7478dc475ab9a1321adc128393e273b2ad625cf2f",
+            "chunk_sha256": "8e97304c582f77815d512eae52ad75bab6cda103784cc8d2abb21af0fca35679"
+          },
+          "text_sha256": "053bc75e4d11d37dcd3ebbcb740598ac31e14549b02bc544b84dd216144924f8",
+          "rank": 19,
+          "score": 0.0
+        }
+      ],
+      "proposed_evidence": [
+        {
+          "chunk_id": "ko-247daa1b46cc86363d892938",
+          "document_id": "EVALUATOR_GUIDE_KO.md",
+          "title": "5. 의사결정 흐름",
+          "text": "Model Atlas 평가·사용·기술 가이드 > 5. 의사결정 흐름\n\n```mermaid\nflowchart TD\n    A[\"Candidate Discovery\"] --> B[\"Immutable Deployment Configuration\"]\n    B --> C[\"Versioned Evaluation Suite\"]\n    C --> D1[\"Tool Calling\"]\n    C --> D2[\"RAG\"]\n    C --> D3[\"Runtime Reliability\"]\n    C --> D4[\"Agent Operations\"]\n    D1 --> E[\"Evidence trust and provenance\"]\n    D2 --> E\n    D3 --> E\n    D4 --> E\n    E --> F[\"Gate Preflight\"]\n    F --> G[\"Deployment Gate\"]\n    G --> H[\"Release Readiness\"]\n    H --> I[\"Signed Release Decision\"]\n    I --> J[\"Operations, drift, stale and incident response\"]\n```\n\n1. 모델 아티팩트와 하드웨어 조건으로 평가할 후보를 좁힌다.\n2. 실제 런타임과 프롬프트까지 포함한 불변 배포 구성을 만든다.\n3. 버전이 고정된 평가 case와 metric, acceptance policy로 실행 증거를 수집한다.\n4. Preflight에서 증거 누락, 신뢰도, baseline, 제한 사항을 먼저 확인한다.\n5. Gate가 정책 결과와 scorecard를 저장한다.\n6. Release Readiness가 Gate, regression, label coverage, lineage를 한 snapshot으로 묶는다.\n7. 권한이 있는 사용자가 snapshot을 동결해 승인 또는 변경 요청을 서명한다.\n8. 이후 증거·정책·구성이 바뀌면 기존 결정과의 차이와 stale 상태를 추적한다.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "EVALUATOR_GUIDE_KO.md",
+            "heading_path": [
+              "Model Atlas 평가·사용·기술 가이드",
+              "5. 의사결정 흐름"
+            ],
+            "language": "ko",
+            "source_sha256": "f298801dc297080715678a5d513f80ca828ff9ff0d079dd099d653c8a0826a92",
+            "chunk_sha256": "6a72d620e40cae7a1bff93516ba780cdb7c6ef8439d3745f890cfca085ba5825"
+          },
+          "text_sha256": "ef73a3d6e434882d6db16d364569519a12e04b5b4f71e3b07227dce06ee4c1d2",
+          "rank": 36,
+          "score": 0.0
+        },
+        {
+          "chunk_id": "ko-f27a81b75d77a23dfb83a3f7",
+          "document_id": "docs/deployment_gate.md",
+          "title": "Signed Release Decisions",
+          "text": "Deployment Gate > Signed Release Decisions\n\nRelease decisions freeze the readiness snapshot reviewed by an operator. A record stores the gate\nscope, readiness status, decision value, signer identity, identity verification state, approval\npolicy state, signature statement, reason, snapshot JSON, snapshot hash, signature hash, decision hash, and decision\ntimestamp.\n\nValid release decisions are:\n\n- `APPROVE_RELEASE`\n- `REQUEST_CHANGES`\n- `REJECT_RELEASE`\n\n`APPROVE_RELEASE` requires readiness status `READY` or `READY_TO_PROMOTE`, verified operator\nidentity, and one of the approved release roles: `Release Manager`, `ML Ops Lead`,\n`Model Governance`, or `Admin`. `REJECT_RELEASE` uses the same verified release-role requirement.\n`REQUEST_CHANGES` can still be recorded by a local self-attested reviewer so blocked releases leave\nan audit trail during auth rollout. Signing a release decision does not mutate the gate verdict,\nbenchmark evidence, prompt regression report, or active baseline. It records a\n`release_decision_signed` lineage event in the same transaction.\n\nThe release decision detail API can export the frozen snapshot JSON and compare it with the current\nreadiness snapshot for the same gate. The diff is path-based and ignores volatile `generated_at`\nvalues so audit review can focus on material drift.\n\nLocal UI signing is self-attested. If a trusted reverse proxy or authentication middleware supplies\n`x-model-atlas-operator-*` headers, the same API records the signer as a verified trusted-header\nidentity without changing the release decision workflow.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "docs/deployment_gate.md",
+            "heading_path": [
+              "Deployment Gate",
+              "Signed Release Decisions"
+            ],
+            "language": "ko",
+            "source_sha256": "f8d750cca28f98dd621e23d7478dc475ab9a1321adc128393e273b2ad625cf2f",
+            "chunk_sha256": "210291df8717db52243f5f8329c904ffb24ee3a869ba78b54f2b95d9b6038c50"
+          },
+          "text_sha256": "2cec59f776e1b3bd46f179d679eda387e318895278eeecde01b1bbc0038987c6",
+          "rank": 186,
+          "score": 0.0
+        }
+      ],
+      "exact_quote_checks": 3
+    },
+    {
+      "external_case_id": "KO-RAG-MULTI-002",
+      "assessment": "partial",
+      "reason": "기존 Report Contract와 Verified Local Evidence는 출력 필드와 데모 식별자 위주다. digest가 실제 실행 아티팩트의 일치를 검증하고 publisher 증거가 서명된 provenance를 별도로 검증한다는 이유를 설명하는 문단으로 교체한다. 두 주장을 하나로 합치거나 production 보증으로 확대하지 않는다.",
+      "proposed_chunk_ids": [
+        "ko-06e4a6e6909c8044b8468163",
+        "ko-b12074ae5090252a84ce8dc0"
+      ],
+      "facets": [
+        {
+          "id": "runtime_artifact_identity",
+          "description": "설정한 아티팩트, 실제 runtime 모델, 관측한 digest가 일치하는지 확인한다.",
+          "support": [
+            {
+              "chunk_id": "ko-06e4a6e6909c8044b8468163",
+              "quote": "A report compares the configured artifact, runtime model, and\nobserved digest."
+            }
+          ]
+        },
+        {
+          "id": "publisher_signature_is_distinct_provenance",
+          "description": "runtime digest 관측과 publisher key의 digest·SBOM 서명은 서로 다른 주장이다.",
+          "support": [
+            {
+              "chunk_id": "ko-b12074ae5090252a84ce8dc0",
+              "quote": "- runtime attestation: the Model Atlas server observed a model digest;\n- supply-chain attestation: a configured publisher key signed that digest and SBOM;"
+            }
+          ]
+        },
+        {
+          "id": "no_automatic_release_authority",
+          "description": "이 증거만으로 릴리스가 자동 승인되지는 않는다.",
+          "support": [
+            {
+              "chunk_id": "ko-b12074ae5090252a84ce8dc0",
+              "quote": "None of these records automatically authorizes a release."
+            }
+          ]
+        }
+      ],
+      "severity": "high",
+      "assessment_origin": "assistant_authored_not_human_reviewed",
+      "semantic_alignment_automatically_verified": false,
+      "question": "실행 모델 digest와 publisher 증거를 함께 확인해야 하는 이유는 무엇인가요?",
+      "retrieval_query": "실행 모델 digest와 publisher 증거를 함께 확인해야 하는 이유는 무엇인가요?",
+      "source_case_sha256": "dab3313c2f945dc88ed1e09d394de53d6aaeeb3a4941c96706b74ab9d74b3c16",
+      "required_output_unchanged": {
+        "forbidden_claims": [],
+        "must_refuse": false,
+        "required_facts": [
+          "실행 신원과 공급망 provenance 결합"
+        ]
+      },
+      "top_k": 5,
+      "maximum_citations": 3,
+      "proposed_change": true,
+      "old_reachable": false,
+      "proposed_reachable": false,
+      "old_evidence": [
+        {
+          "chunk_id": "ko-5a089f8042a67ed3175e8a6c",
+          "document_id": "docs/model_validation.md",
+          "title": "Report Contract",
+          "text": "Local Model Validation > Report Contract\n\nThe current report schema is `model-validation-report-v4`. It includes:\n\n- deployment configuration and evaluation suite scope;\n- optional focus benchmark run;\n- configured model artifact plus observed runtime model names and digests;\n- verified artifact attestation ID and status;\n- signed supply-chain attestation ID and effective status;\n- managed publisher trust tier, transparency status, and production eligibility;\n- signed production-capture status and verified production run/result counts;\n- digest-aware configuration/model identity match;\n- actual-runtime evidence flag;\n- evidence revision and report hashes;\n- source-specific cohorts;\n- source comparisons;\n- judge-label calibration;\n- canonical Evidence Trust;\n- recommendations and limitations.\n\nEach cohort reports:\n\n- run, result, and metric counts;\n- adapters and observed model names;\n- quality, exact match, JSON validity, tool validity, groundedness, and faithfulness;\n- error and OOM rates;\n- P50/P95 latency and P50 throughput;\n- reviewed-label count and coverage;\n- cohort trust status.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "docs/model_validation.md",
+            "heading_path": [
+              "Local Model Validation",
+              "Report Contract"
+            ],
+            "language": "ko",
+            "source_sha256": "8bc5aeff23d3e69d368775750b2fd59586dc4e810f417a16063f9b70c8df7894",
+            "chunk_sha256": "67d6036f02052c5756cb2f3bb4db4495a0af8841f05d91a8aaa86ccf511b7511"
+          },
+          "text_sha256": "af70982e843dcc958a877879c9426e57708102331a3c146e4caca48ba2e156af",
+          "rank": 9,
+          "score": 0.182353
+        },
+        {
+          "chunk_id": "ko-9c59bd29a1b754b80c476d62",
+          "document_id": "docs/supply_chain_evidence.md",
+          "title": "Verified Local Evidence",
+          "text": "Signed Supply-Chain And Production Evidence > Verified Local Evidence\n\n- Runtime attestation: `ffb3c1bb-4ac1-49bc-a50f-940d28ce6c47`.\n- Supply-chain attestation: `4b8c6826-04e1-4d06-872f-90be73e5dda4`.\n- Subject: `qwen2.5:0.5b` at digest\n  `sha256:a8b0c51577010a279d933d14c2a8ab4b268079d44c5c8830c0a93900f1827c67`.\n- SBOM: CycloneDX 1.6, digest\n  `1b0317ce490d00add3b378827abfd8559b77df305b68b42bf49d2ada6047c20a`.\n- Signature: RS256 with key ID `model-atlas-demo-2026`.\n- Managed publisher root: `dfcd3aef-1d73-4aa3-8963-52e24fc09863`, development tier.\n- Transparency proof: `a16fc052-27e5-42b4-b875-1126d7e7bec1`, signature and Merkle path valid,\n  development tier.\n- Production receipts: zero, because the verified Sprint 5F run is local-authored rather than a\n  production capture.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "docs/supply_chain_evidence.md",
+            "heading_path": [
+              "Signed Supply-Chain And Production Evidence",
+              "Verified Local Evidence"
+            ],
+            "language": "ko",
+            "source_sha256": "e4ac478b30333d1ba72c0e38c7a0c363e7ff0476233ee190e4089e54f76120a8",
+            "chunk_sha256": "bc5d2f5ed78206c7aa125546dad25cb61263b3fe345262ca81a435b1c5cce91b"
+          },
+          "text_sha256": "f9f91611129adbba6f050cd3354ba77714a7875f982bab4dd59cd433dadc9271",
+          "rank": 7,
+          "score": 0.182985
+        }
+      ],
+      "proposed_evidence": [
+        {
+          "chunk_id": "ko-06e4a6e6909c8044b8468163",
+          "document_id": "docs/model_validation.md",
+          "title": "Model Identity And Attestation",
+          "text": "Local Model Validation > Model Identity And Attestation\n\nThe server observes an Ollama registry manifest and SHA-256 digest, then creates a draft deployment\nconfiguration pinned to that digest. A report compares the configured artifact, runtime model, and\nobserved digest. For example:\n\n```text\nconfigured model: qwen2.5:0.5b\nconfigured digest: sha256:a8b0...\nobserved model: qwen2.5:0.5b\nobserved digest: sha256:a8b0...\nattestation: verified\nmatch: true\n```\n\nAttestation states are `missing`, `verified`, `digest_mismatch`, and `model_mismatch`. The legacy\nparameter-size comparison remains a conservative fallback for old configurations without digests;\nit cannot produce a verified attestation state. See `docs/model_artifact_attestation.md`.\n\nSupply-chain status is reported separately from runtime attestation and can be `missing`,\n`verified`, or `revoked`. Production capture is `verified` only when a configured collector JWS\nbinds the exact completed run, counts, capture window, artifact digest, and active attestation\nchain. A production label alone is unverified. See `docs/supply_chain_evidence.md`.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "docs/model_validation.md",
+            "heading_path": [
+              "Local Model Validation",
+              "Model Identity And Attestation"
+            ],
+            "language": "ko",
+            "source_sha256": "8bc5aeff23d3e69d368775750b2fd59586dc4e810f417a16063f9b70c8df7894",
+            "chunk_sha256": "1de346d3f4da40bc74e374b0109fdfe0957dac30ca9ec331897f5e218e36ce3f"
+          },
+          "text_sha256": "d5b1bfd44a0fc704d632f8e4d39f7d45feb6b17e0bbb75874dee5d1907143f29",
+          "rank": 33,
+          "score": 0.09119
+        },
+        {
+          "chunk_id": "ko-b12074ae5090252a84ce8dc0",
+          "document_id": "docs/supply_chain_evidence.md",
+          "title": "Purpose",
+          "text": "Signed Supply-Chain And Production Evidence > Purpose\n\nSprint 5F proved which digest a local Ollama server exposed. Sprint 5G adds a separate trust layer\nfor who signed the artifact provenance, which SBOM was signed, whether that statement was revoked,\nand whether a production-labeled benchmark run came from a trusted capture source.\n\nThese are separate claims:\n\n- runtime attestation: the Model Atlas server observed a model digest;\n- supply-chain attestation: a configured publisher key signed that digest and SBOM;\n- production receipt: a configured collector key signed the run identity, counts, capture window,\n  artifact digest, and active attestation chain;\n- release decision: an authorized operator approved or rejected a frozen readiness snapshot.\n\nNone of these records automatically authorizes a release.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "docs/supply_chain_evidence.md",
+            "heading_path": [
+              "Signed Supply-Chain And Production Evidence",
+              "Purpose"
+            ],
+            "language": "ko",
+            "source_sha256": "e4ac478b30333d1ba72c0e38c7a0c363e7ff0476233ee190e4089e54f76120a8",
+            "chunk_sha256": "bd2413e12bff3e84fa0c9e0d29257462cfef101228ea9ec21559a0138c7b6e15"
+          },
+          "text_sha256": "8c4387806e9ecf93e2cd1bfdca731ebbecac2c685d9d361d91cb50db10c9f82e",
+          "rank": 6,
+          "score": 0.183125
+        }
+      ],
+      "exact_quote_checks": 3
+    },
+    {
+      "external_case_id": "KO-RAG-MULTI-003",
+      "assessment": "partial",
+      "reason": "기존 SLO 개요와 burn-rate 계산 문단만으로는 incident 대응과 paging 복구 이력을 충분히 설명하지 못한다. burn-rate 문단은 유지하고 대응 action/hash 기록 및 paging 복구 runbook을 함께 요구한다. 세 근거는 기본 응답의 최대 인용 수 3 안에 들어가며, 복수 문서 AND 조건을 유지한다.",
+      "proposed_chunk_ids": [
+        "ko-f99e9b194c8cf87ccec1ab4d",
+        "ko-4848dc08141e5e2040ad4d7a",
+        "ko-35619e8ce7b2063bb0597a07"
+      ],
+      "facets": [
+        {
+          "id": "burn_rate_to_incident",
+          "description": "critical 다중 구간 burn-rate 경보는 critical incident를 생성하거나 갱신한다.",
+          "support": [
+            {
+              "chunk_id": "ko-f99e9b194c8cf87ccec1ab4d",
+              "quote": "A critical\nmulti-window burn creates or updates a critical incident."
+            }
+          ]
+        },
+        {
+          "id": "incident_response_history",
+          "description": "확인·담당자 지정·노트 등 대응은 actor·시간·이전 action hash와 연결해 기록한다.",
+          "support": [
+            {
+              "chunk_id": "ko-4848dc08141e5e2040ad4d7a",
+              "quote": "Every action hashes a canonical payload containing the incident, action, actor, timestamp,\nassignee, and previous action hash. The newest action points to its predecessor."
+            }
+          ]
+        },
+        {
+          "id": "paging_recovery_and_receipt",
+          "description": "수신 측 복구 후 검증된 유지보수 신원과 사유로 재큐잉하고 delivery receipt와 응답 hash를 확인한다.",
+          "support": [
+            {
+              "chunk_id": "ko-35619e8ce7b2063bb0597a07",
+              "quote": "3. Restore the receiver.\n4. Requeue the failed durable Agent job with a verified maintenance identity and reason.\n5. Confirm a delivered receipt, response hash, provider event ID, and provider receipt ID."
+            }
+          ]
+        }
+      ],
+      "severity": "high",
+      "assessment_origin": "assistant_authored_not_human_reviewed",
+      "semantic_alignment_automatically_verified": false,
+      "question": "burn-rate 경보가 발생한 뒤 incident 대응과 paging 복구 흐름을 요약해 주세요.",
+      "retrieval_query": "burn-rate 경보가 발생한 뒤 incident 대응과 paging 복구 흐름을 요약해 주세요.",
+      "source_case_sha256": "e9238bd87152b8c1d5f6659d5d5f961d18ee0a5d799a4e7675d23f99113578b3",
+      "required_output_unchanged": {
+        "forbidden_claims": [],
+        "must_refuse": false,
+        "required_facts": [
+          "경보, incident, delivery, 복구 이력"
+        ]
+      },
+      "top_k": 5,
+      "maximum_citations": 3,
+      "proposed_change": true,
+      "old_reachable": true,
+      "proposed_reachable": false,
+      "old_evidence": [
+        {
+          "chunk_id": "ko-5791ec4409e62d9c9a1fa660",
+          "document_id": "docs/operational_slo_and_paging.md",
+          "title": "Operational SLO, Incident, And Paging Contract",
+          "text": "Operational SLO, Incident, And Paging Contract\n\nUpdated: 2026-08-04, Sprint 5H-H\n\nSprint 5H-G extends this base contract with paired-window burn rates, hash-linked response actions,\nautomatic escalation, rotating HMAC key IDs, and CA-verified HTTPS. See\n`incident_response_and_burn_rate.md` for the additive v2 contract and runbook.\n\nSprint 5H-H adds runtime-projected secrets, strict correlated provider receipts, and a seven-check\nstaging qualification gate. See `staging_paging_qualification.md` for the additive v3 contract and\nexecutable staging runbook.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "docs/operational_slo_and_paging.md",
+            "heading_path": [
+              "Operational SLO, Incident, And Paging Contract"
+            ],
+            "language": "ko",
+            "source_sha256": "7ad6624871f7cfb3209e356c9586f571a66c645a1d9b1e10c5fae3afcbc2dfb7",
+            "chunk_sha256": "9643c7388ce4ddb2f2bfdabbaafcb7a53b0a11d3f29ff4520c78ae71be5847a5"
+          },
+          "text_sha256": "390fce5fe689dce540aa691613c3dd554f06cdc4850fcf0460282a6390daa8c6",
+          "rank": 5,
+          "score": 0.25101
+        },
+        {
+          "chunk_id": "ko-f99e9b194c8cf87ccec1ab4d",
+          "document_id": "docs/incident_response_and_burn_rate.md",
+          "title": "Multi-Window SLO Contract",
+          "text": "Multi-Window SLO, Incident Response, and Rotating Paging Keys > Multi-Window SLO Contract\n\nThe default long window is one hour and the default short window is five minutes. Both windows\nuse the same normalized snapshots and evaluate independently.\n\nFor each window:\n\n```text\nexpected = max(\n  snapshots observed in the window,\n  scheduled intervals since the first retained snapshot in the window\n)\n\nobserved = good samples / expected samples\nburn rate = (1 - observed) / (1 - target)\n```\n\nMissing intervals after the first retained baseline are treated as not-good. A collector gap\ntherefore consumes the budget instead of appearing as perfect availability. Before the minimum\nsample count is reached, status is `insufficient` and burn alert level is `none`.\n\nThe persisted evaluation includes:\n\n- long and short window durations;\n- long and short observed ratios;\n- long and short burn rates;\n- `none`, `warning`, or `critical` burn alert level;\n- expected, actual, good, and missing sample counts;\n- canonical evaluation hash.\n\nThe alert level requires agreement between both windows:\n\n```text\nlong burn >= critical threshold AND short burn >= critical threshold -> critical\nlong burn >= warning threshold  AND short burn >= warning threshold  -> warning\notherwise                                                        -> none\n```\n\nDefault warning and critical thresholds are `6.0x` and `14.4x`. A breached SLO still opens an\nincident when the multi-window level is `none`; that incident is warning severity. A critical\nmulti-window burn creates or updates a critical incident.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "docs/incident_response_and_burn_rate.md",
+            "heading_path": [
+              "Multi-Window SLO, Incident Response, and Rotating Paging Keys",
+              "Multi-Window SLO Contract"
+            ],
+            "language": "ko",
+            "source_sha256": "5063363cfa665769c7bce71243beadc367f0495bb14716bde144f94128c75649",
+            "chunk_sha256": "a4e240913955e9f516a394ce602f1636030fc1b40535e4fafd09bf4d66b542f2"
+          },
+          "text_sha256": "fdb78f4b73492417d0ac576c59c293177bd8e5a3861fe57d4abd77020447ce1e",
+          "rank": 2,
+          "score": 0.331528
+        }
+      ],
+      "proposed_evidence": [
+        {
+          "chunk_id": "ko-f99e9b194c8cf87ccec1ab4d",
+          "document_id": "docs/incident_response_and_burn_rate.md",
+          "title": "Multi-Window SLO Contract",
+          "text": "Multi-Window SLO, Incident Response, and Rotating Paging Keys > Multi-Window SLO Contract\n\nThe default long window is one hour and the default short window is five minutes. Both windows\nuse the same normalized snapshots and evaluate independently.\n\nFor each window:\n\n```text\nexpected = max(\n  snapshots observed in the window,\n  scheduled intervals since the first retained snapshot in the window\n)\n\nobserved = good samples / expected samples\nburn rate = (1 - observed) / (1 - target)\n```\n\nMissing intervals after the first retained baseline are treated as not-good. A collector gap\ntherefore consumes the budget instead of appearing as perfect availability. Before the minimum\nsample count is reached, status is `insufficient` and burn alert level is `none`.\n\nThe persisted evaluation includes:\n\n- long and short window durations;\n- long and short observed ratios;\n- long and short burn rates;\n- `none`, `warning`, or `critical` burn alert level;\n- expected, actual, good, and missing sample counts;\n- canonical evaluation hash.\n\nThe alert level requires agreement between both windows:\n\n```text\nlong burn >= critical threshold AND short burn >= critical threshold -> critical\nlong burn >= warning threshold  AND short burn >= warning threshold  -> warning\notherwise                                                        -> none\n```\n\nDefault warning and critical thresholds are `6.0x` and `14.4x`. A breached SLO still opens an\nincident when the multi-window level is `none`; that incident is warning severity. A critical\nmulti-window burn creates or updates a critical incident.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "docs/incident_response_and_burn_rate.md",
+            "heading_path": [
+              "Multi-Window SLO, Incident Response, and Rotating Paging Keys",
+              "Multi-Window SLO Contract"
+            ],
+            "language": "ko",
+            "source_sha256": "5063363cfa665769c7bce71243beadc367f0495bb14716bde144f94128c75649",
+            "chunk_sha256": "a4e240913955e9f516a394ce602f1636030fc1b40535e4fafd09bf4d66b542f2"
+          },
+          "text_sha256": "fdb78f4b73492417d0ac576c59c293177bd8e5a3861fe57d4abd77020447ce1e",
+          "rank": 2,
+          "score": 0.331528
+        },
+        {
+          "chunk_id": "ko-4848dc08141e5e2040ad4d7a",
+          "document_id": "docs/incident_response_and_burn_rate.md",
+          "title": "Incident Response Contract",
+          "text": "Multi-Window SLO, Incident Response, and Rotating Paging Keys > Incident Response Contract\n\nAn incident retains its existing open/resolved lifecycle and adds response state:\n\n- `acknowledged_at` and the verified acknowledging identity snapshot;\n- current `assigned_to` value;\n- `escalation_level`, from 0 through 3;\n- append-only response actions.\n\nSupported operator actions are:\n\n| Action | Open incident required | Effect |\n| --- | --- | --- |\n| `acknowledged` | yes | Records verified actor and stops automatic escalation |\n| `assigned` | yes | Sets the current bounded assignee |\n| `note` | no | Adds an audit note without changing lifecycle state |\n| `escalated` | generated by controller | Advances level and creates an escalation page when paging is enabled |\n\nOnly verified `Admin` and `SRE Lead` identities may mutate response state. `ML Ops Lead` and\n`Release Manager` retain audit-only access.\n\nEvery action hashes a canonical payload containing the incident, action, actor, timestamp,\nassignee, and previous action hash. The newest action points to its predecessor. This provides\napplication-level tamper evidence and order; it is not an external transparency anchor or a\ndatabase write-once guarantee.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "docs/incident_response_and_burn_rate.md",
+            "heading_path": [
+              "Multi-Window SLO, Incident Response, and Rotating Paging Keys",
+              "Incident Response Contract"
+            ],
+            "language": "ko",
+            "source_sha256": "5063363cfa665769c7bce71243beadc367f0495bb14716bde144f94128c75649",
+            "chunk_sha256": "e3d3ff9013c3dc5fb232a4432ac91356849d9bb085dedc4613572d6a592af28f"
+          },
+          "text_sha256": "6b98b70fc7e5df73d0e940d1e419f16a2284b1a28e387f43e9843059ff2c29ee",
+          "rank": 35,
+          "score": 0.165636
+        },
+        {
+          "chunk_id": "ko-35619e8ce7b2063bb0597a07",
+          "document_id": "docs/operational_slo_and_paging.md",
+          "title": "Paging failed",
+          "text": "Operational SLO, Incident, And Paging Contract > Failure Runbook > Paging failed\n\n1. Confirm the destination allowlist, HTTPS policy, secret, and receiver health.\n2. Distinguish permanent destination/provider policy failures from retryable transport, 5xx,\n   invalid strict-receipt, and temporary key/CA projection failures.\n3. Restore the receiver.\n4. Requeue the failed durable Agent job with a verified maintenance identity and reason.\n5. Confirm a delivered receipt, response hash, provider event ID, and provider receipt ID.",
+          "metadata": {
+            "schema_version": "markdown-section-chunk-v1",
+            "file_path": "docs/operational_slo_and_paging.md",
+            "heading_path": [
+              "Operational SLO, Incident, And Paging Contract",
+              "Failure Runbook",
+              "Paging failed"
+            ],
+            "language": "ko",
+            "source_sha256": "7ad6624871f7cfb3209e356c9586f571a66c645a1d9b1e10c5fae3afcbc2dfb7",
+            "chunk_sha256": "4fe31e745b81a811aa0002cbd7646aaa5f3b9816b0d8c7151642851809ae3709"
+          },
+          "text_sha256": "b4c44d5a8539e87949efafdeddfe00bf28b7a6a81f20591271e0815abe815859",
+          "rank": 16,
+          "score": 0.168081
+        }
+      ],
+      "exact_quote_checks": 3
+    }
+  ],
+  "revision_report_sha256": "d16e4b55f9650cac961ac50ed694985bf0fa14dbb13e336b1022560aa4300473",
+  "revision_summary": {
+    "case_count": 64,
+    "changed_case_count": 4,
+    "retained_approval_count": 60,
+    "pending_review_count": 4,
+    "approved_case_count": 60,
+    "approved_critical_case_count": 16,
+    "portfolio_ready": false,
+    "retrieval_contract_status": "blocked"
+  },
+  "plan_sha256": "8b2b3801cc148495997dee8c690fd70ce4adca74e9d915181d08ad2a60d71ae7",
+  "implementation_sha256": "de13c90cf90f2ad820b6da46a367afac384df2cedb9f957558834d7a33b881d6",
+  "source_files_unchanged": true,
+  "content_sha256": "61b6a4f8db753df297f15f34ebc2b144513fb0d74b2041020cb5f35ed9c3c0ee"
+}

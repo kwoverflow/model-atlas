@@ -1,0 +1,81 @@
+{
+  "schema_version": "tool-fault-baseline-cases-v1",
+  "authority": "local_authored_diagnostic",
+  "human_reviewed": false,
+  "gate_evidence": false,
+  "corpus_hash": "2772ab9a898529c052337ad6d06e4f0950333a316d72d79778dbc6cfe8cf0642",
+  "cases": [
+    {
+      "id": "TFB-001",
+      "request": "배포 승인 정책을 조회해 주세요. 검색어 query에는 'release approval'을 그대로 넣어 주세요.",
+      "expected_tool": "lookup_policy",
+      "expected_arguments": {"query": "release approval"}
+    },
+    {
+      "id": "TFB-002",
+      "request": "고객 기록이 아니라 데이터 보관 정책을 확인하려고 합니다. query 값은 'data retention'으로 해 주세요.",
+      "expected_tool": "lookup_policy",
+      "expected_arguments": {"query": "data retention"}
+    },
+    {
+      "id": "TFB-003",
+      "request": "내부 문서 docs/deployment_gate.md를 문서 ID로 조회해 주세요. 요약하거나 정책 검색으로 바꾸지 마세요.",
+      "expected_tool": "lookup_internal_document",
+      "expected_arguments": {"document_id": "docs/deployment_gate.md"}
+    },
+    {
+      "id": "TFB-004",
+      "request": "원문 파일 docs/incident_response_and_burn_rate.md를 내부 문서 조회로 가져와 주세요. 장애 이력을 검색하는 요청은 아닙니다.",
+      "expected_tool": "lookup_internal_document",
+      "expected_arguments": {"document_id": "docs/incident_response_and_burn_rate.md"}
+    },
+    {
+      "id": "TFB-005",
+      "request": "이미 발생한 장애 이력을 검색해 주세요. query에는 'gateway timeout'을 사용해 주세요. 새 티켓은 만들지 마세요.",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {"query": "gateway timeout"}
+    },
+    {
+      "id": "TFB-006",
+      "request": "과거 운영 장애에서 'worker offline'을 찾아 주세요. 이 문구를 query 값으로 그대로 전달해 주세요.",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {"query": "worker offline"}
+    },
+    {
+      "id": "TFB-007",
+      "request": "로컬 모의 지원 티켓을 새로 만들어 주세요. query는 'payment retry investigation', priority는 'high'로 지정해 주세요.",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {"query": "payment retry investigation", "priority": "high"}
+    },
+    {
+      "id": "TFB-008",
+      "request": "장애 이력 검색이 아니라 새 모의 티켓 등록입니다. query 값은 'update handbook link', priority 값은 'low'로 해 주세요.",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {"query": "update handbook link", "priority": "low"}
+    },
+    {
+      "id": "TFB-009",
+      "request": "고객 CUST-1042의 계약 및 지원 등급 기록을 조회해 주세요. query에 'CUST-1042'를 넣어 주세요.",
+      "expected_tool": "lookup_customer",
+      "expected_arguments": {"query": "CUST-1042"}
+    },
+    {
+      "id": "TFB-010",
+      "request": "정책 문서가 아니라 고객 계정 기록을 확인하려고 합니다. 고객 조회 query는 'Hanbit Labs'입니다.",
+      "expected_tool": "lookup_customer",
+      "expected_arguments": {"query": "Hanbit Labs"}
+    },
+    {
+      "id": "TFB-011",
+      "request": "대화 내용을 요약 도구로 전달해 주세요. query 값은 'Alice checked the logs. Bob approved the rollback.'으로 해 주세요.",
+      "expected_tool": "summarize_thread",
+      "expected_arguments": {"query": "Alice checked the logs. Bob approved the rollback."}
+    },
+    {
+      "id": "TFB-012",
+      "request": "아래 대화 텍스트를 요약하는 도구를 호출해 주세요. 티켓 생성은 필요 없습니다. query에는 'The customer asked for an update. Support replied at noon.'을 그대로 넣어 주세요.",
+      "expected_tool": "summarize_thread",
+      "expected_arguments": {"query": "The customer asked for an update. Support replied at noon."}
+    }
+  ]
+}

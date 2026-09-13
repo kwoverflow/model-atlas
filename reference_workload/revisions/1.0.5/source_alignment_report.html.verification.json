@@ -1,0 +1,19 @@
+{
+  "mode": "semantic_fallback",
+  "prior_delivery_failure": "reader_timeout: shared reader remained in fallback",
+  "structural_verification": {
+    "counts": {
+      "blocks": 12,
+      "charts": 1,
+      "html": 0,
+      "metrics": 0,
+      "tables": 0
+    },
+    "html": "C:\\Users\\rokn2\\Documents\\포트폴리오\\model-atlas\\reference_workload\\revisions\\1.0.5\\source_alignment_report.html",
+    "ok": true,
+    "title": "Source Alignment Audit"
+  },
+  "browser_verification": "not_performed",
+  "chart_svg_extraction": "not_performed",
+  "interaction_and_layout_verified": false
+}

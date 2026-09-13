@@ -1,0 +1,83 @@
+groups:
+  - name: model-atlas-operations
+    rules:
+      - alert: ModelAtlasWorkerQueueBlocked
+        expr: model_atlas_job_queue_depth > 0 and model_atlas_worker_online < 1
+        for: 2m
+        labels:
+          severity: critical
+          service: model-atlas
+        annotations:
+          summary: Durable jobs are queued without an online worker.
+      - alert: ModelAtlasDeadLetterPresent
+        expr: model_atlas_job_dead_letter_count > 0
+        for: 1m
+        labels:
+          severity: warning
+          service: model-atlas
+        annotations:
+          summary: A durable job is dead-lettered.
+      - alert: ModelAtlasCollectorStale
+        expr: model_atlas_collector_source_stale > 0
+        for: 5m
+        labels:
+          severity: warning
+          service: model-atlas
+        annotations:
+          summary: A production evidence collector source is stale.
+      - alert: ModelAtlasReleaseReviewRequired
+        expr: model_atlas_release_needs_review > 0
+        for: 1m
+        labels:
+          severity: critical
+          service: model-atlas
+        annotations:
+          summary: A release decision requires operational review.
+      - alert: ModelAtlasGateStale
+        expr: model_atlas_gate_stale > 0
+        for: 5m
+        labels:
+          severity: warning
+          service: model-atlas
+        annotations:
+          summary: A Gate evaluation requires reevaluation.
+      - alert: ModelAtlasOperationalSnapshotStale
+        expr: model_atlas_observability_snapshot_total > 0 and model_atlas_observability_snapshot_age_seconds > 180
+        for: 2m
+        labels:
+          severity: critical
+          service: model-atlas
+        annotations:
+          summary: Durable operational snapshots are no longer arriving on schedule.
+      - alert: ModelAtlasOperationalSLOBreached
+        expr: model_atlas_slo_breached > 0
+        for: 2m
+        labels:
+          severity: critical
+          service: model-atlas
+        annotations:
+          summary: An explicit Model Atlas identity or worker SLO is below objective.
+      - alert: ModelAtlasPagingDeliveryFailed
+        expr: model_atlas_operational_delivery_failed > 0
+        for: 1m
+        labels:
+          severity: critical
+          service: model-atlas
+        annotations:
+          summary: A durable paging delivery failed permanently.
+      - alert: ModelAtlasInactiveProviderToken
+        expr: model_atlas_browser_session_inactive_provider_token > 0
+        for: 1m
+        labels:
+          severity: critical
+          service: model-atlas
+        annotations:
+          summary: An inactive browser session still retains provider token material.
+      - alert: ModelAtlasBrowserSessionRetentionDue
+        expr: model_atlas_browser_session_retention_due > 0
+        for: 5m
+        labels:
+          severity: warning
+          service: model-atlas
+        annotations:
+          summary: Inactive browser sessions are beyond retention policy.

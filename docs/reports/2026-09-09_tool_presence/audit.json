@@ -1,0 +1,968 @@
+{
+  "assessment": "share_with_caveats_local_diagnostic_only",
+  "experiments": [
+    {
+      "label": "development_v2",
+      "sha256": "a314ae6f3d8061e3f033356a0aa5e7a10ace0d2ea4148a603bdea5c668983f2d",
+      "source_paths_verified": {
+        "reference_workload/tool_fault_baseline.py": "backend\\app\\reference_workload\\tool_fault_baseline.py",
+        "reference_workload/tool_fault_cases.py": "backend\\app\\reference_workload\\tool_fault_cases.py",
+        "reference_workload/runtime_matrix.py": "backend\\app\\reference_workload\\runtime_matrix.py",
+        "services/inference_adapters/openai_compatible.py": "backend\\app\\services\\inference_adapters\\openai_compatible.py",
+        "services/tool_call_contract.py": "backend\\app\\services\\tool_call_contract.py",
+        "services/tool_execution.py": "backend\\app\\services\\tool_execution.py",
+        "services/tool_fault_scenarios.py": "backend\\app\\services\\tool_fault_scenarios.py",
+        "services/benchmark_execution.py": "backend\\app\\services\\benchmark_execution.py",
+        "services/tool_argument_generation.py": "backend\\app\\services\\tool_argument_generation.py",
+        "services/inference_adapters/two_stage_tool.py": "backend\\app\\services\\inference_adapters\\two_stage_tool.py",
+        "reference_workload/tool_two_stage_diagnostic.py": "backend\\app\\reference_workload\\tool_two_stage_diagnostic.py",
+        "reference_workload/tool_argument_equivalence.py": "backend\\app\\reference_workload\\tool_argument_equivalence.py",
+        "reference_workload/tool_default_semantics_diagnostic.py": "backend\\app\\reference_workload\\tool_default_semantics_diagnostic.py",
+        "services/inference_adapters/presence_aware_tool.py": "backend\\app\\services\\inference_adapters\\presence_aware_tool.py",
+        "reference_workload/tool_presence_diagnostic.py": "reference_workload\\diagnostics\\source_snapshots\\tool_presence_diagnostic\\b7d943862520ff973ac98074f6db8b0cf920749cb22a445ceefd29c69dd58c28.py"
+      },
+      "started_at": "2026-09-09T08:54:26.841271+00:00",
+      "completed_at": "2026-09-09T08:55:38.381606+00:00",
+      "observations": 48,
+      "http_calls": 80,
+      "replay_traces": 144,
+      "summary": [
+        {
+          "variant": "baseline",
+          "n": 16,
+          "selection": 16,
+          "exact": 14,
+          "equivalent": 16,
+          "default_only": 2,
+          "measured_usage_n": 16,
+          "total_tokens": 14385,
+          "median_latency_ms": 847.3217999562621
+        },
+        {
+          "variant": "candidate_v1",
+          "n": 16,
+          "selection": 16,
+          "exact": 12,
+          "equivalent": 12,
+          "default_only": 0,
+          "measured_usage_n": 16,
+          "total_tokens": 18844,
+          "median_latency_ms": 1320.9348000236787
+        },
+        {
+          "variant": "candidate_v2",
+          "n": 16,
+          "selection": 16,
+          "exact": 12,
+          "equivalent": 12,
+          "default_only": 0,
+          "measured_usage_n": 16,
+          "total_tokens": 21200,
+          "median_latency_ms": 1317.4574499716982
+        }
+      ],
+      "strata": [
+        {
+          "variant": "baseline",
+          "stratum": "ticket_explicit_normal",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "ticket_explicit_normal",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v2",
+          "stratum": "ticket_explicit_normal",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "ticket_omitted_default",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v2",
+          "stratum": "ticket_omitted_default",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "baseline",
+          "stratum": "ticket_omitted_default",
+          "n": 4,
+          "exact": 2,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v2",
+          "stratum": "ticket_explicit_high",
+          "n": 4,
+          "exact": 0,
+          "equivalent": 0
+        },
+        {
+          "variant": "baseline",
+          "stratum": "ticket_explicit_high",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "ticket_explicit_high",
+          "n": 4,
+          "exact": 0,
+          "equivalent": 0
+        },
+        {
+          "variant": "baseline",
+          "stratum": "ticket_explicit_low",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "ticket_explicit_low",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v2",
+          "stratum": "ticket_explicit_low",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        }
+      ],
+      "required_only_stage2_body_matches": 0,
+      "model_null_omission_count": {},
+      "within_candidate_transitions": {
+        "candidate_v1/equivalent:1->1": 12,
+        "candidate_v2/equivalent:1->1": 12,
+        "candidate_v2/equivalent:1->0": 4,
+        "candidate_v1/equivalent:1->0": 4
+      },
+      "finish_reasons": {
+        "stop": 80
+      },
+      "errors": [],
+      "non_equivalent_rows": [
+        {
+          "id": "TFB-203",
+          "variant": "candidate_v2",
+          "trial": 1,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"Restore billing webhook\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-203",
+          "variant": "candidate_v1",
+          "trial": 1,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"Restore billing webhook\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-203",
+          "variant": "candidate_v1",
+          "trial": 2,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"Restore billing webhook\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-203",
+          "variant": "candidate_v2",
+          "trial": 2,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"Restore billing webhook\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-203",
+          "variant": "candidate_v1",
+          "trial": 1,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"Restore billing webhook\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-203",
+          "variant": "candidate_v2",
+          "trial": 1,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"Restore billing webhook\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-203",
+          "variant": "candidate_v2",
+          "trial": 2,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"Restore billing webhook\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-203",
+          "variant": "candidate_v1",
+          "trial": 2,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"Restore billing webhook\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        }
+      ]
+    },
+    {
+      "label": "development_v3",
+      "sha256": "ae831f9c65194d7cbe758ecc2614c19266d02f430943dcd01bf5af0142d752ac",
+      "source_paths_verified": {
+        "reference_workload/tool_fault_baseline.py": "backend\\app\\reference_workload\\tool_fault_baseline.py",
+        "reference_workload/tool_fault_cases.py": "backend\\app\\reference_workload\\tool_fault_cases.py",
+        "reference_workload/runtime_matrix.py": "backend\\app\\reference_workload\\runtime_matrix.py",
+        "services/inference_adapters/openai_compatible.py": "backend\\app\\services\\inference_adapters\\openai_compatible.py",
+        "services/tool_call_contract.py": "backend\\app\\services\\tool_call_contract.py",
+        "services/tool_execution.py": "backend\\app\\services\\tool_execution.py",
+        "services/tool_fault_scenarios.py": "backend\\app\\services\\tool_fault_scenarios.py",
+        "services/benchmark_execution.py": "backend\\app\\services\\benchmark_execution.py",
+        "services/tool_argument_generation.py": "backend\\app\\services\\tool_argument_generation.py",
+        "services/inference_adapters/two_stage_tool.py": "backend\\app\\services\\inference_adapters\\two_stage_tool.py",
+        "reference_workload/tool_two_stage_diagnostic.py": "backend\\app\\reference_workload\\tool_two_stage_diagnostic.py",
+        "reference_workload/tool_argument_equivalence.py": "backend\\app\\reference_workload\\tool_argument_equivalence.py",
+        "reference_workload/tool_default_semantics_diagnostic.py": "backend\\app\\reference_workload\\tool_default_semantics_diagnostic.py",
+        "services/inference_adapters/presence_aware_tool.py": "backend\\app\\services\\inference_adapters\\presence_aware_tool.py",
+        "services/inference_adapters/nullable_presence_tool.py": "backend\\app\\services\\inference_adapters\\nullable_presence_tool.py",
+        "reference_workload/tool_presence_diagnostic.py": "backend\\app\\reference_workload\\tool_presence_diagnostic.py"
+      },
+      "started_at": "2026-09-09T09:01:40.992250+00:00",
+      "completed_at": "2026-09-09T09:02:52.824384+00:00",
+      "observations": 48,
+      "http_calls": 80,
+      "replay_traces": 144,
+      "summary": [
+        {
+          "variant": "baseline",
+          "n": 16,
+          "selection": 16,
+          "exact": 14,
+          "equivalent": 16,
+          "default_only": 2,
+          "measured_usage_n": 16,
+          "total_tokens": 14385,
+          "median_latency_ms": 846.5932500548661
+        },
+        {
+          "variant": "candidate_v1",
+          "n": 16,
+          "selection": 16,
+          "exact": 12,
+          "equivalent": 12,
+          "default_only": 0,
+          "measured_usage_n": 16,
+          "total_tokens": 18844,
+          "median_latency_ms": 1302.4537499877624
+        },
+        {
+          "variant": "candidate_v3",
+          "n": 16,
+          "selection": 16,
+          "exact": 16,
+          "equivalent": 16,
+          "default_only": 0,
+          "measured_usage_n": 16,
+          "total_tokens": 20228,
+          "median_latency_ms": 1336.7687999852933
+        }
+      ],
+      "strata": [
+        {
+          "variant": "baseline",
+          "stratum": "ticket_explicit_normal",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "ticket_explicit_normal",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v3",
+          "stratum": "ticket_explicit_normal",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "ticket_omitted_default",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v3",
+          "stratum": "ticket_omitted_default",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "baseline",
+          "stratum": "ticket_omitted_default",
+          "n": 4,
+          "exact": 2,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v3",
+          "stratum": "ticket_explicit_high",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "baseline",
+          "stratum": "ticket_explicit_high",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "ticket_explicit_high",
+          "n": 4,
+          "exact": 0,
+          "equivalent": 0
+        },
+        {
+          "variant": "baseline",
+          "stratum": "ticket_explicit_low",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "ticket_explicit_low",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v3",
+          "stratum": "ticket_explicit_low",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        }
+      ],
+      "required_only_stage2_body_matches": 0,
+      "model_null_omission_count": {
+        "candidate_v3": 4
+      },
+      "within_candidate_transitions": {
+        "candidate_v1/equivalent:1->1": 12,
+        "candidate_v3/equivalent:1->1": 16,
+        "candidate_v1/equivalent:1->0": 4
+      },
+      "finish_reasons": {
+        "stop": 80
+      },
+      "errors": [],
+      "non_equivalent_rows": [
+        {
+          "id": "TFB-203",
+          "variant": "candidate_v1",
+          "trial": 1,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"Restore billing webhook\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-203",
+          "variant": "candidate_v1",
+          "trial": 2,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"Restore billing webhook\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-203",
+          "variant": "candidate_v1",
+          "trial": 1,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"Restore billing webhook\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-203",
+          "variant": "candidate_v1",
+          "trial": 2,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"Restore billing webhook\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        }
+      ]
+    },
+    {
+      "label": "fresh_v3",
+      "sha256": "c7d745ad01978de0ce70d8f88b20e5a383e599bfa0367a04fef291943214241a",
+      "source_paths_verified": {
+        "reference_workload/tool_fault_baseline.py": "backend\\app\\reference_workload\\tool_fault_baseline.py",
+        "reference_workload/tool_fault_cases.py": "backend\\app\\reference_workload\\tool_fault_cases.py",
+        "reference_workload/runtime_matrix.py": "backend\\app\\reference_workload\\runtime_matrix.py",
+        "services/inference_adapters/openai_compatible.py": "backend\\app\\services\\inference_adapters\\openai_compatible.py",
+        "services/tool_call_contract.py": "backend\\app\\services\\tool_call_contract.py",
+        "services/tool_execution.py": "backend\\app\\services\\tool_execution.py",
+        "services/tool_fault_scenarios.py": "backend\\app\\services\\tool_fault_scenarios.py",
+        "services/benchmark_execution.py": "backend\\app\\services\\benchmark_execution.py",
+        "services/tool_argument_generation.py": "backend\\app\\services\\tool_argument_generation.py",
+        "services/inference_adapters/two_stage_tool.py": "backend\\app\\services\\inference_adapters\\two_stage_tool.py",
+        "reference_workload/tool_two_stage_diagnostic.py": "backend\\app\\reference_workload\\tool_two_stage_diagnostic.py",
+        "reference_workload/tool_argument_equivalence.py": "backend\\app\\reference_workload\\tool_argument_equivalence.py",
+        "reference_workload/tool_default_semantics_diagnostic.py": "backend\\app\\reference_workload\\tool_default_semantics_diagnostic.py",
+        "services/inference_adapters/presence_aware_tool.py": "backend\\app\\services\\inference_adapters\\presence_aware_tool.py",
+        "services/inference_adapters/nullable_presence_tool.py": "backend\\app\\services\\inference_adapters\\nullable_presence_tool.py",
+        "reference_workload/tool_presence_diagnostic.py": "backend\\app\\reference_workload\\tool_presence_diagnostic.py"
+      },
+      "started_at": "2026-09-09T09:03:19.105676+00:00",
+      "completed_at": "2026-09-09T09:07:43.791210+00:00",
+      "observations": 168,
+      "http_calls": 280,
+      "replay_traces": 504,
+      "summary": [
+        {
+          "variant": "baseline",
+          "n": 56,
+          "selection": 54,
+          "exact": 32,
+          "equivalent": 35,
+          "default_only": 3,
+          "measured_usage_n": 56,
+          "total_tokens": 50804,
+          "median_latency_ms": 865.1929500047117
+        },
+        {
+          "variant": "candidate_v1",
+          "n": 56,
+          "selection": 54,
+          "exact": 50,
+          "equivalent": 50,
+          "default_only": 0,
+          "measured_usage_n": 56,
+          "total_tokens": 67356,
+          "median_latency_ms": 1384.741150017362
+        },
+        {
+          "variant": "candidate_v3",
+          "n": 56,
+          "selection": 54,
+          "exact": 50,
+          "equivalent": 50,
+          "default_only": 0,
+          "measured_usage_n": 56,
+          "total_tokens": 70062,
+          "median_latency_ms": 1386.8223000317812
+        }
+      ],
+      "strata": [
+        {
+          "variant": "baseline",
+          "stratum": "ticket_explicit_high",
+          "n": 8,
+          "exact": 6,
+          "equivalent": 6
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "ticket_explicit_high",
+          "n": 8,
+          "exact": 8,
+          "equivalent": 8
+        },
+        {
+          "variant": "candidate_v3",
+          "stratum": "ticket_explicit_high",
+          "n": 8,
+          "exact": 8,
+          "equivalent": 8
+        },
+        {
+          "variant": "candidate_v3",
+          "stratum": "ticket_explicit_low",
+          "n": 8,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "baseline",
+          "stratum": "ticket_explicit_low",
+          "n": 8,
+          "exact": 2,
+          "equivalent": 2
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "ticket_explicit_low",
+          "n": 8,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "ticket_explicit_normal",
+          "n": 8,
+          "exact": 8,
+          "equivalent": 8
+        },
+        {
+          "variant": "candidate_v3",
+          "stratum": "ticket_explicit_normal",
+          "n": 8,
+          "exact": 8,
+          "equivalent": 8
+        },
+        {
+          "variant": "baseline",
+          "stratum": "ticket_explicit_normal",
+          "n": 8,
+          "exact": 6,
+          "equivalent": 8
+        },
+        {
+          "variant": "baseline",
+          "stratum": "ticket_omitted_default",
+          "n": 8,
+          "exact": 6,
+          "equivalent": 7
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "ticket_omitted_default",
+          "n": 8,
+          "exact": 8,
+          "equivalent": 8
+        },
+        {
+          "variant": "candidate_v3",
+          "stratum": "ticket_omitted_default",
+          "n": 8,
+          "exact": 8,
+          "equivalent": 8
+        },
+        {
+          "variant": "candidate_v3",
+          "stratum": "lookup_policy",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "baseline",
+          "stratum": "lookup_policy",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "lookup_policy",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "baseline",
+          "stratum": "lookup_internal_document",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "lookup_internal_document",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v3",
+          "stratum": "lookup_internal_document",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "search_incidents",
+          "n": 8,
+          "exact": 6,
+          "equivalent": 6
+        },
+        {
+          "variant": "candidate_v3",
+          "stratum": "search_incidents",
+          "n": 8,
+          "exact": 6,
+          "equivalent": 6
+        },
+        {
+          "variant": "baseline",
+          "stratum": "search_incidents",
+          "n": 8,
+          "exact": 0,
+          "equivalent": 0
+        },
+        {
+          "variant": "baseline",
+          "stratum": "lookup_customer",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "lookup_customer",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v3",
+          "stratum": "lookup_customer",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v1",
+          "stratum": "summarize_thread",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "candidate_v3",
+          "stratum": "summarize_thread",
+          "n": 4,
+          "exact": 4,
+          "equivalent": 4
+        },
+        {
+          "variant": "baseline",
+          "stratum": "summarize_thread",
+          "n": 4,
+          "exact": 0,
+          "equivalent": 0
+        }
+      ],
+      "required_only_stage2_body_matches": 24,
+      "model_null_omission_count": {
+        "candidate_v3": 12
+      },
+      "within_candidate_transitions": {
+        "candidate_v1/equivalent:1->1": 34,
+        "candidate_v3/equivalent:1->1": 33,
+        "candidate_v1/equivalent:0->1": 16,
+        "candidate_v3/equivalent:0->1": 17,
+        "candidate_v1/equivalent:0->0": 6,
+        "candidate_v3/equivalent:0->0": 6
+      },
+      "finish_reasons": {
+        "stop": 280
+      },
+      "errors": [],
+      "non_equivalent_rows": [
+        {
+          "id": "TFB-302",
+          "variant": "baseline",
+          "trial": 1,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"Recover export callback\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-302",
+          "variant": "baseline",
+          "trial": 2,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"Recover export callback\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-303",
+          "variant": "baseline",
+          "trial": 1,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"priority\":\"low\",\"query\":\"로컬 모의 티켓의 query를 'Archive monthly export'로 설정해 주세요.\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-303",
+          "variant": "baseline",
+          "trial": 2,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"priority\":\"low\",\"query\":\"로컬 모의 티켓의 query를 'Archive monthly export'로 설정해 주세요.\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-304",
+          "variant": "baseline",
+          "trial": 1,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"Clean up sandbox labels query='priority='low'인 모의 티켓을 새로 만들어 주세요. query에는 'Clean up sandbox labels'를 그대로 넣어 주세요. 우선순위를 생략하라는 요청이 아닙니다.\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-304",
+          "variant": "candidate_v1",
+          "trial": 1,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"Clean up sandbox labels\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-304",
+          "variant": "candidate_v3",
+          "trial": 1,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"Clean up sandbox labels\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-304",
+          "variant": "candidate_v1",
+          "trial": 2,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"Clean up sandbox labels\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-304",
+          "variant": "candidate_v3",
+          "trial": 2,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"Clean up sandbox labels\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-304",
+          "variant": "baseline",
+          "trial": 2,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"Clean up sandbox labels query에는 'Clean up sandbox labels'를 그대로 넣어 주세요. 우선순위를 생략하라는 요청이 아닙니다.\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-304",
+          "variant": "candidate_v3",
+          "trial": 1,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"Clean up sandbox labels\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-304",
+          "variant": "baseline",
+          "trial": 1,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"priority\":\"low\",\"query\":\"Clean up sandbox labels query에는 'Clean up sandbox labels'를 그대로 넣어 주세요. 우선순위는 생략됩니다.\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-304",
+          "variant": "candidate_v1",
+          "trial": 1,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"Clean up sandbox labels\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-304",
+          "variant": "baseline",
+          "trial": 2,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"priority\":\"low\",\"query\":\"Clean up sandbox labels query에는 'Clean up sandbox labels'를 그대로 넣어 주세요. 우선순위는 생략됩니다.\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-304",
+          "variant": "candidate_v1",
+          "trial": 2,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"Clean up sandbox labels\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-304",
+          "variant": "candidate_v3",
+          "trial": 2,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"Clean up sandbox labels\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-308",
+          "variant": "baseline",
+          "trial": 2,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"priority\":null,\"query\":\"Review expired preview links\"},\"tool_name\":\"create_ticket\"}",
+          "reason": "guard_rejected"
+        },
+        {
+          "id": "TFB-311",
+          "variant": "candidate_v1",
+          "trial": 1,
+          "order": "registered",
+          "output": "{\"arguments\":{\"document_id\":\"storage read-only / zone-4\"},\"tool_name\":\"lookup_internal_document\"}",
+          "reason": "guard_rejected"
+        },
+        {
+          "id": "TFB-311",
+          "variant": "candidate_v3",
+          "trial": 1,
+          "order": "registered",
+          "output": "{\"arguments\":{\"document_id\":\"storage read-only / zone-4\"},\"tool_name\":\"lookup_internal_document\"}",
+          "reason": "guard_rejected"
+        },
+        {
+          "id": "TFB-311",
+          "variant": "baseline",
+          "trial": 1,
+          "order": "registered",
+          "output": "{\"arguments\":{\"document_id\":\"docs/tool_calling_evaluation.md\"},\"tool_name\":\"lookup_internal_document\"}",
+          "reason": "wrong_tool"
+        },
+        {
+          "id": "TFB-311",
+          "variant": "candidate_v3",
+          "trial": 2,
+          "order": "registered",
+          "output": "{\"arguments\":{\"document_id\":\"storage read-only / zone-4\"},\"tool_name\":\"lookup_internal_document\"}",
+          "reason": "guard_rejected"
+        },
+        {
+          "id": "TFB-311",
+          "variant": "baseline",
+          "trial": 2,
+          "order": "registered",
+          "output": "{\"arguments\":{\"document_id\":\"docs/tool_calling_evaluation.md\"},\"tool_name\":\"lookup_internal_document\"}",
+          "reason": "wrong_tool"
+        },
+        {
+          "id": "TFB-311",
+          "variant": "candidate_v1",
+          "trial": 2,
+          "order": "registered",
+          "output": "{\"arguments\":{\"document_id\":\"storage read-only / zone-4\"},\"tool_name\":\"lookup_internal_document\"}",
+          "reason": "guard_rejected"
+        },
+        {
+          "id": "TFB-311",
+          "variant": "baseline",
+          "trial": 1,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"과거 장애 이력만 검색해 주세요. query는 'storage read-only / zone-4'로 지정합니다.\"},\"tool_name\":\"search_incidents\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-311",
+          "variant": "baseline",
+          "trial": 2,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"과거 장애 이력만 검색해 주세요. query는 'storage read-only / zone-4'로 지정합니다.\"},\"tool_name\":\"search_incidents\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-312",
+          "variant": "baseline",
+          "trial": 1,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"장애 검색 query에 'scheduler lag > 30s'를 전달해 기존 장애 기록을 찾아 주세요. 문서 ID 조회나 요약 요청은 아닙니다.\"},\"tool_name\":\"search_incidents\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-312",
+          "variant": "baseline",
+          "trial": 2,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"장애 검색 query에 'scheduler lag > 30s'를 전달해 기존 장애 기록을 찾아 주세요. 문서 ID 조회나 요약 요청은 아닙니다.\"},\"tool_name\":\"search_incidents\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-312",
+          "variant": "baseline",
+          "trial": 1,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"장애 검색 query에 'scheduler lag > 30s'를 전달해 기존 장애 기록을 찾아 주세요. 문서 ID 조회나 요약 요청은 아닙니다.\"},\"tool_name\":\"search_incidents\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-312",
+          "variant": "baseline",
+          "trial": 2,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"장애 검색 query에 'scheduler lag > 30s'를 전달해 기존 장애 기록을 찾아 주세요. 문서 ID 조회나 요약 요청은 아닙니다.\"},\"tool_name\":\"search_incidents\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-314",
+          "variant": "baseline",
+          "trial": 1,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"대화 요약 도구를 호출해 주세요. query는 'Yuna: alert acknowledged. Tae: rollback completed.'입니다.\"},\"tool_name\":\"summarize_thread\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-314",
+          "variant": "baseline",
+          "trial": 2,
+          "order": "registered",
+          "output": "{\"arguments\":{\"query\":\"대화 요약 도구를 호출해 주세요. query는 'Yuna: alert acknowledged. Tae: rollback completed.'입니다.\"},\"tool_name\":\"summarize_thread\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-314",
+          "variant": "baseline",
+          "trial": 1,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"대화 요약 도구를 호출해 주세요. query는 'Yuna: alert acknowledged. Tae: rollback completed.'입니다. 이 문자열을 직접 요약해서 바꾸지 마세요.\"},\"tool_name\":\"summarize_thread\"}",
+          "reason": "argument_values_differ"
+        },
+        {
+          "id": "TFB-314",
+          "variant": "baseline",
+          "trial": 2,
+          "order": "reversed",
+          "output": "{\"arguments\":{\"query\":\"대화 요약 도구를 호출해 주세요. query는 'Yuna: alert acknowledged. Tae: rollback completed.'입니다. 이 문자열을 직접 요약해서 바꾸지 마세요.\"},\"tool_name\":\"summarize_thread\"}",
+          "reason": "argument_values_differ"
+        }
+      ]
+    }
+  ],
+  "caveats": [
+    "Prompt-only v2 failure is retained; v3 was selected on development cases before fresh evaluation.",
+    "Null is a model-owned omission marker in v3, not a repaired argument or expected-value fallback.",
+    "Fresh cases are locally authored and unreviewed; repeated trials are not independent requests.",
+    "Stage1 and required-only stage2 requests are unchanged, but repeated model outputs can vary.",
+    "Local default equivalence does not establish real content, authorization or general semantic correctness.",
+    "Latency is descriptive and cache/host-dependent; no default or Gate promotion occurred."
+  ]
+}

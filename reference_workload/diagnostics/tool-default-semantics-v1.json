@@ -1,0 +1,93 @@
+{
+  "schema_version": "tool-fault-baseline-cases-v1",
+  "authority": "local_authored_diagnostic",
+  "human_reviewed": false,
+  "gate_evidence": false,
+  "corpus_hash": "2772ab9a898529c052337ad6d06e4f0950333a316d72d79778dbc6cfe8cf0642",
+  "cases": [
+    {
+      "id": "TFB-201",
+      "request": "새 로컬 모의 지원 티켓을 등록해 주세요. query는 'Renew staging certificate', priority는 'normal'로 명시해 주세요.",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {"query": "Renew staging certificate", "priority": "normal"}
+    },
+    {
+      "id": "TFB-202",
+      "request": "query가 'Replace broken dashboard link'인 모의 티켓을 하나 만들어 주세요. 우선순위 인자는 지정하지 말고 도구 기본값을 사용해 주세요.",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {"query": "Replace broken dashboard link"}
+    },
+    {
+      "id": "TFB-203",
+      "request": "새 모의 티켓 생성 요청입니다. priority는 'high'로, query는 'Restore billing webhook'으로 설정해 주세요. 우선순위를 기본값으로 바꾸지 마세요.",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {"query": "Restore billing webhook", "priority": "high"}
+    },
+    {
+      "id": "TFB-204",
+      "request": "모의 지원 티켓을 생성해 주세요. query는 'Remove obsolete test account'이며 priority에는 'low'를 명시해 주세요.",
+      "expected_tool": "create_ticket",
+      "expected_arguments": {"query": "Remove obsolete test account", "priority": "low"}
+    },
+    {
+      "id": "TFB-205",
+      "request": "정책 검색 도구로 규정을 확인해 주세요. 검색어 query는 'Vendor access / quarterly'입니다. 고객 계정을 조회하는 요청이 아닙니다.",
+      "expected_tool": "lookup_policy",
+      "expected_arguments": {"query": "Vendor access / quarterly"}
+    },
+    {
+      "id": "TFB-206",
+      "request": "아직 조치할 작업은 없습니다. 정책 조회 도구의 query에 'Key rotation: staging'을 그대로 전달해 주세요. 새 티켓은 만들지 마세요.",
+      "expected_tool": "lookup_policy",
+      "expected_arguments": {"query": "Key rotation: staging"}
+    },
+    {
+      "id": "TFB-207",
+      "request": "내부 문서 원문을 가져와 주세요. document_id는 'docs/runtime_reliability.md'입니다. 요약 요청이나 장애 검색 요청은 아닙니다.",
+      "expected_tool": "lookup_internal_document",
+      "expected_arguments": {"document_id": "docs/runtime_reliability.md"}
+    },
+    {
+      "id": "TFB-208",
+      "request": "내부 문서 조회 도구에서 'docs/workload_isolation.md'를 document_id로 조회해 주세요. 파일 경로를 검색어로 바꾸지 마세요.",
+      "expected_tool": "lookup_internal_document",
+      "expected_arguments": {"document_id": "docs/workload_isolation.md"}
+    },
+    {
+      "id": "TFB-209",
+      "request": "과거 장애 이력을 검색하는 요청입니다. query를 'queue backlog: region-3'로 지정해 주세요. 새 장애 티켓을 등록하지 마세요.",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {"query": "queue backlog: region-3"}
+    },
+    {
+      "id": "TFB-210",
+      "request": "query에는 'TLS handshake / node-8'을 사용해 과거 장애 이력을 검색해 주세요. 정책이나 문서 원문 조회가 아닙니다.",
+      "expected_tool": "search_incidents",
+      "expected_arguments": {"query": "TLS handshake / node-8"}
+    },
+    {
+      "id": "TFB-211",
+      "request": "고객 계정 기록을 조회하려고 합니다. query 값은 'CUST-9081'입니다. 이 고객의 지원 등급과 계약 상태를 확인해 주세요.",
+      "expected_tool": "lookup_customer",
+      "expected_arguments": {"query": "CUST-9081"}
+    },
+    {
+      "id": "TFB-212",
+      "request": "고객 조회 도구에 query 'Haneul Research, Ltd.'를 전달해 주세요. 회사 이름의 쉼표와 마침표를 유지해 주세요.",
+      "expected_tool": "lookup_customer",
+      "expected_arguments": {"query": "Haneul Research, Ltd."}
+    },
+    {
+      "id": "TFB-213",
+      "request": "대화 요약 도구에 전달할 query는 'Sora: cache cleared. Dae: metrics recovered.'입니다. 지금 직접 요약문을 작성하지 마세요.",
+      "expected_tool": "summarize_thread",
+      "expected_arguments": {"query": "Sora: cache cleared. Dae: metrics recovered."}
+    },
+    {
+      "id": "TFB-214",
+      "request": "요약 도구를 호출해 주세요. query는 'Ops: pause rollout at 14:20. QA: retest on Friday.'입니다. 새 티켓 생성은 필요 없습니다.",
+      "expected_tool": "summarize_thread",
+      "expected_arguments": {"query": "Ops: pause rollout at 14:20. QA: retest on Friday."}
+    }
+  ]
+}
