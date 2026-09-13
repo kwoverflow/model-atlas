@@ -71,7 +71,7 @@ def inspect_payload(name: str, content: bytes) -> list[dict[str, str]]:
             part in EXCLUDED_DIRECTORIES or part.startswith(".venv")
             for part in path.parts
         )
-        or (path.name.startswith(".env") and path.name != ".env.example")
+        or (path.name.startswith(".env") and not path.name.endswith(".example"))
         or ("private" in path.name and path.suffix == ".pem")
         or path.name in {"id_rsa", "id_dsa", "id_ecdsa", "id_ed25519"}
         or path.suffix in EXCLUDED_SUFFIXES

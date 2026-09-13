@@ -36,6 +36,12 @@ class PublicationAuditTests(unittest.TestCase):
 
     def test_allows_documented_development_examples(self):
         self.assertEqual(
+            inspect_payload("deploy/idp/.env.keycloak.example", b"SECRET=replace-me"), []
+        )
+        self.assertEqual(
+            inspect_payload("deploy/observability/.env.observability.example", b""), []
+        )
+        self.assertEqual(
             inspect_payload(".env.example", b"PASSWORD=local-review-only"), []
         )
         self.assertEqual(
