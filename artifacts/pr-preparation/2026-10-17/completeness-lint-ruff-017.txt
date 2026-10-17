@@ -1,0 +1,4 @@
+Downloading ruff (9.6MiB)
+ Downloaded ruff
+Installed 1 package in 275ms
+All checks passed!

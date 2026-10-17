@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "documents": 10,
+  "local_targets_checked": 179,
+  "broken": [],
+  "document_sha256": {
+    "README.md": "62a8cf4dd264bd15d61d45c1e1ed06cc4494ae5c81467caefe31e2c15a0bf3ef",
+    "CONTRIBUTING.md": "76d3f3e4efb856a6319e3690af435cec69d3bf8660ae008e2b6cb588963e88b3",
+    "SECURITY.md": "3fcb1418ba63af34b0bed31a7f879c2d06fe899ce1daea4a0d51738c2fc454c8",
+    "docs/PROJECT_GUIDE_KO.md": "8254b498d71aa478a3b1562120b4bfc28cb34597d16445a72e9c6373a4e4c2c1",
+    "docs/personal_assistant_review_ko.md": "4928bc63f947145a5c5df0839ce40d68f2409e4bfaaacf9e6281e0f8d54877ff",
+    "docs/releases/1.0.0/README.md": "4520ab35df22ea008f18679bbdafefc98f898ad2c76a61b192a382bb520a6744",
+    "docs/releases/1.0.0/EVIDENCE_INDEX_KO.md": "81f443cc586088fb2d2f70c465789ce3479e2a0e00098ca877527f69453e6317",
+    "docs/pull-requests/1.0-local-review.md": "8e45c27249e629192e4dd2058c93217f0d92812ae039ea298b413cfeaca2b4e0",
+    "docs/reports/2026-10-16_release_1_0_security_ko.md": "fd3f5f5d9e542acd026b2f279b046b6d01ddf1d3f41a62c124d50d6c5bebd6e3",
+    "docs/reports/2026-10-16_release_1_0_closeout_ko.md": "646def440bafde7ecedfb2f92169d720fd72ad4dc5dc5f88e6249ece099e3ba7"
+  },
+  "scope": "Conventional local Markdown link targets only; external URLs and fragment IDs not validated."
+}

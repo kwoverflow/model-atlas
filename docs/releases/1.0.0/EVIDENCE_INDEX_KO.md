@@ -37,9 +37,12 @@ Git index를 별도 디렉터리에 내보내 검사했다. Python 의존성은 
 | [프런트 테스트](../../../artifacts/pr-preparation/2026-10-17/frontend-tests.txt) / [빌드](../../../artifacts/pr-preparation/2026-10-17/frontend-build.txt) | 39 통과 / production build 통과 |
 | [npm 전체 감사](../../../artifacts/pr-preparation/2026-10-17/npm-audit.json) / [실행 감사](../../../artifacts/pr-preparation/2026-10-17/npm-runtime-audit.json) | 당시 알려진 취약점 0건 |
 | [Python 감사](../../../artifacts/pr-preparation/2026-10-17/python-audit.json) / [검사 pin 목록](../../../artifacts/pr-preparation/2026-10-17/python-audit-requirements.txt) | 호스트 제삼자 패키지 50개, 취약점 0건 |
+| [V6 고정 규칙 재검사](../../../artifacts/pr-preparation/2026-10-17/completeness-lint-ruff-017.txt) | Ruff 0.17.1에서도 기존 정책 통과 |
 
 타입·린트 결과도 같은 디렉터리에 선별 보존한다. 초기 린트 검사에서 발견한 실행 위치 의존성은
-CI 명령의 작업 폴더를 맞춰 해결했다. 동결 실험 소스를 정렬하거나 규칙을 비활성화하지 않았다.
+CI 명령의 작업 폴더를 맞춰 해결했다. 이후 첫 원격 CI에서는 새 Ruff 0.17의 기본 규칙 변경으로
+V6 린트가 실패했다. [명시적 V6 설정](../../../tools/ruff-frozen-completeness.toml)은 당시 Ruff 0.15의
+기본 규칙 `E4/E7/E9/F`를 보존한다. 동결 소스·해시는 바꾸지 않으며 다른 코드의 린트 정책도 유지한다.
 문서 링크 검사와 최종 공개 패턴 검사는 준비 중인 정확한 소스·index를 대상으로 별도 수행했다.
 원격 Linux CI의 최종 상태는 GitHub PR Checks에서 확인한다.
 

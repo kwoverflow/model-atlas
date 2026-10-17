@@ -93,7 +93,7 @@ jobs:
         run: python -m pytest experiments/personal_assistant_field_grounding -q
       - name: Lint complete creation evidence comparison
         working-directory: .
-        run: ruff check experiments/personal_assistant_completeness
+        run: ruff check --config tools/ruff-frozen-completeness.toml experiments/personal_assistant_completeness
       - name: Lint incomplete transport evidence audit
         working-directory: .
         run: ruff check --config backend/pyproject.toml tools/audit_personal_assistant_completeness.py
