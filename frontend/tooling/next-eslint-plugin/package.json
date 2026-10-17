@@ -1,0 +1,10 @@
+{
+  "name": "@next/eslint-plugin-next",
+  "version": "16.4.2-model-atlas.1",
+  "private": true,
+  "description": "Pinned Next.js lint rules with literal-only project root resolution",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "dependencies": { "@eslint-community/eslint-utils": "4.9.1" }
+}

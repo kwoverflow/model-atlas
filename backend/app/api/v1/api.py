@@ -13,6 +13,7 @@ from app.api.v1.routes import (
     model_validation,
     operations,
     operator_identity,
+    personal_assistant,
     prompt_regressions,
     rag_evaluation,
     recommendations,
@@ -29,6 +30,9 @@ from app.api.v1.routes import (
 )
 
 api_router = APIRouter()
+api_router.include_router(
+    personal_assistant.router, prefix="/personal-assistant", tags=["personal-assistant-review"]
+)
 api_router.include_router(
     request_workflows.router, prefix="/request-workflows", tags=["request-workflows"]
 )

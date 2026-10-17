@@ -1,0 +1,281 @@
+{
+  "schema_version": "mvp-closeout-verification-v1",
+  "application_version": "1.0.0",
+  "release_status": "LOCAL_REVIEW_1_0_READY",
+  "checks": [
+    {
+      "name": "known_model_regression",
+      "status": "passed",
+      "sha256": "bb6001ffddab774633fa0e5d556c5ae7235e54de96c44df89bc8177fd6bba514",
+      "calls": 328,
+      "new_holdout": false
+    },
+    {
+      "name": "security-v1/replay/verification.json",
+      "status": "passed",
+      "path": "artifacts/personal-assistant-release/2026-10-16/security-v1/replay/verification.json",
+      "sha256": "855f656ac6df5ea7637b6a1c07d774ad288a9768b794fecddcb761c97215d4cc"
+    },
+    {
+      "name": "security-v1/browser/browser-e2e.json",
+      "status": "passed",
+      "path": "artifacts/personal-assistant-release/2026-10-16/security-v1/browser/browser-e2e.json",
+      "sha256": "d488995b250a98a11df01005698d462723613436b6e1ad3fe14e695d90ad0115"
+    },
+    {
+      "name": "security-v1/layout-final/layout.json",
+      "status": "passed",
+      "path": "artifacts/personal-assistant-release/2026-10-16/security-v1/layout-final/layout.json",
+      "sha256": "662b9d1b7cfd06088950230de9a575f27374af794895cad8fad169b2bc3b3b2a"
+    },
+    {
+      "name": "rollback.json",
+      "status": "passed",
+      "path": "artifacts/personal-assistant-release/2026-10-16/rollback.json",
+      "sha256": "89e3fd4706203993a940e2bd55c2cef799ab48a1e14ed49c12b5e622bdd6a82d"
+    },
+    {
+      "name": "rollforward.json",
+      "status": "passed",
+      "path": "artifacts/personal-assistant-release/2026-10-16/rollforward.json",
+      "sha256": "e608a1a0926fb4e46d2ae51e2c7cbbc93e3ebdeeaf762433d03a743c28fe7eea"
+    },
+    {
+      "name": "security-v1/live-after.json",
+      "status": "passed",
+      "path": "artifacts/personal-assistant-release/2026-10-16/security-v1/live-after.json",
+      "sha256": "bc1c342f68b7e5afd7add26493a1bc08e2e56298d12526f8f493d7ca17220511"
+    },
+    {
+      "name": "security-v1/clean-install-api.json",
+      "status": "passed",
+      "path": "artifacts/personal-assistant-release/2026-10-16/security-v1/clean-install-api.json",
+      "sha256": "e997abd53b3536d5a072b9e6335c9f56b22a9231f33c5c06ca01ab51eb3df0c4"
+    },
+    {
+      "name": "security-v1/deployment-ui/deployment-ui.json",
+      "status": "passed",
+      "path": "artifacts/personal-assistant-release/2026-10-16/security-v1/deployment-ui/deployment-ui.json",
+      "sha256": "8585728eb817fa8c485220491ff97949fc1b2ddcc5cd18e75f4e555f386ded79"
+    },
+    {
+      "name": "backend-tests.xml",
+      "status": "passed",
+      "sha256": "8b19cc5816b5d0ec42147a14b4efe4ab62d9e709c5ffa67a18f605418f50a44b",
+      "tests": 1263,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2,
+      "passed": 1261
+    },
+    {
+      "name": "backend-linux-tests.xml",
+      "status": "passed",
+      "sha256": "9bb16b68aa3e7bf5e8e5e07f8323bffb706f3a3a2b50e189c9c2887c07304646",
+      "tests": 1263,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1263
+    },
+    {
+      "name": "experiment-tests.xml",
+      "status": "passed",
+      "sha256": "30cd6203f0b421cac3d5673f1f7e8b8efbb998b330551bc216bb3a389685b5f3",
+      "tests": 241,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 241
+    },
+    {
+      "name": "security-v1/backend-tests.xml",
+      "status": "passed",
+      "sha256": "f26867657cc4f227fdef0398cad1e4a1f7e976b30a178f07509dfebe3d01dc0a",
+      "tests": 1263,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2,
+      "passed": 1261
+    },
+    {
+      "name": "security-v1/backend-linux-tests.xml",
+      "status": "passed",
+      "sha256": "818e216ea79075dd83f4d3e16709641b7242e79378143ba43b0888498b16c335",
+      "tests": 1263,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1263
+    },
+    {
+      "name": "backend-lint",
+      "status": "passed",
+      "returncode": 0,
+      "sha256": "a4443afdcfb6d7363adb285762515ccf7cf50473b1a05c20c1a50f6bed4d26b0",
+      "path": "artifacts/personal-assistant-release/2026-10-16/closeout-security-v1/backend-lint.txt"
+    },
+    {
+      "name": "release-lint",
+      "status": "passed",
+      "returncode": 0,
+      "sha256": "a4443afdcfb6d7363adb285762515ccf7cf50473b1a05c20c1a50f6bed4d26b0",
+      "path": "artifacts/personal-assistant-release/2026-10-16/closeout-security-v1/release-lint.txt"
+    },
+    {
+      "name": "tools-lint",
+      "status": "passed",
+      "returncode": 0,
+      "sha256": "a4443afdcfb6d7363adb285762515ccf7cf50473b1a05c20c1a50f6bed4d26b0",
+      "path": "artifacts/personal-assistant-release/2026-10-16/closeout-security-v1/tools-lint.txt"
+    },
+    {
+      "name": "tools-tests",
+      "status": "passed",
+      "returncode": 0,
+      "sha256": "d14d502729dcb5a65b66336569954085a775f69dcce7531cb84eef09ea438423",
+      "path": "artifacts/personal-assistant-release/2026-10-16/closeout-security-v1/tools-tests.txt"
+    },
+    {
+      "name": "frontend-tests",
+      "status": "passed",
+      "returncode": 0,
+      "sha256": "bc7e145ec5c6ff3271c2803a9c5c1df1270f71cfe7c678cedf01d38c10fba9e5",
+      "path": "artifacts/personal-assistant-release/2026-10-16/closeout-security-v1/frontend-tests.txt"
+    },
+    {
+      "name": "frontend-types",
+      "status": "passed",
+      "returncode": 0,
+      "sha256": "ae8685c5211efecd40463c21e887014f243d8238a38fc56a69a4c199a12ac291",
+      "path": "artifacts/personal-assistant-release/2026-10-16/closeout-security-v1/frontend-types.txt"
+    },
+    {
+      "name": "frontend-lint",
+      "status": "passed",
+      "returncode": 0,
+      "sha256": "09b3a21059c5130343097159bb3c514622c90f5c32a5f3806dc655a8fdbf9abe",
+      "path": "artifacts/personal-assistant-release/2026-10-16/closeout-security-v1/frontend-lint.txt"
+    },
+    {
+      "name": "whitespace",
+      "status": "passed",
+      "returncode": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "artifacts/personal-assistant-release/2026-10-16/closeout-security-v1/whitespace.txt"
+    },
+    {
+      "name": "runtime-audit",
+      "status": "passed",
+      "returncode": 0,
+      "sha256": "4e17d53af002528290d589b2e0839e44b641e6682d86d591021ef89fec550adb",
+      "path": "artifacts/personal-assistant-release/2026-10-16/closeout-security-v1/runtime-audit.txt"
+    },
+    {
+      "name": "full-audit",
+      "status": "passed",
+      "returncode": 0,
+      "sha256": "4e17d53af002528290d589b2e0839e44b641e6682d86d591021ef89fec550adb",
+      "path": "artifacts/personal-assistant-release/2026-10-16/closeout-security-v1/full-audit.txt"
+    },
+    {
+      "name": "python-audit",
+      "status": "passed",
+      "returncode": 0,
+      "sha256": "9c21134bc1f19228be04bd9d0391cf60c59878da12a3c6a54435ef6750937806",
+      "path": "artifacts/personal-assistant-release/2026-10-16/closeout-security-v1/python-audit.txt"
+    },
+    {
+      "name": "python-container-audit",
+      "status": "passed",
+      "returncode": 0,
+      "sha256": "6f1615cdefb72b8e9e87fd26806bd54a57b55db2aab5b36b526a332aea2a73cc",
+      "path": "artifacts/personal-assistant-release/2026-10-16/closeout-security-v1/python-container-audit.txt"
+    },
+    {
+      "name": "production-image-inventory",
+      "status": "passed",
+      "returncode": 0,
+      "sha256": "b17b154a24b2a0bfb4d375b0e7152596097100731a7f48e3190bbb34093b6be3",
+      "path": "artifacts/personal-assistant-release/2026-10-16/closeout-security-v1/production-image-inventory.txt"
+    }
+  ],
+  "test_counts": {
+    "backend-tests.xml": {
+      "tests": 1263,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2,
+      "passed": 1261
+    },
+    "backend-linux-tests.xml": {
+      "tests": 1263,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1263
+    },
+    "experiment-tests.xml": {
+      "tests": 241,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 241
+    },
+    "security-v1/backend-tests.xml": {
+      "tests": 1263,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2,
+      "passed": 1261
+    },
+    "security-v1/backend-linux-tests.xml": {
+      "tests": 1263,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1263
+    }
+  },
+  "runtime_vulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "development_vulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "development_risk_scope_accepted_by_user": false,
+  "full_audit_clean": true,
+  "python_audits": {
+    "python": {
+      "packages": 50,
+      "vulnerabilities": 0,
+      "requirements_sha256": "5739ea42297ca2781c3bc569da68a42a5933107f6e0836a05e4337d19ecd9485"
+    },
+    "python-container": {
+      "packages": 50,
+      "vulnerabilities": 0,
+      "requirements_sha256": "989286e4e696a3296ce89d925a7e5fb688749142b9ca4fdb95bff3781eec60a2"
+    }
+  },
+  "security_closeout": true,
+  "security_scope_excludes": [
+    "OS/base-image vulnerability scan",
+    "penetration testing",
+    "external human security review"
+  ],
+  "external_review": "pending",
+  "production_readiness": "not_production_ready",
+  "autonomous_release": "blocked",
+  "human_attestation": false,
+  "readiness_excludes_package_integrity": true
+}

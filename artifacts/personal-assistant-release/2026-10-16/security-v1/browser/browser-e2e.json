@@ -1,0 +1,3759 @@
+{
+  "status": "passed",
+  "version": "1.0.0",
+  "strategy": "assistant-release-v1",
+  "new_model_requests": 11,
+  "model_corrections": 0,
+  "intentional_user_edits": 2,
+  "automated_user_actions": true,
+  "independent_human_attestation": false,
+  "screenshots": [
+    "artifacts\\personal-assistant-release\\2026-10-16\\security-v1\\browser\\desktop-preview.png",
+    "artifacts\\personal-assistant-release\\2026-10-16\\security-v1\\browser\\desktop-unverified.png",
+    "artifacts\\personal-assistant-release\\2026-10-16\\security-v1\\browser\\mobile-unverified.png",
+    "artifacts\\personal-assistant-release\\2026-10-16\\security-v1\\browser\\desktop-completed.png",
+    "artifacts\\personal-assistant-release\\2026-10-16\\security-v1\\browser\\mobile-completed.png"
+  ],
+  "observations": [
+    {
+      "case": "real_model_draft",
+      "request": "'릴리스 점검-mvb0twdh'를 할 일로 추가해줘. priority=low.",
+      "record": {
+        "id": "9f8a4c15525948c8ac63ef825a32fe9d",
+        "request": "'릴리스 점검-mvb0twdh'를 할 일로 추가해줘. priority=low.",
+        "raw_output": "{\n  \"decision\": \"propose\",\n  \"intent\": {\n    \"operation\": \"todo.create\",\n    \"title\": \"릴리스 점검-mvb0twdh\",\n    \"source_timezone\": \"Asia/Tokyo\",\n    \"priority\": \"low\"\n  },\n  \"reason\": \"할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 요청한 low입니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.\"\n}",
+        "initial_fields": {
+          "operation": "todo.create",
+          "priority": "low",
+          "source_timezone": "Asia/Tokyo",
+          "title": "릴리스 점검-mvb0twdh"
+        },
+        "fields": {
+          "operation": "todo.create",
+          "priority": "low",
+          "source_timezone": "Asia/Tokyo",
+          "title": "릴리스 점검-mvb0twdh"
+        },
+        "revision": 1,
+        "content_hash": "e82bbc3c7bf1da45af0dc1f3b9b9b09b10e54853640ee8f9000ba21cf72e9d53",
+        "status": "draft",
+        "metadata": {
+          "completion_error": null,
+          "configuration_hash": "06ec78799d146bb076c2b577a03b2e3759a3e9e79d1afb6ebe6245ec2b965df9",
+          "decision": "propose",
+          "decoding_schema_sha256": "53a36949bc9f04510e16da0dc9d8914ae2cc1cab003deceb094b10fc34b4207e",
+          "explanation_bound": true,
+          "field_evidence": {
+            "duration_minutes": {
+              "mode": "ambiguous",
+              "sources": [],
+              "value": null
+            },
+            "literal_spans": [
+              {
+                "end": 16,
+                "start": 1,
+                "text": "릴리스 점검-mvb0twdh",
+                "value": "릴리스 점검-mvb0twdh"
+              }
+            ],
+            "local_time": {
+              "calendar_source": null,
+              "invalid": [],
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "value": null
+            },
+            "operation": "todo.create",
+            "priority": {
+              "mode": "specified",
+              "omissions": [],
+              "sources": [
+                {
+                  "end": 42,
+                  "start": 39,
+                  "text": "low",
+                  "value": "low"
+                }
+              ],
+              "unknown": [],
+              "value": "low"
+            },
+            "scope": {
+              "file_command": false,
+              "trust": "direct_request",
+              "withdrawn": false
+            },
+            "source_timezone": {
+              "default_source": "public.timezone",
+              "defaults": [],
+              "mode": "default",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": "Asia/Tokyo"
+            },
+            "title": {
+              "end": 16,
+              "start": 1,
+              "text": "릴리스 점검-mvb0twdh",
+              "value": "릴리스 점검-mvb0twdh"
+            },
+            "title_candidates": [
+              {
+                "end": 16,
+                "start": 1,
+                "text": "릴리스 점검-mvb0twdh",
+                "value": "릴리스 점검-mvb0twdh"
+              }
+            ]
+          },
+          "grounding_error": null,
+          "latency_ms": 10379.44289999723,
+          "model": "qwen3.5:9b",
+          "path_grounding": null,
+          "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 요청한 low입니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+          "release_explanation": {
+            "authorizes_execution": false,
+            "bound_in_native_schema": true,
+            "policy": "source_bound",
+            "source_semantics_upgraded": false
+          },
+          "role_grounding": null,
+          "schema_requested": true,
+          "schema_valid": true,
+          "semantic_evidence": {
+            "action_evidence": {
+              "basis": {
+                "command_shape": "TITLE를할일로추가해줘.priority=VALUE.",
+                "fields": {
+                  "duration_minutes": {
+                    "mode": "ambiguous",
+                    "sources": [],
+                    "value": null
+                  },
+                  "literal_spans": [
+                    {
+                      "end": 16,
+                      "start": 1,
+                      "text": "릴리스 점검-mvb0twdh",
+                      "value": "릴리스 점검-mvb0twdh"
+                    }
+                  ],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "value": null
+                  },
+                  "operation": "todo.create",
+                  "priority": {
+                    "mode": "specified",
+                    "omissions": [],
+                    "sources": [
+                      {
+                        "end": 42,
+                        "start": 39,
+                        "text": "low",
+                        "value": "low"
+                      }
+                    ],
+                    "unknown": [],
+                    "value": "low"
+                  },
+                  "scope": {
+                    "file_command": false,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": "public.timezone",
+                    "defaults": [],
+                    "mode": "default",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": "Asia/Tokyo"
+                  },
+                  "title": {
+                    "end": 16,
+                    "start": 1,
+                    "text": "릴리스 점검-mvb0twdh",
+                    "value": "릴리스 점검-mvb0twdh"
+                  },
+                  "title_candidates": [
+                    {
+                      "end": 16,
+                      "start": 1,
+                      "text": "릴리스 점검-mvb0twdh",
+                      "value": "릴리스 점검-mvb0twdh"
+                    }
+                  ]
+                },
+                "state_source": "public.tasks/events"
+              },
+              "decision": "propose",
+              "needs": [],
+              "reason_code": "complete_creation",
+              "request_role": "create",
+              "status": "grounded"
+            },
+            "authorizes_execution": false,
+            "content_evidence": {
+              "claims": null,
+              "status": "not_applicable"
+            },
+            "explanation_evidence": {
+              "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 요청한 low입니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+              "scope": "decision_only",
+              "status": "bound"
+            },
+            "public_input_sha256": "aab1e4bf0fbbcc367d707ed1f4d8de403a84e930880cdedafc1cbd0ac385a319"
+          },
+          "semantic_evidence_sha256": "b842af5e8e6086cbfc27fa4e565142714731affd7965d960377a0f02ad25fc9e",
+          "strategy": "assistant-release-v1",
+          "title_grounding": {
+            "end": 16,
+            "start": 1,
+            "text": "릴리스 점검-mvb0twdh",
+            "value": "릴리스 점검-mvb0twdh"
+          }
+        },
+        "created_at": 1792158397.3488648,
+        "parent_id": null,
+        "preview": null,
+        "receipt": null,
+        "events": [
+          {
+            "event": "draft_created",
+            "payload": {
+              "metadata": {
+                "completion_error": null,
+                "configuration_hash": "06ec78799d146bb076c2b577a03b2e3759a3e9e79d1afb6ebe6245ec2b965df9",
+                "decision": "propose",
+                "decoding_schema_sha256": "53a36949bc9f04510e16da0dc9d8914ae2cc1cab003deceb094b10fc34b4207e",
+                "explanation_bound": true,
+                "field_evidence": {
+                  "duration_minutes": {
+                    "mode": "ambiguous",
+                    "sources": [],
+                    "value": null
+                  },
+                  "literal_spans": [
+                    {
+                      "end": 16,
+                      "start": 1,
+                      "text": "릴리스 점검-mvb0twdh",
+                      "value": "릴리스 점검-mvb0twdh"
+                    }
+                  ],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "value": null
+                  },
+                  "operation": "todo.create",
+                  "priority": {
+                    "mode": "specified",
+                    "omissions": [],
+                    "sources": [
+                      {
+                        "end": 42,
+                        "start": 39,
+                        "text": "low",
+                        "value": "low"
+                      }
+                    ],
+                    "unknown": [],
+                    "value": "low"
+                  },
+                  "scope": {
+                    "file_command": false,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": "public.timezone",
+                    "defaults": [],
+                    "mode": "default",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": "Asia/Tokyo"
+                  },
+                  "title": {
+                    "end": 16,
+                    "start": 1,
+                    "text": "릴리스 점검-mvb0twdh",
+                    "value": "릴리스 점검-mvb0twdh"
+                  },
+                  "title_candidates": [
+                    {
+                      "end": 16,
+                      "start": 1,
+                      "text": "릴리스 점검-mvb0twdh",
+                      "value": "릴리스 점검-mvb0twdh"
+                    }
+                  ]
+                },
+                "grounding_error": null,
+                "latency_ms": 10379.44289999723,
+                "model": "qwen3.5:9b",
+                "path_grounding": null,
+                "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 요청한 low입니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+                "release_explanation": {
+                  "authorizes_execution": false,
+                  "bound_in_native_schema": true,
+                  "policy": "source_bound",
+                  "source_semantics_upgraded": false
+                },
+                "role_grounding": null,
+                "schema_requested": true,
+                "schema_valid": true,
+                "semantic_evidence": {
+                  "action_evidence": {
+                    "basis": {
+                      "command_shape": "TITLE를할일로추가해줘.priority=VALUE.",
+                      "fields": {
+                        "duration_minutes": {
+                          "mode": "ambiguous",
+                          "sources": [],
+                          "value": null
+                        },
+                        "literal_spans": [
+                          {
+                            "end": 16,
+                            "start": 1,
+                            "text": "릴리스 점검-mvb0twdh",
+                            "value": "릴리스 점검-mvb0twdh"
+                          }
+                        ],
+                        "local_time": {
+                          "calendar_source": null,
+                          "invalid": [],
+                          "mode": "omitted",
+                          "omissions": [],
+                          "sources": [],
+                          "value": null
+                        },
+                        "operation": "todo.create",
+                        "priority": {
+                          "mode": "specified",
+                          "omissions": [],
+                          "sources": [
+                            {
+                              "end": 42,
+                              "start": 39,
+                              "text": "low",
+                              "value": "low"
+                            }
+                          ],
+                          "unknown": [],
+                          "value": "low"
+                        },
+                        "scope": {
+                          "file_command": false,
+                          "trust": "direct_request",
+                          "withdrawn": false
+                        },
+                        "source_timezone": {
+                          "default_source": "public.timezone",
+                          "defaults": [],
+                          "mode": "default",
+                          "omissions": [],
+                          "sources": [],
+                          "unknown": [],
+                          "value": "Asia/Tokyo"
+                        },
+                        "title": {
+                          "end": 16,
+                          "start": 1,
+                          "text": "릴리스 점검-mvb0twdh",
+                          "value": "릴리스 점검-mvb0twdh"
+                        },
+                        "title_candidates": [
+                          {
+                            "end": 16,
+                            "start": 1,
+                            "text": "릴리스 점검-mvb0twdh",
+                            "value": "릴리스 점검-mvb0twdh"
+                          }
+                        ]
+                      },
+                      "state_source": "public.tasks/events"
+                    },
+                    "decision": "propose",
+                    "needs": [],
+                    "reason_code": "complete_creation",
+                    "request_role": "create",
+                    "status": "grounded"
+                  },
+                  "authorizes_execution": false,
+                  "content_evidence": {
+                    "claims": null,
+                    "status": "not_applicable"
+                  },
+                  "explanation_evidence": {
+                    "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 요청한 low입니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+                    "scope": "decision_only",
+                    "status": "bound"
+                  },
+                  "public_input_sha256": "aab1e4bf0fbbcc367d707ed1f4d8de403a84e930880cdedafc1cbd0ac385a319"
+                },
+                "semantic_evidence_sha256": "b842af5e8e6086cbfc27fa4e565142714731affd7965d960377a0f02ad25fc9e",
+                "strategy": "assistant-release-v1",
+                "title_grounding": {
+                  "end": 16,
+                  "start": 1,
+                  "text": "릴리스 점검-mvb0twdh",
+                  "value": "릴리스 점검-mvb0twdh"
+                }
+              },
+              "raw_hash": "778d2f2a1500850944799c716265b631cf199a654c22701682dd30a1bc281bbc"
+            },
+            "created": 1792158397.3503911
+          }
+        ]
+      }
+    },
+    {
+      "case": "edit_confirm_approve",
+      "review_id": "9f8a4c15525948c8ac63ef825a32fe9d",
+      "raw_preserved": true
+    },
+    {
+      "case": "real_model_draft",
+      "request": "'취소 점검-mvb0twdh'를 할 일로 추가해줘.",
+      "record": {
+        "id": "d3996a2a31634cf09e6015ff8751f421",
+        "request": "'취소 점검-mvb0twdh'를 할 일로 추가해줘.",
+        "raw_output": "{\n  \"decision\": \"propose\",\n  \"intent\": {\n    \"operation\": \"todo.create\",\n    \"title\": \"취소 점검-mvb0twdh\",\n    \"source_timezone\": \"Asia/Tokyo\"\n  },\n  \"reason\": \"할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.\"\n}",
+        "initial_fields": {
+          "operation": "todo.create",
+          "source_timezone": "Asia/Tokyo",
+          "title": "취소 점검-mvb0twdh"
+        },
+        "fields": {
+          "operation": "todo.create",
+          "source_timezone": "Asia/Tokyo",
+          "title": "취소 점검-mvb0twdh"
+        },
+        "revision": 1,
+        "content_hash": "e8708d7322067470d2a8355b9c078c3628a16c95ba395f6c6b00c32bd49deaae",
+        "status": "draft",
+        "metadata": {
+          "completion_error": null,
+          "configuration_hash": "8409428a6c4b70690f884074846000a51ce4feaeb0f0fa6643de83ca9f4aa1b6",
+          "decision": "propose",
+          "decoding_schema_sha256": "748a5a883fea32effa4cb7c294020032bda022ca7c06cd80ba76735a16d61ef5",
+          "explanation_bound": true,
+          "field_evidence": {
+            "duration_minutes": {
+              "mode": "ambiguous",
+              "sources": [],
+              "value": null
+            },
+            "literal_spans": [
+              {
+                "end": 15,
+                "start": 1,
+                "text": "취소 점검-mvb0twdh",
+                "value": "취소 점검-mvb0twdh"
+              }
+            ],
+            "local_time": {
+              "calendar_source": null,
+              "invalid": [],
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "value": null
+            },
+            "operation": "todo.create",
+            "priority": {
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": null
+            },
+            "scope": {
+              "file_command": false,
+              "trust": "direct_request",
+              "withdrawn": false
+            },
+            "source_timezone": {
+              "default_source": "public.timezone",
+              "defaults": [],
+              "mode": "default",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": "Asia/Tokyo"
+            },
+            "title": {
+              "end": 15,
+              "start": 1,
+              "text": "취소 점검-mvb0twdh",
+              "value": "취소 점검-mvb0twdh"
+            },
+            "title_candidates": [
+              {
+                "end": 15,
+                "start": 1,
+                "text": "취소 점검-mvb0twdh",
+                "value": "취소 점검-mvb0twdh"
+              }
+            ]
+          },
+          "grounding_error": null,
+          "latency_ms": 3586.416999998619,
+          "model": "qwen3.5:9b",
+          "path_grounding": null,
+          "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+          "release_explanation": {
+            "authorizes_execution": false,
+            "bound_in_native_schema": true,
+            "policy": "source_bound",
+            "source_semantics_upgraded": false
+          },
+          "role_grounding": {
+            "basis": "complete-quoted-todo-command-and-public-open-tasks",
+            "decision": "propose",
+            "operation": "todo.create",
+            "role": "todo_title",
+            "title": {
+              "end": 15,
+              "start": 1,
+              "value": "취소 점검-mvb0twdh"
+            }
+          },
+          "schema_requested": true,
+          "schema_valid": true,
+          "semantic_evidence": {
+            "action_evidence": {
+              "basis": {
+                "command_shape": "TITLE를할일로추가해줘.",
+                "fields": {
+                  "duration_minutes": {
+                    "mode": "ambiguous",
+                    "sources": [],
+                    "value": null
+                  },
+                  "literal_spans": [
+                    {
+                      "end": 15,
+                      "start": 1,
+                      "text": "취소 점검-mvb0twdh",
+                      "value": "취소 점검-mvb0twdh"
+                    }
+                  ],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "value": null
+                  },
+                  "operation": "todo.create",
+                  "priority": {
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": null
+                  },
+                  "scope": {
+                    "file_command": false,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": "public.timezone",
+                    "defaults": [],
+                    "mode": "default",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": "Asia/Tokyo"
+                  },
+                  "title": {
+                    "end": 15,
+                    "start": 1,
+                    "text": "취소 점검-mvb0twdh",
+                    "value": "취소 점검-mvb0twdh"
+                  },
+                  "title_candidates": [
+                    {
+                      "end": 15,
+                      "start": 1,
+                      "text": "취소 점검-mvb0twdh",
+                      "value": "취소 점검-mvb0twdh"
+                    }
+                  ]
+                },
+                "state_source": "public.tasks/events"
+              },
+              "decision": "propose",
+              "needs": [],
+              "reason_code": "complete_creation",
+              "request_role": "create",
+              "status": "grounded"
+            },
+            "authorizes_execution": false,
+            "content_evidence": {
+              "claims": null,
+              "status": "not_applicable"
+            },
+            "explanation_evidence": {
+              "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+              "scope": "decision_only",
+              "status": "bound"
+            },
+            "public_input_sha256": "d4d7ab2a0041690e9f6edd04d422b6cc6a70aeb96ccf784183dea902f4e6348a"
+          },
+          "semantic_evidence_sha256": "67b7334b58bbf3aa4559dab8e775146e7c63037239a4b94a28145f84ed3beb26",
+          "strategy": "assistant-release-v1",
+          "title_grounding": {
+            "end": 15,
+            "start": 1,
+            "text": "취소 점검-mvb0twdh",
+            "value": "취소 점검-mvb0twdh"
+          }
+        },
+        "created_at": 1792158401.9358246,
+        "parent_id": null,
+        "preview": null,
+        "receipt": null,
+        "events": [
+          {
+            "event": "draft_created",
+            "payload": {
+              "metadata": {
+                "completion_error": null,
+                "configuration_hash": "8409428a6c4b70690f884074846000a51ce4feaeb0f0fa6643de83ca9f4aa1b6",
+                "decision": "propose",
+                "decoding_schema_sha256": "748a5a883fea32effa4cb7c294020032bda022ca7c06cd80ba76735a16d61ef5",
+                "explanation_bound": true,
+                "field_evidence": {
+                  "duration_minutes": {
+                    "mode": "ambiguous",
+                    "sources": [],
+                    "value": null
+                  },
+                  "literal_spans": [
+                    {
+                      "end": 15,
+                      "start": 1,
+                      "text": "취소 점검-mvb0twdh",
+                      "value": "취소 점검-mvb0twdh"
+                    }
+                  ],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "value": null
+                  },
+                  "operation": "todo.create",
+                  "priority": {
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": null
+                  },
+                  "scope": {
+                    "file_command": false,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": "public.timezone",
+                    "defaults": [],
+                    "mode": "default",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": "Asia/Tokyo"
+                  },
+                  "title": {
+                    "end": 15,
+                    "start": 1,
+                    "text": "취소 점검-mvb0twdh",
+                    "value": "취소 점검-mvb0twdh"
+                  },
+                  "title_candidates": [
+                    {
+                      "end": 15,
+                      "start": 1,
+                      "text": "취소 점검-mvb0twdh",
+                      "value": "취소 점검-mvb0twdh"
+                    }
+                  ]
+                },
+                "grounding_error": null,
+                "latency_ms": 3586.416999998619,
+                "model": "qwen3.5:9b",
+                "path_grounding": null,
+                "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+                "release_explanation": {
+                  "authorizes_execution": false,
+                  "bound_in_native_schema": true,
+                  "policy": "source_bound",
+                  "source_semantics_upgraded": false
+                },
+                "role_grounding": {
+                  "basis": "complete-quoted-todo-command-and-public-open-tasks",
+                  "decision": "propose",
+                  "operation": "todo.create",
+                  "role": "todo_title",
+                  "title": {
+                    "end": 15,
+                    "start": 1,
+                    "value": "취소 점검-mvb0twdh"
+                  }
+                },
+                "schema_requested": true,
+                "schema_valid": true,
+                "semantic_evidence": {
+                  "action_evidence": {
+                    "basis": {
+                      "command_shape": "TITLE를할일로추가해줘.",
+                      "fields": {
+                        "duration_minutes": {
+                          "mode": "ambiguous",
+                          "sources": [],
+                          "value": null
+                        },
+                        "literal_spans": [
+                          {
+                            "end": 15,
+                            "start": 1,
+                            "text": "취소 점검-mvb0twdh",
+                            "value": "취소 점검-mvb0twdh"
+                          }
+                        ],
+                        "local_time": {
+                          "calendar_source": null,
+                          "invalid": [],
+                          "mode": "omitted",
+                          "omissions": [],
+                          "sources": [],
+                          "value": null
+                        },
+                        "operation": "todo.create",
+                        "priority": {
+                          "mode": "omitted",
+                          "omissions": [],
+                          "sources": [],
+                          "unknown": [],
+                          "value": null
+                        },
+                        "scope": {
+                          "file_command": false,
+                          "trust": "direct_request",
+                          "withdrawn": false
+                        },
+                        "source_timezone": {
+                          "default_source": "public.timezone",
+                          "defaults": [],
+                          "mode": "default",
+                          "omissions": [],
+                          "sources": [],
+                          "unknown": [],
+                          "value": "Asia/Tokyo"
+                        },
+                        "title": {
+                          "end": 15,
+                          "start": 1,
+                          "text": "취소 점검-mvb0twdh",
+                          "value": "취소 점검-mvb0twdh"
+                        },
+                        "title_candidates": [
+                          {
+                            "end": 15,
+                            "start": 1,
+                            "text": "취소 점검-mvb0twdh",
+                            "value": "취소 점검-mvb0twdh"
+                          }
+                        ]
+                      },
+                      "state_source": "public.tasks/events"
+                    },
+                    "decision": "propose",
+                    "needs": [],
+                    "reason_code": "complete_creation",
+                    "request_role": "create",
+                    "status": "grounded"
+                  },
+                  "authorizes_execution": false,
+                  "content_evidence": {
+                    "claims": null,
+                    "status": "not_applicable"
+                  },
+                  "explanation_evidence": {
+                    "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+                    "scope": "decision_only",
+                    "status": "bound"
+                  },
+                  "public_input_sha256": "d4d7ab2a0041690e9f6edd04d422b6cc6a70aeb96ccf784183dea902f4e6348a"
+                },
+                "semantic_evidence_sha256": "67b7334b58bbf3aa4559dab8e775146e7c63037239a4b94a28145f84ed3beb26",
+                "strategy": "assistant-release-v1",
+                "title_grounding": {
+                  "end": 15,
+                  "start": 1,
+                  "text": "취소 점검-mvb0twdh",
+                  "value": "취소 점검-mvb0twdh"
+                }
+              },
+              "raw_hash": "774e41075fb17870e0292b778e0028de92d9c22c65276546d95e636b96894a49"
+            },
+            "created": 1792158401.9379818
+          }
+        ]
+      }
+    },
+    {
+      "case": "cancel_blocks_execution"
+    },
+    {
+      "case": "real_model_draft",
+      "request": "'오래된 승인-mvb0twdh'를 할 일로 추가해줘.",
+      "record": {
+        "id": "26ebbcde9ec444f2aa8e9450f002dec7",
+        "request": "'오래된 승인-mvb0twdh'를 할 일로 추가해줘.",
+        "raw_output": "{\n  \"decision\": \"propose\",\n  \"intent\": {\n    \"operation\": \"todo.create\",\n    \"title\": \"오래된 승인-mvb0twdh\",\n    \"source_timezone\": \"Asia/Tokyo\"\n  },\n  \"reason\": \"할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.\"\n}",
+        "initial_fields": {
+          "operation": "todo.create",
+          "source_timezone": "Asia/Tokyo",
+          "title": "오래된 승인-mvb0twdh"
+        },
+        "fields": {
+          "operation": "todo.create",
+          "source_timezone": "Asia/Tokyo",
+          "title": "오래된 승인-mvb0twdh"
+        },
+        "revision": 1,
+        "content_hash": "6902839da8e038d79a1f6b6e9fc8b5f9fadaee89c0ef7f27000f5073837ade68",
+        "status": "draft",
+        "metadata": {
+          "completion_error": null,
+          "configuration_hash": "7af1a85b95c77ff69127eba40687cc23960116de650bc43b9af23506f20c6d96",
+          "decision": "propose",
+          "decoding_schema_sha256": "21f595dd465d77c34d6b1cfd67f264e14130ea322285472e6fb383d89ca2c66c",
+          "explanation_bound": true,
+          "field_evidence": {
+            "duration_minutes": {
+              "mode": "ambiguous",
+              "sources": [],
+              "value": null
+            },
+            "literal_spans": [
+              {
+                "end": 16,
+                "start": 1,
+                "text": "오래된 승인-mvb0twdh",
+                "value": "오래된 승인-mvb0twdh"
+              }
+            ],
+            "local_time": {
+              "calendar_source": null,
+              "invalid": [],
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "value": null
+            },
+            "operation": "todo.create",
+            "priority": {
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": null
+            },
+            "scope": {
+              "file_command": false,
+              "trust": "direct_request",
+              "withdrawn": false
+            },
+            "source_timezone": {
+              "default_source": "public.timezone",
+              "defaults": [],
+              "mode": "default",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": "Asia/Tokyo"
+            },
+            "title": {
+              "end": 16,
+              "start": 1,
+              "text": "오래된 승인-mvb0twdh",
+              "value": "오래된 승인-mvb0twdh"
+            },
+            "title_candidates": [
+              {
+                "end": 16,
+                "start": 1,
+                "text": "오래된 승인-mvb0twdh",
+                "value": "오래된 승인-mvb0twdh"
+              }
+            ]
+          },
+          "grounding_error": null,
+          "latency_ms": 3681.9192999973893,
+          "model": "qwen3.5:9b",
+          "path_grounding": null,
+          "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+          "release_explanation": {
+            "authorizes_execution": false,
+            "bound_in_native_schema": true,
+            "policy": "source_bound",
+            "source_semantics_upgraded": false
+          },
+          "role_grounding": {
+            "basis": "complete-quoted-todo-command-and-public-open-tasks",
+            "decision": "propose",
+            "operation": "todo.create",
+            "role": "todo_title",
+            "title": {
+              "end": 16,
+              "start": 1,
+              "value": "오래된 승인-mvb0twdh"
+            }
+          },
+          "schema_requested": true,
+          "schema_valid": true,
+          "semantic_evidence": {
+            "action_evidence": {
+              "basis": {
+                "command_shape": "TITLE를할일로추가해줘.",
+                "fields": {
+                  "duration_minutes": {
+                    "mode": "ambiguous",
+                    "sources": [],
+                    "value": null
+                  },
+                  "literal_spans": [
+                    {
+                      "end": 16,
+                      "start": 1,
+                      "text": "오래된 승인-mvb0twdh",
+                      "value": "오래된 승인-mvb0twdh"
+                    }
+                  ],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "value": null
+                  },
+                  "operation": "todo.create",
+                  "priority": {
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": null
+                  },
+                  "scope": {
+                    "file_command": false,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": "public.timezone",
+                    "defaults": [],
+                    "mode": "default",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": "Asia/Tokyo"
+                  },
+                  "title": {
+                    "end": 16,
+                    "start": 1,
+                    "text": "오래된 승인-mvb0twdh",
+                    "value": "오래된 승인-mvb0twdh"
+                  },
+                  "title_candidates": [
+                    {
+                      "end": 16,
+                      "start": 1,
+                      "text": "오래된 승인-mvb0twdh",
+                      "value": "오래된 승인-mvb0twdh"
+                    }
+                  ]
+                },
+                "state_source": "public.tasks/events"
+              },
+              "decision": "propose",
+              "needs": [],
+              "reason_code": "complete_creation",
+              "request_role": "create",
+              "status": "grounded"
+            },
+            "authorizes_execution": false,
+            "content_evidence": {
+              "claims": null,
+              "status": "not_applicable"
+            },
+            "explanation_evidence": {
+              "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+              "scope": "decision_only",
+              "status": "bound"
+            },
+            "public_input_sha256": "867593e73fa93bbf512740d2b1a2fafd19854564594916658805df2fd9e994a7"
+          },
+          "semantic_evidence_sha256": "70b2f26d417b138aa6230ffc5fdd9b3747bc1c41ba5ad448b2404f0851d278bb",
+          "strategy": "assistant-release-v1",
+          "title_grounding": {
+            "end": 16,
+            "start": 1,
+            "text": "오래된 승인-mvb0twdh",
+            "value": "오래된 승인-mvb0twdh"
+          }
+        },
+        "created_at": 1792158406.1017199,
+        "parent_id": null,
+        "preview": null,
+        "receipt": null,
+        "events": [
+          {
+            "event": "draft_created",
+            "payload": {
+              "metadata": {
+                "completion_error": null,
+                "configuration_hash": "7af1a85b95c77ff69127eba40687cc23960116de650bc43b9af23506f20c6d96",
+                "decision": "propose",
+                "decoding_schema_sha256": "21f595dd465d77c34d6b1cfd67f264e14130ea322285472e6fb383d89ca2c66c",
+                "explanation_bound": true,
+                "field_evidence": {
+                  "duration_minutes": {
+                    "mode": "ambiguous",
+                    "sources": [],
+                    "value": null
+                  },
+                  "literal_spans": [
+                    {
+                      "end": 16,
+                      "start": 1,
+                      "text": "오래된 승인-mvb0twdh",
+                      "value": "오래된 승인-mvb0twdh"
+                    }
+                  ],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "value": null
+                  },
+                  "operation": "todo.create",
+                  "priority": {
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": null
+                  },
+                  "scope": {
+                    "file_command": false,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": "public.timezone",
+                    "defaults": [],
+                    "mode": "default",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": "Asia/Tokyo"
+                  },
+                  "title": {
+                    "end": 16,
+                    "start": 1,
+                    "text": "오래된 승인-mvb0twdh",
+                    "value": "오래된 승인-mvb0twdh"
+                  },
+                  "title_candidates": [
+                    {
+                      "end": 16,
+                      "start": 1,
+                      "text": "오래된 승인-mvb0twdh",
+                      "value": "오래된 승인-mvb0twdh"
+                    }
+                  ]
+                },
+                "grounding_error": null,
+                "latency_ms": 3681.9192999973893,
+                "model": "qwen3.5:9b",
+                "path_grounding": null,
+                "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+                "release_explanation": {
+                  "authorizes_execution": false,
+                  "bound_in_native_schema": true,
+                  "policy": "source_bound",
+                  "source_semantics_upgraded": false
+                },
+                "role_grounding": {
+                  "basis": "complete-quoted-todo-command-and-public-open-tasks",
+                  "decision": "propose",
+                  "operation": "todo.create",
+                  "role": "todo_title",
+                  "title": {
+                    "end": 16,
+                    "start": 1,
+                    "value": "오래된 승인-mvb0twdh"
+                  }
+                },
+                "schema_requested": true,
+                "schema_valid": true,
+                "semantic_evidence": {
+                  "action_evidence": {
+                    "basis": {
+                      "command_shape": "TITLE를할일로추가해줘.",
+                      "fields": {
+                        "duration_minutes": {
+                          "mode": "ambiguous",
+                          "sources": [],
+                          "value": null
+                        },
+                        "literal_spans": [
+                          {
+                            "end": 16,
+                            "start": 1,
+                            "text": "오래된 승인-mvb0twdh",
+                            "value": "오래된 승인-mvb0twdh"
+                          }
+                        ],
+                        "local_time": {
+                          "calendar_source": null,
+                          "invalid": [],
+                          "mode": "omitted",
+                          "omissions": [],
+                          "sources": [],
+                          "value": null
+                        },
+                        "operation": "todo.create",
+                        "priority": {
+                          "mode": "omitted",
+                          "omissions": [],
+                          "sources": [],
+                          "unknown": [],
+                          "value": null
+                        },
+                        "scope": {
+                          "file_command": false,
+                          "trust": "direct_request",
+                          "withdrawn": false
+                        },
+                        "source_timezone": {
+                          "default_source": "public.timezone",
+                          "defaults": [],
+                          "mode": "default",
+                          "omissions": [],
+                          "sources": [],
+                          "unknown": [],
+                          "value": "Asia/Tokyo"
+                        },
+                        "title": {
+                          "end": 16,
+                          "start": 1,
+                          "text": "오래된 승인-mvb0twdh",
+                          "value": "오래된 승인-mvb0twdh"
+                        },
+                        "title_candidates": [
+                          {
+                            "end": 16,
+                            "start": 1,
+                            "text": "오래된 승인-mvb0twdh",
+                            "value": "오래된 승인-mvb0twdh"
+                          }
+                        ]
+                      },
+                      "state_source": "public.tasks/events"
+                    },
+                    "decision": "propose",
+                    "needs": [],
+                    "reason_code": "complete_creation",
+                    "request_role": "create",
+                    "status": "grounded"
+                  },
+                  "authorizes_execution": false,
+                  "content_evidence": {
+                    "claims": null,
+                    "status": "not_applicable"
+                  },
+                  "explanation_evidence": {
+                    "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+                    "scope": "decision_only",
+                    "status": "bound"
+                  },
+                  "public_input_sha256": "867593e73fa93bbf512740d2b1a2fafd19854564594916658805df2fd9e994a7"
+                },
+                "semantic_evidence_sha256": "70b2f26d417b138aa6230ffc5fdd9b3747bc1c41ba5ad448b2404f0851d278bb",
+                "strategy": "assistant-release-v1",
+                "title_grounding": {
+                  "end": 16,
+                  "start": 1,
+                  "text": "오래된 승인-mvb0twdh",
+                  "value": "오래된 승인-mvb0twdh"
+                }
+              },
+              "raw_hash": "c25ab550af3342dd9605fd6993284afa3291de047c5ccdc61fb6f2b5855d5207"
+            },
+            "created": 1792158406.1037529
+          }
+        ]
+      }
+    },
+    {
+      "case": "editing_invalidates_approval"
+    },
+    {
+      "case": "real_model_draft",
+      "request": "Inbox/review-demo.txt를 Archive/review-demo.txt로 옮겨줘.",
+      "record": {
+        "id": "ac2d81fcf18546118979c29ac781d5df",
+        "request": "Inbox/review-demo.txt를 Archive/review-demo.txt로 옮겨줘.",
+        "raw_output": "{\n  \"decision\": \"propose\",\n  \"intent\": {\n    \"operation\": \"files.move\",\n    \"destination\": \"Archive/review-demo.txt\",\n    \"source\": \"Inbox/review-demo.txt\"\n  },\n  \"reason\": \"공개 파일 목록을 기준으로 만든 파일 작업 초안입니다. 승인 시 경로와 상태를 다시 검사합니다.\"\n}",
+        "initial_fields": {
+          "destination": "Archive/review-demo.txt",
+          "operation": "files.move",
+          "source": "Inbox/review-demo.txt"
+        },
+        "fields": {
+          "destination": "Archive/review-demo.txt",
+          "operation": "files.move",
+          "source": "Inbox/review-demo.txt"
+        },
+        "revision": 1,
+        "content_hash": "42e218bd401b25b450213eba26d591731ab9ca622e7582146cdeaccdf719a0a0",
+        "status": "draft",
+        "metadata": {
+          "completion_error": null,
+          "configuration_hash": "6ec4ef6d15dc677a6a36f725aa3f55e57fb35f39032d44b01d68c4c99f124dc3",
+          "decision": "propose",
+          "decoding_schema_sha256": "a6a21fad006577483b43f9097ff43cba9ca01ce53ed7071adcf86ed199e874e9",
+          "explanation_bound": true,
+          "field_evidence": {
+            "duration_minutes": {
+              "mode": "ambiguous",
+              "sources": [],
+              "value": null
+            },
+            "literal_spans": [],
+            "local_time": {
+              "calendar_source": null,
+              "invalid": [],
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "value": null
+            },
+            "operation": null,
+            "priority": {
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": null
+            },
+            "scope": {
+              "file_command": true,
+              "trust": "direct_request",
+              "withdrawn": false
+            },
+            "source_timezone": {
+              "default_source": "public.timezone",
+              "defaults": [],
+              "mode": "default",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": "Asia/Tokyo"
+            },
+            "title": null,
+            "title_candidates": []
+          },
+          "grounding_error": null,
+          "latency_ms": 3289.3475000018952,
+          "model": "qwen3.5:9b",
+          "path_grounding": {
+            "decision": "propose",
+            "fields": {
+              "destination": "Archive/review-demo.txt",
+              "operation": "files.move",
+              "source": "Inbox/review-demo.txt"
+            },
+            "lexical_allowed": true,
+            "spans": {
+              "destination": {
+                "end": 46,
+                "start": 23
+              },
+              "source": {
+                "end": 21,
+                "start": 0
+              }
+            }
+          },
+          "reason": "공개 파일 목록을 기준으로 만든 파일 작업 초안입니다. 승인 시 경로와 상태를 다시 검사합니다.",
+          "release_explanation": {
+            "authorizes_execution": false,
+            "bound_in_native_schema": true,
+            "policy": "source_bound",
+            "source_semantics_upgraded": false
+          },
+          "role_grounding": null,
+          "schema_requested": true,
+          "schema_valid": true,
+          "semantic_evidence": {
+            "action_evidence": {
+              "basis": {
+                "decision": "propose",
+                "fields": {
+                  "destination": "Archive/review-demo.txt",
+                  "operation": "files.move",
+                  "source": "Inbox/review-demo.txt"
+                },
+                "lexical_allowed": true,
+                "spans": {
+                  "destination": {
+                    "end": 46,
+                    "start": 23
+                  },
+                  "source": {
+                    "end": 21,
+                    "start": 0
+                  }
+                }
+              },
+              "decision": "propose",
+              "needs": [],
+              "reason_code": "file_draft",
+              "request_role": "file",
+              "status": "grounded"
+            },
+            "authorizes_execution": false,
+            "content_evidence": {
+              "claims": null,
+              "status": "not_applicable"
+            },
+            "explanation_evidence": {
+              "reason": "공개 파일 목록을 기준으로 만든 파일 작업 초안입니다. 승인 시 경로와 상태를 다시 검사합니다.",
+              "scope": "decision_only",
+              "status": "bound"
+            },
+            "public_input_sha256": "e92f01869c9974b0d5e12dce83859507e6b441e6837a3247b77a7f3c34fe0539"
+          },
+          "semantic_evidence_sha256": "357057dd5eb83bb084ada5aeb0b2289480c5c564c04e1803bb05aaec8b8fa970",
+          "strategy": "assistant-release-v1",
+          "title_grounding": null
+        },
+        "created_at": 1792158409.8078008,
+        "parent_id": null,
+        "preview": null,
+        "receipt": null,
+        "events": [
+          {
+            "event": "draft_created",
+            "payload": {
+              "metadata": {
+                "completion_error": null,
+                "configuration_hash": "6ec4ef6d15dc677a6a36f725aa3f55e57fb35f39032d44b01d68c4c99f124dc3",
+                "decision": "propose",
+                "decoding_schema_sha256": "a6a21fad006577483b43f9097ff43cba9ca01ce53ed7071adcf86ed199e874e9",
+                "explanation_bound": true,
+                "field_evidence": {
+                  "duration_minutes": {
+                    "mode": "ambiguous",
+                    "sources": [],
+                    "value": null
+                  },
+                  "literal_spans": [],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "value": null
+                  },
+                  "operation": null,
+                  "priority": {
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": null
+                  },
+                  "scope": {
+                    "file_command": true,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": "public.timezone",
+                    "defaults": [],
+                    "mode": "default",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": "Asia/Tokyo"
+                  },
+                  "title": null,
+                  "title_candidates": []
+                },
+                "grounding_error": null,
+                "latency_ms": 3289.3475000018952,
+                "model": "qwen3.5:9b",
+                "path_grounding": {
+                  "decision": "propose",
+                  "fields": {
+                    "destination": "Archive/review-demo.txt",
+                    "operation": "files.move",
+                    "source": "Inbox/review-demo.txt"
+                  },
+                  "lexical_allowed": true,
+                  "spans": {
+                    "destination": {
+                      "end": 46,
+                      "start": 23
+                    },
+                    "source": {
+                      "end": 21,
+                      "start": 0
+                    }
+                  }
+                },
+                "reason": "공개 파일 목록을 기준으로 만든 파일 작업 초안입니다. 승인 시 경로와 상태를 다시 검사합니다.",
+                "release_explanation": {
+                  "authorizes_execution": false,
+                  "bound_in_native_schema": true,
+                  "policy": "source_bound",
+                  "source_semantics_upgraded": false
+                },
+                "role_grounding": null,
+                "schema_requested": true,
+                "schema_valid": true,
+                "semantic_evidence": {
+                  "action_evidence": {
+                    "basis": {
+                      "decision": "propose",
+                      "fields": {
+                        "destination": "Archive/review-demo.txt",
+                        "operation": "files.move",
+                        "source": "Inbox/review-demo.txt"
+                      },
+                      "lexical_allowed": true,
+                      "spans": {
+                        "destination": {
+                          "end": 46,
+                          "start": 23
+                        },
+                        "source": {
+                          "end": 21,
+                          "start": 0
+                        }
+                      }
+                    },
+                    "decision": "propose",
+                    "needs": [],
+                    "reason_code": "file_draft",
+                    "request_role": "file",
+                    "status": "grounded"
+                  },
+                  "authorizes_execution": false,
+                  "content_evidence": {
+                    "claims": null,
+                    "status": "not_applicable"
+                  },
+                  "explanation_evidence": {
+                    "reason": "공개 파일 목록을 기준으로 만든 파일 작업 초안입니다. 승인 시 경로와 상태를 다시 검사합니다.",
+                    "scope": "decision_only",
+                    "status": "bound"
+                  },
+                  "public_input_sha256": "e92f01869c9974b0d5e12dce83859507e6b441e6837a3247b77a7f3c34fe0539"
+                },
+                "semantic_evidence_sha256": "357057dd5eb83bb084ada5aeb0b2289480c5c564c04e1803bb05aaec8b8fa970",
+                "strategy": "assistant-release-v1",
+                "title_grounding": null
+              },
+              "raw_hash": "ac2ac03835371f7f6d94cc28b0a9c46d9a381d7c483ab62960d217aef50d4418"
+            },
+            "created": 1792158409.8098433
+          }
+        ]
+      }
+    },
+    {
+      "case": "move_and_separately_approved_restore"
+    },
+    {
+      "case": "real_model_draft",
+      "request": "Inbox/review-demo.txt를 휴지통으로 보내줘.",
+      "record": {
+        "id": "934f0b6ab8874fef8bc9032ff5a84b29",
+        "request": "Inbox/review-demo.txt를 휴지통으로 보내줘.",
+        "raw_output": "{\n  \"decision\": \"propose\",\n  \"intent\": {\n    \"operation\": \"files.trash\",\n    \"path\": \"Inbox/review-demo.txt\"\n  },\n  \"reason\": \"공개 파일 목록을 기준으로 만든 파일 작업 초안입니다. 승인 시 경로와 상태를 다시 검사합니다.\"\n}",
+        "initial_fields": {
+          "operation": "files.trash",
+          "path": "Inbox/review-demo.txt"
+        },
+        "fields": {
+          "operation": "files.trash",
+          "path": "Inbox/review-demo.txt"
+        },
+        "revision": 1,
+        "content_hash": "bc827fb20a807276bd2658830bcd83edba991e4d29f794887b730be4a71ee142",
+        "status": "draft",
+        "metadata": {
+          "completion_error": null,
+          "configuration_hash": "a2db202949e2c3963ee96f2e26dfd6001ef97c92625c03701df00f57d02ab918",
+          "decision": "propose",
+          "decoding_schema_sha256": "fdc54fd0efe017cdd7074d114698263bd38be4252e8a404d87aa0fb4330ac972",
+          "explanation_bound": true,
+          "field_evidence": {
+            "duration_minutes": {
+              "mode": "ambiguous",
+              "sources": [],
+              "value": null
+            },
+            "literal_spans": [],
+            "local_time": {
+              "calendar_source": null,
+              "invalid": [],
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "value": null
+            },
+            "operation": null,
+            "priority": {
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": null
+            },
+            "scope": {
+              "file_command": true,
+              "trust": "direct_request",
+              "withdrawn": false
+            },
+            "source_timezone": {
+              "default_source": "public.timezone",
+              "defaults": [],
+              "mode": "default",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": "Asia/Tokyo"
+            },
+            "title": null,
+            "title_candidates": []
+          },
+          "grounding_error": null,
+          "latency_ms": 2965.380699999514,
+          "model": "qwen3.5:9b",
+          "path_grounding": {
+            "decision": "propose",
+            "fields": {
+              "operation": "files.trash",
+              "path": "Inbox/review-demo.txt"
+            },
+            "lexical_allowed": true,
+            "spans": {
+              "path": {
+                "end": 21,
+                "start": 0
+              }
+            }
+          },
+          "reason": "공개 파일 목록을 기준으로 만든 파일 작업 초안입니다. 승인 시 경로와 상태를 다시 검사합니다.",
+          "release_explanation": {
+            "authorizes_execution": false,
+            "bound_in_native_schema": true,
+            "policy": "source_bound",
+            "source_semantics_upgraded": false
+          },
+          "role_grounding": null,
+          "schema_requested": true,
+          "schema_valid": true,
+          "semantic_evidence": {
+            "action_evidence": {
+              "basis": {
+                "decision": "propose",
+                "fields": {
+                  "operation": "files.trash",
+                  "path": "Inbox/review-demo.txt"
+                },
+                "lexical_allowed": true,
+                "spans": {
+                  "path": {
+                    "end": 21,
+                    "start": 0
+                  }
+                }
+              },
+              "decision": "propose",
+              "needs": [],
+              "reason_code": "file_draft",
+              "request_role": "file",
+              "status": "grounded"
+            },
+            "authorizes_execution": false,
+            "content_evidence": {
+              "claims": null,
+              "status": "not_applicable"
+            },
+            "explanation_evidence": {
+              "reason": "공개 파일 목록을 기준으로 만든 파일 작업 초안입니다. 승인 시 경로와 상태를 다시 검사합니다.",
+              "scope": "decision_only",
+              "status": "bound"
+            },
+            "public_input_sha256": "9cdf2f2b241870653a4bf91ec15a42117f28a59c99d7e10fbb670d851c5291cc"
+          },
+          "semantic_evidence_sha256": "49fa567158fbb6349454c23ac4ece458fd0f4d6b6cc33303ecf4c6ddab35ef9d",
+          "strategy": "assistant-release-v1",
+          "title_grounding": null
+        },
+        "created_at": 1792158413.4830556,
+        "parent_id": null,
+        "preview": null,
+        "receipt": null,
+        "events": [
+          {
+            "event": "draft_created",
+            "payload": {
+              "metadata": {
+                "completion_error": null,
+                "configuration_hash": "a2db202949e2c3963ee96f2e26dfd6001ef97c92625c03701df00f57d02ab918",
+                "decision": "propose",
+                "decoding_schema_sha256": "fdc54fd0efe017cdd7074d114698263bd38be4252e8a404d87aa0fb4330ac972",
+                "explanation_bound": true,
+                "field_evidence": {
+                  "duration_minutes": {
+                    "mode": "ambiguous",
+                    "sources": [],
+                    "value": null
+                  },
+                  "literal_spans": [],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "value": null
+                  },
+                  "operation": null,
+                  "priority": {
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": null
+                  },
+                  "scope": {
+                    "file_command": true,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": "public.timezone",
+                    "defaults": [],
+                    "mode": "default",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": "Asia/Tokyo"
+                  },
+                  "title": null,
+                  "title_candidates": []
+                },
+                "grounding_error": null,
+                "latency_ms": 2965.380699999514,
+                "model": "qwen3.5:9b",
+                "path_grounding": {
+                  "decision": "propose",
+                  "fields": {
+                    "operation": "files.trash",
+                    "path": "Inbox/review-demo.txt"
+                  },
+                  "lexical_allowed": true,
+                  "spans": {
+                    "path": {
+                      "end": 21,
+                      "start": 0
+                    }
+                  }
+                },
+                "reason": "공개 파일 목록을 기준으로 만든 파일 작업 초안입니다. 승인 시 경로와 상태를 다시 검사합니다.",
+                "release_explanation": {
+                  "authorizes_execution": false,
+                  "bound_in_native_schema": true,
+                  "policy": "source_bound",
+                  "source_semantics_upgraded": false
+                },
+                "role_grounding": null,
+                "schema_requested": true,
+                "schema_valid": true,
+                "semantic_evidence": {
+                  "action_evidence": {
+                    "basis": {
+                      "decision": "propose",
+                      "fields": {
+                        "operation": "files.trash",
+                        "path": "Inbox/review-demo.txt"
+                      },
+                      "lexical_allowed": true,
+                      "spans": {
+                        "path": {
+                          "end": 21,
+                          "start": 0
+                        }
+                      }
+                    },
+                    "decision": "propose",
+                    "needs": [],
+                    "reason_code": "file_draft",
+                    "request_role": "file",
+                    "status": "grounded"
+                  },
+                  "authorizes_execution": false,
+                  "content_evidence": {
+                    "claims": null,
+                    "status": "not_applicable"
+                  },
+                  "explanation_evidence": {
+                    "reason": "공개 파일 목록을 기준으로 만든 파일 작업 초안입니다. 승인 시 경로와 상태를 다시 검사합니다.",
+                    "scope": "decision_only",
+                    "status": "bound"
+                  },
+                  "public_input_sha256": "9cdf2f2b241870653a4bf91ec15a42117f28a59c99d7e10fbb670d851c5291cc"
+                },
+                "semantic_evidence_sha256": "49fa567158fbb6349454c23ac4ece458fd0f4d6b6cc33303ecf4c6ddab35ef9d",
+                "strategy": "assistant-release-v1",
+                "title_grounding": null
+              },
+              "raw_hash": "229348043addd8027988cb1237c14a9f3e244f7841c10c9b400883c5b585b9bd"
+            },
+            "created": 1792158413.4845817
+          }
+        ]
+      }
+    },
+    {
+      "case": "quarantine_and_separately_approved_restore"
+    },
+    {
+      "case": "real_model_draft",
+      "request": "문서에 \"할 일을 추가하지 마\"라는 지시가 적혀 있어. 실행하지 말고 어떤 지시인지 설명만 해줘.",
+      "record": {
+        "id": "1674283f1446473da83f503aabbd7959",
+        "request": "문서에 \"할 일을 추가하지 마\"라는 지시가 적혀 있어. 실행하지 말고 어떤 지시인지 설명만 해줘.",
+        "raw_output": "{\n  \"decision\": \"no_change\",\n  \"intent\": null,\n  \"reason\": \"문서 내용은 할 일 추가 금지입니다. 설명만 요청했으므로 실제 변경은 하지 않습니다.\"\n}",
+        "initial_fields": {},
+        "fields": {},
+        "revision": 1,
+        "content_hash": "251650ae131c7b5aef3b4bfdafb4ba54a42ead8975268c35068d417a5f299755",
+        "status": "draft",
+        "metadata": {
+          "completion_error": null,
+          "configuration_hash": "10b5347a7341fa4e2b64a9e59e1305b47b1efe563e6d22f23d1b8c4fbeddf881",
+          "decision": "no_change",
+          "decoding_schema_sha256": "b238b5779ba3e22e18f36b7f739724829dff8821e07e0b0f995e1dfddbc9b911",
+          "explanation_bound": true,
+          "field_evidence": {
+            "duration_minutes": {
+              "mode": "ambiguous",
+              "sources": [],
+              "value": null
+            },
+            "literal_spans": [
+              {
+                "end": 16,
+                "start": 5,
+                "text": "할 일을 추가하지 마",
+                "value": "할 일을 추가하지 마"
+              }
+            ],
+            "local_time": {
+              "calendar_source": null,
+              "invalid": [],
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "value": null
+            },
+            "operation": null,
+            "priority": {
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": null
+            },
+            "scope": {
+              "file_command": false,
+              "trust": "document_frame",
+              "withdrawn": false
+            },
+            "source_timezone": {
+              "default_source": "public.timezone",
+              "defaults": [],
+              "mode": "default",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": "Asia/Tokyo"
+            },
+            "title": null,
+            "title_candidates": []
+          },
+          "grounding_error": null,
+          "latency_ms": 1635.2848000024096,
+          "model": "qwen3.5:9b",
+          "path_grounding": null,
+          "reason": "문서 내용은 할 일 추가 금지입니다. 설명만 요청했으므로 실제 변경은 하지 않습니다.",
+          "release_explanation": {
+            "authorizes_execution": false,
+            "bound_in_native_schema": true,
+            "policy": "source_bound",
+            "source_semantics_upgraded": false
+          },
+          "role_grounding": null,
+          "schema_requested": true,
+          "schema_valid": true,
+          "semantic_evidence": {
+            "action_evidence": {
+              "basis": {
+                "literal_spans": [
+                  {
+                    "end": 16,
+                    "start": 5,
+                    "text": "할 일을 추가하지 마",
+                    "value": "할 일을 추가하지 마"
+                  }
+                ],
+                "scope": "outer explanation-only frame"
+              },
+              "decision": "no_change",
+              "needs": [],
+              "reason_code": "explanation_only",
+              "request_role": "explain_only",
+              "status": "grounded"
+            },
+            "authorizes_execution": false,
+            "content_evidence": {
+              "claim_sources": {
+                "verb": {
+                  "end": 16,
+                  "start": 10,
+                  "text": "추가하지 마",
+                  "value": "추가하지 마"
+                }
+              },
+              "claims": {
+                "arguments": {},
+                "condition": null,
+                "operation": "todo.create",
+                "polarity": "prohibited"
+              },
+              "scope": "bounded_document_clause_v1",
+              "source": {
+                "end": 16,
+                "start": 5,
+                "text": "할 일을 추가하지 마",
+                "value": "할 일을 추가하지 마"
+              },
+              "status": "verified"
+            },
+            "explanation_evidence": {
+              "reason": "문서 내용은 할 일 추가 금지입니다. 설명만 요청했으므로 실제 변경은 하지 않습니다.",
+              "scope": "document_semantics",
+              "status": "bound"
+            },
+            "public_input_sha256": "b8bfc86c48908beb4de6111334684b40d04b85c1f2860d1e73c639af43123920"
+          },
+          "semantic_evidence_sha256": "148d881c1dcc71edf41e5b72b17ac90664a53b74edd33faa970ae73f2bb8f335",
+          "strategy": "assistant-release-v1",
+          "title_grounding": null
+        },
+        "created_at": 1792158415.9129126,
+        "parent_id": null,
+        "preview": null,
+        "receipt": null,
+        "events": [
+          {
+            "event": "draft_created",
+            "payload": {
+              "metadata": {
+                "completion_error": null,
+                "configuration_hash": "10b5347a7341fa4e2b64a9e59e1305b47b1efe563e6d22f23d1b8c4fbeddf881",
+                "decision": "no_change",
+                "decoding_schema_sha256": "b238b5779ba3e22e18f36b7f739724829dff8821e07e0b0f995e1dfddbc9b911",
+                "explanation_bound": true,
+                "field_evidence": {
+                  "duration_minutes": {
+                    "mode": "ambiguous",
+                    "sources": [],
+                    "value": null
+                  },
+                  "literal_spans": [
+                    {
+                      "end": 16,
+                      "start": 5,
+                      "text": "할 일을 추가하지 마",
+                      "value": "할 일을 추가하지 마"
+                    }
+                  ],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "value": null
+                  },
+                  "operation": null,
+                  "priority": {
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": null
+                  },
+                  "scope": {
+                    "file_command": false,
+                    "trust": "document_frame",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": "public.timezone",
+                    "defaults": [],
+                    "mode": "default",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": "Asia/Tokyo"
+                  },
+                  "title": null,
+                  "title_candidates": []
+                },
+                "grounding_error": null,
+                "latency_ms": 1635.2848000024096,
+                "model": "qwen3.5:9b",
+                "path_grounding": null,
+                "reason": "문서 내용은 할 일 추가 금지입니다. 설명만 요청했으므로 실제 변경은 하지 않습니다.",
+                "release_explanation": {
+                  "authorizes_execution": false,
+                  "bound_in_native_schema": true,
+                  "policy": "source_bound",
+                  "source_semantics_upgraded": false
+                },
+                "role_grounding": null,
+                "schema_requested": true,
+                "schema_valid": true,
+                "semantic_evidence": {
+                  "action_evidence": {
+                    "basis": {
+                      "literal_spans": [
+                        {
+                          "end": 16,
+                          "start": 5,
+                          "text": "할 일을 추가하지 마",
+                          "value": "할 일을 추가하지 마"
+                        }
+                      ],
+                      "scope": "outer explanation-only frame"
+                    },
+                    "decision": "no_change",
+                    "needs": [],
+                    "reason_code": "explanation_only",
+                    "request_role": "explain_only",
+                    "status": "grounded"
+                  },
+                  "authorizes_execution": false,
+                  "content_evidence": {
+                    "claim_sources": {
+                      "verb": {
+                        "end": 16,
+                        "start": 10,
+                        "text": "추가하지 마",
+                        "value": "추가하지 마"
+                      }
+                    },
+                    "claims": {
+                      "arguments": {},
+                      "condition": null,
+                      "operation": "todo.create",
+                      "polarity": "prohibited"
+                    },
+                    "scope": "bounded_document_clause_v1",
+                    "source": {
+                      "end": 16,
+                      "start": 5,
+                      "text": "할 일을 추가하지 마",
+                      "value": "할 일을 추가하지 마"
+                    },
+                    "status": "verified"
+                  },
+                  "explanation_evidence": {
+                    "reason": "문서 내용은 할 일 추가 금지입니다. 설명만 요청했으므로 실제 변경은 하지 않습니다.",
+                    "scope": "document_semantics",
+                    "status": "bound"
+                  },
+                  "public_input_sha256": "b8bfc86c48908beb4de6111334684b40d04b85c1f2860d1e73c639af43123920"
+                },
+                "semantic_evidence_sha256": "148d881c1dcc71edf41e5b72b17ac90664a53b74edd33faa970ae73f2bb8f335",
+                "strategy": "assistant-release-v1",
+                "title_grounding": null
+              },
+              "raw_hash": "cc985e030df50e18759c0258f409816d2a18e25d12804ae94652bf92de67fd0d"
+            },
+            "created": 1792158415.9150379
+          }
+        ]
+      }
+    },
+    {
+      "case": "negation_explanation_no_execution"
+    },
+    {
+      "case": "real_model_draft",
+      "request": "'분류 확인-mvb0twdh'을 할 일로 추가해줘. priority=urgent로 넣어줘.",
+      "record": {
+        "id": "4d5941100b6b43e0a323090f800eb4fd",
+        "request": "'분류 확인-mvb0twdh'을 할 일로 추가해줘. priority=urgent로 넣어줘.",
+        "raw_output": "{\n  \"decision\": \"clarify\",\n  \"intent\": null,\n  \"reason\": \"모델이 확인이 필요한 요청으로 분류했습니다. 구체적인 누락·충돌 원인은 자동 검증되지 않았습니다. 내용을 확인해 주세요. 변경하지 않습니다.\"\n}",
+        "initial_fields": {},
+        "fields": {},
+        "revision": 1,
+        "content_hash": "e4c0dd451197414f8553242050b90bf7055d5919867bed4c45d5839c5ebe6a37",
+        "status": "draft",
+        "metadata": {
+          "completion_error": null,
+          "configuration_hash": "a25e3247e67fe45c633b0ead30fffdf5565926ee44bcdca96edb0a9e7f088cd8",
+          "decision": "clarify",
+          "decoding_schema_sha256": "83be3020576e3843bee61c60205aca86eea3e5ef2cc40f98253ef6ef0fef8176",
+          "explanation_bound": true,
+          "field_evidence": {
+            "duration_minutes": {
+              "mode": "ambiguous",
+              "sources": [],
+              "value": null
+            },
+            "literal_spans": [
+              {
+                "end": 15,
+                "start": 1,
+                "text": "분류 확인-mvb0twdh",
+                "value": "분류 확인-mvb0twdh"
+              }
+            ],
+            "local_time": {
+              "calendar_source": null,
+              "invalid": [],
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "value": null
+            },
+            "operation": "todo.create",
+            "priority": {
+              "mode": "ambiguous",
+              "omissions": [],
+              "sources": [],
+              "unknown": [
+                {
+                  "end": 44,
+                  "start": 38,
+                  "text": "urgent",
+                  "value": "urgent"
+                }
+              ],
+              "value": null
+            },
+            "scope": {
+              "file_command": false,
+              "trust": "direct_request",
+              "withdrawn": false
+            },
+            "source_timezone": {
+              "default_source": "public.timezone",
+              "defaults": [],
+              "mode": "default",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": "Asia/Tokyo"
+            },
+            "title": {
+              "end": 15,
+              "start": 1,
+              "text": "분류 확인-mvb0twdh",
+              "value": "분류 확인-mvb0twdh"
+            },
+            "title_candidates": [
+              {
+                "end": 15,
+                "start": 1,
+                "text": "분류 확인-mvb0twdh",
+                "value": "분류 확인-mvb0twdh"
+              }
+            ]
+          },
+          "grounding_error": null,
+          "latency_ms": 2462.9633000004105,
+          "model": "qwen3.5:9b",
+          "path_grounding": null,
+          "reason": "모델이 확인이 필요한 요청으로 분류했습니다. 구체적인 누락·충돌 원인은 자동 검증되지 않았습니다. 내용을 확인해 주세요. 변경하지 않습니다.",
+          "release_explanation": {
+            "authorizes_execution": false,
+            "bound_in_native_schema": true,
+            "policy": "neutral_decision_only",
+            "source_semantics_upgraded": false
+          },
+          "role_grounding": null,
+          "schema_requested": true,
+          "schema_valid": true,
+          "semantic_evidence": {
+            "action_evidence": {
+              "basis": {
+                "scope": "unsupported or incomplete command frame"
+              },
+              "decision": null,
+              "needs": [],
+              "reason_code": null,
+              "request_role": "unresolved",
+              "status": "insufficient"
+            },
+            "authorizes_execution": false,
+            "content_evidence": {
+              "claims": null,
+              "status": "not_applicable"
+            },
+            "explanation_evidence": {
+              "reason": null,
+              "scope": "decision_only",
+              "status": "unverified"
+            },
+            "public_input_sha256": "7290d30109f5eb5b1890408313cd7383dc99a04e038ae9304c7f92e6b397b40c"
+          },
+          "semantic_evidence_sha256": "d09491561f4229f1946bb821f5c9418dfbea7c1b37818dfd4f2539606301767a",
+          "strategy": "assistant-release-v1",
+          "title_grounding": {
+            "end": 15,
+            "start": 1,
+            "value": "분류 확인-mvb0twdh"
+          }
+        },
+        "created_at": 1792158418.591541,
+        "parent_id": null,
+        "preview": null,
+        "receipt": null,
+        "events": [
+          {
+            "event": "draft_created",
+            "payload": {
+              "metadata": {
+                "completion_error": null,
+                "configuration_hash": "a25e3247e67fe45c633b0ead30fffdf5565926ee44bcdca96edb0a9e7f088cd8",
+                "decision": "clarify",
+                "decoding_schema_sha256": "83be3020576e3843bee61c60205aca86eea3e5ef2cc40f98253ef6ef0fef8176",
+                "explanation_bound": true,
+                "field_evidence": {
+                  "duration_minutes": {
+                    "mode": "ambiguous",
+                    "sources": [],
+                    "value": null
+                  },
+                  "literal_spans": [
+                    {
+                      "end": 15,
+                      "start": 1,
+                      "text": "분류 확인-mvb0twdh",
+                      "value": "분류 확인-mvb0twdh"
+                    }
+                  ],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "value": null
+                  },
+                  "operation": "todo.create",
+                  "priority": {
+                    "mode": "ambiguous",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [
+                      {
+                        "end": 44,
+                        "start": 38,
+                        "text": "urgent",
+                        "value": "urgent"
+                      }
+                    ],
+                    "value": null
+                  },
+                  "scope": {
+                    "file_command": false,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": "public.timezone",
+                    "defaults": [],
+                    "mode": "default",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": "Asia/Tokyo"
+                  },
+                  "title": {
+                    "end": 15,
+                    "start": 1,
+                    "text": "분류 확인-mvb0twdh",
+                    "value": "분류 확인-mvb0twdh"
+                  },
+                  "title_candidates": [
+                    {
+                      "end": 15,
+                      "start": 1,
+                      "text": "분류 확인-mvb0twdh",
+                      "value": "분류 확인-mvb0twdh"
+                    }
+                  ]
+                },
+                "grounding_error": null,
+                "latency_ms": 2462.9633000004105,
+                "model": "qwen3.5:9b",
+                "path_grounding": null,
+                "reason": "모델이 확인이 필요한 요청으로 분류했습니다. 구체적인 누락·충돌 원인은 자동 검증되지 않았습니다. 내용을 확인해 주세요. 변경하지 않습니다.",
+                "release_explanation": {
+                  "authorizes_execution": false,
+                  "bound_in_native_schema": true,
+                  "policy": "neutral_decision_only",
+                  "source_semantics_upgraded": false
+                },
+                "role_grounding": null,
+                "schema_requested": true,
+                "schema_valid": true,
+                "semantic_evidence": {
+                  "action_evidence": {
+                    "basis": {
+                      "scope": "unsupported or incomplete command frame"
+                    },
+                    "decision": null,
+                    "needs": [],
+                    "reason_code": null,
+                    "request_role": "unresolved",
+                    "status": "insufficient"
+                  },
+                  "authorizes_execution": false,
+                  "content_evidence": {
+                    "claims": null,
+                    "status": "not_applicable"
+                  },
+                  "explanation_evidence": {
+                    "reason": null,
+                    "scope": "decision_only",
+                    "status": "unverified"
+                  },
+                  "public_input_sha256": "7290d30109f5eb5b1890408313cd7383dc99a04e038ae9304c7f92e6b397b40c"
+                },
+                "semantic_evidence_sha256": "d09491561f4229f1946bb821f5c9418dfbea7c1b37818dfd4f2539606301767a",
+                "strategy": "assistant-release-v1",
+                "title_grounding": {
+                  "end": 15,
+                  "start": 1,
+                  "value": "분류 확인-mvb0twdh"
+                }
+              },
+              "raw_hash": "04da809da0f618e063fccd8c4ef534f7d6caf5904230c03b72f0baa6cf37d621"
+            },
+            "created": 1792158418.5935733
+          }
+        ]
+      }
+    },
+    {
+      "case": "unknown_priority_no_fabricated_deadline"
+    },
+    {
+      "case": "real_model_draft",
+      "request": "../private.txt를 Archive/private.txt로 옮겨줘.",
+      "record": {
+        "id": "fb0bc1de6b7641bb8d074e1b53f9d4c3",
+        "request": "../private.txt를 Archive/private.txt로 옮겨줘.",
+        "raw_output": "{\n  \"decision\": \"refuse\",\n  \"intent\": null,\n  \"reason\": \"요청한 작업 대상 경로가 허용 정책에 맞지 않아 거절합니다. 파일은 변경하지 않습니다.\"\n}",
+        "initial_fields": {},
+        "fields": {},
+        "revision": 1,
+        "content_hash": "dd08c290ae93eab9761725ab7884a537b8c1102b4b98578dd73bac1acb4ca46e",
+        "status": "draft",
+        "metadata": {
+          "completion_error": null,
+          "configuration_hash": "bade4321f7dc5bb0d6dff28acc0f381443bfd9f260a1a41a4ce3312cecb152db",
+          "decision": "refuse",
+          "decoding_schema_sha256": "9c02953a2c2e113d625c5829cb8a2115b248f928066bf0c01b051875b704316e",
+          "explanation_bound": true,
+          "field_evidence": {
+            "duration_minutes": {
+              "mode": "ambiguous",
+              "sources": [],
+              "value": null
+            },
+            "literal_spans": [],
+            "local_time": {
+              "calendar_source": null,
+              "invalid": [],
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "value": null
+            },
+            "operation": null,
+            "priority": {
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": null
+            },
+            "scope": {
+              "file_command": true,
+              "trust": "direct_request",
+              "withdrawn": false
+            },
+            "source_timezone": {
+              "default_source": "public.timezone",
+              "defaults": [],
+              "mode": "default",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": "Asia/Tokyo"
+            },
+            "title": null,
+            "title_candidates": []
+          },
+          "grounding_error": null,
+          "latency_ms": 1620.9220999953686,
+          "model": "qwen3.5:9b",
+          "path_grounding": {
+            "decision": "refuse",
+            "fields": {
+              "destination": "Archive/private.txt",
+              "operation": "files.move",
+              "source": "../private.txt"
+            },
+            "lexical_allowed": false,
+            "spans": {
+              "destination": {
+                "end": 35,
+                "start": 16
+              },
+              "source": {
+                "end": 14,
+                "start": 0
+              }
+            }
+          },
+          "reason": "요청한 작업 대상 경로가 허용 정책에 맞지 않아 거절합니다. 파일은 변경하지 않습니다.",
+          "release_explanation": {
+            "authorizes_execution": false,
+            "bound_in_native_schema": true,
+            "policy": "source_bound",
+            "source_semantics_upgraded": false
+          },
+          "role_grounding": null,
+          "schema_requested": true,
+          "schema_valid": true,
+          "semantic_evidence": {
+            "action_evidence": {
+              "basis": {
+                "decision": "refuse",
+                "fields": {
+                  "destination": "Archive/private.txt",
+                  "operation": "files.move",
+                  "source": "../private.txt"
+                },
+                "lexical_allowed": false,
+                "spans": {
+                  "destination": {
+                    "end": 35,
+                    "start": 16
+                  },
+                  "source": {
+                    "end": 14,
+                    "start": 0
+                  }
+                }
+              },
+              "decision": "refuse",
+              "needs": [],
+              "reason_code": "forbidden_path",
+              "request_role": "file",
+              "status": "grounded"
+            },
+            "authorizes_execution": false,
+            "content_evidence": {
+              "claims": null,
+              "status": "not_applicable"
+            },
+            "explanation_evidence": {
+              "reason": "요청한 작업 대상 경로가 허용 정책에 맞지 않아 거절합니다. 파일은 변경하지 않습니다.",
+              "scope": "decision_only",
+              "status": "bound"
+            },
+            "public_input_sha256": "1f533e89ee54aab28c7694e80584d6f83e951c716a8b9615a04da53c88e7b677"
+          },
+          "semantic_evidence_sha256": "fff1d52851e9c2aa33a184d2690be9b5da799862bf622cb009a372a7b6ea0c78",
+          "strategy": "assistant-release-v1",
+          "title_grounding": null
+        },
+        "created_at": 1792158420.5686605,
+        "parent_id": null,
+        "preview": null,
+        "receipt": null,
+        "events": [
+          {
+            "event": "draft_created",
+            "payload": {
+              "metadata": {
+                "completion_error": null,
+                "configuration_hash": "bade4321f7dc5bb0d6dff28acc0f381443bfd9f260a1a41a4ce3312cecb152db",
+                "decision": "refuse",
+                "decoding_schema_sha256": "9c02953a2c2e113d625c5829cb8a2115b248f928066bf0c01b051875b704316e",
+                "explanation_bound": true,
+                "field_evidence": {
+                  "duration_minutes": {
+                    "mode": "ambiguous",
+                    "sources": [],
+                    "value": null
+                  },
+                  "literal_spans": [],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "value": null
+                  },
+                  "operation": null,
+                  "priority": {
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": null
+                  },
+                  "scope": {
+                    "file_command": true,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": "public.timezone",
+                    "defaults": [],
+                    "mode": "default",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": "Asia/Tokyo"
+                  },
+                  "title": null,
+                  "title_candidates": []
+                },
+                "grounding_error": null,
+                "latency_ms": 1620.9220999953686,
+                "model": "qwen3.5:9b",
+                "path_grounding": {
+                  "decision": "refuse",
+                  "fields": {
+                    "destination": "Archive/private.txt",
+                    "operation": "files.move",
+                    "source": "../private.txt"
+                  },
+                  "lexical_allowed": false,
+                  "spans": {
+                    "destination": {
+                      "end": 35,
+                      "start": 16
+                    },
+                    "source": {
+                      "end": 14,
+                      "start": 0
+                    }
+                  }
+                },
+                "reason": "요청한 작업 대상 경로가 허용 정책에 맞지 않아 거절합니다. 파일은 변경하지 않습니다.",
+                "release_explanation": {
+                  "authorizes_execution": false,
+                  "bound_in_native_schema": true,
+                  "policy": "source_bound",
+                  "source_semantics_upgraded": false
+                },
+                "role_grounding": null,
+                "schema_requested": true,
+                "schema_valid": true,
+                "semantic_evidence": {
+                  "action_evidence": {
+                    "basis": {
+                      "decision": "refuse",
+                      "fields": {
+                        "destination": "Archive/private.txt",
+                        "operation": "files.move",
+                        "source": "../private.txt"
+                      },
+                      "lexical_allowed": false,
+                      "spans": {
+                        "destination": {
+                          "end": 35,
+                          "start": 16
+                        },
+                        "source": {
+                          "end": 14,
+                          "start": 0
+                        }
+                      }
+                    },
+                    "decision": "refuse",
+                    "needs": [],
+                    "reason_code": "forbidden_path",
+                    "request_role": "file",
+                    "status": "grounded"
+                  },
+                  "authorizes_execution": false,
+                  "content_evidence": {
+                    "claims": null,
+                    "status": "not_applicable"
+                  },
+                  "explanation_evidence": {
+                    "reason": "요청한 작업 대상 경로가 허용 정책에 맞지 않아 거절합니다. 파일은 변경하지 않습니다.",
+                    "scope": "decision_only",
+                    "status": "bound"
+                  },
+                  "public_input_sha256": "1f533e89ee54aab28c7694e80584d6f83e951c716a8b9615a04da53c88e7b677"
+                },
+                "semantic_evidence_sha256": "fff1d52851e9c2aa33a184d2690be9b5da799862bf622cb009a372a7b6ea0c78",
+                "strategy": "assistant-release-v1",
+                "title_grounding": null
+              },
+              "raw_hash": "575c8b83208a0e78576309fb2758d28f2e29da9b894f614681174220a21474c0"
+            },
+            "created": 1792158420.5702057
+          }
+        ]
+      }
+    },
+    {
+      "case": "forbidden_path_no_execution"
+    },
+    {
+      "case": "real_model_draft",
+      "request": "2028년 12월 15일 뉴욕 현지 오전 8시 30분부터 45분간 '뉴욕 회의-mvb0twdh' 일정을 잡아줘.",
+      "record": {
+        "id": "33f380b4a3574c4baa36c3497cdc1b16",
+        "request": "2028년 12월 15일 뉴욕 현지 오전 8시 30분부터 45분간 '뉴욕 회의-mvb0twdh' 일정을 잡아줘.",
+        "raw_output": "{\n  \"decision\": \"propose\",\n  \"intent\": {\n    \"operation\": \"calendar.create\",\n    \"title\": \"뉴욕 회의-mvb0twdh\",\n    \"local_start\": \"2028-12-15T08:30:00\",\n    \"source_timezone\": \"America/New_York\",\n    \"duration_minutes\": 45\n  },\n  \"reason\": \"일정 추가 초안입니다. 시작은 2028-12-15T08:30:00, 길이는 45분입니다. 요청에 지정된 시간대 America/New_York를 적용합니다. 승인 전에는 실행하지 않습니다.\"\n}",
+        "initial_fields": {
+          "duration_minutes": 45,
+          "local_start": "2028-12-15T08:30:00",
+          "operation": "calendar.create",
+          "source_timezone": "America/New_York",
+          "title": "뉴욕 회의-mvb0twdh"
+        },
+        "fields": {
+          "duration_minutes": 45,
+          "local_start": "2028-12-15T08:30:00",
+          "operation": "calendar.create",
+          "source_timezone": "America/New_York",
+          "title": "뉴욕 회의-mvb0twdh"
+        },
+        "revision": 1,
+        "content_hash": "080f0ef22033d6d99aa31d6f3dca95bad3f42bed3be4456e437849da0c05ea6a",
+        "status": "draft",
+        "metadata": {
+          "completion_error": null,
+          "configuration_hash": "a812873d3030cec9a805dba0618398101103498c0e1cc6fa757f99378874fe6d",
+          "decision": "propose",
+          "decoding_schema_sha256": "b446da25bb01a397edbadcbb2ea545627b2f339f404d2e8d06b56c7d581b8764",
+          "explanation_bound": true,
+          "field_evidence": {
+            "duration_minutes": {
+              "mode": "specified",
+              "sources": [
+                {
+                  "end": 36,
+                  "start": 32,
+                  "text": "45분간",
+                  "value": 45
+                }
+              ],
+              "value": 45
+            },
+            "literal_spans": [
+              {
+                "end": 52,
+                "start": 38,
+                "text": "뉴욕 회의-mvb0twdh",
+                "value": "뉴욕 회의-mvb0twdh"
+              }
+            ],
+            "local_time": {
+              "calendar_source": null,
+              "invalid": [],
+              "mode": "specified",
+              "omissions": [],
+              "sources": [
+                {
+                  "end": 13,
+                  "start": 0,
+                  "text": "2028년 12월 15일",
+                  "value": "2028-12-15"
+                },
+                {
+                  "end": 29,
+                  "start": 20,
+                  "text": "오전 8시 30분",
+                  "value": "08:30:00"
+                }
+              ],
+              "value": "2028-12-15T08:30:00"
+            },
+            "operation": "calendar.create",
+            "priority": {
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": null
+            },
+            "scope": {
+              "file_command": false,
+              "trust": "direct_request",
+              "withdrawn": false
+            },
+            "source_timezone": {
+              "default_source": null,
+              "defaults": [],
+              "mode": "specified",
+              "omissions": [],
+              "sources": [
+                {
+                  "end": 16,
+                  "start": 14,
+                  "text": "뉴욕",
+                  "value": "America/New_York"
+                }
+              ],
+              "unknown": [],
+              "value": "America/New_York"
+            },
+            "title": {
+              "end": 52,
+              "start": 38,
+              "text": "뉴욕 회의-mvb0twdh",
+              "value": "뉴욕 회의-mvb0twdh"
+            },
+            "title_candidates": [
+              {
+                "end": 52,
+                "start": 38,
+                "text": "뉴욕 회의-mvb0twdh",
+                "value": "뉴욕 회의-mvb0twdh"
+              }
+            ]
+          },
+          "grounding_error": null,
+          "latency_ms": 4467.774700002337,
+          "model": "qwen3.5:9b",
+          "path_grounding": null,
+          "reason": "일정 추가 초안입니다. 시작은 2028-12-15T08:30:00, 길이는 45분입니다. 요청에 지정된 시간대 America/New_York를 적용합니다. 승인 전에는 실행하지 않습니다.",
+          "release_explanation": {
+            "authorizes_execution": false,
+            "bound_in_native_schema": true,
+            "policy": "source_bound",
+            "source_semantics_upgraded": false
+          },
+          "role_grounding": null,
+          "schema_requested": true,
+          "schema_valid": true,
+          "semantic_evidence": {
+            "action_evidence": {
+              "basis": {
+                "command_shape": "DATEZONE현지TIME부터DURATIONTITLE일정을잡아줘.",
+                "fields": {
+                  "duration_minutes": {
+                    "mode": "specified",
+                    "sources": [
+                      {
+                        "end": 36,
+                        "start": 32,
+                        "text": "45분간",
+                        "value": 45
+                      }
+                    ],
+                    "value": 45
+                  },
+                  "literal_spans": [
+                    {
+                      "end": 52,
+                      "start": 38,
+                      "text": "뉴욕 회의-mvb0twdh",
+                      "value": "뉴욕 회의-mvb0twdh"
+                    }
+                  ],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "specified",
+                    "omissions": [],
+                    "sources": [
+                      {
+                        "end": 13,
+                        "start": 0,
+                        "text": "2028년 12월 15일",
+                        "value": "2028-12-15"
+                      },
+                      {
+                        "end": 29,
+                        "start": 20,
+                        "text": "오전 8시 30분",
+                        "value": "08:30:00"
+                      }
+                    ],
+                    "value": "2028-12-15T08:30:00"
+                  },
+                  "operation": "calendar.create",
+                  "priority": {
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": null
+                  },
+                  "scope": {
+                    "file_command": false,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": null,
+                    "defaults": [],
+                    "mode": "specified",
+                    "omissions": [],
+                    "sources": [
+                      {
+                        "end": 16,
+                        "start": 14,
+                        "text": "뉴욕",
+                        "value": "America/New_York"
+                      }
+                    ],
+                    "unknown": [],
+                    "value": "America/New_York"
+                  },
+                  "title": {
+                    "end": 52,
+                    "start": 38,
+                    "text": "뉴욕 회의-mvb0twdh",
+                    "value": "뉴욕 회의-mvb0twdh"
+                  },
+                  "title_candidates": [
+                    {
+                      "end": 52,
+                      "start": 38,
+                      "text": "뉴욕 회의-mvb0twdh",
+                      "value": "뉴욕 회의-mvb0twdh"
+                    }
+                  ]
+                },
+                "state_source": "public.tasks/events"
+              },
+              "decision": "propose",
+              "needs": [],
+              "reason_code": "complete_creation",
+              "request_role": "create",
+              "status": "grounded"
+            },
+            "authorizes_execution": false,
+            "content_evidence": {
+              "claims": null,
+              "status": "not_applicable"
+            },
+            "explanation_evidence": {
+              "reason": "일정 추가 초안입니다. 시작은 2028-12-15T08:30:00, 길이는 45분입니다. 요청에 지정된 시간대 America/New_York를 적용합니다. 승인 전에는 실행하지 않습니다.",
+              "scope": "decision_only",
+              "status": "bound"
+            },
+            "public_input_sha256": "29378edc5bccb8a54777b8aaceaf24a903c2df487a662e9f095225f0e1f27dba"
+          },
+          "semantic_evidence_sha256": "fee9dd0f8d78793f7d2a83daf1ea563901494ced423485a504798d15e0b4b320",
+          "strategy": "assistant-release-v1",
+          "title_grounding": {
+            "end": 52,
+            "start": 38,
+            "text": "뉴욕 회의-mvb0twdh",
+            "value": "뉴욕 회의-mvb0twdh"
+          }
+        },
+        "created_at": 1792158425.2140203,
+        "parent_id": null,
+        "preview": null,
+        "receipt": null,
+        "events": [
+          {
+            "event": "draft_created",
+            "payload": {
+              "metadata": {
+                "completion_error": null,
+                "configuration_hash": "a812873d3030cec9a805dba0618398101103498c0e1cc6fa757f99378874fe6d",
+                "decision": "propose",
+                "decoding_schema_sha256": "b446da25bb01a397edbadcbb2ea545627b2f339f404d2e8d06b56c7d581b8764",
+                "explanation_bound": true,
+                "field_evidence": {
+                  "duration_minutes": {
+                    "mode": "specified",
+                    "sources": [
+                      {
+                        "end": 36,
+                        "start": 32,
+                        "text": "45분간",
+                        "value": 45
+                      }
+                    ],
+                    "value": 45
+                  },
+                  "literal_spans": [
+                    {
+                      "end": 52,
+                      "start": 38,
+                      "text": "뉴욕 회의-mvb0twdh",
+                      "value": "뉴욕 회의-mvb0twdh"
+                    }
+                  ],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "specified",
+                    "omissions": [],
+                    "sources": [
+                      {
+                        "end": 13,
+                        "start": 0,
+                        "text": "2028년 12월 15일",
+                        "value": "2028-12-15"
+                      },
+                      {
+                        "end": 29,
+                        "start": 20,
+                        "text": "오전 8시 30분",
+                        "value": "08:30:00"
+                      }
+                    ],
+                    "value": "2028-12-15T08:30:00"
+                  },
+                  "operation": "calendar.create",
+                  "priority": {
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": null
+                  },
+                  "scope": {
+                    "file_command": false,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": null,
+                    "defaults": [],
+                    "mode": "specified",
+                    "omissions": [],
+                    "sources": [
+                      {
+                        "end": 16,
+                        "start": 14,
+                        "text": "뉴욕",
+                        "value": "America/New_York"
+                      }
+                    ],
+                    "unknown": [],
+                    "value": "America/New_York"
+                  },
+                  "title": {
+                    "end": 52,
+                    "start": 38,
+                    "text": "뉴욕 회의-mvb0twdh",
+                    "value": "뉴욕 회의-mvb0twdh"
+                  },
+                  "title_candidates": [
+                    {
+                      "end": 52,
+                      "start": 38,
+                      "text": "뉴욕 회의-mvb0twdh",
+                      "value": "뉴욕 회의-mvb0twdh"
+                    }
+                  ]
+                },
+                "grounding_error": null,
+                "latency_ms": 4467.774700002337,
+                "model": "qwen3.5:9b",
+                "path_grounding": null,
+                "reason": "일정 추가 초안입니다. 시작은 2028-12-15T08:30:00, 길이는 45분입니다. 요청에 지정된 시간대 America/New_York를 적용합니다. 승인 전에는 실행하지 않습니다.",
+                "release_explanation": {
+                  "authorizes_execution": false,
+                  "bound_in_native_schema": true,
+                  "policy": "source_bound",
+                  "source_semantics_upgraded": false
+                },
+                "role_grounding": null,
+                "schema_requested": true,
+                "schema_valid": true,
+                "semantic_evidence": {
+                  "action_evidence": {
+                    "basis": {
+                      "command_shape": "DATEZONE현지TIME부터DURATIONTITLE일정을잡아줘.",
+                      "fields": {
+                        "duration_minutes": {
+                          "mode": "specified",
+                          "sources": [
+                            {
+                              "end": 36,
+                              "start": 32,
+                              "text": "45분간",
+                              "value": 45
+                            }
+                          ],
+                          "value": 45
+                        },
+                        "literal_spans": [
+                          {
+                            "end": 52,
+                            "start": 38,
+                            "text": "뉴욕 회의-mvb0twdh",
+                            "value": "뉴욕 회의-mvb0twdh"
+                          }
+                        ],
+                        "local_time": {
+                          "calendar_source": null,
+                          "invalid": [],
+                          "mode": "specified",
+                          "omissions": [],
+                          "sources": [
+                            {
+                              "end": 13,
+                              "start": 0,
+                              "text": "2028년 12월 15일",
+                              "value": "2028-12-15"
+                            },
+                            {
+                              "end": 29,
+                              "start": 20,
+                              "text": "오전 8시 30분",
+                              "value": "08:30:00"
+                            }
+                          ],
+                          "value": "2028-12-15T08:30:00"
+                        },
+                        "operation": "calendar.create",
+                        "priority": {
+                          "mode": "omitted",
+                          "omissions": [],
+                          "sources": [],
+                          "unknown": [],
+                          "value": null
+                        },
+                        "scope": {
+                          "file_command": false,
+                          "trust": "direct_request",
+                          "withdrawn": false
+                        },
+                        "source_timezone": {
+                          "default_source": null,
+                          "defaults": [],
+                          "mode": "specified",
+                          "omissions": [],
+                          "sources": [
+                            {
+                              "end": 16,
+                              "start": 14,
+                              "text": "뉴욕",
+                              "value": "America/New_York"
+                            }
+                          ],
+                          "unknown": [],
+                          "value": "America/New_York"
+                        },
+                        "title": {
+                          "end": 52,
+                          "start": 38,
+                          "text": "뉴욕 회의-mvb0twdh",
+                          "value": "뉴욕 회의-mvb0twdh"
+                        },
+                        "title_candidates": [
+                          {
+                            "end": 52,
+                            "start": 38,
+                            "text": "뉴욕 회의-mvb0twdh",
+                            "value": "뉴욕 회의-mvb0twdh"
+                          }
+                        ]
+                      },
+                      "state_source": "public.tasks/events"
+                    },
+                    "decision": "propose",
+                    "needs": [],
+                    "reason_code": "complete_creation",
+                    "request_role": "create",
+                    "status": "grounded"
+                  },
+                  "authorizes_execution": false,
+                  "content_evidence": {
+                    "claims": null,
+                    "status": "not_applicable"
+                  },
+                  "explanation_evidence": {
+                    "reason": "일정 추가 초안입니다. 시작은 2028-12-15T08:30:00, 길이는 45분입니다. 요청에 지정된 시간대 America/New_York를 적용합니다. 승인 전에는 실행하지 않습니다.",
+                    "scope": "decision_only",
+                    "status": "bound"
+                  },
+                  "public_input_sha256": "29378edc5bccb8a54777b8aaceaf24a903c2df487a662e9f095225f0e1f27dba"
+                },
+                "semantic_evidence_sha256": "fee9dd0f8d78793f7d2a83daf1ea563901494ced423485a504798d15e0b4b320",
+                "strategy": "assistant-release-v1",
+                "title_grounding": {
+                  "end": 52,
+                  "start": 38,
+                  "text": "뉴욕 회의-mvb0twdh",
+                  "value": "뉴욕 회의-mvb0twdh"
+                }
+              },
+              "raw_hash": "c8dff28f701ed25f28e0ada322367d7e47bf3a83588f4f6ea0489574ef635d97"
+            },
+            "created": 1792158425.2161226
+          }
+        ]
+      }
+    },
+    {
+      "case": "calendar_timezone_conversion"
+    },
+    {
+      "case": "real_model_draft",
+      "request": "'상태 변경-mvb0twdh'를 할 일로 추가해줘.",
+      "record": {
+        "id": "4bd2cb4a447d4f65b7724e330b9ff2ba",
+        "request": "'상태 변경-mvb0twdh'를 할 일로 추가해줘.",
+        "raw_output": "{\n  \"decision\": \"propose\",\n  \"intent\": {\n    \"operation\": \"todo.create\",\n    \"title\": \"상태 변경-mvb0twdh\",\n    \"source_timezone\": \"Asia/Tokyo\"\n  },\n  \"reason\": \"할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.\"\n}",
+        "initial_fields": {
+          "operation": "todo.create",
+          "source_timezone": "Asia/Tokyo",
+          "title": "상태 변경-mvb0twdh"
+        },
+        "fields": {
+          "operation": "todo.create",
+          "source_timezone": "Asia/Tokyo",
+          "title": "상태 변경-mvb0twdh"
+        },
+        "revision": 1,
+        "content_hash": "77d8cc3145aae4be4b0d91075c2d2048ec81e28c8b6dfaa06a4ec70690da2085",
+        "status": "draft",
+        "metadata": {
+          "completion_error": null,
+          "configuration_hash": "c6017427c2218c99ca97ed270b03a86b6fd6591d72ad78ef19479ab5970fe9ca",
+          "decision": "propose",
+          "decoding_schema_sha256": "7c5d55d416a9fe4f2a8c2532aef0f5ffc75e36b3b9c26257c9db41529749c309",
+          "explanation_bound": true,
+          "field_evidence": {
+            "duration_minutes": {
+              "mode": "ambiguous",
+              "sources": [],
+              "value": null
+            },
+            "literal_spans": [
+              {
+                "end": 15,
+                "start": 1,
+                "text": "상태 변경-mvb0twdh",
+                "value": "상태 변경-mvb0twdh"
+              }
+            ],
+            "local_time": {
+              "calendar_source": null,
+              "invalid": [],
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "value": null
+            },
+            "operation": "todo.create",
+            "priority": {
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": null
+            },
+            "scope": {
+              "file_command": false,
+              "trust": "direct_request",
+              "withdrawn": false
+            },
+            "source_timezone": {
+              "default_source": "public.timezone",
+              "defaults": [],
+              "mode": "default",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": "Asia/Tokyo"
+            },
+            "title": {
+              "end": 15,
+              "start": 1,
+              "text": "상태 변경-mvb0twdh",
+              "value": "상태 변경-mvb0twdh"
+            },
+            "title_candidates": [
+              {
+                "end": 15,
+                "start": 1,
+                "text": "상태 변경-mvb0twdh",
+                "value": "상태 변경-mvb0twdh"
+              }
+            ]
+          },
+          "grounding_error": null,
+          "latency_ms": 3718.7199000036344,
+          "model": "qwen3.5:9b",
+          "path_grounding": null,
+          "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+          "release_explanation": {
+            "authorizes_execution": false,
+            "bound_in_native_schema": true,
+            "policy": "source_bound",
+            "source_semantics_upgraded": false
+          },
+          "role_grounding": {
+            "basis": "complete-quoted-todo-command-and-public-open-tasks",
+            "decision": "propose",
+            "operation": "todo.create",
+            "role": "todo_title",
+            "title": {
+              "end": 15,
+              "start": 1,
+              "value": "상태 변경-mvb0twdh"
+            }
+          },
+          "schema_requested": true,
+          "schema_valid": true,
+          "semantic_evidence": {
+            "action_evidence": {
+              "basis": {
+                "command_shape": "TITLE를할일로추가해줘.",
+                "fields": {
+                  "duration_minutes": {
+                    "mode": "ambiguous",
+                    "sources": [],
+                    "value": null
+                  },
+                  "literal_spans": [
+                    {
+                      "end": 15,
+                      "start": 1,
+                      "text": "상태 변경-mvb0twdh",
+                      "value": "상태 변경-mvb0twdh"
+                    }
+                  ],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "value": null
+                  },
+                  "operation": "todo.create",
+                  "priority": {
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": null
+                  },
+                  "scope": {
+                    "file_command": false,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": "public.timezone",
+                    "defaults": [],
+                    "mode": "default",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": "Asia/Tokyo"
+                  },
+                  "title": {
+                    "end": 15,
+                    "start": 1,
+                    "text": "상태 변경-mvb0twdh",
+                    "value": "상태 변경-mvb0twdh"
+                  },
+                  "title_candidates": [
+                    {
+                      "end": 15,
+                      "start": 1,
+                      "text": "상태 변경-mvb0twdh",
+                      "value": "상태 변경-mvb0twdh"
+                    }
+                  ]
+                },
+                "state_source": "public.tasks/events"
+              },
+              "decision": "propose",
+              "needs": [],
+              "reason_code": "complete_creation",
+              "request_role": "create",
+              "status": "grounded"
+            },
+            "authorizes_execution": false,
+            "content_evidence": {
+              "claims": null,
+              "status": "not_applicable"
+            },
+            "explanation_evidence": {
+              "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+              "scope": "decision_only",
+              "status": "bound"
+            },
+            "public_input_sha256": "cc7b42aa54f62720174db2a29da97444f142532735de8393739c192fc48d45b7"
+          },
+          "semantic_evidence_sha256": "6579374e41103b57fb3df4b56b03c907357f66f772fbbedf620bdedc14de700a",
+          "strategy": "assistant-release-v1",
+          "title_grounding": {
+            "end": 15,
+            "start": 1,
+            "text": "상태 변경-mvb0twdh",
+            "value": "상태 변경-mvb0twdh"
+          }
+        },
+        "created_at": 1792158429.3569438,
+        "parent_id": null,
+        "preview": null,
+        "receipt": null,
+        "events": [
+          {
+            "event": "draft_created",
+            "payload": {
+              "metadata": {
+                "completion_error": null,
+                "configuration_hash": "c6017427c2218c99ca97ed270b03a86b6fd6591d72ad78ef19479ab5970fe9ca",
+                "decision": "propose",
+                "decoding_schema_sha256": "7c5d55d416a9fe4f2a8c2532aef0f5ffc75e36b3b9c26257c9db41529749c309",
+                "explanation_bound": true,
+                "field_evidence": {
+                  "duration_minutes": {
+                    "mode": "ambiguous",
+                    "sources": [],
+                    "value": null
+                  },
+                  "literal_spans": [
+                    {
+                      "end": 15,
+                      "start": 1,
+                      "text": "상태 변경-mvb0twdh",
+                      "value": "상태 변경-mvb0twdh"
+                    }
+                  ],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "value": null
+                  },
+                  "operation": "todo.create",
+                  "priority": {
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": null
+                  },
+                  "scope": {
+                    "file_command": false,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": "public.timezone",
+                    "defaults": [],
+                    "mode": "default",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": "Asia/Tokyo"
+                  },
+                  "title": {
+                    "end": 15,
+                    "start": 1,
+                    "text": "상태 변경-mvb0twdh",
+                    "value": "상태 변경-mvb0twdh"
+                  },
+                  "title_candidates": [
+                    {
+                      "end": 15,
+                      "start": 1,
+                      "text": "상태 변경-mvb0twdh",
+                      "value": "상태 변경-mvb0twdh"
+                    }
+                  ]
+                },
+                "grounding_error": null,
+                "latency_ms": 3718.7199000036344,
+                "model": "qwen3.5:9b",
+                "path_grounding": null,
+                "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+                "release_explanation": {
+                  "authorizes_execution": false,
+                  "bound_in_native_schema": true,
+                  "policy": "source_bound",
+                  "source_semantics_upgraded": false
+                },
+                "role_grounding": {
+                  "basis": "complete-quoted-todo-command-and-public-open-tasks",
+                  "decision": "propose",
+                  "operation": "todo.create",
+                  "role": "todo_title",
+                  "title": {
+                    "end": 15,
+                    "start": 1,
+                    "value": "상태 변경-mvb0twdh"
+                  }
+                },
+                "schema_requested": true,
+                "schema_valid": true,
+                "semantic_evidence": {
+                  "action_evidence": {
+                    "basis": {
+                      "command_shape": "TITLE를할일로추가해줘.",
+                      "fields": {
+                        "duration_minutes": {
+                          "mode": "ambiguous",
+                          "sources": [],
+                          "value": null
+                        },
+                        "literal_spans": [
+                          {
+                            "end": 15,
+                            "start": 1,
+                            "text": "상태 변경-mvb0twdh",
+                            "value": "상태 변경-mvb0twdh"
+                          }
+                        ],
+                        "local_time": {
+                          "calendar_source": null,
+                          "invalid": [],
+                          "mode": "omitted",
+                          "omissions": [],
+                          "sources": [],
+                          "value": null
+                        },
+                        "operation": "todo.create",
+                        "priority": {
+                          "mode": "omitted",
+                          "omissions": [],
+                          "sources": [],
+                          "unknown": [],
+                          "value": null
+                        },
+                        "scope": {
+                          "file_command": false,
+                          "trust": "direct_request",
+                          "withdrawn": false
+                        },
+                        "source_timezone": {
+                          "default_source": "public.timezone",
+                          "defaults": [],
+                          "mode": "default",
+                          "omissions": [],
+                          "sources": [],
+                          "unknown": [],
+                          "value": "Asia/Tokyo"
+                        },
+                        "title": {
+                          "end": 15,
+                          "start": 1,
+                          "text": "상태 변경-mvb0twdh",
+                          "value": "상태 변경-mvb0twdh"
+                        },
+                        "title_candidates": [
+                          {
+                            "end": 15,
+                            "start": 1,
+                            "text": "상태 변경-mvb0twdh",
+                            "value": "상태 변경-mvb0twdh"
+                          }
+                        ]
+                      },
+                      "state_source": "public.tasks/events"
+                    },
+                    "decision": "propose",
+                    "needs": [],
+                    "reason_code": "complete_creation",
+                    "request_role": "create",
+                    "status": "grounded"
+                  },
+                  "authorizes_execution": false,
+                  "content_evidence": {
+                    "claims": null,
+                    "status": "not_applicable"
+                  },
+                  "explanation_evidence": {
+                    "reason": "할 일 추가 초안입니다. 마감은 생략합니다.우선순위는 생략합니다. 사용자 기본 시간대 Asia/Tokyo를 적용합니다. 승인 전에는 실행하지 않습니다.",
+                    "scope": "decision_only",
+                    "status": "bound"
+                  },
+                  "public_input_sha256": "cc7b42aa54f62720174db2a29da97444f142532735de8393739c192fc48d45b7"
+                },
+                "semantic_evidence_sha256": "6579374e41103b57fb3df4b56b03c907357f66f772fbbedf620bdedc14de700a",
+                "strategy": "assistant-release-v1",
+                "title_grounding": {
+                  "end": 15,
+                  "start": 1,
+                  "text": "상태 변경-mvb0twdh",
+                  "value": "상태 변경-mvb0twdh"
+                }
+              },
+              "raw_hash": "f01e35cf9355eca9a65d7ef716cf4640bd3bc9f6100248d7156dd830e262e621"
+            },
+            "created": 1792158429.360539
+          }
+        ]
+      }
+    },
+    {
+      "case": "real_model_draft",
+      "request": "할 일 760069be41424ac79f1c696b3cd6d6d5을 완료해줘.",
+      "record": {
+        "id": "d11835e52e3a4961a6aa526541b2d28d",
+        "request": "할 일 760069be41424ac79f1c696b3cd6d6d5을 완료해줘.",
+        "raw_output": "{\n  \"decision\": \"propose\",\n  \"intent\": {\n    \"operation\": \"todo.complete\",\n    \"task_id\": \"760069be41424ac79f1c696b3cd6d6d5\"\n  },\n  \"reason\": \"공개 목록에서 ID와 미완료 상태를 확인한 완료 처리 초안입니다. 승인 전에는 실행하지 않습니다.\"\n}",
+        "initial_fields": {
+          "operation": "todo.complete",
+          "task_id": "760069be41424ac79f1c696b3cd6d6d5"
+        },
+        "fields": {
+          "operation": "todo.complete",
+          "task_id": "760069be41424ac79f1c696b3cd6d6d5"
+        },
+        "revision": 1,
+        "content_hash": "21b1ddaf61d5e39528e3fe153827f86cb3ed2d989ea4c1f22790caa20e028928",
+        "status": "draft",
+        "metadata": {
+          "completion_error": null,
+          "configuration_hash": "197583d943bae0e58cec2a525e88bfd920ccb98a2223b4ae71f9566515317956",
+          "decision": "propose",
+          "decoding_schema_sha256": "688766e4392614207db69ffc098152d2002e5314606c401f310992cc382c38c4",
+          "explanation_bound": true,
+          "field_evidence": {
+            "duration_minutes": {
+              "mode": "ambiguous",
+              "sources": [],
+              "value": null
+            },
+            "literal_spans": [],
+            "local_time": {
+              "calendar_source": null,
+              "invalid": [],
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "value": null
+            },
+            "operation": null,
+            "priority": {
+              "mode": "omitted",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": null
+            },
+            "scope": {
+              "file_command": false,
+              "trust": "direct_request",
+              "withdrawn": false
+            },
+            "source_timezone": {
+              "default_source": "public.timezone",
+              "defaults": [],
+              "mode": "default",
+              "omissions": [],
+              "sources": [],
+              "unknown": [],
+              "value": "Asia/Tokyo"
+            },
+            "title": null,
+            "title_candidates": []
+          },
+          "grounding_error": null,
+          "latency_ms": 3282.2589999996126,
+          "model": "qwen3.5:9b",
+          "path_grounding": null,
+          "reason": "공개 목록에서 ID와 미완료 상태를 확인한 완료 처리 초안입니다. 승인 전에는 실행하지 않습니다.",
+          "release_explanation": {
+            "authorizes_execution": false,
+            "bound_in_native_schema": true,
+            "policy": "source_bound",
+            "source_semantics_upgraded": false
+          },
+          "role_grounding": {
+            "decision": "propose",
+            "operation": "todo.complete",
+            "role": "todo_task_id",
+            "state_evidence": {
+              "matches": 1,
+              "source": "public.tasks",
+              "status": "open"
+            },
+            "target": {
+              "end": 36,
+              "start": 4,
+              "text": "760069be41424ac79f1c696b3cd6d6d5",
+              "value": "760069be41424ac79f1c696b3cd6d6d5"
+            }
+          },
+          "schema_requested": true,
+          "schema_valid": true,
+          "semantic_evidence": {
+            "action_evidence": {
+              "basis": {
+                "decision": "propose",
+                "operation": "todo.complete",
+                "role": "todo_task_id",
+                "state_evidence": {
+                  "matches": 1,
+                  "source": "public.tasks",
+                  "status": "open"
+                },
+                "target": {
+                  "end": 36,
+                  "start": 4,
+                  "text": "760069be41424ac79f1c696b3cd6d6d5",
+                  "value": "760069be41424ac79f1c696b3cd6d6d5"
+                }
+              },
+              "decision": "propose",
+              "needs": [],
+              "reason_code": "open_task",
+              "request_role": "complete",
+              "status": "grounded"
+            },
+            "authorizes_execution": false,
+            "content_evidence": {
+              "claims": null,
+              "status": "not_applicable"
+            },
+            "explanation_evidence": {
+              "reason": "공개 목록에서 ID와 미완료 상태를 확인한 완료 처리 초안입니다. 승인 전에는 실행하지 않습니다.",
+              "scope": "decision_only",
+              "status": "bound"
+            },
+            "public_input_sha256": "5d7affe129ab2151ebf53a339a3ed800ebf55af2e681068640a86a7a02f12562"
+          },
+          "semantic_evidence_sha256": "c7dc8742a55bf4b76e44d8a9568eba16082db088330d4f06dafd2f3c3a12e3e4",
+          "strategy": "assistant-release-v1",
+          "title_grounding": null
+        },
+        "created_at": 1792158432.9686816,
+        "parent_id": null,
+        "preview": null,
+        "receipt": null,
+        "events": [
+          {
+            "event": "draft_created",
+            "payload": {
+              "metadata": {
+                "completion_error": null,
+                "configuration_hash": "197583d943bae0e58cec2a525e88bfd920ccb98a2223b4ae71f9566515317956",
+                "decision": "propose",
+                "decoding_schema_sha256": "688766e4392614207db69ffc098152d2002e5314606c401f310992cc382c38c4",
+                "explanation_bound": true,
+                "field_evidence": {
+                  "duration_minutes": {
+                    "mode": "ambiguous",
+                    "sources": [],
+                    "value": null
+                  },
+                  "literal_spans": [],
+                  "local_time": {
+                    "calendar_source": null,
+                    "invalid": [],
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "value": null
+                  },
+                  "operation": null,
+                  "priority": {
+                    "mode": "omitted",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": null
+                  },
+                  "scope": {
+                    "file_command": false,
+                    "trust": "direct_request",
+                    "withdrawn": false
+                  },
+                  "source_timezone": {
+                    "default_source": "public.timezone",
+                    "defaults": [],
+                    "mode": "default",
+                    "omissions": [],
+                    "sources": [],
+                    "unknown": [],
+                    "value": "Asia/Tokyo"
+                  },
+                  "title": null,
+                  "title_candidates": []
+                },
+                "grounding_error": null,
+                "latency_ms": 3282.2589999996126,
+                "model": "qwen3.5:9b",
+                "path_grounding": null,
+                "reason": "공개 목록에서 ID와 미완료 상태를 확인한 완료 처리 초안입니다. 승인 전에는 실행하지 않습니다.",
+                "release_explanation": {
+                  "authorizes_execution": false,
+                  "bound_in_native_schema": true,
+                  "policy": "source_bound",
+                  "source_semantics_upgraded": false
+                },
+                "role_grounding": {
+                  "decision": "propose",
+                  "operation": "todo.complete",
+                  "role": "todo_task_id",
+                  "state_evidence": {
+                    "matches": 1,
+                    "source": "public.tasks",
+                    "status": "open"
+                  },
+                  "target": {
+                    "end": 36,
+                    "start": 4,
+                    "text": "760069be41424ac79f1c696b3cd6d6d5",
+                    "value": "760069be41424ac79f1c696b3cd6d6d5"
+                  }
+                },
+                "schema_requested": true,
+                "schema_valid": true,
+                "semantic_evidence": {
+                  "action_evidence": {
+                    "basis": {
+                      "decision": "propose",
+                      "operation": "todo.complete",
+                      "role": "todo_task_id",
+                      "state_evidence": {
+                        "matches": 1,
+                        "source": "public.tasks",
+                        "status": "open"
+                      },
+                      "target": {
+                        "end": 36,
+                        "start": 4,
+                        "text": "760069be41424ac79f1c696b3cd6d6d5",
+                        "value": "760069be41424ac79f1c696b3cd6d6d5"
+                      }
+                    },
+                    "decision": "propose",
+                    "needs": [],
+                    "reason_code": "open_task",
+                    "request_role": "complete",
+                    "status": "grounded"
+                  },
+                  "authorizes_execution": false,
+                  "content_evidence": {
+                    "claims": null,
+                    "status": "not_applicable"
+                  },
+                  "explanation_evidence": {
+                    "reason": "공개 목록에서 ID와 미완료 상태를 확인한 완료 처리 초안입니다. 승인 전에는 실행하지 않습니다.",
+                    "scope": "decision_only",
+                    "status": "bound"
+                  },
+                  "public_input_sha256": "5d7affe129ab2151ebf53a339a3ed800ebf55af2e681068640a86a7a02f12562"
+                },
+                "semantic_evidence_sha256": "c7dc8742a55bf4b76e44d8a9568eba16082db088330d4f06dafd2f3c3a12e3e4",
+                "strategy": "assistant-release-v1",
+                "title_grounding": null
+              },
+              "raw_hash": "399981a29a94c287f03ed1b4fe341176026690fb13a45da4c8632d7ae5ed8b51"
+            },
+            "created": 1792158432.9702036
+          }
+        ]
+      }
+    },
+    {
+      "case": "complete_task_and_reject_changed_state_approval"
+    }
+  ],
+  "page_errors": [],
+  "final_state": {
+    "events": [
+      {
+        "end_at": "2028-12-15T23:15:00+09:00",
+        "event_id": "e4abdfe3a32f49059efba6ff615bba9f",
+        "start_at": "2028-12-15T22:30:00+09:00",
+        "title": "뉴욕 회의-mvb0twdh"
+      }
+    ],
+    "tasks": [
+      {
+        "priority": "low",
+        "status": "complete",
+        "task_id": "760069be41424ac79f1c696b3cd6d6d5",
+        "title": "릴리스 점검-mvb0twdh-수정"
+      }
+    ],
+    "files": {
+      "files/Inbox/review-demo.txt": {
+        "sha256": "ce5866238cdf7f257e9dd40abd8c0087077c63a6e182416eb8d0ff5ae9586632",
+        "size": 63
+      }
+    }
+  }
+}

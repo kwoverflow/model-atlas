@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "model_calls": 0,
+  "observations": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "layout": {
+        "document_width": 1440,
+        "viewport_width": 1440,
+        "heading_top": 24,
+        "header_bottom": 0,
+        "evidence_width": 836,
+        "overflowing_buttons": []
+      },
+      "screenshot": "artifacts\\personal-assistant-release\\2026-10-16\\layout-v2\\desktop.png"
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "layout": {
+        "document_width": 390,
+        "viewport_width": 390,
+        "heading_top": 88,
+        "header_bottom": 64,
+        "evidence_width": 358,
+        "overflowing_buttons": []
+      },
+      "screenshot": "artifacts\\personal-assistant-release\\2026-10-16\\layout-v2\\mobile.png"
+    },
+    {
+      "name": "narrow",
+      "width": 320,
+      "height": 740,
+      "layout": {
+        "document_width": 320,
+        "viewport_width": 320,
+        "heading_top": 88,
+        "header_bottom": 64,
+        "evidence_width": 288,
+        "overflowing_buttons": []
+      },
+      "screenshot": "artifacts\\personal-assistant-release\\2026-10-16\\layout-v2\\narrow.png"
+    }
+  ],
+  "page_errors": []
+}

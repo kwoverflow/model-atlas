@@ -1,0 +1,224 @@
+
+> model-atlas-frontend@1.0.0 test
+> node --experimental-strip-types --test tests/*.test.mjs
+
+TAP version 13
+# (node:56656) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:56656) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/rokn2/Documents/%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4/model-atlas-pr-checkout-20261017/frontend/lib/assistantEvidence.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\rokn2\\Documents\\포트폴리오\\model-atlas-pr-checkout-20261017\\frontend\\package.json.
+# Subtest: unverified source semantics are never promoted by a bounded reason
+ok 1 - unverified source semantics are never promoted by a bounded reason
+  ---
+  duration_ms: 0.4989
+  ...
+# Subtest: outer explanation-only grounding does not verify inner document meaning
+ok 2 - outer explanation-only grounding does not verify inner document meaning
+  ---
+  duration_ms: 0.1246
+  ...
+# Subtest: generation failures cannot display a verified status
+ok 3 - generation failures cannot display a verified status
+  ---
+  duration_ms: 0.0703
+  ...
+# Subtest: legacy records remain explicitly unverified
+ok 4 - legacy records remain explicitly unverified
+  ---
+  duration_ms: 0.0528
+  ...
+# (node:46908) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:46908) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/rokn2/Documents/%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4/model-atlas-pr-checkout-20261017/frontend/lib/browserApi.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\rokn2\\Documents\\포트폴리오\\model-atlas-pr-checkout-20261017\\frontend\\package.json.
+# Subtest: GET includes credentials without reading a CSRF cookie
+ok 5 - GET includes credentials without reading a CSRF cookie
+  ---
+  duration_ms: 21.133
+  ...
+# Subtest: POST includes the exact synthetic CSRF cookie and preserves request fields
+ok 6 - POST includes the exact synthetic CSRF cookie and preserves request fields
+  ---
+  duration_ms: 0.6004
+  ...
+# Subtest: put includes the exact synthetic CSRF cookie and preserves request fields
+ok 7 - put includes the exact synthetic CSRF cookie and preserves request fields
+  ---
+  duration_ms: 0.3578
+  ...
+# Subtest: PATCH includes the exact synthetic CSRF cookie and preserves request fields
+ok 8 - PATCH includes the exact synthetic CSRF cookie and preserves request fields
+  ---
+  duration_ms: 0.3183
+  ...
+# Subtest: DELETE includes the exact synthetic CSRF cookie and preserves request fields
+ok 9 - DELETE includes the exact synthetic CSRF cookie and preserves request fields
+  ---
+  duration_ms: 0.5079
+  ...
+# Subtest: SSR without document does not invent a CSRF token
+ok 10 - SSR without document does not invent a CSRF token
+  ---
+  duration_ms: 0.3145
+  ...
+# Subtest: unrelated cookies do not become a CSRF token
+ok 11 - unrelated cookies do not become a CSRF token
+  ---
+  duration_ms: 0.3426
+  ...
+# Subtest: unauthorized responses are returned unchanged without retrying
+ok 12 - unauthorized responses are returned unchanged without retrying
+  ---
+  duration_ms: 0.3329
+  ...
+# Subtest: network rejection is not converted into a successful response
+ok 13 - network rejection is not converted into a successful response
+  ---
+  duration_ms: 0.8662
+  ...
+# Subtest: all upstream files except the documented root resolver are byte-identical
+ok 14 - all upstream files except the documented root resolver are byte-identical
+  ---
+  duration_ms: 53.069
+  ...
+# Subtest: real ESLint config rejects hostile root patterns before linting
+ok 15 - real ESLint config rejects hostile root patterns before linting
+  ---
+  duration_ms: 2224.5251
+  ...
+# Subtest: npm resolves the local patch and has no vulnerable glob dependency nodes
+ok 16 - npm resolves the local patch and has no vulnerable glob dependency nodes
+  ---
+  duration_ms: 2.3772
+  ...
+# Subtest: default roots, explicit paths and missing directories preserve expected behavior
+ok 17 - default roots, explicit paths and missing directories preserve expected behavior
+  ---
+  duration_ms: 0.8129
+  ...
+# Subtest: glob syntax, oversized inputs and deeply nested braces fail closed
+ok 18 - glob syntax, oversized inputs and deeply nested braces fail closed
+  ---
+  duration_ms: 0.2462
+  ...
+# Subtest: Next and React hooks rules still detect real violations through the unchanged config
+ok 19 - Next and React hooks rules still detect real violations through the unchanged config
+  ---
+  duration_ms: 68.1689
+  ...
+# (node:52484) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:52484) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/rokn2/Documents/%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4/model-atlas-pr-checkout-20261017/frontend/lib/requestTextDiff.ts is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to C:\\Users\\rokn2\\Documents\\포트폴리오\\model-atlas-pr-checkout-20261017\\frontend\\package.json.
+# Subtest: identical
+ok 20 - identical
+  ---
+  duration_ms: 1.4368
+  ...
+# Subtest: empty
+ok 21 - empty
+  ---
+  duration_ms: 0.3301
+  ...
+# Subtest: insertion
+ok 22 - insertion
+  ---
+  duration_ms: 0.2521
+  ...
+# Subtest: deletion
+ok 23 - deletion
+  ---
+  duration_ms: 0.108
+  ...
+# Subtest: replacement
+ok 24 - replacement
+  ---
+  duration_ms: 0.1403
+  ...
+# Subtest: leading and trailing spaces
+ok 25 - leading and trailing spaces
+  ---
+  duration_ms: 0.1382
+  ...
+# Subtest: double space
+ok 26 - double space
+  ---
+  duration_ms: 0.1082
+  ...
+# Subtest: tab versus space
+ok 27 - tab versus space
+  ---
+  duration_ms: 0.0681
+  ...
+# Subtest: CRLF versus LF
+ok 28 - CRLF versus LF
+  ---
+  duration_ms: 0.2226
+  ...
+# Subtest: NBSP versus space
+ok 29 - NBSP versus space
+  ---
+  duration_ms: 0.2074
+  ...
+# Subtest: zero width space
+ok 30 - zero width space
+  ---
+  duration_ms: 0.0823
+  ...
+# Subtest: astral code point
+ok 31 - astral code point
+  ---
+  duration_ms: 0.0372
+  ...
+# Subtest: canonical equivalents remain different
+ok 32 - canonical equivalents remain different
+  ---
+  duration_ms: 0.0345
+  ...
+# Subtest: case remains different
+ok 33 - case remains different
+  ---
+  duration_ms: 0.0709
+  ...
+# Subtest: all missing
+ok 34 - all missing
+  ---
+  duration_ms: 0.0317
+  ...
+# Subtest: all added
+ok 35 - all added
+  ---
+  duration_ms: 0.0309
+  ...
+# Subtest: maximum-length different queries
+ok 36 - maximum-length different queries
+  ---
+  duration_ms: 98.6817
+  ...
+# Subtest: the pilot's doubled space is located precisely
+ok 37 - the pilot's doubled space is located precisely
+  ---
+  duration_ms: 0.1631
+  ...
+# Subtest: invisible characters have distinct labels without changing raw values
+ok 38 - invisible characters have distinct labels without changing raw values
+  ---
+  duration_ms: 0.3609
+  ...
+# Subtest: many short inputs reconstruct exactly and only align equal characters
+ok 39 - many short inputs reconstruct exactly and only align equal characters
+  ---
+  duration_ms: 15.028
+  ...
+1..39
+# tests 39
+# suites 0
+# pass 39
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2682.5825

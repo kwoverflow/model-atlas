@@ -84,6 +84,7 @@ export const navigationGroups: NavigationGroup[] = [
       { href: "/benchmark-executions/new", label: "Execute Benchmark", icon: PlayCircle },
       { href: "/runtime-reliability", label: "Runtime Reliability", icon: Gauge },
       { href: "/structured-requests", label: "Request Contracts", icon: ClipboardCheck },
+      { href: "/personal-assistant", label: "개인 비서 검토", icon: ClipboardCheck },
       { href: "/judge-labels", label: "Judge Review", icon: ClipboardCheck },
       { href: "/prompt-regressions", label: "Prompt Regression", icon: GitCompare },
       { href: "/deployment-baselines", label: "Baselines", icon: History },

@@ -1,4 +1,4 @@
 node_modules/
-.next/
+.next*/
 *.tsbuildinfo
 npm-debug.log*

@@ -141,6 +141,13 @@ class Settings:
     trust_source_schedule_lease_seconds: int
 
     def __init__(self) -> None:
+        self.personal_assistant_workspace = os.getenv("PERSONAL_ASSISTANT_WORKSPACE") or None
+        self.personal_assistant_runtime_url = os.getenv(
+            "PERSONAL_ASSISTANT_RUNTIME_URL", "http://127.0.0.1:11435"
+        )
+        self.personal_assistant_draft_strategy = os.getenv(
+            "PERSONAL_ASSISTANT_DRAFT_STRATEGY", "assistant-release-v1"
+        )
         self.database_url = os.getenv(
             "DATABASE_URL",
             "postgresql+psycopg://model_atlas:model_atlas@localhost:5432/model_atlas",

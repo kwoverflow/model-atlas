@@ -2,6 +2,9 @@
 param(
     [string]$OutputPath,
     [string]$VerificationPath,
+    [string]$PackageName = 'model-atlas-mvp-review',
+    [string]$EntryPoint = 'MVP_REVIEW_GUIDE_KO.md',
+    [string]$Scope = 'portfolio-mvp-closeout',
     [switch]$Force
 )
 
@@ -12,7 +15,8 @@ Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 $projectRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
-$packageRoot = "model-atlas-mvp-review"
+if ($PackageName -notmatch '^[a-z0-9][a-z0-9.-]+$') { throw 'Invalid package root name.' }
+$packageRoot = $PackageName
 $dateStamp = Get-Date -Format "yyyyMMdd-HHmmss"
 
 if ([string]::IsNullOrWhiteSpace($OutputPath)) {
@@ -109,7 +113,7 @@ function Test-IncludedFile {
         if ($excludedSegments -contains $segment) {
             return $false
         }
-        if ($segment -like "*.egg-info" -or $segment -like ".venv*") {
+        if ($segment -like "*.egg-info" -or $segment -like ".venv*" -or $segment -like '.next*') {
             return $false
         }
     }
@@ -121,6 +125,7 @@ function Test-IncludedFile {
     if ($leaf -match "(?i)\.(db|log|p12|pfx|pyc|pyo|sqlite|sqlite3|tsbuildinfo|zip|onnx|gguf|safetensors|pt|pth|bin|ckpt|h5|hdf5)$") {
         return $false
     }
+    if ($leaf -match '(?i)\.(db|sqlite|sqlite3)-(wal|shm|journal)$') { return $false }
     if ($leaf -match "(?i)(?:private.*\.pem|\.key)$") {
         return $false
     }
@@ -139,7 +144,7 @@ function Get-IncludedSourceFiles {
     # Prune excluded directories before walking them, including inaccessible caches.
     foreach ($child in Get-ChildItem -LiteralPath $Directory -Force) {
         if ($child.PSIsContainer) {
-            if ($excludedSegments -contains $child.Name -or $child.Name -like '.venv*' -or $child.Name -like '*.egg-info') {
+            if ($excludedSegments -contains $child.Name -or $child.Name -like '.venv*' -or $child.Name -like '.next*' -or $child.Name -like '*.egg-info') {
                 continue
             }
             if ($child.Attributes -band [System.IO.FileAttributes]::ReparsePoint) {
@@ -230,6 +235,9 @@ foreach ($relativeDirectory in $sourceDirectories) {
 }
 
 $sourceFiles = @($sourceFiles | Sort-Object FullName -Unique)
+if ($EntryPoint -notin @($sourceFiles | ForEach-Object { Get-ProjectRelativePath -File $_ })) {
+    throw 'EntryPoint must identify an included project document.'
+}
 if ($sourceFiles.Count -eq 0) {
     throw "No source files were selected for the package."
 }
@@ -250,6 +258,10 @@ if (-not [string]::IsNullOrWhiteSpace($VerificationPath)) {
         receipt_sha256 = (Get-FileHash -LiteralPath $verificationFile.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
         checks = $verification.checks
         external_review = $verification.external_review
+    }
+    if ($verification.PSObject.Properties.Name -contains 'release_status') {
+        $verificationStatus['release_status'] = $verification.release_status
+        $verificationStatus['full_audit_clean'] = $verification.full_audit_clean
     }
 }
 
@@ -286,8 +298,8 @@ $packageInfo = [ordered]@{
     schema_version = "model-atlas-evaluation-package-v2"
     package = $packageRoot
     project = "Model Atlas"
-    scope = "portfolio-mvp-closeout"
-    current_entry_point = "MVP_REVIEW_GUIDE_KO.md"
+    scope = $Scope
+    current_entry_point = $EntryPoint
     created_at_utc = [DateTime]::UtcNow.ToString("o")
     source_file_count = $sourceFiles.Count
     source_bytes = $sourceBytes
@@ -298,7 +310,7 @@ $packageInfo = [ordered]@{
         "No model weights are included.",
         "No production deployment authorization is implied.",
         "A fresh review database contains mock demo evidence, not the original runtime database.",
-        "Historical reports describe their own dates; start with MVP_REVIEW_GUIDE_KO.md.",
+        "Historical reports describe their own dates; start with $EntryPoint.",
         "Bundled paging, CA, trust-source, and public artifact evidence are development fixtures.",
         "The evaluator should rerun tests in the target environment."
     )
