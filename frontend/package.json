@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
+    "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "test:request-diff": "node --experimental-strip-types --test tests/requestTextDiff.test.mjs",
     "test": "node --experimental-strip-types --test tests/*.test.mjs"

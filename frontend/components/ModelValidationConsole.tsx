@@ -10,6 +10,7 @@ import {
   RefreshCw
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import type { FormEvent } from "react";
 import { useEffect, useMemo, useState } from "react";
 
@@ -48,6 +49,7 @@ export function ModelValidationConsole({
   initialSuiteId,
   initialReport
 }: ModelValidationConsoleProps) {
+  const router = useRouter();
   const [configurationId, setConfigurationId] = useState(initialConfigurationId);
   const selectedConfiguration = configurations.find(
     (configuration) => configuration.id === configurationId
@@ -248,7 +250,8 @@ export function ModelValidationConsole({
       deployment_configuration_id: created.deployment_configuration.id,
       evaluation_suite_id: suiteId
     });
-    window.location.assign(`/model-validation?${params.toString()}`);
+    router.push(`/model-validation?${params.toString()}`);
+    router.refresh();
   }
 
   const canQueue =

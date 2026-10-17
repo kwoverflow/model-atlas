@@ -1,6 +1,7 @@
 "use client";
 
 import { FileCheck2, ShieldCheck } from "lucide-react";
+import { useRouter } from "next/navigation";
 import type { FormEvent } from "react";
 import { useEffect, useState } from "react";
 
@@ -57,6 +58,7 @@ export function ReleaseDecisionForm({
   readinessStatus,
   replacesReleaseDecisionId
 }: ReleaseDecisionFormProps) {
+  const router = useRouter();
   const [decision, setDecision] = useState<ReleaseDecisionType>(
     initialDecision(readinessStatus)
   );
@@ -148,7 +150,8 @@ export function ReleaseDecisionForm({
       setStatus(errorMessage(payload));
       return;
     }
-    window.location.href = `/release-decisions?gate_evaluation_id=${gateEvaluationId}`;
+    router.push(`/release-decisions?gate_evaluation_id=${gateEvaluationId}`);
+    router.refresh();
   }
 
   return (

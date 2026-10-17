@@ -1,6 +1,7 @@
 "use client";
 
 import { CheckCircle2, FileUp, RotateCcw } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import { API_BASE_URL } from "@/lib/apiBase";
@@ -20,6 +21,7 @@ export function JudgeLabelImportForm({
   runs,
   selectedBenchmarkRunId
 }: JudgeLabelImportFormProps) {
+  const router = useRouter();
   const [benchmarkRunId, setBenchmarkRunId] = useState(selectedBenchmarkRunId ?? "");
   const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<string | null>(null);
@@ -51,7 +53,8 @@ export function JudgeLabelImportForm({
     setSummary(payload);
     setStatus(applyLabels ? "Labels applied" : "Dry run complete");
     if (applyLabels) {
-      window.location.href = `/judge-labels?benchmark_run_id=${benchmarkRunId}`;
+      router.push(`/judge-labels?benchmark_run_id=${benchmarkRunId}`);
+      router.refresh();
     }
   }
 
