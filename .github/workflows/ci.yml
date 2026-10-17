@@ -17,7 +17,13 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install backend
-        run: pip install -e .
+        run: python -m pip install "pip>=26.2,<27" -e .
+      - name: Audit installed backend dependencies
+        run: |
+          python -m venv "$RUNNER_TEMP/security-auditor"
+          "$RUNNER_TEMP/security-auditor/bin/python" -m pip install pip-audit==2.10.1
+          python ../tools/export_backend_audit_requirements.py --output "$RUNNER_TEMP/backend-audit.txt"
+          "$RUNNER_TEMP/security-auditor/bin/python" -m pip_audit --strict --no-deps --disable-pip -r "$RUNNER_TEMP/backend-audit.txt"
       - name: Lint backend
         run: ruff check .
       - name: Test backend
@@ -27,11 +33,93 @@ jobs:
       - name: Test workflow evidence exports
         run: python -m pytest ../tools/test_verify_request_workflow_export.py -q
       - name: Lint review and publication tools
-        run: ruff check --config ../tools/ruff.toml ../tools/verify_mvp_review.py ../tools/verify_mvp_package.py ../tools/audit_publication.py ../tools/tests
+        run: ruff check --config ../tools/ruff.toml ../tools/verify_mvp_review.py ../tools/verify_mvp_package.py ../tools/audit_publication.py ../tools/export_backend_audit_requirements.py ../tools/tests
       - name: Test review and publication tools
         run: python -m unittest discover -s ../tools/tests -v
       - name: Audit public repository payloads
         run: python ../tools/audit_publication.py --git-index ..
+      - name: Lint personal assistant evaluation
+        # Preserve the formatting roots of frozen harnesses without rewriting their sources.
+        working-directory: .
+        run: ruff check --config backend/pyproject.toml experiments/personal_assistant_eval
+      - name: Test personal assistant evaluation contracts
+        run: python -m pytest ../experiments/personal_assistant_eval -q
+      - name: Lint personal assistant E2E harness
+        working-directory: .
+        run: ruff check --config backend/pyproject.toml experiments/personal_assistant_e2e
+      - name: Test personal assistant sandbox workflow
+        working-directory: .
+        run: python -m pytest experiments/personal_assistant_e2e -q
+      - name: Lint personal assistant draft E2E
+        working-directory: .
+        run: ruff check --config backend/pyproject.toml experiments/personal_assistant_draft_e2e
+      - name: Test personal assistant draft workflow
+        working-directory: .
+        run: python -m pytest experiments/personal_assistant_draft_e2e -q
+      - name: Lint bounded personal assistant runtime comparison
+        run: ruff check --config pyproject.toml ../experiments/personal_assistant_runtime_ab
+      - name: Test bounded personal assistant runtime comparison
+        working-directory: .
+        run: python -m pytest experiments/personal_assistant_runtime_ab -q
+      - name: Lint bounded personal assistant persona verification
+        run: ruff check --config pyproject.toml ../experiments/personal_assistant_persona_e2e
+      - name: Test persona budgets and real process recovery without a model
+        working-directory: .
+        run: python -m pytest experiments/personal_assistant_persona_e2e -q
+      - name: Lint bounded personal assistant stabilization
+        run: ruff check --config pyproject.toml ../experiments/personal_assistant_stabilization ../tools/verify_personal_assistant_stabilization_browser.py
+      - name: Test stabilization acceptance policy without a model
+        working-directory: .
+        run: python -m pytest experiments/personal_assistant_stabilization -q
+      - name: Lint path boundary successor
+        run: ruff check --config pyproject.toml ../experiments/personal_assistant_path_boundary
+      - name: Test path boundary gate and synthetic effects without a model
+        working-directory: .
+        run: python -m pytest experiments/personal_assistant_path_boundary -q
+      - name: Lint final path grounding candidate and integration audit
+        run: ruff check --config pyproject.toml ../experiments/personal_assistant_path_grounding ../tools/verify_personal_assistant_path_boundary_browser.py
+      - name: Test final path grounding gate without a model
+        working-directory: .
+        run: python -m pytest experiments/personal_assistant_path_grounding -q
+      - name: Lint literal role grounding successor
+        run: ruff check --config pyproject.toml ../experiments/personal_assistant_role_grounding
+      - name: Test literal role grounding gate without a model
+        working-directory: .
+        run: python -m pytest experiments/personal_assistant_role_grounding -q
+      - name: Lint field provenance and completion grounding
+        run: ruff check --config pyproject.toml ../experiments/personal_assistant_field_grounding
+      - name: Test field evidence, complete goals and acceptance gate without a model
+        working-directory: .
+        run: python -m pytest experiments/personal_assistant_field_grounding -q
+      - name: Lint complete creation evidence comparison
+        working-directory: .
+        run: ruff check experiments/personal_assistant_completeness
+      - name: Lint incomplete transport evidence audit
+        working-directory: .
+        run: ruff check --config backend/pyproject.toml tools/audit_personal_assistant_completeness.py
+      - name: Test creation completeness and regression gate without a model
+        working-directory: .
+        run: python -m pytest experiments/personal_assistant_completeness -q
+      - name: Lint decision grounding and independent evidence checks
+        working-directory: .
+        run: ruff check --config backend/pyproject.toml experiments/personal_assistant_decision_grounding
+      - name: Test decision evidence and explanation consistency without a model
+        working-directory: .
+        run: python -m pytest experiments/personal_assistant_decision_grounding -q
+      - name: Lint supplementary explanation semantics audit
+        run: ruff check --config pyproject.toml ../tools/audit_personal_assistant_decision_semantics.py
+      - name: Lint split semantic evidence candidate
+        working-directory: .
+        run: ruff check --config backend/pyproject.toml experiments/personal_assistant_semantic_grounding tools/audit_personal_assistant_semantic_boundaries.py
+      - name: Test split evidence and bounded semantic acceptance without a model
+        working-directory: .
+        run: python -m pytest experiments/personal_assistant_semantic_grounding -q
+      - name: Lint 1.0 release explanation policy
+        working-directory: .
+        run: ruff check --config backend/pyproject.toml experiments/personal_assistant_release
+      - name: Test 1.0 known-case release gates without a model
+        working-directory: .
+        run: python -m pytest experiments/personal_assistant_release -q
 
   frontend:
     runs-on: ubuntu-latest
@@ -46,7 +134,7 @@ jobs:
       - name: Install frontend
         run: npm ci
       - name: Audit frontend dependencies
-        run: npm audit --audit-level=high
+        run: npm audit --audit-level=low
       - name: Test frontend
         run: npm test
       - name: Typecheck frontend

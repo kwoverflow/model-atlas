@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "model_calls": 0,
+  "read_only": true,
+  "draft_strategy": "assistant-release-v1",
+  "application_version": "1.0.0",
+  "state_sha256": "7be79b39f0bbd01856030045b69bd9f14827a055f9b87db3c0614470c9a6b03e",
+  "reviews_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "compared_to": "artifacts\\personal-assistant-release\\2026-10-16\\live-after.json",
+  "workspace": {
+    "mode": "isolated_local_workspace",
+    "model": "qwen3.5:9b",
+    "application_version": "1.0.0",
+    "draft_strategy": "assistant-release-v1",
+    "state": {
+      "events": [],
+      "tasks": [],
+      "files": {
+        "files/Inbox/review-demo.txt": {
+          "sha256": "ce5866238cdf7f257e9dd40abd8c0087077c63a6e182416eb8d0ff5ae9586632",
+          "size": 63
+        }
+      }
+    }
+  },
+  "review_count": 0
+}

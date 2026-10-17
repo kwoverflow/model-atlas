@@ -88,6 +88,9 @@ class PackageTests(unittest.TestCase):
             "id_rsa",
             "db.sqlite",
             "node_modules/a.js",
+            ".next-release-qa/cache.json",
+            "state.sqlite3-wal",
+            "state.db-journal",
         ):
             with (
                 self.subTest(path=path),

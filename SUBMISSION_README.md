@@ -1,6 +1,16 @@
 # Model Atlas Submission Package
 
-## Current Submission (2026-09-13)
+## 1.0 Closeout Review (2026-10-16)
+
+Start with [the 1.0 guide](docs/releases/1.0.0/README.md) and
+[the current security closeout report](docs/reports/2026-10-16_release_1_0_security_ko.md).
+Frontend runtime and full development audits, and both installed Python dependency
+audits, report zero known findings. Local review 1.0 is ready without accepting the
+previous development-tool risk. The final receipt records the release status and
+assessment boundaries; this is not full security or production deployment approval.
+The September and earlier sections below are historical checkpoints, not current results.
+
+## Historical Submission (2026-09-13)
 
 **Start with [MVP_REVIEW_GUIDE_KO.md](MVP_REVIEW_GUIDE_KO.md)** for installation, demo and technical review.
 Then read [MVP_SCOPE_KO.md](MVP_SCOPE_KO.md) and

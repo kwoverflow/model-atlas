@@ -10,7 +10,8 @@ COPY alembic.ini ./alembic.ini
 COPY alembic ./alembic
 COPY app ./app
 COPY tests ./tests
-RUN pip install --no-cache-dir -e .
+RUN python -m pip install --no-cache-dir "pip>=26.2,<27"
+RUN python -m pip install --no-cache-dir -e .
 
 EXPOSE 8000
 

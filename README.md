@@ -3,6 +3,24 @@
 Local-first EvalOps: evaluate a concrete AI deployment, trace the evidence, and explain
 why a release is allowed or blocked. **Portfolio MVP; not a newly trained language model.**
 
+## Start Here
+
+Read the [한국어 프로젝트 안내서](docs/PROJECT_GUIDE_KO.md) for the problem, target users,
+two end-to-end flows, methods, usage, code map, and measured limitations.
+The [public evidence index](docs/releases/1.0.0/EVIDENCE_INDEX_KO.md) explains what is
+inspectable in Git and what requires the separate historical review bundle.
+
+## 1.0 Closeout (2026-10-16)
+
+Start with the [1.0 installation and review guide](docs/releases/1.0.0/README.md)
+and [security closeout report](docs/reports/2026-10-16_release_1_0_security_ko.md).
+The personal assistant application now defaults to `assistant-release-v1`, with explicit
+`legacy` rollback. Unsupported semantic claims are not silently certified. Runtime
+and development dependency audits are clean. Installed Python dependencies were also
+audited in both tested environments. Local review 1.0 is ready without a development-risk
+exception. The guide documents the narrow local lint patch and remaining assessment
+boundaries. This is not production or autonomous execution approval.
+
 - [한국어 평가·설치·사용 안내](MVP_REVIEW_GUIDE_KO.md)
 - [Maintenance and extension guide](CONTRIBUTING.md)
 - [Public review and refactoring report](docs/reports/2026-09-13_public_review_refactor_ko.md)
@@ -14,7 +32,7 @@ The repository contains source and selected verification receipts. The release Z
 contains historical non-secret evidence, a complete SHA-256 manifest, and review documentation.
 Neither contains model weights, a populated database, local secrets, or installed dependencies.
 
-## Current Evaluation Package (2026-09-13)
+## Historical Evaluation Package (2026-09-13)
 
 Start with [MVP_REVIEW_GUIDE_KO.md](MVP_REVIEW_GUIDE_KO.md) for the isolated Docker demo,
 evaluation scope, measured limitations, and code-reading route.
@@ -22,6 +40,37 @@ The completion contract is [MVP_SCOPE_KO.md](MVP_SCOPE_KO.md).
 Historical Sprint reports and `EVALUATOR_GUIDE_KO.md` describe their original checkpoints;
 some are frozen corpus sources and must not be edited in place.
 This is an EvalOps MVP, not a newly trained model or production release approval.
+
+## Personal Assistant History (2026-10-11 Onward)
+
+The following describes the original checkpoints. Use the 1.0 guide above for the
+current application path and scope; past non-adoption decisions remain unchanged.
+
+The opt-in `/personal-assistant` pilot adds persisted draft editing, explicit confirmation,
+separate execution approval, cancellation, and file recovery in a disposable local workspace.
+It does not connect personal calendars or arbitrary user folders and is not a completed
+personal-assistant MVP. Model errors remain visible; corrected workflow success is not model accuracy.
+
+- [Local review usage and architecture](docs/personal_assistant_review_ko.md)
+- [Stabilization results and remaining blockers](docs/reports/2026-10-11_personal_assistant_stabilization_ko.md)
+- [Bounded runtime comparison and adoption decision](docs/reports/2026-10-11_personal_assistant_runtime_ab_ko.md)
+- [Bounded persona and browser verification](experiments/personal_assistant_persona_e2e/README.md)
+- [Automated verification results and limits](docs/reports/2026-10-11_personal_assistant_persona_ko.md)
+- [Accuracy stabilization: fixed comparison and remaining safety failure](docs/reports/2026-10-11_personal_assistant_accuracy_stabilization_ko.md)
+- [Successor comparison protocol and reproduction](experiments/personal_assistant_stabilization/README.md)
+- [Forbidden-path judgment: failed prompt candidate and final public-policy candidate](docs/reports/2026-10-11_personal_assistant_path_boundary_ko.md)
+- [Final path grounding comparison and adoption gates](experiments/personal_assistant_path_grounding/README.md)
+- [Literal-role repair: full rerun and remaining semantic failures](docs/reports/2026-10-15_personal_assistant_role_grounding_ko.md)
+- [V4 frozen role-grounding experiment and reproduction](experiments/personal_assistant_role_grounding/README.md)
+- [Field provenance and completion roles: full rerun, regression and blocked adoption](docs/reports/2026-10-15_personal_assistant_field_provenance_ko.md)
+- [V5 frozen field-grounding experiment and reproduction](experiments/personal_assistant_field_grounding/README.md)
+- [Creation completeness and separated context validation](docs/reports/2026-10-16_personal_assistant_completeness_ko.md)
+- [V6 frozen completeness comparison and reproduction](experiments/personal_assistant_completeness/README.md)
+- [Decision and explanation consistency, evidence sufficiency audit](docs/reports/2026-10-16_personal_assistant_decision_consistency_ko.md)
+- [V7 frozen decision-grounding comparison and independent label checks](experiments/personal_assistant_decision_grounding/README.md)
+- [V8 split action/content evidence and bounded semantic verification](docs/reports/2026-10-16_personal_assistant_semantic_evidence_ko.md)
+- [V8 semantic explanation contract and reproduction](experiments/personal_assistant_semantic_grounding/README.md)
+- [Optional human UX spot check: 10 reference cases](docs/personal_assistant_manual_pilot_ko.md)
 
 ## Overview
 

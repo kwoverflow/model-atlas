@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "model_calls": 0,
+  "replayed": 328,
+  "sources_verified": 56,
+  "regression_gate": "PASS_PENDING_APP_RELEASE"
+}

@@ -1,6 +1,8 @@
 # Maintaining Model Atlas
 
-Read [MVP_REVIEW_GUIDE_KO.md](MVP_REVIEW_GUIDE_KO.md) for the product, demo, and limits.
+Start with [the project guide](docs/PROJECT_GUIDE_KO.md) for the product, flow, and limits,
+then [the 1.0 setup guide](docs/releases/1.0.0/README.md) for current installation.
+`MVP_REVIEW_GUIDE_KO.md` remains the historical EvalOps demo walkthrough.
 This repository is an EvalOps portfolio MVP, not a trained model or a production approval.
 
 ## Local Development
@@ -9,7 +11,7 @@ Use Python 3.12+ and Node 22. From the repository root:
 
 ```powershell
 python -m venv .venv
-.venv/Scripts/python.exe -m pip install -e ./backend
+.venv/Scripts/python.exe -m pip install "pip>=26.2,<27" -e ./backend
 ```
 
 From `backend`, run `../.venv/Scripts/python.exe -m pytest` and
@@ -37,8 +39,11 @@ it is not a read-only health check.
 | Release review | `release_readiness.py`, `release_decisions.py` | Role checks, immutable snapshot, drift detection |
 | API or DB | `backend/app/schemas`, `backend/app/api/v1/routes`, `backend/alembic` | Explicit validation and migrations |
 | UI | `frontend/app`, `frontend/components`, `frontend/lib` | Existing API contracts, responsive states |
+| Assistant draft strategy | `backend/app/services/personal_assistant/release_generation.py` | Preserve raw outputs and split evidence; no unverified semantic certification |
+| Assistant execution | `personal_assistant/reviews.py`, `planning.py`, `sandbox.py` | Explicit confirmation and separate approval, revision/state hashes, safe paths and recovery |
 
 Paths abbreviated as `rag_pipeline/...` are under `backend/app/services`.
+The `personal_assistant/...` paths are also under `backend/app/services`.
 `rag_evaluation.py` remains the compatibility facade. Existing callers need not change.
 Pipeline modules depend on focused modules, never on that facade. Do not add business
 logic to the facade. Dataclasses now have a different Python `__module__`; JSON contracts
@@ -79,6 +84,12 @@ generated artifacts are included in the reviewed release ZIP, not indiscriminate
 Never force-add the entire `artifacts` directory. Never publish local environments, model
 weights, DBs, credentials, logs, or old ZIPs. The intended delivery is software and evidence;
 third-party model weights must be obtained separately under their own terms.
+
+For 1.0, see [the public evidence index](docs/releases/1.0.0/EVIDENCE_INDEX_KO.md).
+Only individually selected synthetic receipts, test reports, and screenshots are included.
+Full raw observations and frozen source bundles remain in the separately verified ZIP.
+The zero-model historical replay requires that bundle; a source checkout alone is not
+advertised as a self-contained model-evidence archive.
 
 Stage the intended files, then scan the exact staged blobs:
 

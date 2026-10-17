@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "model_calls": 0,
+  "read_only": true,
+  "draft_strategy": "legacy",
+  "application_version": "1.0.0",
+  "state_sha256": "9b3cef5b2c4925e339884833877480a170337b78cdbc9587f9dbf81b74e88923",
+  "reviews_sha256": "e3aab5e4f43f9df2b23808f69962bb6858d8e09b1e9329bbff87d32aeff8e7a4",
+  "compared_to": "artifacts\\personal-assistant-release\\2026-10-16\\before-rollback.json",
+  "workspace": {
+    "mode": "isolated_local_workspace",
+    "model": "qwen3.5:9b",
+    "application_version": "1.0.0",
+    "draft_strategy": "legacy",
+    "state": {
+      "events": [
+        {
+          "end_at": "2028-12-15T23:15:00+09:00",
+          "event_id": "bdc2cbdff1df40f8a6dd577c9805b06b",
+          "start_at": "2028-12-15T22:30:00+09:00",
+          "title": "뉴욕 회의-mvaqiavc"
+        }
+      ],
+      "tasks": [
+        {
+          "priority": "low",
+          "status": "complete",
+          "task_id": "0f76bece34c54052ac64906a4d0e9b91",
+          "title": "릴리스 점검-mvaqiavc-수정"
+        }
+      ],
+      "files": {
+        "files/Inbox/review-demo.txt": {
+          "sha256": "ce5866238cdf7f257e9dd40abd8c0087077c63a6e182416eb8d0ff5ae9586632",
+          "size": 63
+        }
+      }
+    }
+  },
+  "review_count": 13
+}

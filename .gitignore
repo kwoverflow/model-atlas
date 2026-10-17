@@ -39,7 +39,7 @@ __pycache__/
 *.egg-info/
 *.tsbuildinfo
 node_modules/
-.next/
+.next*/
 dist/
 build/
 tmp/

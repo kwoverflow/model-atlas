@@ -10,12 +10,13 @@ from app.services.browser_oidc import BrowserSessionConfig
 from app.services.oidc_runtime import browser_session_store, oidc_document_cache
 from app.services.operator_identity import JWTVerificationConfig
 from app.validators import DomainValidationError
+from app.version import __version__
 
 settings = get_settings()
 
 app = FastAPI(
     title=settings.project_name,
-    version="0.1.0",
+    version=__version__,
     description="Evidence-driven local AI deployment gate and candidate discovery platform.",
 )
 

@@ -1,0 +1,57 @@
+
+> model-atlas-frontend@1.0.0 build
+> next build
+
+▲ Next.js 16.4.2 (Turbopack)
+✓ Running next.config.mjs took 26ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.9s
+  Running TypeScript ...
+  Finished TypeScript in 5.6s ...
+  Collecting page data using 31 workers ...
+  Generating static pages using 31 workers (0/5) ...
+  Generating static pages using 31 workers (1/5) 
+  Generating static pages using 31 workers (2/5) 
+  Generating static pages using 31 workers (3/5) 
+✓ Generating static pages using 31 workers (5/5) in 344ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /agent-jobs
+├ ƒ /benchmark-executions/[id]
+├ ƒ /benchmark-executions/new
+├ ƒ /benchmarks
+├ ƒ /deployment-baselines
+├ ƒ /deployment-gates/[id]
+├ ƒ /deployment-gates/new
+├ ƒ /deployments
+├ ƒ /experiment-lineage
+├ ƒ /isolation
+├ ƒ /judge-labels
+├ ƒ /model-validation
+├ ƒ /models
+├ ○ /operations
+├ ○ /personal-assistant
+├ ƒ /prompt-regressions
+├ ƒ /recommendations
+├ ƒ /reference-workload
+├ ƒ /reference-workload/review-plan
+├ ƒ /release-decisions
+├ ƒ /release-decisions/[id]
+├ ƒ /release-readiness
+├ ƒ /runtime-reliability
+├ ○ /session-administration
+├ ƒ /structured-requests
+├ ƒ /structured-requests/validation
+├ ƒ /structured-requests/workflow
+├ ƒ /supply-chain
+├ ƒ /trust-registry
+└ ƒ /workloads
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

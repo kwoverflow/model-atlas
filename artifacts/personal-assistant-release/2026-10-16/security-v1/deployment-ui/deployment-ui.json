@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "model_calls": 0,
+  "read_only": true,
+  "observations": [
+    {
+      "route": "/",
+      "status": 200,
+      "heading": "Model Atlas"
+    },
+    {
+      "route": "/deployment-gates/f7c8f6e8-530d-436e-b921-9d21a2ab61a9",
+      "status": 200,
+      "heading": "Decision report"
+    },
+    {
+      "route": "/release-decisions/6b4f708a-2648-40bf-8318-47bd3504e60c",
+      "status": 200,
+      "heading": "Release Decision"
+    }
+  ],
+  "mobile_width": 390,
+  "page_errors": []
+}

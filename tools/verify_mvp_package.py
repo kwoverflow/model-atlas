@@ -37,7 +37,7 @@ def validate_archive(archive: zipfile.ZipFile) -> dict:
         leaf = parts[-1].lower()
         if (
             any(
-                part.lower().startswith(".venv")
+                part.lower().startswith((".venv", ".next"))
                 or part.lower()
                 in {
                     ".git",
@@ -51,6 +51,7 @@ def validate_archive(archive: zipfile.ZipFile) -> dict:
             )
             or (leaf.startswith(".env") and not leaf.endswith(".example"))
             or ("private" in leaf and leaf.endswith(".pem"))
+            or re.search(r"\.(?:db|sqlite3?)-(?:wal|shm|journal)$", leaf)
             or leaf in {"id_rsa", "id_dsa", "id_ecdsa", "id_ed25519"}
             or PurePosixPath(leaf).suffix
             in {
