@@ -48,6 +48,10 @@ export type Workspace = {
 const errors: Record<string, string> = {
   assistant_workspace_not_configured: "검토 작업공간이 연결되지 않았습니다.",
   assistant_workspace_not_initialized: "검토 작업공간이 준비되지 않았습니다.",
+  assistant_workspace_initializing:
+    "작업공간을 준비 중입니다. 잠시 후 새로고침해 주세요.",
+  assistant_workspace_unavailable: "작업공간을 열 수 없습니다. 초기화 상태를 확인해 주세요.",
+  linked_initialization_lock: "작업공간 잠금 파일이 안전하지 않아 접근을 중단했습니다.",
   local_assistant_only: "로컬 작업공간에 접근할 수 없습니다.",
   invalid_review_fields: "필수 입력값과 형식을 확인해 주세요.",
   stale_review_revision:

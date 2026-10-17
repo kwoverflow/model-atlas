@@ -16,8 +16,7 @@ from app.services.personal_assistant.contracts import GuardError
 from app.services.personal_assistant.release_generation import (
     generate_review_draft as generate_draft,
 )
-from app.services.personal_assistant.reviews import ReviewService
-from app.services.personal_assistant.sandbox import Sandbox
+from app.services.personal_assistant_workspace import open_review_service
 from app.services.structured_requests import owner_key
 from app.version import __version__
 
@@ -39,15 +38,12 @@ def review_service(request: Request):
     base = Path(settings.personal_assistant_workspace).absolute()
     if not base.is_dir() or base.resolve() != base:
         raise HTTPException(503, "assistant_workspace_not_initialized")
-    root = base / owner_key(actor)
-    if not root.exists():
-        try:
-            sandbox = Sandbox.create(root)
-        except FileExistsError:
-            sandbox = Sandbox(root)
-    else:
-        sandbox = Sandbox(root)
-    return ReviewService(sandbox)
+    try:
+        return open_review_service(base, owner_key(actor))
+    except GuardError as exc:
+        raise HTTPException(503, str(exc)) from exc
+    except OSError as exc:
+        raise HTTPException(503, "assistant_workspace_unavailable") from exc
 
 
 def perform(function):
