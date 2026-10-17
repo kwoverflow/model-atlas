@@ -80,7 +80,7 @@ export default async function JudgeLabelsPage({ searchParams }: { searchParams: 
       </section>
 
       <section className="rounded-lg border border-line bg-panel p-4 shadow-soft">
-        <form className="flex flex-wrap items-end gap-3" action="/judge-labels">
+        <form key={benchmarkRunId ?? "all"} className="flex flex-wrap items-end gap-3" action="/judge-labels">
           <label className="grid min-w-80 flex-1 gap-2 text-sm font-medium text-neutral-700">
             Benchmark run
             <select
@@ -131,6 +131,7 @@ export default async function JudgeLabelsPage({ searchParams }: { searchParams: 
       </section>
 
       <JudgeLabelImportForm
+        key={benchmarkRunId ?? "all"}
         runs={runs}
         selectedBenchmarkRunId={benchmarkRunId}
       />
@@ -217,7 +218,10 @@ export default async function JudgeLabelsPage({ searchParams }: { searchParams: 
                   ) : null}
                 </td>
                 <td className="px-4 py-3">
-                  <JudgeLabelReviewDecisionForm row={row} />
+                  <JudgeLabelReviewDecisionForm
+                    key={[row.score_source, row.quality_score, row.groundedness_score, row.faithfulness_score, Boolean(row.candidate_judge_labels)].join(":")}
+                    row={row}
+                  />
                 </td>
               </tr>
             ))}

@@ -9,6 +9,7 @@ import {
   ShieldX,
   UserRoundCheck
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 import { Badge } from "@/components/Badge";
@@ -28,6 +29,7 @@ export function AgentApprovalControlPanel({
 }: {
   checkpoints: AgentApprovalCheckpoint[];
 }) {
+  const router = useRouter();
   const [records, setRecords] = useState(checkpoints);
   const [identity, setIdentity] = useState<OperatorIdentity | null>(null);
   const [reasons, setReasons] = useState<Record<string, string>>({});
@@ -137,7 +139,8 @@ export function AgentApprovalControlPanel({
     );
     setBusyId(null);
     if (job.status === "completed" && job.result_json?.benchmark_run_id) {
-      window.location.assign(`/benchmark-executions/${job.result_json.benchmark_run_id}`);
+      router.push(`/benchmark-executions/${job.result_json.benchmark_run_id}`);
+      router.refresh();
       return;
     }
     if (job.status === "failed" || job.status === "cancelled") {

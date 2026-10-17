@@ -62,6 +62,7 @@ export default async function ModelValidationPage({
       </section>
 
       <ModelValidationConsole
+        key={`${initialConfiguration?.id ?? ""}:${initialSuite?.id ?? ""}:${initialReport?.report_hash ?? ""}`}
         configurations={configurations}
         suites={suites}
         tasks={tasks}
